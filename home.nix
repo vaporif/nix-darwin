@@ -16,10 +16,6 @@
     pango
   ];
 
-  home.sessionVariables = {
-    PATH = "/opt/homebrew/bin:$PATH";
-  };
-
   programs = {
     home-manager.enable = true;
     ripgrep.enable = true;
