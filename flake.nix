@@ -33,9 +33,7 @@
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        # Import the system configuration
-        ./configuration.nix
-        # Home Manager module
+        ./system.nix
         home-manager.darwinModules.home-manager
         {
           home-manager = {
@@ -44,8 +42,8 @@
             extraSpecialArgs = {
               inherit fzf-git-sh-package yamb-yazi blink-cmp-words;
             };
+            users.vaporif = import ./home.nix;
           };
-          users.vaporif = import ./home.nix;
         }
       ];
     };
