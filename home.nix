@@ -1,5 +1,9 @@
 { pkgs, fzf-git-sh-package, yamb-yazi, blink-cmp-words, ... }: {
-  programs.home-manager.enable = true;
+  home = {
+    username = "vaporif";
+    homeDirectory = "/Users/vaporif";
+    stateVersion = "24.05";
+  };
 
   home.packages = with pkgs; [
     nerd-fonts.hack
@@ -16,6 +20,7 @@
   };
 
   programs = {
+    home-manager.enable = true;
     ripgrep.enable = true;
     fd.enable = true;
     gh.enable = true;

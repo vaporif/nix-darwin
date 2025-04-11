@@ -35,7 +35,6 @@
       modules = [
         # Import the system configuration
         ./configuration.nix
-        
         # Home Manager module
         home-manager.darwinModules.home-manager
         {
@@ -45,8 +44,8 @@
             extraSpecialArgs = {
               inherit fzf-git-sh-package yamb-yazi blink-cmp-words;
             };
-            users.vaporif = import ./home.nix;
           };
+          users.vaporif = import ./home.nix;
         }
       ];
     };
