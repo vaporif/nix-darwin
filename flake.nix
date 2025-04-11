@@ -5,41 +5,50 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fzf-git-sh = {
+      url = "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh";
+      flake = false;
+    };
+    yamb-yazi = {
+      url = "github:h-hg/yamb.yazi";
+      flake = false;
+    };
+    blink-cmp-words = {
+      url = "github:dwyl/english-words";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, fzf-git-sh, yamb-yazi, blink-cmp-words }:
   let
-    configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ pkgs.vim
-        ];
-
-      nix.enable = false;
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 6;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-    };
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
+    fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#MacBook-Pro
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      inherit system;
+      modules = [
+        # Import the system configuration
+        ./configuration.nix
+        
+        # Home Manager module
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = {
+              inherit fzf-git-sh-package yamb-yazi blink-cmp-words;
+            };
+            users.vaporif = import ./home.nix;
+          };
+        }
+      ];
     };
   };
 }

@@ -1,0 +1,287 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Extend layer",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "extend",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "extend",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "up_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "down_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "left_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": ["fn"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "7",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["fn"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": ["left_control"]
+                                    },
+                                    {   "key_code": "q" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true
+        }
+    ]
+}

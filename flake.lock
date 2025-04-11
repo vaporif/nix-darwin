@@ -1,5 +1,53 @@
 {
   "nodes": {
+    "blink-cmp-words": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736184845,
+        "narHash": "sha256-PfBQ9iavOLx7M8+j0TXASUxVamPiQn2YXsiuUmz4XCg=",
+        "owner": "dwyl",
+        "repo": "english-words",
+        "rev": "20f5cc9b3f0ccc8ce45d814c532b7c2031bba31c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dwyl",
+        "repo": "english-words",
+        "type": "github"
+      }
+    },
+    "fzf-git-sh": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-RgRP767r4JNXDDicS36YG5czvCRq3FLcE6T0Q31TGgI=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1744400600,
+        "narHash": "sha256-qYhUgA98mhq1QK13r9qVY+sG1ri6FBgyp+GApX6wS20=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "b74b22bb6167e8dff083ec6988c98798bf8954d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -39,8 +87,28 @@
     },
     "root": {
       "inputs": {
+        "blink-cmp-words": "blink-cmp-words",
+        "fzf-git-sh": "fzf-git-sh",
+        "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yamb-yazi": "yamb-yazi"
+      }
+    },
+    "yamb-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740743840,
+        "narHash": "sha256-NMxZ8/7HQgs+BsZeH4nEglWsRH2ibAzq7hRSyrtFDTA=",
+        "owner": "h-hg",
+        "repo": "yamb.yazi",
+        "rev": "22af0033be18eead7b04c2768767d38ccfbaa05b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "h-hg",
+        "repo": "yamb.yazi",
+        "type": "github"
       }
     }
   },
