@@ -1,7 +1,8 @@
 { pkgs, fzf-git-sh-package, yamb-yazi, blink-cmp-words, ... }: {
+
   home = {
-    username = "vaporif";
     homeDirectory = "/Users/vaporif";
+    username = "vaporif";
     stateVersion = "24.05";
   };
 

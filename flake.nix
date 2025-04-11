@@ -24,28 +24,32 @@
   };
 
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, fzf-git-sh, yamb-yazi, blink-cmp-words }:
-  let
-    system = "aarch64-darwin";
-    pkgs = nixpkgs.legacyPackages.${system};
-    fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
-  in
-  {
-    darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      inherit system;
-      modules = [
-        ./system.nix
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              inherit fzf-git-sh-package yamb-yazi blink-cmp-words;
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+      fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
+    in
+    {
+      darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        inherit system;
+        modules = [
+          ./system.nix
+          home-manager.darwinModules.home-manager
+          {
+            users.users.vaporif = {
+              name = "vaporif";
+              home = "/Users/vaporif";
             };
-            users.vaporif = import ./home.nix;
-          };
-        }
-      ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit fzf-git-sh-package yamb-yazi blink-cmp-words;
+              };
+              users.vaporif = import ./home.nix;
+            };
+          }
+        ];
+      };
     };
-  };
 }
