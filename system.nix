@@ -12,6 +12,15 @@
   system.configurationRevision = null;
   system.stateVersion = 6;
 
+  system.defaults = {
+    dock.autohide = true;
+    dock.mru-spaces = false;
+    finder.AppleShowAllExtensions = true;
+    finder.FXPreferredViewStyle = "clmv";
+    screencapture.location = "~/Pictures/screenshots";
+    screensaver.askForPasswordDelay = 10;
+  };
+
   homebrew = {
     enable = true;
     onActivation = {
