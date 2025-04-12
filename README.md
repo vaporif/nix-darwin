@@ -7,17 +7,10 @@ This is my personal configuration for [nix-darwin](https://github.com/nix-darwin
 
 1. Clone this repo
 2. Install [homebrew](https://brew.sh/)
-3. Install packages via brew
-   
-```shell
-brew bundle
-```
-
-It's used only for karabiner and kitty as nix installation for them is either complicated/brittle.
-
+3. Install 
 4. Install [nix](https://nixos.org/download) with [flakes](https://github.com/mschwaig/howto-install-nix-with-flake-support)
 
-6. Install [home-manager](https://github.com/nix-community/home-manager)
+6. Install [nix-darwin](https://github.com/nix-community/home-manager)
 
 Run the initial setup which will build all the derivations which may take a while.
 
