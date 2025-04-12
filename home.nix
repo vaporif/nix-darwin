@@ -14,7 +14,6 @@
     bottom
     hyperfine
     pango
-    podman
   ];
 
   programs = {

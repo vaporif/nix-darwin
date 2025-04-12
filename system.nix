@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     vim
     nixd
+    kanata
   ];
 
   # Address the Determinate error
@@ -92,6 +93,7 @@
     ];
 
     brews = [
+      "podman"
     ];
 
     casks = [

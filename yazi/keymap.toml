@@ -5,7 +5,7 @@ desc = "Go to Repos"
 
 [[manager.prepend_keymap]]
 on = [ "b", "m" ]
-run = "cd ~/etc/nix-darwin/"
+run = "cd /etc/nix-darwin/"
 desc = "Go to nix-darwin"
 
 [[manager.prepend_keymap]]
