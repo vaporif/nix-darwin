@@ -1,9 +1,7 @@
 # home-manager
-[![check](https://github.com/vaporif/home-manager/actions/workflows/check.yaml/badge.svg?branch=main)](https://github.com/vaporif/home-manager/actions/workflows/check.yaml)
+[![check](https://github.com/vaporif/nix-darwing/actions/workflows/check.yaml/badge.svg?branch=main)](https://github.com/vaporif/home-manager/actions/workflows/check.yaml)
 
-This is my personal configuration for nix [home manager](https://github.com/nix-community/home-manager)
-
-I'm using MacOs. This config could be easily migrated to anything nix supports.
+This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin) with  [home manager](https://github.com/nix-community/home-manager)
 
 # setup
 

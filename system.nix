@@ -17,13 +17,28 @@
     dock.mru-spaces = false;
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";
-    screencapture.location = "~/Pictures/screenshots";
+    screencapture.location = "~/screenshots";
     screensaver.askForPasswordDelay = 10;
   };
 
   services = {
-    aerospace.enable = true;
+    aerospace = {
+      enable = true;
+      settings = {
+        gaps = {
+        };
+        mode.main.binding = {
+          alt-n = "focus left";
+          alt-i = "focus down";
+          alt-u = "focus up";
+          alt-e = "focus right";
+          alt-f = "fullscreen";
+        };
+      };
+    };
   };
+
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   homebrew = {
     enable = true;
@@ -43,6 +58,8 @@
     casks = [
       "kitty"
       "karabiner-elements"
+      "telegram"
+      "tor-browser"
     ];
   };
 
