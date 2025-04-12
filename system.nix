@@ -40,6 +40,21 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  system.defaults.finder = {
+    NewWindowTarget = "Home";
+    ShowPathbar = true;
+  };
+
+  system.defaults.loginwindow = {
+    GuestEnabled = false;
+    LoginwindowText = "derp durp durrrrrrrrrrrrrrrrrrrrrr";
+    autoLoginUser = "vaporif";
+  };
+  system.defaults.menuExtraClock = {
+    Show24Hour = true;
+    ShowDayOfMonth = true;
+  };
+
   homebrew = {
     enable = true;
     onActivation = {
