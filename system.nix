@@ -21,10 +21,11 @@
     screencapture.location = "~/screenshots";
     screensaver.askForPasswordDelay = 10;
   };
-
+  system.defaults.dock.autohide-delay = 0.2;
+  system.defaults.NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
   services = {
     aerospace = {
-      enable = true;
+      # enable = true;
       settings = {
         on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
         gaps = {
@@ -48,16 +49,16 @@
           cmd-0 = "workspace 10";
 
 
-          cmd-shift-1 = "move-node-to-workspace 1";
-          cmd-shift-2 = "move-node-to-workspace 2";
-          cmd-shift-3 = "move-node-to-workspace 3";
-          cmd-shift-4 = "move-node-to-workspace 4";
-          cmd-shift-5 = "move-node-to-workspace 5";
-          cmd-shift-6 = "move-node-to-workspace 6";
-          cmd-shift-7 = "move-node-to-workspace 7";
-          cmd-shift-8 = "move-node-to-workspace 8";
-          cmd-shift-9 = "move-node-to-workspace 9";
-          cmd-shift-0 = "move-node-to-workspace 10";
+          alt-1 = "move-node-to-workspace 1";
+          alt-2 = "move-node-to-workspace 2";
+          alt-3 = "move-node-to-workspace 3";
+          alt-4 = "move-node-to-workspace 4";
+          alt-5 = "move-node-to-workspace 5";
+          alt-6 = "move-node-to-workspace 6";
+          alt-7 = "move-node-to-workspace 7";
+          alt-8 = "move-node-to-workspace 8";
+          alt-9 = "move-node-to-workspace 9";
+          alt-0 = "move-node-to-workspace 10";
         };
       };
     };
@@ -72,7 +73,7 @@
 
   system.defaults.loginwindow = {
     GuestEnabled = false;
-    LoginwindowText = "derp durp durrrrrrrrrrrrrrrrrrrrrr";
+    LoginwindowText = "derp durp";
     autoLoginUser = "vaporif";
   };
   system.defaults.menuExtraClock = {
