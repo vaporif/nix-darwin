@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.nixd
+  environment.systemPackages = with pkgs; [
+    vim
+    nixd
   ];
 
   # Address the Determinate error
@@ -19,6 +19,10 @@
     finder.FXPreferredViewStyle = "clmv";
     screencapture.location = "~/Pictures/screenshots";
     screensaver.askForPasswordDelay = 10;
+  };
+
+  services = {
+    aerospace.enable = true;
   };
 
   homebrew = {
