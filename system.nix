@@ -99,6 +99,7 @@
       "karabiner-elements"
       "telegram"
       "tor-browser"
+      "podman-desktop"
     ];
   };
 
