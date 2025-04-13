@@ -22,15 +22,12 @@
   };
   system.defaults.dock.autohide-delay = 0.2;
   system.defaults.NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
-system.activationScripts.postActivation.text = ''
-   ${pkgs.skhd} -r
-'';
   services = {
     skhd = {
       enable = true;
       skhdConfig = ''
-        cmd - 1 : open -a "kitty"
-        cmd - 2 : open -a "Brave Browser"
+        cmd - 1 : open -a "Brave Browser"
+        cmd - 2 : open -a "kitty"
         cmd - 3 : open -a "Telegram"
         cmd - 4 : open -a "Slack"
       '';
