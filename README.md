@@ -21,6 +21,7 @@ users.users.vaporif = {
   home = "/Users/vaporif";
 };
 
+6. Apply config
 ```shell
 darwin-rebuild switch
 ```
