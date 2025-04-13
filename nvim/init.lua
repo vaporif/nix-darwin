@@ -79,7 +79,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-sleuth',
   require 'plugins.gitsigns',
-  -- require 'plugins.hop',
   require 'plugins.flash',
   require 'plugins.undotree',
   require 'plugins.which-key',
@@ -133,7 +132,7 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
-  lockfile = '/Users/vaporif/.config/home-manager/nvim/lazy-lock.json',
+  lockfile = '/etc/nix-darwin/nvim/lazy-lock.json',
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
