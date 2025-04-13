@@ -152,6 +152,7 @@
     use flake github:vaporif/nix-devshells
   '';
 
+  # FIXME: requires manual delete
   # xdg.configFile."karabiner/karabiner.json".text = "${builtins.readFile ./karabiner/karabiner.json}";
   xdg.configFile."yazi/init.lua".text = "${builtins.readFile ./yazi/init.lua}";
   xdg.configFile."yazi/keymap.toml".text = "${builtins.readFile ./yazi/keymap.toml}";
