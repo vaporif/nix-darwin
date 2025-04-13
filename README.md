@@ -1,7 +1,7 @@
 # home-manager
 [![check](https://github.com/vaporif/nix-darwin/actions/workflows/check.yaml/badge.svg?branch=main)](https://github.com/vaporif/nix-darwin/actions/workflows/check.yaml)
 
-This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin) with  [home manager](https://github.com/nix-community/home-manager)
+This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin)
 
 # setup
 
