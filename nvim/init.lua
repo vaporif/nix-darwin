@@ -46,7 +46,6 @@ end, {})
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
-
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     vim.api.nvim_create_autocmd('CursorHold', {
@@ -97,7 +96,7 @@ require('lazy').setup({
   require 'plugins.conform',
   require 'plugins.lualine',
   -- make toggle
-  -- require 'plugins.rainbow',
+  require 'plugins.rainbow',
   'mg979/vim-visual-multi',
   require 'plugins.mini',
   { 'svermeulen/vim-subversive' },
