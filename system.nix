@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   environment.systemPackages = with pkgs; [
     vim
     nixd
@@ -93,6 +93,7 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
+      upgrade = true;
       cleanup = "zap";
     };
 

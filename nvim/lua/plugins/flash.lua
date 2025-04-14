@@ -1,7 +1,9 @@
 return {
   'folke/flash.nvim',
   event = 'VeryLazy',
-  opts = {},
+  opts = {
+    modes = { search = { enabled = true } },
+  },
   -- stylua: ignore
   keys = {
     { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
