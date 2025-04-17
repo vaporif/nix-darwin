@@ -28,8 +28,8 @@
       skhdConfig = ''
         cmd - 1 : open -a "Brave Browser"
         cmd - 2 : open -a "kitty"
-        cmd - 3 : open -a "Telegram"
-        cmd - 4 : open -a "Slack"
+        cmd - 3 : open -a "Slack"
+        cmd - 4 : open -a "Telegram"
       '';
     };
   };
