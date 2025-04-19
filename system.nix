@@ -74,6 +74,7 @@
       "telegram"
       "tor-browser"
       "podman-desktop"
+      "vlc"
     ];
   };
 
