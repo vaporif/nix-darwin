@@ -13,10 +13,16 @@
   system.stateVersion = 6;
 
   system.defaults = {
-    dock.autohide = true;
-    dock.mru-spaces = false;
-    finder.AppleShowAllExtensions = true;
-    finder.FXPreferredViewStyle = "clmv";
+    dock = {
+      autohide = true;
+      mru-spaces = false;
+      wvous-br-corner = 1;
+    };
+    finder = {
+      AppleShowAllExtensions = true;
+      FXPreferredViewStyle = "clmv";
+      AppleShowAllFiles = true;
+    };
     screencapture.location = "~/screenshots";
     screensaver.askForPasswordDelay = 10;
   };
