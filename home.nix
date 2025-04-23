@@ -74,8 +74,7 @@
         plugins = [ "git" "rust" ];
         theme = "robbyrussell";
       };
-      initExtra = ''
-        export PATH="/opt/homebrew/bin:$PATH"
+      initContent = ''
         ulimit -Sn 4096
         ulimit -Sl unlimited
         source ${fzf-git-sh-package}/bin/fzf-git.sh
