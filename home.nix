@@ -152,14 +152,15 @@
   '';
 
   xdg.configFile."karabiner/karabiner.json".text = "${builtins.readFile ./karabiner/karabiner.json}";
+
   xdg.configFile."yazi/init.lua".text = "${builtins.readFile ./yazi/init.lua}";
   xdg.configFile."yazi/keymap.toml".text = "${builtins.readFile ./yazi/keymap.toml}";
   xdg.configFile."yazi/theme.toml".text = "${builtins.readFile ./yazi/theme.toml}";
-
   xdg.configFile."yazi/plugins/yamb.yazi/" = {
     source = yamb-yazi;
     recursive = true;
   };
+
   xdg.configFile."zellij/config.kdl".text = "${builtins.readFile ./zellij/config.kdl}";
   xdg.configFile."bat/config".text = ''
     --style="plain"
