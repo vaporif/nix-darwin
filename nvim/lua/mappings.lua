@@ -40,15 +40,6 @@ vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)', {})
 vim.api.nvim_set_keymap('n', 'q', '<Nop>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'gg', '<Esc>', { noremap = true })
 
--- flash
-vim.keymap.del('n', 'q')
-vim.keymap.set({ 'n', 'x', 'o' }, 'q', function()
-  require('flash').jump()
-end, { desc = 'flash search' })
-vim.keymap.set({ 'n', 'x', 'o' }, 'Q', function()
-  require('flash').jump()
-end, { desc = 'flash treesitter' })
-
 -- delete default
 vim.keymap.del('n', 'grn')
 vim.keymap.del('n', 'grr')
