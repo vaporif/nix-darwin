@@ -81,6 +81,7 @@
       "tor-browser"
       "podman-desktop"
       "vlc"
+      "qbittorrent"
     ];
   };
 
