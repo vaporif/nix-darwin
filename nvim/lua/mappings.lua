@@ -37,7 +37,6 @@ vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)', {})
 vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)', {})
 vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', {})
 vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)', {})
-vim.api.nvim_set_keymap('n', 'q', '<Nop>', { noremap = true })
 vim.api.nvim_set_keymap('i', 'gg', '<Esc>', { noremap = true })
 
 -- delete default
