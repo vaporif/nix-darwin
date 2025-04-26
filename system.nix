@@ -36,6 +36,7 @@
         cmd - 2 : open -a "kitty"
         cmd - 3 : open -a "Slack"
         cmd - 4 : open -a "Telegram"
+        cmd - 4 : open -a "Brave Browser" "https://anitube.in.ua/3402-kobilichki-dolenosne-derb.html"
       '';
     };
   };
