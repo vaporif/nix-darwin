@@ -2,9 +2,6 @@ return {
   'saghen/blink.cmp',
   enabled = true,
   version = '1.1.1',
-  dependencies = {
-    'Kaiser-Yang/blink-cmp-dictionary',
-  },
   opts = function(_, opts)
     opts.sources = vim.tbl_deep_extend('force', opts.sources or {}, {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
