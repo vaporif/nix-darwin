@@ -32,6 +32,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- delete trailing spaces
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = { '*' },
+  callback = function(ev)
+    CURSOR_POSITIO = vim.fn.getpos '.'
+    vim.cmd [[%s/\s\+$//e]]
+    vim.fn.setpos('.', CURSOR_POSITIO)
+  end,
+})
+
 vim.api.nvim_create_user_command('SearchAndSub', function()
   -- Use * to search for the word under cursor
   vim.cmd 'normal! *'
