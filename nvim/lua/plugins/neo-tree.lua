@@ -16,6 +16,7 @@ return {
         enabled = true,
         leave_dirs_open = false,
       },
+      hijack_netrw_behavior = 'open_current',
     },
   },
 }
