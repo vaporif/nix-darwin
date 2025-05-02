@@ -36,9 +36,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = { '*' },
   callback = function(ev)
-    CURSOR_POSITIO = vim.fn.getpos '.'
+    -- Skip for files larger than 1MB
+    local max_size = 1 * 1024 * 1024
+    local file_size = vim.fn.getfsize(vim.fn.expand '%')
+    if file_size > max_size then
+      return
+    end
+    local cursor_position = vim.fn.getpos '.'
     vim.cmd [[%s/\s\+$//e]]
-    vim.fn.setpos('.', CURSOR_POSITIO)
+    vim.fn.setpos('.', cursor_position)
   end,
 })
 
@@ -56,23 +62,6 @@ end, {})
 vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    vim.api.nvim_create_autocmd('CursorHold', {
-      buffer = args.buf,
-      callback = function()
-        vim.diagnostic.open_float(nil, {
-          focusable = false,
-          close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-          border = 'rounded',
-          source = 'always',
-          prefix = ' ',
-          scope = 'cursor',
-        })
-      end,
-    })
-  end,
-})
 
 require 'mappings'
 
