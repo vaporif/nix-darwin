@@ -36,7 +36,7 @@
         cmd - 2 : open -a "kitty"
         cmd - 3 : open -a "Slack"
         cmd - 4 : open -a "Telegram"
-        cmd - 0 : open -a "Brave Browser" "https://anitube.in.ua/3402-kobilichki-dolenosne-derb.html"
+        cmd - 0 : open -a "Brave Browser" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
     };
   };
