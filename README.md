@@ -1,11 +1,11 @@
-# home-manager
+# Nix-darwin + home-manager
 This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin)
 
 # setup
 
 1. Clone this repo
 2. Install [homebrew](https://brew.sh/)
-4. Install [nix](https://nixos.org/download)
+4. Install [nix](https://determinate.systems/nix-installer/)
 5. Install [nix-darwin](https://github.com/nix-darwin/nix-darwin)
 
 Run the initial setup which will build all the derivations which may take a while.
@@ -25,11 +25,10 @@ darwin-rebuild switch
 ```
 
 7. Allow direnv .envrc for default devshell
-
-
 ```shell
 direnv allow ~
 ```
+
 ## Learning
 
 - https://nix.dev/recommended-reading
