@@ -99,6 +99,7 @@
 
       extraConfig = {
         pull.ff = "only";
+        editor = "nvim";
         push.autoSetupRemote = true;
         gui.encoding = "utf-8";
         merge.conflictstyle = "diff3";
