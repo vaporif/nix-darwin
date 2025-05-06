@@ -150,7 +150,6 @@
   };
 
   home.file.".envrc".text = ''
-    # use flake github:vaporif/nix-devshells/sp1
     use flake github:vaporif/nix-devshells
   '';
 
