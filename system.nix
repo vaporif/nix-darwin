@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     vim
     nixd
-    openssl
+    libressl
   ];
 
   # Address the Determinate error
