@@ -37,6 +37,7 @@
         cmd - 2 : open -a "kitty"
         cmd - 3 : open -a "Slack"
         cmd - 4 : open -a "Telegram"
+        cmd - 5 : open -a "Spotify"
         cmd - 0 : open -a "Brave Browser" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
     };
