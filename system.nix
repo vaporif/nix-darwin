@@ -78,6 +78,7 @@
     ];
 
     casks = [
+      "brave-browser"
       "kitty"
       "karabiner-elements"
       "telegram"
