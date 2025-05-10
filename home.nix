@@ -85,7 +85,7 @@
     git = {
       enable = true;
       userName = "Dmytro Onypko";
-      userEmail = "vaporif@gmail.com";
+      userEmail = "vaporif@proton.me";
       aliases = {
         co = "checkout";
         cob = "checkout -b";
