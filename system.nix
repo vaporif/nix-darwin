@@ -78,6 +78,7 @@
     ];
 
     casks = [
+      "simplex"
       "brave-browser"
       "kitty"
       "karabiner-elements"
