@@ -97,6 +97,7 @@ require('lazy').setup({
   -- make toggle
   -- require 'plugins.rainbow',
   'mg979/vim-visual-multi',
+  require 'neoscroll',
   require 'plugins.mini',
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
