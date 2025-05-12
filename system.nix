@@ -45,6 +45,22 @@
     };
   };
 
+  launchd.user.agents = {
+    librewolf-hourly-update = {
+      serviceConfig = {
+        Label = "com.user.librewolf-hourly-install";
+        ProgramArguments = [
+          "/bin/sh"
+          "-c"
+          "/opt/homebrew/bin/brew install --cask librewolf || /opt/homebrew/bin/brew upgrade --cask librewolf"
+        ];
+        StartInterval = 3600;
+        RunAtLoad = true;
+        StandardOutPath = "/Users/${builtins.getEnv "USER"}/Library/Logs/librewolf-install.log";
+        StandardErrorPath = "/Users/${builtins.getEnv "USER"}/Library/Logs/librewolf-install.error.log";
+      };
+    };
+  };
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.finder = {
