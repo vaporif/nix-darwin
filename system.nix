@@ -38,6 +38,7 @@
         cmd - 3 : open -a "Slack"
         cmd - 4 : open -a "Telegram"
         cmd - 5 : open -a "Spotify"
+        cmd - 6 : open -a "Claude"
         cmd - 9 : open -a "FreeTube"
         cmd - 0 : open -a "Brave Browser" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
@@ -81,6 +82,7 @@
     casks = [
       "librewolf"
       "freetube"
+      "claude"
       "simplex"
       "brave-browser"
       "kitty"
