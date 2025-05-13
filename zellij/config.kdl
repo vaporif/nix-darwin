@@ -146,23 +146,6 @@ themes {
 }
 theme "everforest_light_soft"
 
-If this doesn't work, you might need to look at your layout configuration. Zellij uses layouts to define how the UI is structured, and these layouts might be configuring the plugins with specific colors.
-As an alternative approach, you can try using the simplified color format instead of the detailed UI components:
-
-kdlthemes {
-    everforest_light_soft {
-        bg "#e5dfc5"      // bg2/bg_dim - ensures consistent background throughout
-        fg "#5c6a72"      // Text color
-        red "#f85552"     // Error, warnings
-        green "#8da101"   // Success messages
-        blue "#3a94c5"    // Information, links
-        yellow "#dfa000"  // Warnings, modified elementsClaude can make mistakes. Please double-check responses.
-    }
-}
-theme "everforest_light_soft"
-
-theme "everforest_light_soft"
-
 show_startup_tips false
 pane_frames false
 keybinds {
