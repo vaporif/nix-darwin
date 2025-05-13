@@ -4,6 +4,8 @@ return {
   priority = 1000,
   config = function()
     local everforest = require 'everforest'
+    vim.g.everforest_background = 'soft'
+    vim.opt.background = 'light'
     everforest.setup {
       background = 'soft',
       transparent_background_level = 0,

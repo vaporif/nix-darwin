@@ -99,6 +99,7 @@ require('lazy').setup({
   'mg979/vim-visual-multi',
   require 'plugins.neoscroll',
   require 'plugins.mini',
+  { 'f-person/auto-dark-mode.nvim', opts = {} },
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
   { 'sindrets/diffview.nvim' },

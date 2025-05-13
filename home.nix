@@ -36,7 +36,7 @@
         name = "Hack Nerd Font Mono";
         size = 14;
       };
-      themeFile = "everforest_dark_soft";
+      themeFile = "everforest_light_soft";
       settings = {
         scrollback_lines = 20000;
         enable_audio_bell = false;
