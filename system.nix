@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     vim
     nixd
@@ -110,8 +110,5 @@
       "qbittorrent"
     ];
   };
-  system.activationScripts.postActivation.text = ''
-     ${pkgs.skhd}/bin/skhd -r
-  '';
   nixpkgs.hostPlatform = "aarch64-darwin";
 }
