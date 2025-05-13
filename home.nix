@@ -34,7 +34,7 @@
       enable = true;
       font = {
         name = "Hack Nerd Font Mono";
-        size = 14;
+        size = 16;
       };
       themeFile = "everforest_light_soft";
       settings = {
