@@ -1,145 +1,101 @@
 # vim:fileencoding=utf-8:foldmethod=marker
-
 # : Manager {{{
-
 [manager]
-cwd = { fg = "#a7c080" } # Soft Green
-
+cwd = { fg = "#8da101" } # Soft Green
 # Hovered
-hovered = { fg = "#2c313a", bg = "#d3c6aa" } # Dark background, Soft beige foreground
+hovered = { fg = "#f8f5e4", bg = "#5c6a72" } # Light background, Soft gray foreground
 preview_hovered = { underline = true }
-
 # Find
-find_keyword = { fg = "#d3c6aa", italic = true }                # Soft beige
-find_position = { fg = "#e8a2af", bg = "reset", italic = true } # Soft red
-
+find_keyword = { fg = "#5c6a72", italic = true }                # Soft gray
+find_position = { fg = "#f85552", bg = "reset", italic = true } # Soft red
 # Marker
-marker_selected = { fg = "#a7c080", bg = "#a7c080" } # Soft Green
-marker_copied = { fg = "#d3c6aa", bg = "#d3c6aa" }   # Soft beige
-marker_cut = { fg = "#e8a2af", bg = "#e8a2af" }      # Soft red
-
+marker_selected = { fg = "#8da101", bg = "#8da101" } # Soft Green
+marker_copied = { fg = "#5c6a72", bg = "#5c6a72" }   # Soft gray
+marker_cut = { fg = "#f85552", bg = "#f85552" }      # Soft red
 # Tab
-tab_active = { fg = "#2c313a", bg = "#d3c6aa" }   # Dark background, Soft beige foreground
-tab_inactive = { fg = "#a7c080", bg = "#434c5e" } # Soft Green on muted dark
+tab_active = { fg = "#f8f5e4", bg = "#5c6a72" }   # Light background, Soft gray foreground
+tab_inactive = { fg = "#8da101", bg = "#d8d3ba" } # Soft Green on muted light
 tab_width = 1
-
 # Border
 border_symbol = "│"
-border_style = { fg = "#687d68" } # Muted Green
-
+border_style = { fg = "#939f91" } # Muted Green
 # Highlighting
-syntect_theme = "~/.config/bat/themes/Everforest-Soft.tmTheme"
-
+syntect_theme = "~/.config/bat/themes/Everforest-Light-Soft.tmTheme"
 # : }}}
-
-
 # : Status {{{
-
 [status]
-separator_open = ""
-separator_close = ""
-separator_style = { fg = "#434c5e", bg = "#434c5e" } # Muted dark
-
+separator_open = ""
+separator_close = ""
+separator_style = { fg = "#d8d3ba", bg = "#d8d3ba" } # Muted light
 # Mode
-mode_normal = { fg = "#2c313a", bg = "#d3c6aa", bold = true } # Dark background, Soft beige foreground
-mode_select = { fg = "#2c313a", bg = "#a7c080", bold = true } # Dark background, Soft Green foreground
-mode_unset = { fg = "#2c313a", bg = "#e8a2af", bold = true }  # Dark background, Soft red foreground
-
+mode_normal = { fg = "#f8f5e4", bg = "#5c6a72", bold = true } # Light background, Soft gray foreground
+mode_select = { fg = "#f8f5e4", bg = "#8da101", bold = true } # Light background, Soft Green foreground
+mode_unset = { fg = "#f8f5e4", bg = "#f85552", bold = true }  # Light background, Soft red foreground
 # Progress
-progress_label = { fg = "#ffffff", bold = true }
-progress_normal = { fg = "#d3c6aa", bg = "#434c5e" } # Soft beige on muted dark
-progress_error = { fg = "#e8a2af", bg = "#434c5e" }  # Soft red on muted dark
-
+progress_label = { fg = "#5c6a72", bold = true }
+progress_normal = { fg = "#5c6a72", bg = "#d8d3ba" } # Soft gray on muted light
+progress_error = { fg = "#f85552", bg = "#d8d3ba" }  # Soft red on muted light
 # Permissions
-permissions_t = { fg = "#d3c6aa" } # Soft beige
-permissions_r = { fg = "#d3c6aa" } # Soft beige
-permissions_w = { fg = "#e8a2af" } # Soft red
-permissions_x = { fg = "#a7c080" } # Soft Green
-permissions_s = { fg = "#687d68" } # Muted Green
-
+permissions_t = { fg = "#5c6a72" } # Soft gray
+permissions_r = { fg = "#5c6a72" } # Soft gray
+permissions_w = { fg = "#f85552" } # Soft red
+permissions_x = { fg = "#8da101" } # Soft Green
+permissions_s = { fg = "#939f91" } # Muted Green
 # : }}}
-
-
 # : Input {{{
-
 [input]
-border = { fg = "#d3c6aa" }    # Soft beige
+border = { fg = "#5c6a72" }    # Soft gray
 title = {}
 value = {}
 selected = { reversed = true }
-
 # : }}}
-
-
 # : Select {{{
-
 [select]
-border = { fg = "#d3c6aa" } # Soft beige
-active = { fg = "#e8a2af" } # Soft red
+border = { fg = "#5c6a72" } # Soft gray
+active = { fg = "#f85552" } # Soft red
 inactive = {}
-
 # : }}}
-
-
 # : Tasks {{{
-
 [tasks]
-border = { fg = "#d3c6aa" }    # Soft beige
+border = { fg = "#5c6a72" }    # Soft gray
 title = {}
 hovered = { underline = true }
-
 # : }}}
-
-
 # : Which {{{
-
 [which]
-mask = { bg = "#2c313a" }            # Dark background
-cand = { fg = "#a7c080" }            # Soft Green
-rest = { fg = "#d3c6aa" }            # Soft beige
-desc = { fg = "#e8a2af" }            # Soft red
-separator = "  "
-separator_style = { fg = "#434c5e" } # Muted dark
-
+mask = { bg = "#f8f5e4" }            # Light background
+cand = { fg = "#8da101" }            # Soft Green
+rest = { fg = "#5c6a72" }            # Soft gray
+desc = { fg = "#f85552" }            # Soft red
+separator = "  "
+separator_style = { fg = "#d8d3ba" } # Muted light
 # : }}}
-
-
 # : Help {{{
-
 [help]
-on = { fg = "#e8a2af" }                     # Soft red
-run = { fg = "#a7c080" }                   # Soft Green
-desc = { fg = "#d3c6aa" }                   # Soft beige
-hovered = { bg = "#434c5e", bold = true }   # Muted dark background
-footer = { fg = "#2c313a", bg = "#d3c6aa" } # Dark background, Soft beige foreground
-
+on = { fg = "#f85552" }                     # Soft red
+run = { fg = "#8da101" }                   # Soft Green
+desc = { fg = "#5c6a72" }                   # Soft gray
+hovered = { bg = "#d8d3ba", bold = true }   # Muted light background
+footer = { fg = "#f8f5e4", bg = "#5c6a72" } # Light background, Soft gray foreground
 # : }}}
-
-
 # : File-specific styles {{{
-
 [filetype]
-
 rules = [
   # Images
-  { mime = "image/*", fg = "#a7c080" }, # Soft Green
-
+  { mime = "image/*", fg = "#8da101" }, # Soft Green
   # Videos
-  { mime = "video/*", fg = "#d3c6aa" }, # Soft beige
-  { mime = "audio/*", fg = "#d3c6aa" }, # Soft beige
-
+  { mime = "video/*", fg = "#5c6a72" }, # Soft gray
+  { mime = "audio/*", fg = "#5c6a72" }, # Soft gray
   # Archives
-  { mime = "application/zip", fg = "#e8a2af" },             # Soft red
-  { mime = "application/gzip", fg = "#e8a2af" },            # Soft red
-  { mime = "application/x-tar", fg = "#e8a2af" },           # Soft red
-  { mime = "application/x-bzip", fg = "#e8a2af" },          # Soft red
-  { mime = "application/x-bzip2", fg = "#e8a2af" },         # Soft red
-  { mime = "application/x-7z-compressed", fg = "#e8a2af" }, # Soft red
-  { mime = "application/x-rar", fg = "#e8a2af" },           # Soft red
-
+  { mime = "application/zip", fg = "#f85552" },             # Soft red
+  { mime = "application/gzip", fg = "#f85552" },            # Soft red
+  { mime = "application/x-tar", fg = "#f85552" },           # Soft red
+  { mime = "application/x-bzip", fg = "#f85552" },          # Soft red
+  { mime = "application/x-bzip2", fg = "#f85552" },         # Soft red
+  { mime = "application/x-7z-compressed", fg = "#f85552" }, # Soft red
+  { mime = "application/x-rar", fg = "#f85552" },           # Soft red
   # Fallback
-  { name = "*", fg = "#d3c6aa" },  # Soft beige
-  { name = "*/", fg = "#d3c6aa" }, # Soft beige
+  { name = "*", fg = "#5c6a72" },  # Soft gray
+  { name = "*/", fg = "#5c6a72" }, # Soft gray
 ]
-
 # : }}}

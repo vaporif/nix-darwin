@@ -1,4 +1,4 @@
-theme "everforest-dark"
+theme "everforest-light"
 
 show_startup_tips false
 pane_frames false
@@ -25,7 +25,7 @@ keybinds {
         bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "n" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "i" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "u" { MoveFocus "Up"; SwitchToMode "Normal"; } 
+        bind "u" { MoveFocus "Up"; SwitchToMode "Normal"; }
         bind "e" { MoveFocus "Down"; SwitchToMode "Normal"; }
         bind "/" { SwitchToMode "EnterSearch"; SearchInput 0;}
 
