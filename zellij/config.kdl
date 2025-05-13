@@ -1,123 +1,165 @@
 themes {
     everforest_light_soft {
         text_unselected {
-            base 92 106 114
-            background 242 239 223
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         text_selected {
-            base 92 106 114
-            background 232 228 212
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 216 211 186   // #d8d3ba - bg4
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         ribbon_selected {
-            base 242 239 223
-            background 141 161 1
-            emphasis_0 79 88 94
-            emphasis_1 255 158 100
-            emphasis_2 223 105 186
-            emphasis_3 58 148 197
+            base 229 223 197         // #e5dfc5 - bg2/bg_dim
+            background 141 161 1     // #8da101 - green
+            emphasis_0 92 106 114    // #5c6a72 - fg
+            emphasis_1 248 85 82     // #f85552 - red
+            emphasis_2 223 105 186   // #df69ba - purple
+            emphasis_3 58 148 197    // #3a94c5 - blue
         }
         ribbon_unselected {
-            base 92 106 114
-            background 232 228 212
-            emphasis_0 79 88 94
-            emphasis_1 223 221 200
-            emphasis_2 58 148 197
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 92 106 114    // #5c6a72 - fg
+            emphasis_1 216 211 186   // #d8d3ba - bg4
+            emphasis_2 58 148 197    // #3a94c5 - blue
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         table_title {
-            base 141 161 1
-            background 242 239 223
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 141 161 1           // #8da101 - green
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         table_cell_selected {
-            base 92 106 114
-            background 232 228 212
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 216 211 186   // #d8d3ba - bg4
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         table_cell_unselected {
-            base 92 106 114
-            background 242 239 223
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         list_selected {
-            base 92 106 114
-            background 232 228 212
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 216 211 186   // #d8d3ba - bg4
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         list_unselected {
-            base 92 106 114
-            background 242 239 223
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 223 105 186
+            base 92 106 114          // #5c6a72 - fg
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 223 105 186   // #df69ba - purple
         }
         frame_selected {
-            base 141 161 1
-            background 242 239 223
-            emphasis_0 255 158 100
-            emphasis_1 53 167 124
-            emphasis_2 223 105 186
-            emphasis_3 58 148 197
+            base 141 161 1           // #8da101 - green
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82     // #f85552 - red
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 223 105 186   // #df69ba - purple
+            emphasis_3 58 148 197    // #3a94c5 - blue
         }
         frame_highlight {
-            base 255 158 100
-            background 242 239 223
-            emphasis_0 223 105 186
-            emphasis_1 255 158 100
-            emphasis_2 141 161 1
-            emphasis_3 58 148 197
+            base 248 85 82           // #f85552 - red
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 223 105 186   // #df69ba - purple
+            emphasis_1 248 85 82     // #f85552 - red
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 58 148 197    // #3a94c5 - blue
         }
         exit_code_success {
-            base 141 161 1
-            background 242 239 223
-            emphasis_0 53 167 124
-            emphasis_1 92 106 114
-            emphasis_2 223 105 186
-            emphasis_3 58 148 197
+            base 141 161 1           // #8da101 - green
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 53 167 124    // #35a77c - aqua
+            emphasis_1 92 106 114    // #5c6a72 - fg
+            emphasis_2 223 105 186   // #df69ba - purple
+            emphasis_3 58 148 197    // #3a94c5 - blue
         }
         exit_code_error {
-            base 248 85 82
-            background 242 239 223
-            emphasis_0 223 160 0
-            emphasis_1 53 167 124
-            emphasis_2 141 161 1
-            emphasis_3 58 148 197
+            base 248 85 82           // #f85552 - red
+            background 229 223 197   // #e5dfc5 - bg2/bg_dim
+            emphasis_0 223 160 0     // #dfa000 - yellow
+            emphasis_1 53 167 124    // #35a77c - aqua
+            emphasis_2 141 161 1     // #8da101 - green
+            emphasis_3 58 148 197    // #3a94c5 - blue
         }
         multiplayer_user_colors {
-            player_1 223 105 186
-            player_2 58 148 197
-            player_3 141 161 1
-            player_4 223 160 0
-            player_5 53 167 124
-            player_6 248 85 82
-            player_7 255 158 100
-            player_8 92 106 114
-            player_9 131 165 152
-            player_10 167 192 128
+            player_1 223 105 186     // #df69ba - purple
+            player_2 58 148 197      // #3a94c5 - blue
+            player_3 141 161 1       // #8da101 - green
+            player_4 223 160 0       // #dfa000 - yellow
+            player_5 53 167 124      // #35a77c - aqua
+            player_6 248 85 82       // #f85552 - red
+            player_7 245 125 38      // #f57d26 - orange
+            player_8 92 106 114      // #5c6a72 - fg
+            player_9 131 165 152     // #83c092 - gray/green
+            player_10 167 192 128    // #a7c080 - light green
+        }
+        tab_bar {
+            base 92 106 114        // #5c6a72 - fg
+            background 229 223 197  // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82    // #f85552 - red
+            emphasis_1 53 167 124   // #35a77c - aqua
+            emphasis_2 141 161 1    // #8da101 - green
+            emphasis_3 223 105 186  // #df69ba - purple
+        }
+
+        status_bar {
+            base 92 106 114        // #5c6a72 - fg
+            background 229 223 197  // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82    // #f85552 - red
+            emphasis_1 53 167 124   // #35a77c - aqua
+            emphasis_2 141 161 1    // #8da101 - green
+            emphasis_3 223 105 186  // #df69ba - purple
+        }
+
+        compact_bar {
+            base 92 106 114        // #5c6a72 - fg
+            background 229 223 197  // #e5dfc5 - bg2/bg_dim
+            emphasis_0 248 85 82    // #f85552 - red
+            emphasis_1 53 167 124   // #35a77c - aqua
+            emphasis_2 141 161 1    // #8da101 - green
+            emphasis_3 223 105 186  // #df69ba - purple
         }
     }
 }
+theme "everforest_light_soft"
+
+If this doesn't work, you might need to look at your layout configuration. Zellij uses layouts to define how the UI is structured, and these layouts might be configuring the plugins with specific colors.
+As an alternative approach, you can try using the simplified color format instead of the detailed UI components:
+
+kdlthemes {
+    everforest_light_soft {
+        bg "#e5dfc5"      // bg2/bg_dim - ensures consistent background throughout
+        fg "#5c6a72"      // Text color
+        red "#f85552"     // Error, warnings
+        green "#8da101"   // Success messages
+        blue "#3a94c5"    // Information, links
+        yellow "#dfa000"  // Warnings, modified elementsClaude can make mistakes. Please double-check responses.
+    }
+}
+theme "everforest_light_soft"
 
 theme "everforest_light_soft"
 
