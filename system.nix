@@ -96,6 +96,7 @@
     ];
 
     casks = [
+      "element"
       "librewolf"
       "freetube"
       "claude"
