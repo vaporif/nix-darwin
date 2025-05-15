@@ -36,7 +36,6 @@
         name = "Hack Nerd Font Mono";
         size = 16;
       };
-      themeFile = "everforest_light_soft";
       settings = {
         scrollback_lines = 20000;
         enable_audio_bell = false;
@@ -155,6 +154,10 @@
   '';
 
   xdg.configFile."karabiner/karabiner.json".text = "${builtins.readFile ./karabiner/karabiner.json}";
+
+  xdg.configFile."kitty/light-theme.auto.conf".source = ./kitty/light-theme.auto.conf;
+  xdg.configFile."kitty/dark-theme.auto.conf".source = ./kitty/dark-theme.auto.conf;
+  xdg.configFile."kitty/no-preference-theme.auto.conf".source = ./kitty/no-preference-theme.auto.conf;
 
   xdg.configFile."yazi/init.lua".text = "${builtins.readFile ./yazi/init.lua}";
   xdg.configFile."yazi/keymap.toml".text = "${builtins.readFile ./yazi/keymap.toml}";
