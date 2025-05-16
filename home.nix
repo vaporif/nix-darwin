@@ -167,9 +167,9 @@ in
 
   xdg.configFile."karabiner/karabiner.json".source = ./karabiner/karabiner.json;
 
+  xdg.configFile."kitty/no-preference-theme.auto.conf".source = everforestLightHard;
   xdg.configFile."kitty/light-theme.auto.conf".source = everforestLightHard;
   xdg.configFile."kitty/dark-theme.auto.conf".source = everforestDarkHard;
-  xdg.configFile."kitty/no-preference-theme.auto.conf".source = everforestLightHard;
 
   xdg.configFile."yazi/init.lua".source = ./yazi/init.lua;
   xdg.configFile."yazi/keymap.toml".source = ./yazi/keymap.toml;
