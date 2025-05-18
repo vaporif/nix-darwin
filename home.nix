@@ -26,6 +26,7 @@ in
     bottom
     hyperfine
     pango
+    gnupg
   ];
 
   programs = {
@@ -104,7 +105,7 @@ in
         fp = "fetch --all --prune";
       };
       signing = {
-        key = "68EFF4350C9C15CD";
+        key = "AC03496CA69745FE";
         signByDefault = true;
         format = "openpgp";
       };
