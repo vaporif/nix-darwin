@@ -12,7 +12,7 @@
 
   system.configurationRevision = null;
   system.stateVersion = 6;
-
+  system.primaryUser = "vaporif";
   system.defaults = {
     dock = {
       autohide = true;
@@ -35,10 +35,10 @@
       skhdConfig = ''
         cmd - 1 : open -a "Librewolf"
         cmd - 2 : open -a "kitty"
-        cmd - 3 : open -a "Slack"
+        cmd - 3 : open -a "Claude"
         cmd - 4 : open -a "Telegram"
-        cmd - 5 : open -a "Spotify"
-        cmd - 6 : open -a "Claude"
+        cmd - 5 : open -a "Slack"
+        cmd - 6 : open -a "Spotify"
         cmd - 9 : open -a "FreeTube"
         cmd - 0 : open -a "Librewolf" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
