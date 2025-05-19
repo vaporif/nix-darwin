@@ -3,6 +3,7 @@
     vim
     nixd
     libressl
+    podman-compose
   ];
 
   # Address the Determinate error
