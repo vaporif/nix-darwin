@@ -84,7 +84,6 @@ require('lazy').setup({
   require 'plugins.telescope',
   require 'plugins.lazydev',
   require 'plugins.lazygit',
-  require 'plugins.autopairs',
   require 'plugins.dashboard',
   require 'plugins.snacks',
   require 'plugins.lsp',
@@ -94,8 +93,7 @@ require('lazy').setup({
   require 'plugins.crates',
   require 'plugins.conform',
   require 'plugins.lualine',
-  -- make toggle
-  -- require 'plugins.rainbow',
+  require 'plugins.blink-pairs',
   'mg979/vim-visual-multi',
   require 'plugins.neoscroll',
   require 'plugins.mini',
