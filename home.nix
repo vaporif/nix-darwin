@@ -170,7 +170,7 @@ in
     ".ssh/config" = {
       source = ./.ssh/config;
       onChange = ''
-        chmod 600 ~/.ssh/config.local
+        chmod 600 ~/.ssh/config
       '';
     };
   };
