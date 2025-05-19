@@ -166,6 +166,15 @@ in
     use flake github:vaporif/nix-devshells
   '';
 
+  home.file = {
+    ".ssh/config" = {
+      source = ./.ssh/config;
+      onChange = ''
+        chmod 600 ~/.ssh/config.local
+      '';
+    };
+  };
+
   xdg.configFile."karabiner/karabiner.json".source = ./karabiner/karabiner.json;
 
   xdg.configFile."kitty/no-preference-theme.auto.conf".source = everforestLightHard;
