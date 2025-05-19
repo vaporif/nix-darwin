@@ -110,6 +110,7 @@
       "podman-desktop"
       "vlc"
       "qbittorrent"
+      "secretive"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
