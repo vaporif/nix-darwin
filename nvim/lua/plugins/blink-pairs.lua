@@ -2,7 +2,7 @@ return {
   'saghen/blink.pairs',
   version = '*', -- (recommended) only required with prebuilt binaries
 
-  build = 'nix build .#build-plugin',
+  dependencies = 'saghen/blink.download',
 
   --- @module 'blink.pairs'
   --- @type blink.pairs.Config
