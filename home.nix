@@ -57,6 +57,9 @@ in
         cursor_trail_start_threshold = 4;
         cursor_trail_decay = "0.05 0.2";
       };
+      extraConfig = ''
+        macos_option_as_alt yes
+      '';
     };
 
     direnv = {

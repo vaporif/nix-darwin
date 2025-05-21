@@ -32,6 +32,10 @@ vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]ori
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>m', ':SearchAndSub<CR>', { noremap = true, silent = true, desc = '[m]ulti replace' })
 
+-- Quickfix
+vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')
+vim.keymap.set('n', '<M-u>', '<cmd>cprev<Cr>')
+
 -- subversive
 vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)', {})
 vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)', {})

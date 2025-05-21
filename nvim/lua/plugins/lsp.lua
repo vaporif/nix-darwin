@@ -20,7 +20,8 @@ return {
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-t>.
         map('gd', require('telescope.builtin').lsp_definitions, 'goto [d]efinition')
-        map('gr', require('telescope.builtin').lsp_references, 'goto [r]eferences')
+        map('gr', '<cmd>lua vim.lsp.buf.references()<CR>', 'goto [r]eferences (quickfix)')
+        map('gR', require('telescope.builtin').lsp_references, 'goto [R]eferences (telescope)')
 
         -- Jump to the implementation of the word under your cursor.
         --  Useful when your language has ways of declaring types without an actual implementation.
