@@ -1,94 +1,70 @@
--- ========================================================================
--- LSP & Code Actions
--- ========================================================================
-local code_mappings = {
-  e = { '<cmd>RustLsp expandMacro<CR>', '[e]xpand macro' },
-  c = { '<cmd>RustLsp flyCheck<CR>', '[c]heck' },
-  h = { '<cmd>RustLsp hover actions<CR>', '[h]over' },
-  x = { '<cmd>RustLsp explainError<CR>', 'e[x]plain error' },
-  r = { '<cmd>RustLsp runnables<CR>', '[r]unnables' },
-  t = { '<cmd>Neotree summary<CR>', '[t]ests' },
-  a = { '<cmd>RustLsp codeAction<CR>', '[a]ction' },
-  D = { '<cmd>RustLsp renderDiagnostic<CR>', '[D]iagnostic' },
-  d = { '<cmd>RustLsp debuggables<CR>', '[d]ebug' },
-  R = { '<cmd>RustAnalyzer restart<CR>', 'rust-lsp [R]estart' },
-  l = { '<cmd>DiffviewOpen<CR>', 'diff too[l]' },
-  i = { '<cmd>AnsiEsc<CR>', 'ans[i] escape' },
-  k = { vim.diagnostic.setloclist, 'quic[k]fix list' },
-}
+-- LSP
+vim.keymap.set('n', '<leader>ce', '<cmd>RustLsp expandMacro<Cr>', { desc = '[e]xpand macro' })
+vim.keymap.set('n', '<leader>cc', '<cmd>RustLsp flyCheck<Cr>', { desc = '[c]heck' })
+vim.keymap.set('n', '<leader>ch', '<cmd>RustLsp hover actions<Cr>', { desc = '[h]over' })
+vim.keymap.set('n', '<leader>cx', '<cmd>RustLsp explainError<Cr>', { desc = 'e[x]plain error' })
+vim.keymap.set('n', '<leader>cr', '<cmd>RustLsp runnables<Cr>', { desc = '[r]unnables' })
+vim.keymap.set('n', '<leader>ct', '<cmd>Neotree summary<Cr>', { desc = '[t]ests' })
+vim.keymap.set('n', '<leader>ca', '<cmd>RustLsp codeAction<Cr>', { desc = '[a]ction' })
+vim.keymap.set('n', '<leader>cD', '<cmd>RustLsp renderDiagnostic<Cr>', { desc = '[D]iagnostic' })
+vim.keymap.set('n', '<leader>cd', '<cmd>RustLsp debuggables<Cr>', { desc = '[d]ebug' })
+vim.keymap.set('n', '<leader>cR', '<cmd>RustAnalyzer restart<Cr>', { desc = 'rust-lsp [R]estart' })
+vim.keymap.set('n', '<leader>cl', '<cmd>DiffviewOpen<Cr>', { desc = 'diff too[l]' })
+vim.keymap.set('n', '<leader>ci', '<cmd>AnsiEsc<Cr>', { desc = 'ans[i] escape' })
+vim.keymap.set('n', '<leader>ck', vim.diagnostic.setloclist, { desc = 'quic[k]fix list' })
 
-for key, mapping in pairs(code_mappings) do
-  vim.keymap.set('n', '<leader>c' .. key, mapping[1], { noremap = true, silent = true, desc = mapping[2] })
-end
+vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
+vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
+vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = 'write' })
+vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree float toggle reveal_force_cwd<CR>', { desc = 'n[e]otree' })
+vim.keymap.set('n', '<Leader>E', '<Cmd>Neotree float git_status toggle reveal<CR>', { desc = 'n[E]otree git' })
+-- Buffers
+vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { noremap = true, desc = '[n]ext buffer' })
+vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { noremap = true, desc = '[p]revious buffer' })
+vim.keymap.set('n', '<leader>bb', '<C-^>', { noremap = true, desc = 'toggle [b]uffer' })
+vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { noremap = true, desc = '[d]elete current' })
+vim.keymap.set('n', '<leader>bo', ':%bd|e#|bd#<CR>', { noremap = true, desc = 'cl[o]se except current' })
+vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, desc = 'tab buffers' })
 
--- ========================================================================
--- File & Navigation
--- ========================================================================
-vim.keymap.set('n', '<leader>/', 'gcc', { noremap = true, silent = true, desc = 'toggle comment', remap = true })
-vim.keymap.set('v', '<leader>/', 'gc', { noremap = true, silent = true, desc = 'toggle comment', remap = true })
-vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { noremap = true, silent = true, desc = 'write' })
-vim.keymap.set('n', '<leader>e', '<cmd>Neotree float toggle reveal_force_cwd<CR>', { noremap = true, silent = true, desc = 'n[e]otree' })
-vim.keymap.set('n', '<leader>E', '<cmd>Neotree float git_status toggle reveal<CR>', { noremap = true, silent = true, desc = 'n[E]otree git' })
+vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { noremap = true, desc = '[v]ertically' })
+vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]orizontally' })
+
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>m', ':SearchAndSub<CR>', { noremap = true, silent = true, desc = '[m]ulti replace' })
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { noremap = true, silent = true, desc = 'clear search highlights' })
 
--- ========================================================================
--- Buffer Management
--- ========================================================================
-local buffer_mappings = {
-  n = { ':bnext<CR>', '[n]ext buffer' },
-  p = { ':bprevious<CR>', '[p]revious buffer' },
-  b = { '<C-^>', 'toggle [b]uffer' },
-  d = { ':bdelete<CR>', '[d]elete current' },
-  o = { ':%bd|e#|bd#<CR>', 'cl[o]se except current' },
-}
+-- Quickfix
+vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')
+vim.keymap.set('n', '<M-u>', '<cmd>cprev<Cr>')
 
-for key, mapping in pairs(buffer_mappings) do
-  vim.keymap.set('n', '<leader>b' .. key, mapping[1], { noremap = true, silent = true, desc = mapping[2] })
-end
+-- subversive
+vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)', {})
+vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)', {})
+vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', {})
+vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)', {})
+vim.api.nvim_set_keymap('i', 'ii', '<Esc>', { noremap = true })
 
--- Window management
-vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, silent = true, desc = 'cycle through windows' })
-vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { noremap = true, silent = true, desc = 'split [v]ertically' })
-vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, silent = true, desc = 'split [h]orizontally' })
+-- Unbind hjkl since I use extend layer & colemak
+--
+-- Normal mode
+vim.keymap.set('n', 'h', '<Nop>', { noremap = true })
+vim.keymap.set('n', 'j', '<Nop>', { noremap = true })
+vim.keymap.set('n', 'k', '<Nop>', { noremap = true })
+vim.keymap.set('n', 'l', '<Nop>', { noremap = true })
 
--- ========================================================================
--- Quickfix Navigation
--- ========================================================================
-vim.keymap.set('n', '<M-e>', '<cmd>cnext<CR>', { noremap = true, silent = true, desc = 'next quickfix item' })
-vim.keymap.set('n', '<M-u>', '<cmd>cprev<CR>', { noremap = true, silent = true, desc = 'previous quickfix item' })
+-- Visual mode
+vim.keymap.set('v', 'h', '<Nop>', { noremap = true })
+vim.keymap.set('v', 'j', '<Nop>', { noremap = true })
+vim.keymap.set('v', 'k', '<Nop>', { noremap = true })
+vim.keymap.set('v', 'l', '<Nop>', { noremap = true })
 
--- ========================================================================
--- Subversive Plugin Mappings
--- ========================================================================
-vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)', { desc = 'substitute' })
-vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)', { desc = 'substitute line' })
-vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', { desc = 'substitute to end' })
-vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)', { desc = 'substitute selection' })
+-- Operator-pending mode
+vim.keymap.set('o', 'h', '<Nop>', { noremap = true })
+vim.keymap.set('o', 'j', '<Nop>', { noremap = true })
+vim.keymap.set('o', 'k', '<Nop>', { noremap = true })
+vim.keymap.set('o', 'l', '<Nop>', { noremap = true })
 
--- ========================================================================
--- Insert Mode Escape
--- ========================================================================
-vim.keymap.set('i', 'ii', '<Esc>', { noremap = true, silent = true, desc = 'escape from insert mode' })
-
--- ========================================================================
--- Remove Unwanted Mappings
--- ========================================================================
-local keys_to_delete = { 'grn', 'grr', 'gri', 'gra' }
-for _, key in ipairs(keys_to_delete) do
-  vim.keymap.del('n', key)
-end
-
--- ========================================================================
--- Disable HJKL Navigation (Colemak user)
--- ========================================================================
-local modes = { 'n', 'v', 'o' }
-local keys = { 'h', 'j', 'k', 'l' }
-
-for _, mode in ipairs(modes) do
-  for _, key in ipairs(keys) do
-    vim.keymap.set(mode, key, '<Nop>', { noremap = true, silent = true, desc = 'disabled key (colemak)' })
-  end
-end
-
-return {}
+-- delete default code operations
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'gra')
