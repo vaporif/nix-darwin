@@ -10,6 +10,7 @@ return {
           name = 'lsp',
           enabled = true,
           module = 'blink.cmp.sources.lsp',
+          fallbacks = { 'buffer' },
           score_offset = 90, -- the higher the number, the higher the priority
         },
         path = {
@@ -33,7 +34,7 @@ return {
           max_items = 3,
           module = 'blink.cmp.sources.buffer',
           min_keyword_length = 2,
-          score_offset = 15,
+          score_offset = 50,
           opts = {
             get_bufnrs = function()
               return vim.tbl_filter(function(bufnr)
@@ -48,7 +49,7 @@ return {
           max_items = 10,
           min_keyword_length = 2,
           module = 'blink.cmp.sources.snippets',
-          score_offset = 85,
+          score_offset = 70,
         },
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
       },

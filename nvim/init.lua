@@ -1,6 +1,6 @@
 -- init.lua
 -- Core setup
-require('core')
+require 'core'
 
 -- Plugin bootstrapping
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
