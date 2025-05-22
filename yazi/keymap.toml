@@ -1,4 +1,8 @@
 [[manager.prepend_keymap]]
+on = [ "<Enter>" ]
+run = '''shell 'nvim "$1"' --block'''
+
+[[manager.prepend_keymap]]
 on = [ "b", "r" ]
 run = "cd ~/Repos/"
 desc = "Go to Repos"
