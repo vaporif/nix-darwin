@@ -20,6 +20,7 @@ return {
   require 'plugins.marksnvim',
   require 'plugins.snipe',
   require 'plugins.harpoon',
+  require 'plugins.multicursor',
 
   -- Code features
   require 'plugins.lsp',
