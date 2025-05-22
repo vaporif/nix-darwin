@@ -30,7 +30,7 @@ return {
   require 'plugins.conform',
   require 'plugins.autopairs',
   -- TODO: maybe update after bugfixes
-  require 'plugins.blink-pairs',
+  -- require 'plugins.blink-pairs',
   require 'plugins.treesitter',
   require 'plugins.treesitter-context',
   require 'plugins.indent_line',
