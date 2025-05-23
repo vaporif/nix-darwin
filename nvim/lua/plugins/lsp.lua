@@ -161,9 +161,21 @@ return {
         },
       },
     }
-
+    local nixpkgs_expr = string.format('import (builtins.getFlake "%s").inputs.nixpkgs { }', vim.fn.getcwd())
     local lspconfig = require 'lspconfig'
-    lspconfig.nixd.setup {}
+    lspconfig.nixd.setup {
+      capabilities = capabilities,
+      settings = {
+        nixd = {
+          nixpkgs = {
+            expr = nixpkgs_expr,
+          },
+          formatting = {
+            command = { 'nixfmt' },
+          },
+        },
+      },
+    }
     lspconfig.cairo_ls.setup {}
     require('mason').setup()
 
