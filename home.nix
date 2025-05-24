@@ -1,4 +1,4 @@
-{ pkgs, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, mcp-hub-package, fzf-git-sh-package, yamb-yazi, ... }:
 
 let
   everforestDarkHard = pkgs.fetchurl {
@@ -20,7 +20,6 @@ in
 
   home.packages = with pkgs; [
     nerd-fonts.hack
-    nodejs-slim_22
     wget
     delta
     tldr
@@ -28,6 +27,7 @@ in
     hyperfine
     pango
     gnupg
+    mcp-hub-package
   ];
 
   programs = {
