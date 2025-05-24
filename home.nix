@@ -20,7 +20,7 @@ in
 
   home.packages = with pkgs; [
     nerd-fonts.hack
-    bun
+    nodejs-slim_22
     wget
     delta
     tldr
@@ -28,15 +28,6 @@ in
     hyperfine
     pango
     gnupg
-    # (writeShellScriptBin "e" ''
-    #   # Load secrets
-    #   if [ -r /run/secrets/openrouter-key ]; then
-    #     export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
-    #     export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
-    #   fi
-    #
-    #   exec ${pkgs.neovim}/bin/nvim "$@"
-    # '')
   ];
 
   programs = {
@@ -106,7 +97,7 @@ in
         export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export PATH="/opt/homebrew/bin:$PATH"
-        export PATH="/Users/vaporif/.bun/bin:$PATH"
+        # export PATH="/Users/vaporif/.bun/bin:$PATH"
       '';
     };
 
