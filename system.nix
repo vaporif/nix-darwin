@@ -10,8 +10,15 @@
   # Address the Determinate error
   nix.enable = false;
 
-  nix.settings.experimental-features = "nix-command flakes";
+  sops.defaultSopsFile = ./secrets/example.yaml;
+  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  sops.secrets.openrouter-key = {
+    owner = "vaporif";
+    group = "staff";
+    mode = "0400";
+  };
 
+  nix.settings.experimental-features = "nix-command flakes";
   system.configurationRevision = null;
   system.stateVersion = 6;
   system.primaryUser = "vaporif";

@@ -1,0 +1,7 @@
+keys:
+  - &vaporif age1rg25vm7mtrpt36ne7akqv7e6tqfzkxwrvvm9tcx3e8f6z85fgenqpvddd8
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *vaporif

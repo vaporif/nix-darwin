@@ -27,6 +27,14 @@ in
     hyperfine
     pango
     gnupg
+    (writeShellScriptBin "e" ''
+      # Load secrets
+      if [ -r /run/secrets/openrouter-key ]; then
+        export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
+      fi
+
+      exec ${pkgs.neovim}/bin/nvim "$@"
+    '')
   ];
 
   programs = {
@@ -82,7 +90,6 @@ in
         lg = "lazygit";
         ls = "eza -a";
         cat = "bat";
-        e = "nvim";
       };
       oh-my-zsh = {
         enable = true;
