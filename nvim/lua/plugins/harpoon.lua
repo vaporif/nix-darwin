@@ -14,12 +14,12 @@ return {
       desc = 'harpoon [A]dd',
     },
     {
-      '<leader>a',
+      '<leader>p',
       function()
         local harpoon = require 'harpoon'
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
-      desc = 'h[a]rpoon',
+      desc = 'har[p]oon',
     },
     {
       '<leader>1',
