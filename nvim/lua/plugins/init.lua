@@ -39,6 +39,7 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
+  require 'plugins.avante',
 
   -- Development
   require 'plugins.lazydev',
