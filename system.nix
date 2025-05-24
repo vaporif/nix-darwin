@@ -10,8 +10,8 @@
   # Address the Determinate error
   nix.enable = false;
 
-  sops.defaultSopsFile = ./secrets/example.yaml;
-  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.age.keyFile = "/Users/vaporif/.config/sops/age/key.txt";
   sops.secrets.openrouter-key = {
     owner = "vaporif";
     group = "staff";
