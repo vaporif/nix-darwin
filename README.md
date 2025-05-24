@@ -10,23 +10,64 @@ This is my personal configuration for [nix-darwin](https://github.com/nix-darwin
 
 Run the initial setup which will build all the derivations which may take a while.
 
-5. Override /etc/nix-darwin dir with this repo
+6. Override /etc/nix-darwin dir with this repo
 
-Make sure to update username & home path in `flake.nix`
+Update your machine name in `flake.nix`
+
+```flake.nix
+darwinConfigurations."MacBook-Pro"
 ```
+
+Update username & home path in `flake.nix`
+```flake.nix
 users.users.vaporif = {
   name = "vaporif";
   home = "/Users/vaporif";
 };
 ```
-6. Apply config
+
+Inside `home.nix`
+```home.nix
+  home = {
+        homeDirectory = "/Users/vaporif";
+      username = "vaporif";
+
+```
+7. Apply config
 ```shell
-darwin-rebuild switch
+sudo darwin-rebuild switch
 ```
 
-7. Allow direnv .envrc for default devshell
+8. Allow direnv .envrc for default devshell
 ```shell
 direnv allow ~
+```
+
+# ai copilot
+If you want to use [avante](https://github.com/yetone/avante.nvim) (default bind <space>a)
+1. Register at [open-router](https://openrouter.ai/)
+2. Create a new key
+3. Override my `secrets/secrets.yaml` with
+```secrets.yaml
+open-router-key: YOUR_KEY
+```
+4. Create new age key
+```shell
+age-keygen -y ~/.config/sops/age/key.txt
+```
+5. Update key path in `system.nix`
+```system.nix
+  sops.age.keyFile = "/Users/vaporif/.config/sops/age/key.txt";
+```
+6. Encrypt your secrets
+```shell
+sops -e -i secrets/secrets.yaml
+nix-shell -p sops --run "sops -e -i secrets/secrets.yaml"
+
+```
+7. Re-apply nix darwind
+```shell
+sudo darwin-rebuild switch
 ```
 
 ## Learning
