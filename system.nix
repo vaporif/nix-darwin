@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     vim
     nixd
+    age
     libressl
     podman-compose
   ];

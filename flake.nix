@@ -9,6 +9,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix.url = "github:Mic92/sops-nix";
     fzf-git-sh = {
       url = "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh";
       flake = false;
@@ -19,7 +20,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, fzf-git-sh, yamb-yazi, ... }:
+  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, sops-nix, fzf-git-sh, yamb-yazi, ... }:
     let
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -29,6 +30,7 @@
       darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
+          sops-nix.darwinModules.sops
           ./system.nix
           home-manager.darwinModules.home-manager
           {
