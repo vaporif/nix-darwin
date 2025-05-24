@@ -20,6 +20,7 @@ in
 
   home.packages = with pkgs; [
     nerd-fonts.hack
+    bun
     wget
     delta
     tldr
@@ -27,15 +28,15 @@ in
     hyperfine
     pango
     gnupg
-    (writeShellScriptBin "e" ''
-      # Load secrets
-      if [ -r /run/secrets/openrouter-key ]; then
-        export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
-        export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
-      fi
-
-      exec ${pkgs.neovim}/bin/nvim "$@"
-    '')
+    # (writeShellScriptBin "e" ''
+    #   # Load secrets
+    #   if [ -r /run/secrets/openrouter-key ]; then
+    #     export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
+    #     export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
+    #   fi
+    #
+    #   exec ${pkgs.neovim}/bin/nvim "$@"
+    # '')
   ];
 
   programs = {
@@ -91,6 +92,7 @@ in
         lg = "lazygit";
         ls = "eza -a";
         cat = "bat";
+        e = "nvim";
       };
       oh-my-zsh = {
         enable = true;
@@ -101,7 +103,10 @@ in
         ulimit -Sn 4096
         ulimit -Sl unlimited
         source ${fzf-git-sh-package}/bin/fzf-git.sh
+        export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
+        export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export PATH="/opt/homebrew/bin:$PATH"
+        export PATH="/Users/vaporif/.bun/bin:$PATH"
       '';
     };
 

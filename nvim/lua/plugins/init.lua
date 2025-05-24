@@ -40,6 +40,7 @@ return {
   require 'plugins.cursorword',
   require 'plugins.markdown',
   require 'plugins.avante',
+  require 'plugins.mcphub',
 
   -- Development
   require 'plugins.lazydev',

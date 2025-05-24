@@ -103,6 +103,7 @@
 
     brews = [
       "podman"
+      "ollama"
     ];
 
     casks = [

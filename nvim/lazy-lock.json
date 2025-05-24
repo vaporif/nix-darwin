@@ -26,6 +26,7 @@
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "4c2cdc69d69fe00c15ae8648f7e954d99e5de3ea" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "75d60a8f928decd8b38897f80849768b7c540a5b" },
   "mason.nvim": { "branch": "main", "commit": "9eaedb864cdadc29c6eb7d761a6c0d8aee26c91b" },
+  "mcphub.nvim": { "branch": "main", "commit": "9f3e1b80aab5cc24668117c2bd63ff701df774fb" },
   "mini.nvim": { "branch": "main", "commit": "14ce72476995255fc5cb919da8067f65865e1225" },
   "mini.pick": { "branch": "main", "commit": "f02e64580a547346128799ba667dfc0e29737532" },
   "multicursor.nvim": { "branch": "main", "commit": "cecbb3028ba166578eb8620ce885e2362d112ee0" },
