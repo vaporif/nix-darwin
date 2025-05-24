@@ -31,6 +31,7 @@ in
       # Load secrets
       if [ -r /run/secrets/openrouter-key ]; then
         export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
+        export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
       fi
 
       exec ${pkgs.neovim}/bin/nvim "$@"
