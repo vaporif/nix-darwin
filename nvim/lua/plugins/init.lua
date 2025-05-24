@@ -38,6 +38,7 @@ return {
   require 'plugins.dap',
   require 'plugins.trouble',
   require 'plugins.cursorword',
+  require 'plugins.markdown',
 
   -- Development
   require 'plugins.lazydev',
