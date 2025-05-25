@@ -19,6 +19,7 @@ in
   };
   home.packages = with pkgs; [
     nerd-fonts.hack
+    nodejs_22
     wget
     delta
     tldr

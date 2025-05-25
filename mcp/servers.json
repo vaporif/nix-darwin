@@ -7,10 +7,6 @@
     "apple-mcp": {
       "command": "bunx",
       "args": ["@dhravya/apple-mcp@latest"]
-    },
-    "time": {
-      "command": "uvx",
-      "args": "[mcp-server-time]"
     }
   }
 }
