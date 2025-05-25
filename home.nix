@@ -20,8 +20,16 @@ in
   home.packages = with pkgs; [
     nerd-fonts.hack
     nodejs_22
-    python314FreeThreading
-    python3Packages.pynvim
+    mermaid-cli
+    tectonic
+    imagemagick
+    pngpaste
+    viu
+    chafa
+    texlive.combined.scheme-full
+    ghostscript
+    python313Full
+    python313Packages.pip
     wget
     delta
     tldr
@@ -176,7 +184,7 @@ in
   };
 
   home.file.".envrc".text = ''
-    use flake github:vaporif/nix-devshells
+    use flake github:vaporif/nix-devshells/23ff6af6c6e5bd542a2c52246dbade2fec96ff63
   '';
 
   home.file = {

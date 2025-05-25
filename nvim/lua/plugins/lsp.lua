@@ -119,18 +119,6 @@ return {
       },
     })
 
-    vim.g.rustaceanvim = {
-      server = {
-        capabilities = capabilities,
-        -- default_settings = {
-        --     cargo = {
-        --       -- uncomment for wasm
-        --       -- target = "wasm32-unknown-unknown",
-        --     },
-        --   },
-        -- },
-      },
-    }
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
