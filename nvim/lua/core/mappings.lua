@@ -31,6 +31,8 @@ vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]ori
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set('n', '<leader>h', ':MCPHub<CR>', { noremap = true, desc = 'MCP[h]ub' })
+
 -- Quickfix
 vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')
 vim.keymap.set('n', '<M-u>', '<cmd>cprev<Cr>')

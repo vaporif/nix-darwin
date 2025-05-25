@@ -54,7 +54,6 @@
       '';
     };
   };
-
   launchd.user.agents = {
     librewolf-hourly-update = {
       serviceConfig = {

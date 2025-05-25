@@ -5,15 +5,25 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = 'openrouter',
+    provider = 'gemini_flash',
     vendors = {
-      openrouter = {
+      gemini_flash = {
+        __inherited_from = 'openai',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'google/gemini-2.5-flash-preview-05-20',
+      },
+      gemini_pro = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
         api_key_name = 'OPENROUTER_API_KEY',
         model = 'google/gemini-2.5-pro-preview',
       },
     },
+    -- ollama = {
+    --   endpoint = 'http://127.0.0.1:11434',
+    --   model = 'qwen3:8b',
+    -- },
     system_prompt = function()
       local hub = require('mcphub').get_hub_instance()
       return hub and hub:get_active_servers_prompt() or ''
