@@ -18,6 +18,12 @@
     mode = "0400";
   };
 
+  sops.secrets.tavily-key = {
+    owner = "vaporif";
+    group = "staff";
+    mode = "0400";
+  };
+
   nix.settings.experimental-features = "nix-command flakes";
   system.configurationRevision = null;
   system.stateVersion = 6;
