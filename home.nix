@@ -1,4 +1,4 @@
-{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, lib, ... }:
 
 let
   everforestDarkHard = pkgs.fetchurl {
@@ -17,7 +17,6 @@ in
     username = "vaporif";
     stateVersion = "24.05";
   };
-
   home.packages = with pkgs; [
     nerd-fonts.hack
     wget
@@ -31,6 +30,7 @@ in
     uv
     mcp-hub-package
     mcp-nixos-package
+    spacetimedb
   ];
 
   programs = {

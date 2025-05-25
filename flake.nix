@@ -25,6 +25,7 @@
   outputs = inputs@{ nixpkgs, nix-darwin, mcp-hub, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, ... }:
     let
       system = "aarch64-darwin";
+
       pkgs = nixpkgs.legacyPackages.${system};
       mcp-hub-package = mcp-hub.packages.${system}.default;
 
@@ -35,6 +36,11 @@
       darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
+          {
+            nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+              "spacetimedb"
+            ];
+          }
           sops-nix.darwinModules.sops
           ./system.nix
           home-manager.darwinModules.home-manager
