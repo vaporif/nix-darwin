@@ -3,6 +3,10 @@
     "nixos": {
       "command": "uvx",
       "args": ["mcp-nixos"]
+    },
+    "apple-mcp": {
+      "command": "bunx",
+      "args": ["@dhravya/apple-mcp@latest"]
     }
   }
 }

@@ -1,4 +1,4 @@
-{ pkgs, mcp-hub-package, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
 
 let
   everforestDarkHard = pkgs.fetchurl {
@@ -27,7 +27,9 @@ in
     hyperfine
     pango
     gnupg
+    bun
     mcp-hub-package
+    mcp-nixos-package
   ];
 
   programs = {
