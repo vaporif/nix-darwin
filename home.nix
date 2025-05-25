@@ -1,12 +1,12 @@
 { pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, lib, ... }:
 
 let
-  everforestDarkHard = pkgs.fetchurl {
+  kittyEverforestDarkHard = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/kovidgoyal/kitty-themes/master/themes/everforest_dark_soft.conf";
     sha256 = "sha256-Zn0aNDlUnD09PP5gZ0xD7dmbycjX3lQBKA2BigZEcoE=";
   };
 
-  everforestLightHard = pkgs.fetchurl {
+  kittyEverforestLightHard = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/kovidgoyal/kitty-themes/master/themes/everforest_light_soft.conf";
     sha256 = "sha256-6b3883Dsp0pjmDXTDmwVmscNc3HfNwIlYqpsRc5Ld1U=";
   };
@@ -20,6 +20,8 @@ in
   home.packages = with pkgs; [
     nerd-fonts.hack
     nodejs_22
+    python314FreeThreading
+    python3Packages.pynvim
     wget
     delta
     tldr
@@ -188,9 +190,9 @@ in
 
   xdg.configFile."karabiner/karabiner.json".source = ./karabiner/karabiner.json;
 
-  xdg.configFile."kitty/no-preference-theme.auto.conf".source = everforestLightHard;
-  xdg.configFile."kitty/light-theme.auto.conf".source = everforestLightHard;
-  xdg.configFile."kitty/dark-theme.auto.conf".source = everforestDarkHard;
+  xdg.configFile."kitty/no-preference-theme.auto.conf".source = kittyEverforestLightHard;
+  xdg.configFile."kitty/light-theme.auto.conf".source = kittyEverforestLightHard;
+  xdg.configFile."kitty/dark-theme.auto.conf".source = kittyEverforestDarkHard;
 
   xdg.configFile."yazi/init.lua".source = ./yazi/init.lua;
   xdg.configFile."yazi/keymap.toml".source = ./yazi/keymap.toml;
@@ -203,7 +205,9 @@ in
   xdg.configFile."zellij/config.kdl".source = ./zellij/config.kdl;
   xdg.configFile."bat/config".text = ''
     --style="plain"
+    --theme="everforest-light"
   '';
+  xdg.configFile."bat/themes/everforest-light.tmTheme".source = ./bat_themes/everforest_light_soft_zellij.tmTheme;
   xdg.configFile.nvim.source = ./nvim;
 
   home.file.".config/mcphub/servers.json".source = ./mcp/servers.json;
