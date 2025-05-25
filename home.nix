@@ -201,4 +201,6 @@ in
     --style="plain"
   '';
   xdg.configFile.nvim.source = ./nvim;
+
+  home.file.".config/mcphub/servers.json".source = ./mcp/servers.json;
 }
