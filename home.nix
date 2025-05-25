@@ -28,6 +28,7 @@ in
     pango
     gnupg
     bun
+    uv
     mcp-hub-package
     mcp-nixos-package
   ];
