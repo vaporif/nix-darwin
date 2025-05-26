@@ -29,7 +29,7 @@ return {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
         api_key_name = 'OPENROUTER_API_KEY',
-        model = 'anthropic/claude-opus4',
+        model = 'anthropic/claude-opus-4',
       },
     },
     -- ollama = {
