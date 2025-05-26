@@ -113,7 +113,7 @@ in
         export PATH="/opt/homebrew/bin:$PATH"
         # export PATH="/Users/vaporif/.bun/bin:$PATH"
         mkdir -p ~/.config/mcphub
-        ${pkgs.envsubst}/bin/envsubst < ~/private/etc/nix-darwin/mcphub/servers.config.json > ~/.config/mcphub/servers.json
+        ${pkgs.envsubst}/bin/envsubst < /private/etc/nix-darwin/mcphub/servers.config.json > ~/.config/mcphub/servers.json
       '';
     };
 
@@ -219,6 +219,4 @@ in
   '';
   xdg.configFile."bat/themes/everforest-light.tmTheme".source = ./bat_themes/everforest_light_soft_zellij.tmTheme;
   xdg.configFile.nvim.source = ./nvim;
-
-  home.file.".config/mcphub/servers.json".source = ./mcp/servers.json;
 }

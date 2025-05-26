@@ -37,7 +37,7 @@
       "command": "bunx",
       "args": ["-y", "tavily-mcp"],
       "env": {
-        "TAVILY_API_KEY": "your-actual-api-key-value-here"
+        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
       }
     },
     "@mcp-get-community/server-curl": {
