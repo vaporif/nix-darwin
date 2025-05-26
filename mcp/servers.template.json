@@ -32,6 +32,21 @@
       "env": {
         "SEARXNG_URL": "https://searx.be"
       }
+    },
+    "tavily-mcp": {
+      "command": "bunx",
+      "args": ["-y", "tavily-mcp"],
+      "env": {
+        "TAVILY_API_KEY": "your-actual-api-key-value-here"
+      }
+    },
+    "@mcp-get-community/server-curl": {
+      "command": "bunx",
+      "args": ["-y", "@mcp-get-community/server-curl"]
+    },
+    "llm-txt": {
+      "command": "bunx",
+      "args": ["-y", "@modelcontextprotocol/server-llm-txt"]
     }
   }
 }

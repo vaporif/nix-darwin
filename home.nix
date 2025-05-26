@@ -112,6 +112,8 @@ in
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export PATH="/opt/homebrew/bin:$PATH"
         # export PATH="/Users/vaporif/.bun/bin:$PATH"
+        mkdir -p ~/.config/mcphub
+        ${pkgs.envsubst}/bin/envsubst < ~/private/etc/nix-darwin/mcphub/servers.config.json > ~/.config/mcphub/servers.json
       '';
     };
 
