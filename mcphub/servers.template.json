@@ -47,6 +47,13 @@
     "interactive": {
       "command": "bunx",
       "args": ["-y", "interactive-mcp"]
+    },
+    "sequential-thinking": {
+      "command": "bunx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-sequential-thinking"
+        ]
     }
   }
 }
