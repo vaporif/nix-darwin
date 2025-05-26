@@ -19,6 +19,7 @@ in
   };
   home.packages = with pkgs; [
     nerd-fonts.hack
+    yt-dlp
     nodejs_22
     mermaid-cli
     tectonic
@@ -114,7 +115,7 @@ in
         # export PATH="/Users/vaporif/.bun/bin:$PATH"
         mkdir -p ~/.config/mcphub
 
-        GITHUB_LLM_PAT="$(cat /run/secrets/github-llm-pat)" \
+        GITHUB_LLM_PAT="$(cat /run/secrets/github-llm-pat)" YOUTUBE_KEY="$(cat /run/secrets/youtube-key)" \
         ${pkgs.envsubst}/bin/envsubst < /private/etc/nix-darwin/mcphub/servers.template.json > ~/.config/mcphub/servers.json
       '';
     };
