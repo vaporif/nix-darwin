@@ -61,13 +61,6 @@
           "-y",
           "@anaisbetts/mcp-youtube"
         ]
-    },
-    "youtube": {
-      "command": "bunx",
-      "args": ["-y", "zubeid-youtube-mcp-server"],
-      "env": {
-        "YOUTUBE_API_KEY": "${YOUTUBE_API_KEY}"
-      }
-    },
+    }
   }
 }
