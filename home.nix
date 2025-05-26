@@ -113,6 +113,8 @@ in
         export PATH="/opt/homebrew/bin:$PATH"
         # export PATH="/Users/vaporif/.bun/bin:$PATH"
         mkdir -p ~/.config/mcphub
+
+        GITHUB_LLM_PAT="$(cat /run/secrets/github-llm-pat)" \
         ${pkgs.envsubst}/bin/envsubst < /private/etc/nix-darwin/mcphub/servers.template.json > ~/.config/mcphub/servers.json
       '';
     };

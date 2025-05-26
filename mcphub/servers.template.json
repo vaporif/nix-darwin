@@ -13,25 +13,15 @@
       "args": ["mcp-server-git"]
     },
     "context7": {
-      "command": "npx",
+      "command": "bunx",
       "args": ["-y", "@upstash/context7-mcp"]
     },
     "mcp-mermaid": {
-      "command": "npx",
+      "command": "bunx",
       "args": [
         "-y",
         "mcp-mermaid"
       ]
-    },
-    "searxng": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-searxng"
-      ],
-      "env": {
-        "SEARXNG_URL": "https://searx.be"
-      }
     },
     "tavily-mcp": {
       "command": "bunx",
@@ -44,9 +34,15 @@
       "command": "bunx",
       "args": ["-y", "@mcp-get-community/server-curl"]
     },
-    "llm-txt": {
+    "github": {
       "command": "bunx",
-      "args": ["-y", "@modelcontextprotocol/server-llm-txt"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_LLM_PAT}"
+      }
     }
   }
 }
