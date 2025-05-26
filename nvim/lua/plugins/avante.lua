@@ -5,19 +5,31 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = 'gemini_flash',
+    provider = 'openrouter_gemini_flash',
     vendors = {
-      gemini_flash = {
+      openrouter_gemini_flash = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
         api_key_name = 'OPENROUTER_API_KEY',
         model = 'google/gemini-2.5-flash-preview-05-20',
       },
-      gemini_pro = {
+      openrouter_gemini_pro = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
         api_key_name = 'OPENROUTER_API_KEY',
         model = 'google/gemini-2.5-pro-preview',
+      },
+      openrouter_claude_sonnet4 = {
+        __inherited_from = 'openai',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'anthropic/claude-sonnet-4',
+      },
+      openrouter_claude_opus4 = {
+        __inherited_from = 'openai',
+        endpoint = 'https://openrouter.ai/api/v1',
+        api_key_name = 'OPENROUTER_API_KEY',
+        model = 'anthropic/claude-opus4',
       },
     },
     -- ollama = {
