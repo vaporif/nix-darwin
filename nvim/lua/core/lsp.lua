@@ -6,15 +6,19 @@ if vim.g.have_nerd_font then
   end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, {
-  textDocument = {
-    foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    },
+vim.diagnostic.config {
+  virtual_text = {
+    prefix = '●',
+    source = true,
   },
-})
+  float = {
+    source = true,
+  },
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange.dynamicRegistration = false
+capabilities.textDocument.foldingRange.lineFoldingOnly = true
 
 vim.lsp.config('*', {
   capabilities = capabilities,
@@ -72,16 +76,6 @@ vim.lsp.config.nixd = {
 }
 vim.lsp.enable 'nixd'
 
-vim.diagnostic.config {
-  virtual_text = {
-    prefix = '●',
-    source = true,
-  },
-  float = {
-    source = true,
-  },
-}
-
 vim.lsp.config.basepyright = {
   settings = {
     pyright = {
@@ -133,7 +127,6 @@ vim.lsp.config.ruff = {
 }
 vim.lsp.enable 'ruff'
 
--- mappings
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
@@ -141,15 +134,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
     end
 
-    -- Jump to the definition of the word under your cursor.
-    --  This is where a variable was first declared, or where a function is defined, etc.
-    --  To jump back, press <C-t>.
     map('gd', require('telescope.builtin').lsp_definitions, 'goto [d]efinition')
     map('gr', '<cmd>lua vim.lsp.buf.references()<CR>', 'goto [r]eferences (quickfix)')
     map('gR', require('telescope.builtin').lsp_references, 'goto [R]eferences (telescope)')
 
-    -- Jump to the implementation of the word under your cursor.
-    --  Useful when your language has ways of declaring types without an actual implementation.
     map('gI', require('telescope.builtin').lsp_implementations, 'goto [I]mplementation')
 
     -- Jump to the type of the word under your cursor.
@@ -159,16 +147,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>fD', require('telescope.builtin').lsp_document_symbols, '[D]ocument symbols')
     map('<leader>fw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[w]orkspace symbols')
 
-    -- Rename the variable under your cursor.
-    --  Most Language Servers support renaming across files, etc.
     map('<leader>r', vim.lsp.buf.rename, '[r]ename')
 
-    -- Execute a code action, usually your cursor needs to be on top of an error
-    -- or a suggestion from your LSP for this to activate.
     map('<leader>ca', vim.lsp.buf.code_action, '[a]ction')
 
-    -- WARN: This is not Goto Definition, this is Goto Declaration.
-    --  For example, in C this would take you to the header.
     map('gD', vim.lsp.buf.declaration, 'goto [D]eclaration')
 
     -- The following two autocommands are used to highlight references of the
