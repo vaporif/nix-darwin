@@ -24,6 +24,7 @@ in
     mermaid-cli
     tectonic
     typescript-language-server
+    ueberzugpp
     imagemagick
     pngpaste
     viu

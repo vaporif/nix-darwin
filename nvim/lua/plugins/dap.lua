@@ -3,12 +3,10 @@ return {
   dependencies = {
     -- TODO: drop mason after fixing debugserver install via nix
     { 'williamboman/mason.nvim', config = true },
-    'williamboman/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'jay-babu/mason-nvim-dap.nvim',
 
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
-    'jay-babu/mason-nvim-dap.nvim',
     'leoluz/nvim-dap-go',
   },
   keys = {

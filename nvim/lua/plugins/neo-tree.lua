@@ -43,6 +43,7 @@ return {
       window = {
         mappings = {
           ['oa'] = 'avante_add_files',
+          ['e'] = 'none',
         },
       },
     },
