@@ -116,11 +116,16 @@
     taps = [
       "homebrew/bundle"
       "homebrew/services"
+      "oven-sh/bun"
     ];
 
     brews = [
       "podman"
       "ollama"
+      "bun"
+      "python3"
+      "node"
+      "bun"
     ];
 
     casks = [

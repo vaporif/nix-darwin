@@ -20,7 +20,7 @@ in
   home.packages = with pkgs; [
     nerd-fonts.hack
     yt-dlp
-    nodejs_22
+    # nodejs_22
     mermaid-cli
     tectonic
     typescript-language-server
@@ -32,8 +32,8 @@ in
     texlive.combined.scheme-full
     basedpyright
     ghostscript
-    python313Full
-    python313Packages.pip
+    # python313Full
+    # python313Packages.pip
     wget
     delta
     tldr
@@ -41,7 +41,7 @@ in
     hyperfine
     pango
     gnupg
-    bun
+    # bun
     uv
     mcp-hub-package
     mcp-nixos-package
@@ -116,7 +116,6 @@ in
         export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export PATH="/opt/homebrew/bin:$PATH"
-        # export PATH="/Users/vaporif/.bun/bin:$PATH"
         mkdir -p ~/.config/mcphub
 
         GITHUB_LLM_PAT="$(cat /run/secrets/github-llm-pat)" YOUTUBE_API_KEY="$(cat /run/secrets/youtube-key)" \
