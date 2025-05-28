@@ -62,6 +62,7 @@ vim.lsp.config.nixd = {
     },
   },
 }
+vim.lsp.enable 'nixd'
 
 vim.diagnostic.config {
   virtual_text = {
