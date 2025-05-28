@@ -45,5 +45,3 @@ end
 vim.schedule(function()
   opt.clipboard = 'unnamedplus'
 end)
-
-return {}

@@ -23,6 +23,7 @@ in
     nodejs_22
     mermaid-cli
     tectonic
+    typescript-language-server
     imagemagick
     pngpaste
     viu

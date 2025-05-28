@@ -23,7 +23,7 @@ return {
   require 'plugins.multicursor',
 
   -- Code features
-  require 'plugins.lsp',
+  require 'plugins.lspconfig',
   require 'plugins.blink-cmp',
   require 'plugins.neotest',
   require 'plugins.rustacean',

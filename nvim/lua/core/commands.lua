@@ -8,5 +8,3 @@ vim.api.nvim_create_user_command('SearchAndSub', function()
   -- Start a substitution command with the current search pattern
   vim.api.nvim_feedkeys(':%s/' .. search_pattern .. '/', 'n', false)
 end, {})
-
-return {}
