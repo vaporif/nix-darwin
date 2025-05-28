@@ -20,7 +20,6 @@ in
   home.packages = with pkgs; [
     nerd-fonts.hack
     yt-dlp
-    # nodejs_22
     mermaid-cli
     tectonic
     typescript-language-server
@@ -32,8 +31,6 @@ in
     texlive.combined.scheme-full
     basedpyright
     ghostscript
-    # python313Full
-    # python313Packages.pip
     wget
     delta
     tldr
@@ -41,7 +38,6 @@ in
     hyperfine
     pango
     gnupg
-    # bun
     uv
     mcp-hub-package
     mcp-nixos-package
