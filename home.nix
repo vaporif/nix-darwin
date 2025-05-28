@@ -29,6 +29,7 @@ in
     viu
     chafa
     texlive.combined.scheme-full
+    basedpyright
     ghostscript
     python313Full
     python313Packages.pip
@@ -43,6 +44,7 @@ in
     uv
     mcp-hub-package
     mcp-nixos-package
+    ruff
     spacetimedb
   ];
 

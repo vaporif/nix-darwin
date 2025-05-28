@@ -147,6 +147,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
+    -- Disable ruff hover feature in favor of Pyright
+    if client and client.name == 'ruff' then
+      client.server_capabilities.hoverProvider = false
+    end
+
     -- The following code creates a keymap to toggle inlay hints in your
     -- code, if the language server you are using supports them
     --
