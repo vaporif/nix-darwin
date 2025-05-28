@@ -31,7 +31,10 @@ vim.lsp.config.lua_ls = {
 }
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'ts_ls'
+
+local corelib_path = os.getenv 'CAIRO_CORELIB_PATH'
 vim.lsp.config.cairo_ls = {
+  -- cmd = { vim.fn.expand '$HOME/.local/bin/scarb', 'cairo-language-server', '/C', '--node-ipc' },
   cmd = { 'scarb', 'cairo-language-server', '/C', '--node-ipc' },
   cmd_env = {
     SCARB_CONFIG = vim.fn.expand '$HOME/.scarb/config',
@@ -46,6 +49,11 @@ vim.lsp.config.cairo_ls = {
     vim.fn.mkdir(vim.fn.expand '$HOME/.scarb/cache', 'p')
     vim.fn.mkdir(vim.fn.expand '$HOME/.cargo', 'p')
   end,
+  settings = {
+    cairo1 = {
+      corelibPath = corelib_path,
+    },
+  },
 }
 vim.lsp.enable 'cairo_ls'
 
