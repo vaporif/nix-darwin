@@ -5,6 +5,7 @@ return {
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
   { 'sindrets/diffview.nvim' },
+  { 'j-hui/fidget.nvim', opts = {} },
 
   -- UI and navigation
   require 'plugins.gitsigns',
@@ -23,7 +24,7 @@ return {
   require 'plugins.multicursor',
 
   -- Code features
-  require 'plugins.lspconfig',
+  'neovim/nvim-lspconfig',
   require 'plugins.blink-cmp',
   require 'plugins.neotest',
   require 'plugins.rustacean',

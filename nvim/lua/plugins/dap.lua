@@ -1,9 +1,13 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
+    -- TODO: drop mason after fixing debugserver install via nix
+    { 'williamboman/mason.nvim', config = true },
+    'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
-    'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'leoluz/nvim-dap-go',
   },
@@ -53,6 +57,7 @@ return {
     },
   },
   config = function()
+    require('mason').setup()
     local dap = require 'dap'
     local dapui = require 'dapui'
 
