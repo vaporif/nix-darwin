@@ -11,16 +11,26 @@ return {
       transparent_background_level = 0,
       italics = true,
       disable_italic_comments = false,
-      on_highlights = function(hl, _)
-        hl['@string.special.symbol.ruby'] = { link = '@field' }
+      on_highlights = function(hl, p)
+        hl.TSKeyword = { fg = '#c9706f', bg = 'NONE' }
+        hl['@keyword'] = { fg = '#c9706f', bg = 'NONE' }
+        hl.TSFunction = { fg = '#7fb4ca', bg = 'NONE' }
+        hl['@function'] = { fg = '#7fb4ca', bg = 'NONE' }
+        hl.TSMacro = { fg = '#a991d1', bg = 'NONE' }
+        hl['@macro'] = { fg = '#a991d1', bg = 'NONE' }
+        hl.DiagnosticError = { fg = '#c9706f', bg = 'NONE' }
       end,
       colours_override = function(palette)
-        palette.red = '#b86466'
-        palette.bg_red = '#3d1f1f'
-        palette.orange = '#d4937a'
-        palette.yellow = '#c9b26f'
-        palette.purple = '#a991d1' -- Soft lavender instead of bright purple
-        palette.bg_purple = '#252033' -- Dark lavender background
+        if not palette then
+          return {}
+        end
+
+        return {
+          red = '#c9706f',
+          purple = '#a991d1',
+          bg_red = '#2d1f25',
+          bg_purple = '#252033',
+        }
       end,
     }
     everforest.load()
