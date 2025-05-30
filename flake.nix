@@ -39,6 +39,7 @@
           {
             nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
               "spacetimedb"
+              "claude-code"
             ];
           }
           sops-nix.darwinModules.sops

@@ -9,12 +9,14 @@ return {
     everforest.setup {
       background = 'soft',
       transparent_background_level = 0,
-      italics = true,
+      italics = false,
       disable_italic_comments = false,
-      on_highlights = function(hl, p)
+      on_highlights = function(hl, _)
+        hl['@keyword.import.rust'] = { fg = '#e06c6c', bg = 'NONE' }
+        hl['PurpleItalic'] = { fg = '#9d8ba3', italic = false }
         hl['Red'] = { fg = '#c9a5a5' }
         hl.TSKeyword = { fg = '#c9706f', bg = 'NONE' }
-        hl['@keyword'] = { fg = '#c9706f', bg = 'NONE' }
+        hl['@keyword'] = { fg = '#dc6f6f', bg = 'NONE' }
         hl.TSFunction = { fg = '#7fb4ca', bg = 'NONE' }
         hl['@function'] = { fg = '#7fb4ca', bg = 'NONE' }
         hl.TSMacro = { fg = '#a991d1', bg = 'NONE' }

@@ -44,6 +44,7 @@ in
     ruff
     spacetimedb
     glances
+    claude-code
   ];
 
   programs = {
