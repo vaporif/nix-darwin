@@ -1,6 +1,6 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 # : Manager {{{
-[manager]
+[mgr]
 cwd = { fg = "#8da101" } # Soft Green
 # Hovered
 hovered = { fg = "#f8f5e4", bg = "#5c6a72" } # Light background, Soft gray foreground

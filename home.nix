@@ -1,4 +1,4 @@
-{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, lib, ... }:
+{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
 
 let
   kittyEverforestDarkHard = pkgs.fetchurl {
@@ -43,6 +43,7 @@ in
     mcp-nixos-package
     ruff
     spacetimedb
+    glances
   ];
 
   programs = {
