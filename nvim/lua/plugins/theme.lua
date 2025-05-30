@@ -12,6 +12,7 @@ return {
       italics = true,
       disable_italic_comments = false,
       on_highlights = function(hl, p)
+        hl['Red'] = { fg = '#c9a5a5' }
         hl.TSKeyword = { fg = '#c9706f', bg = 'NONE' }
         hl['@keyword'] = { fg = '#c9706f', bg = 'NONE' }
         hl.TSFunction = { fg = '#7fb4ca', bg = 'NONE' }
