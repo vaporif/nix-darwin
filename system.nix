@@ -121,7 +121,6 @@
     brews = [
       "podman"
       "ollama"
-      "bun"
       "python3"
       "node"
       "bun"

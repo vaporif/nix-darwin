@@ -12,16 +12,14 @@ return {
       italics = false,
       disable_italic_comments = false,
       on_highlights = function(hl, _)
-        hl['@keyword.import.rust'] = { fg = '#e06c6c', bg = 'NONE' }
-        hl['PurpleItalic'] = { fg = '#9d8ba3', italic = false }
-        hl['Red'] = { fg = '#c9a5a5' }
-        hl.TSKeyword = { fg = '#c9706f', bg = 'NONE' }
         hl['@keyword'] = { fg = '#dc6f6f', bg = 'NONE' }
-        hl.TSFunction = { fg = '#7fb4ca', bg = 'NONE' }
-        hl['@function'] = { fg = '#7dc4e4', bg = 'NONE' }
-        hl.TSMacro = { fg = '#a991d1', bg = 'NONE' }
+        hl['@keyword.function.rust'] = { fg = '#c9706f', bg = 'NONE' }
+        hl['@keyword.import.rust'] = { fg = '#e06c6c', bg = 'NONE' }
+        hl['@keyword.conditional.rust'] = { fg = '#dc6f6f', bg = 'NONE' }
         hl['@macro'] = { fg = '#a991d1', bg = 'NONE' }
         hl.DiagnosticError = { fg = '#c9706f', bg = 'NONE' }
+        hl['PurpleItalic'] = { fg = '#9d8ba3' }
+        hl['Red'] = { fg = '#c9a5a5' }
       end,
       colours_override = function(palette)
         if not palette then
