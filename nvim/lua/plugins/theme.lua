@@ -18,7 +18,7 @@ return {
         hl.TSKeyword = { fg = '#c9706f', bg = 'NONE' }
         hl['@keyword'] = { fg = '#dc6f6f', bg = 'NONE' }
         hl.TSFunction = { fg = '#7fb4ca', bg = 'NONE' }
-        hl['@function'] = { fg = '#7fb4ca', bg = 'NONE' }
+        hl['@function'] = { fg = '#7dc4e4', bg = 'NONE' }
         hl.TSMacro = { fg = '#a991d1', bg = 'NONE' }
         hl['@macro'] = { fg = '#a991d1', bg = 'NONE' }
         hl.DiagnosticError = { fg = '#c9706f', bg = 'NONE' }
