@@ -7,15 +7,13 @@ return {
   },
   opts = function(_, opts)
     opts.sources = vim.tbl_deep_extend('force', opts.sources or {}, {
-      default = { 'avante', 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
       providers = {
-        avante = {
-          module = 'blink-cmp-avante',
-          name = 'Avante',
-          opts = {
-            -- options for blink-cmp-avante
-          },
-        },
+        -- NOTE: avante disabled for now
+        -- avante = {
+        --   module = 'blink-cmp-avante',
+        --   name = 'Avante',
+        -- },
         lsp = {
           name = 'lsp',
           enabled = true,

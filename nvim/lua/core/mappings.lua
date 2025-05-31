@@ -34,7 +34,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>h', ':MCPHub<CR>', { noremap = true, desc = 'MCP[h]ub' })
 
 -- Avante
-vim.keymap.set('n', '<leader>q', ':AvanteToggle<CR>', { noremap = true, desc = 'ai [q]uestion toggle' })
+-- vim.keymap.set('n', '<leader>q', ':AvanteToggle<CR>', { noremap = true, desc = 'ai [q]uestion toggle' })
 
 -- Quickfix
 vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')

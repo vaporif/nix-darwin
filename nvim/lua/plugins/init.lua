@@ -40,7 +40,11 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
-  require 'plugins.avante',
+  -- NOTE: Confused about using it
+  -- claude code is better as background worker
+  -- and I don't like idea of not having AI llm
+  -- at my fingertips so less brain rot
+  -- require 'plugins.avante',
   require 'plugins.mcphub',
 
   -- Development

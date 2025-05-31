@@ -188,7 +188,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end,
       })
     end
-
+    vim.diagnostic.config {
+      virtual_text = false,
+      virtual_lines = false,
+      signs = true,
+      underline = true,
+      float = {
+        source = true,
+      },
+    }
     -- Disable ruff hover feature in favor of Pyright
     if client and client.name == 'ruff' then
       client.server_capabilities.hoverProvider = false
