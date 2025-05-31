@@ -1,4 +1,3 @@
--- init.lua
 -- Core setup
 require 'core'
 
