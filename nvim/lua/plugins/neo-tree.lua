@@ -41,6 +41,11 @@ return {
         end,
       },
       window = {
+        popup = {
+          border = 'none',
+          title = '',
+        },
+        border = 'none',
         mappings = {
           ['oa'] = 'avante_add_files',
           ['e'] = 'none',

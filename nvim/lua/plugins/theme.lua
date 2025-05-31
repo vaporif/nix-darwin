@@ -20,7 +20,7 @@ return {
       diagnostic_line_highlight = false,
       spell_foreground = false,
       show_eob = false,
-      float_style = 'bright',
+      float_style = 'dim',
       inlay_hints_background = 'dimmed',
       on_highlights = function(hl, palette)
         -- Natural earth tones for Rust keywords
@@ -85,11 +85,15 @@ return {
         hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
         hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
 
-        hl.TelescopeNormal = { fg = palette.fg, bg = palette.bg0 } -- Same as editor
-        hl.TelescopeBorder = { fg = palette.bg4, bg = palette.bg0 } -- Subtle border
+        hl.TelescopeNormal = { bg = palette.bg0 }
+        hl.NormalFloat = { bg = palette.bg0 }
         hl.TelescopePromptNormal = { fg = palette.fg, bg = palette.bg0 }
         hl.TelescopeResultsNormal = { fg = palette.fg, bg = palette.bg0 }
         hl.TelescopePreviewNormal = { fg = palette.fg, bg = palette.bg0 }
+        hl.SignColumn = { fg = '#c5b6a0', bg = palette.bg1 }
+        hl.FloatBorder = { fg = palette.bg0, bg = 'none' }
+        hl.WinSeparator = { fg = palette.bg0 }
+        hl.NeoTreeWinSeparator = { fg = palette.bg0 }
       end,
       colours_override = function(palette)
         -- Main colors - all natural and muted
@@ -109,7 +113,6 @@ return {
         palette.bg_yellow = '#faf3e0' -- Very light cream
         palette.bg_dim = '#f8f1de' -- For dimmed/inactive windows
         -- Foreground colors
-        palette.fg = '#5c6a72' -- Charcoal (keeping original)
 
         -- Greys - like natural stone colors
         palette.grey0 = '#859289' -- River stone

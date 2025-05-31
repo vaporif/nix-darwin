@@ -15,7 +15,6 @@ return {
   require 'plugins.telescope',
   require 'plugins.dashboard',
   require 'plugins.lualine',
-  require 'plugins.neoscroll',
   require 'plugins.mini',
   require 'plugins.neo-tree',
   require 'plugins.marksnvim',
