@@ -161,6 +161,11 @@ in
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      # remove --exact to make it fuzzy
+      historyWidgetOptions = [
+        "--no-sort"
+        "--tiebreak=index"
+      ];
     };
 
     neovim = {

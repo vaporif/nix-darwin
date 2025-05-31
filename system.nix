@@ -66,6 +66,7 @@
         cmd - 4 : open -a "Telegram"
         cmd - 5 : open -a "Slack"
         cmd - 7 : open -a "Brave Browser"
+        cmd - 8 : open -a "Signal"
         cmd - 9 : open -a "Spotify"
         cmd - 0 : open -a "Librewolf" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
@@ -141,6 +142,7 @@
       "vlc"
       "qbittorrent"
       "secretive"
+      "signal"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
