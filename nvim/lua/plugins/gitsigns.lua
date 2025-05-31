@@ -2,6 +2,15 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     opts = {
+      signs = {
+        add = { text = '󰌪' }, -- +  for additions
+        change = { text = '' }, -- Thin line for changes
+        delete = { text = '󱋙' }, -- - for deletions
+        topdelete = { text = '' }, -- Down triangle for top delete
+        changedelete = { text = '󰬳' }, -- Tilde for change+delete
+        untracked = { text = '󰹦' }, -- Dotted line for untracked
+      },
+      -- Current line blame options (natural colors)
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 

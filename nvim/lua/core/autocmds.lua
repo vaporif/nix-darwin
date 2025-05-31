@@ -2,13 +2,16 @@ local augroup = function(name)
   return vim.api.nvim_create_augroup('nvim_' .. name, { clear = true })
 end
 
--- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = augroup 'highlight_yank',
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.highlight.on_yank {
+      higroup = 'IncSearch', -- or 'Visual' or custom group
+      timeout = 200, -- milliseconds
+      on_visual = true, -- highlight in visual mode too
+    }
   end,
+  pattern = '*',
 })
 
 -- Remove trailing whitespace on save
