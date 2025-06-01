@@ -13,7 +13,14 @@ return {
   },
   {
     'gbprod/yanky.nvim',
-    opts = {},
+    opts = {
+      ring = {
+        storage = 'sqlite',
+      },
+      preserve_cursor_position = {
+        enabled = true,
+      },
+    },
   },
 
   -- UI and navigation
@@ -21,11 +28,13 @@ return {
   require 'plugins.flash',
   require 'plugins.undotree',
   require 'plugins.which-key',
-  require 'plugins.telescope',
+  require 'plugins.fzf',
+  -- require 'plugins.telescope',
   require 'plugins.dashboard',
   require 'plugins.lualine',
   require 'plugins.mini',
   require 'plugins.neo-tree',
+  require 'plugins.oil',
   require 'plugins.marksnvim',
   require 'plugins.snipe',
   require 'plugins.harpoon',
