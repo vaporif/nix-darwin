@@ -119,10 +119,6 @@ in
         export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export PATH="/opt/homebrew/bin:$PATH"
-        mkdir -p ~/.config/mcphub
-
-        GITHUB_LLM_PAT="$(cat /run/secrets/github-llm-pat)" YOUTUBE_API_KEY="$(cat /run/secrets/youtube-key)" \
-        ${pkgs.envsubst}/bin/envsubst < /private/etc/nix-darwin/mcphub/servers.template.json > ~/.config/mcphub/servers.json
       '';
     };
 

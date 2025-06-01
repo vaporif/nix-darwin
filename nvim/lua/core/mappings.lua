@@ -42,9 +42,6 @@ vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
 vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
 vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
--- Avante
--- vim.keymap.set('n', '<leader>q', ':AvanteToggle<CR>', { noremap = true, desc = 'ai [q]uestion toggle' })
-
 -- Quickfix
 vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')
 vim.keymap.set('n', '<M-u>', '<cmd>cprev<Cr>')

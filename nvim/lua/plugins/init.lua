@@ -51,14 +51,10 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
-  -- NOTE: Confused about using it
-  -- claude code is better as background worker
-  -- and I don't like idea of not having AI llm
-  -- at my fingertips so less brain rot
-  -- but anyways config is actually fully working
-  -- check mappings too
-  -- require 'plugins.avante',
-  -- require 'plugins.mcphub',
+  -- NOTE: TBH I use claude code & desktop
+  -- this is just a backup
+  require 'plugins.avante',
+  require 'plugins.mcphub',
 
   -- Development
   require 'plugins.lazydev',
@@ -68,7 +64,5 @@ return {
   'LunarVim/bigfile.nvim',
   require 'plugins.snacks',
   require 'plugins.theme',
-
-  -- Additional plugins with minimal config
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  require 'plugins.todo',
 }

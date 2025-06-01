@@ -6,14 +6,12 @@ let
         filesystem = {
           enable = true;
           args = [
-            "${config.home.homeDirectory}/mcp-data"
+            "${config.home.homeDirectory}/Documents"
           ];
         };
         fetch.enable = true;
         git.enable = true;
-        sequential-thinking = {
-            enable = true;
-        };
+        sequential-thinking.enable = true;
         time = {
           enable = true;
           args = [
@@ -21,6 +19,7 @@ let
             "Europe/Lisbon"
           ];
         };
+        everything.enable = true;
         context7.enable = true;
         memory.enable = true;
         github = {
