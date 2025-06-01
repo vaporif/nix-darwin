@@ -11,16 +11,28 @@ let
         };
         fetch.enable = true;
         git.enable = true;
-        # github = {
-        #   enable = true;
-        #   passwordCommand = {
-        #     GITHUB_PERSONAL_ACCESS_TOKEN = [
-        #       (pkgs.lib.getExe config.programs.gh.package)
-        #       "auth"
-        #       "token"
-        #     ];
-        #   };
-        # };
+        sequential-thinking = {
+            enable = true;
+        };
+        time = {
+          enable = true;
+          args = [
+            "--local-timezone"
+            "Europe/Lisbon"
+          ];
+        };
+        context7.enable = true;
+        memory.enable = true;
+        github = {
+          enable = true;
+          passwordCommand = {
+            GITHUB_PERSONAL_ACCESS_TOKEN = [
+              (pkgs.lib.getExe config.programs.gh.package)
+              "auth"
+              "token"
+            ];
+          };
+        };
       };
     };
 in

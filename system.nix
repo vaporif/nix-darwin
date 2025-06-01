@@ -65,6 +65,7 @@
         cmd - 3 : open -a "Claude"
         cmd - 4 : open -a "Telegram"
         cmd - 5 : open -a "Slack"
+        cmd - 6 : open -a "Activity Monitor"
         cmd - 7 : open -a "Brave Browser"
         cmd - 8 : open -a "Signal"
         cmd - 9 : open -a "Spotify"
