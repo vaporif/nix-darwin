@@ -12,6 +12,10 @@
     sops-nix.url = "github:Mic92/sops-nix";
     mcp-hub.url = "github:ravitemer/mcp-hub";
     mcp-nixos.url = "github:utensils/mcp-nixos";
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fzf-git-sh = {
       url = "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh";
       flake = false;
@@ -22,14 +26,13 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, mcp-hub, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, ... }:
+  outputs = inputs@{ nixpkgs, nix-darwin, mcp-hub, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, ... }:
     let
       system = "aarch64-darwin";
 
-      pkgs = nixpkgs.legacyPackages.${system};
       mcp-hub-package = mcp-hub.packages.${system}.default;
-
       mcp-nixos-package = mcp-nixos.packages.${system}.default;
+      pkgs = nixpkgs.legacyPackages.${system};
       fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
     in
     {
@@ -54,7 +57,8 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit mcp-hub-package mcp-nixos-package fzf-git-sh-package yamb-yazi;
+                inherit fzf-git-sh-package yamb-yazi;
+                inherit mcp-servers-nix mcp-hub-package mcp-nixos-package ;
               };
               users.vaporif = import ./home.nix;
             };

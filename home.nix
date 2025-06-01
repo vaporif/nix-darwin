@@ -1,4 +1,4 @@
-{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, lib, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
 
 let
   kittyEverforestDarkHard = pkgs.fetchurl {
@@ -12,6 +12,10 @@ let
   };
 in
 {
+  imports = [
+    ./mcp-servers.nix
+  ];
+
   home = {
     homeDirectory = "/Users/vaporif";
     username = "vaporif";
@@ -43,9 +47,8 @@ in
     spacetimedb
     glances
     claude-code
-    # disabled for now
-    # mcp-hub-package
-    # mcp-nixos-package
+    mcp-hub-package
+    mcp-nixos-package
   ];
 
   programs = {
@@ -198,12 +201,11 @@ in
     };
   };
 
-  home.file.".envrc".text = ''
-    use flake github:vaporif/nix-devshells/23ff6af6c6e5bd542a2c52246dbade2fec96ff63
-  '';
-
   home.file = {
-    ".ssh/config" = {
+    ".envrc".text = ''
+        use flake github:vaporif/nix-devshells/23ff6af6c6e5bd542a2c52246dbade2fec96ff63
+    '';
+   ".ssh/config" = {
       source = ./.ssh/config;
       onChange = ''
         chmod 600 ~/.ssh/config
