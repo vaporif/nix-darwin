@@ -101,29 +101,16 @@ return {
             hl.DiagnosticHint = { fg = '#7aa89a', bg = 'NONE' } -- Teal
             hl.DiagnosticInfo = { fg = '#95b37e', bg = 'NONE' } -- Green
 
-            -- Telescope dark theme (slightly lighter than bg)
-            -- hl.TelescopeNormal = { bg = palette.bg1 }
-            -- hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg1 }
-            -- hl.TelescopePromptNormal = { bg = palette.bg1 }
-            -- hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg1 }
-            -- hl.TelescopeResultsNormal = { bg = palette.bg1 }
-            -- hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg1 }
-            -- hl.TelescopePreviewNormal = { bg = palette.bg1 }
-            -- hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg1 }
-            --
-            -- hl.TelescopeSelection = { bg = palette.bg3 }
-            -- hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg3 }
-
             -- Mini.indentscope
             hl.MiniIndentscopeSymbol = { fg = '#4f585e' } -- Subtle indent guides
           else
             -- ===========================
             -- LIGHT THEME CUSTOMIZATIONS (Your existing theme)
             -- ===========================
-            hl['@keyword'] = { fg = '#9d6b47', bg = 'NONE' } -- Warm terracotta
+            hl['@keyword'] = { fg = '#8b5a3c', bg = 'NONE' } -- Warm terracotta
             hl['@function.builtin'] = { fg = '#8b7d6b', bg = 'NONE' }
             hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#946b47', bg = 'NONE' }
-            hl['@operator'] = { fg = '#8a7766', bg = 'NONE' }
+            hl['@operator'] = { fg = '#6a5756', bg = 'NONE' }
             hl['@punctuation.special'] = { fg = '#8a7766', bg = 'NONE' } -- For :: -> =>
             hl.CursorLine = { bg = '#faf3e8' }
 
@@ -138,9 +125,9 @@ return {
             hl.ErrorFloat = { fg = '#9d6b47', bg = 'NONE' }
             hl.YankHighlight = { bg = '#e8e2cf' }
             -- Additional natural highlights for better readability
-            hl['@type'] = { fg = '#708c7e', bg = 'NONE' } -- Sage green
-            hl['@function'] = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey stone
-            hl['@string'] = { fg = '#8a9a7e', bg = 'NONE' }
+            hl['@type'] = { fg = '#4a6b5d', bg = 'NONE' } -- Sage green
+            hl['@function'] = { fg = '#4b6b6f', bg = 'NONE' } -- Blue-grey stone
+            hl['@string'] = { fg = '#6a7a5e', bg = 'NONE' }
             hl['@comment'] = { fg = '#a8a095' } -- Moss grey
             hl['@variable'] = { fg = '#5d6b66', bg = 'NONE' } -- Deep forest
             hl['@variable.builtin'] = { fg = '#a8a095', bg = 'NONE' }
@@ -155,8 +142,8 @@ return {
             hl['@punctuation.delimiter'] = { fg = '#8d9d8d', bg = 'NONE' }
 
             -- Rust-specific
-            hl['@type.rust'] = { fg = '#708c7e', bg = 'NONE' } -- Sage green
-            hl['@function.rust'] = { fg = '#6b8b8f', bg = 'NONE' }
+            hl['@type.rust'] = { fg = '#4a6b5d', bg = 'NONE' } -- Sage green
+            hl['@function.rust'] = { fg = '#4b6b6f', bg = 'NONE' }
             hl['@number.float'] = { fg = '#b8a0a8', bg = 'NONE' }
             hl['@attribute.rust'] = { fg = '#9b7d8a', bg = 'NONE' }
             hl['@operator.rust'] = { fg = '#8a7766', bg = 'NONE' }
@@ -169,7 +156,7 @@ return {
             hl['@keyword.storage.rust'] = { fg = '#a67c52', bg = 'NONE' }
             hl['@keyword.import.rust'] = { fg = '#a17c59', bg = 'NONE' } -- Sandy brown
             hl['@label.rust'] = { fg = '#9b7d8a', bg = 'NONE' }
-            hl['@keyword.rust'] = { fg = '#a67c52', bg = 'NONE' } -- Sandy brown
+            hl['@keyword.rust'] = { fg = '#8b5a3c', bg = 'NONE' } -- Sandy brown
             hl['@keyword.conditional.rust'] = { fg = '#9d6b47', bg = 'NONE' } -- Warm terracotta
             hl['@method.call.rust'] = { fg = '#7a8a7f', bg = 'NONE' } -- stone blue
             hl['@function.method.call.rust'] = { fg = '#8b7d6b', bg = 'NONE' }
@@ -181,17 +168,6 @@ return {
             hl.DiagnosticWarn = { fg = '#c9a05a', bg = 'NONE' } -- Muted gold
             hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
             hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
-            -- hl.TelescopeNormal = { bg = palette.bg_dim } -- lighter background
-            -- hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            -- hl.TelescopePromptNormal = { bg = palette.bg_dim }
-            -- hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            -- hl.TelescopeResultsNormal = { bg = palette.bg_dim }
-            -- hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            -- hl.TelescopePreviewNormal = { bg = palette.bg_dim }
-            -- hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            --
-            -- hl.TelescopeSelection = { bg = palette.bg0 }
-            -- hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg0 }
           end
         end,
 

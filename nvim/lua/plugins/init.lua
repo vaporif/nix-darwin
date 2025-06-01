@@ -1,6 +1,5 @@
 return {
   { 'tpope/vim-sleuth' },
-  { 'mg979/vim-visual-multi' },
   { 'f-person/auto-dark-mode.nvim', opts = {} },
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
@@ -19,6 +18,7 @@ return {
       },
     },
   },
+  'gennaro-tedesco/nvim-peekup',
 
   -- UI and navigation
   require 'plugins.gitsigns',
@@ -26,7 +26,6 @@ return {
   require 'plugins.undotree',
   require 'plugins.which-key',
   require 'plugins.fzf',
-  -- require 'plugins.telescope',
   require 'plugins.dashboard',
   require 'plugins.lualine',
   require 'plugins.mini',

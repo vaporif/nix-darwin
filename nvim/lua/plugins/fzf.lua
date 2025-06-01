@@ -11,11 +11,6 @@ return {
         border = 'noborder',
       },
     },
-    -- hls = {
-    --   fzf = {
-    --     gutter = 'Normal', -- This will use Normal's bg color
-    --   },
-    -- },
     grep = {
       actions = {
         ['ctrl-g'] = false,
