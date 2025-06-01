@@ -134,7 +134,7 @@ return {
             hl['@constant'] = { fg = '#a08770', bg = 'NONE' } -- Earth brown
             hl['@number'] = { fg = '#b8915f', bg = 'NONE' } -- Warm amber
             hl['@boolean'] = { fg = '#a08770', bg = 'NONE' } -- Warmer tan
-            hl['@parameter'] = { fg = '#9a9a8a', bg = 'NONE' }
+            hl['@parameter'] = { fg = '#8a6a5a' }
 
             -- UI elements with natural colors
             hl['@punctuation'] = { fg = '#7d8d85', bg = 'NONE' } -- Stone grey

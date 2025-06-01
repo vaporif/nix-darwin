@@ -55,6 +55,8 @@ return {
   -- claude code is better as background worker
   -- and I don't like idea of not having AI llm
   -- at my fingertips so less brain rot
+  -- but anyways config is actually fully working
+  -- check mappings too
   -- require 'plugins.avante',
   -- require 'plugins.mcphub',
 
