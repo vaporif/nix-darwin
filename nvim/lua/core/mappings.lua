@@ -33,6 +33,15 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>H', ':MCPHub<CR>', { noremap = true, desc = 'MCP[H]ub' })
 
+-- yanky
+vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
+vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)')
+vim.keymap.set({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)')
+vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
+
+vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
+vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
+
 -- Avante
 -- vim.keymap.set('n', '<leader>q', ':AvanteToggle<CR>', { noremap = true, desc = 'ai [q]uestion toggle' })
 

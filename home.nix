@@ -39,12 +39,13 @@ in
     pango
     gnupg
     uv
-    mcp-hub-package
-    mcp-nixos-package
     ruff
     spacetimedb
     glances
     claude-code
+    # disabled for now
+    # mcp-hub-package
+    # mcp-nixos-package
   ];
 
   programs = {

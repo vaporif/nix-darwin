@@ -6,6 +6,15 @@ return {
   { 'powerman/vim-plugin-AnsiEsc' },
   { 'sindrets/diffview.nvim' },
   { 'j-hui/fidget.nvim', opts = {} },
+  {
+    'chrisgrieser/nvim-early-retirement',
+    config = true,
+    event = 'VeryLazy',
+  },
+  {
+    'gbprod/yanky.nvim',
+    opts = {},
+  },
 
   -- UI and navigation
   require 'plugins.gitsigns',
@@ -16,7 +25,8 @@ return {
   require 'plugins.dashboard',
   require 'plugins.lualine',
   require 'plugins.mini',
-  require 'plugins.neo-tree',
+  -- require 'plugins.neo-tree',
+  require 'plugins.oil',
   require 'plugins.marksnvim',
   require 'plugins.snipe',
   require 'plugins.harpoon',
@@ -43,7 +53,7 @@ return {
   -- and I don't like idea of not having AI llm
   -- at my fingertips so less brain rot
   -- require 'plugins.avante',
-  require 'plugins.mcphub',
+  -- require 'plugins.mcphub',
 
   -- Development
   require 'plugins.lazydev',
