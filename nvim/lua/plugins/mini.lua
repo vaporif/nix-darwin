@@ -8,14 +8,17 @@ return { -- Collection of various small independent plugins/modules
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
     require('mini.ai').setup { n_lines = 500 }
-
-    -- Add/delete/replace surroundings (brackets, quotes, etc.)
-    --
-    -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-    -- - sd'   - [S]urround [D]elete [']quotes
-    -- - sr)'  - [S]urround [R]eplace [)] [']
-    -- FIXME: somehow doesnt work
-    -- require('mini.surround').setup()
+    require('mini.indentscope').setup {
+      symbol = '│',
+      options = {
+        try_as_border = true,
+        indent_at_cursor = true,
+      },
+      draw = {
+        delay = 0,
+        animation = require('mini.indentscope').gen_animation.none(),
+      },
+    }
 
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim

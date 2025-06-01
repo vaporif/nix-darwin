@@ -34,7 +34,6 @@ return {
   -- require 'plugins.blink-pairs',
   require 'plugins.treesitter',
   require 'plugins.treesitter-context',
-  require 'plugins.indent_line',
   require 'plugins.dap',
   require 'plugins.trouble',
   require 'plugins.cursorword',
