@@ -64,6 +64,7 @@ return {
   require 'plugins.lazygit',
 
   -- Misc
+  'LunarVim/bigfile.nvim',
   require 'plugins.snacks',
   require 'plugins.theme',
 

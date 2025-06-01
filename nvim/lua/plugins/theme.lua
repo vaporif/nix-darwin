@@ -5,9 +5,9 @@ return {
   'neanias/everforest-nvim',
   lazy = false,
   priority = 1000,
-
   config = function()
     local everforest = require 'everforest'
+    vim.opt.background = 'light'
 
     -- Function to apply theme based on background
     local function apply_theme()

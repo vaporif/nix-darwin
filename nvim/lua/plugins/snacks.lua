@@ -3,6 +3,5 @@ return {
   ---@type snacks.Config
   opts = {
     notifier = {},
-    bigfile = {},
   },
 }
