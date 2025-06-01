@@ -1,5 +1,5 @@
 # Nix-darwin + home-manager
-This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin)
+This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin) with dotfiles and tools.
 
 # setup
 
