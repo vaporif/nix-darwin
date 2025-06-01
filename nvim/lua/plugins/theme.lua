@@ -102,17 +102,17 @@ return {
             hl.DiagnosticInfo = { fg = '#95b37e', bg = 'NONE' } -- Green
 
             -- Telescope dark theme (slightly lighter than bg)
-            hl.TelescopeNormal = { bg = palette.bg1 }
-            hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg1 }
-            hl.TelescopePromptNormal = { bg = palette.bg1 }
-            hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg1 }
-            hl.TelescopeResultsNormal = { bg = palette.bg1 }
-            hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg1 }
-            hl.TelescopePreviewNormal = { bg = palette.bg1 }
-            hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg1 }
-
-            hl.TelescopeSelection = { bg = palette.bg3 }
-            hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg3 }
+            -- hl.TelescopeNormal = { bg = palette.bg1 }
+            -- hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg1 }
+            -- hl.TelescopePromptNormal = { bg = palette.bg1 }
+            -- hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg1 }
+            -- hl.TelescopeResultsNormal = { bg = palette.bg1 }
+            -- hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg1 }
+            -- hl.TelescopePreviewNormal = { bg = palette.bg1 }
+            -- hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg1 }
+            --
+            -- hl.TelescopeSelection = { bg = palette.bg3 }
+            -- hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg3 }
 
             -- Mini.indentscope
             hl.MiniIndentscopeSymbol = { fg = '#4f585e' } -- Subtle indent guides
@@ -181,17 +181,17 @@ return {
             hl.DiagnosticWarn = { fg = '#c9a05a', bg = 'NONE' } -- Muted gold
             hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
             hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
-            hl.TelescopeNormal = { bg = palette.bg_dim } -- lighter background
-            hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            hl.TelescopePromptNormal = { bg = palette.bg_dim }
-            hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            hl.TelescopeResultsNormal = { bg = palette.bg_dim }
-            hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg_dim }
-            hl.TelescopePreviewNormal = { bg = palette.bg_dim }
-            hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg_dim }
-
-            hl.TelescopeSelection = { bg = palette.bg0 }
-            hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg0 }
+            -- hl.TelescopeNormal = { bg = palette.bg_dim } -- lighter background
+            -- hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg_dim }
+            -- hl.TelescopePromptNormal = { bg = palette.bg_dim }
+            -- hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg_dim }
+            -- hl.TelescopeResultsNormal = { bg = palette.bg_dim }
+            -- hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg_dim }
+            -- hl.TelescopePreviewNormal = { bg = palette.bg_dim }
+            -- hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg_dim }
+            --
+            -- hl.TelescopeSelection = { bg = palette.bg0 }
+            -- hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg0 }
           end
         end,
 

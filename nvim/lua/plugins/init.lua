@@ -14,9 +14,6 @@ return {
   {
     'gbprod/yanky.nvim',
     opts = {
-      ring = {
-        storage = 'sqlite',
-      },
       preserve_cursor_position = {
         enabled = true,
       },
@@ -34,7 +31,6 @@ return {
   require 'plugins.lualine',
   require 'plugins.mini',
   require 'plugins.neo-tree',
-  require 'plugins.oil',
   require 'plugins.marksnvim',
   require 'plugins.snipe',
   require 'plugins.harpoon',

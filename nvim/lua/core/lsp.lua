@@ -134,23 +134,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
     end
 
-    map('gd', require('telescope.builtin').lsp_definitions, 'goto [d]efinition')
     map('gr', '<cmd>lua vim.lsp.buf.references()<CR>', 'goto [r]eferences (quickfix)')
-    map('gR', require('telescope.builtin').lsp_references, 'goto [R]eferences (telescope)')
-
-    map('gI', require('telescope.builtin').lsp_implementations, 'goto [I]mplementation')
-
-    -- Jump to the type of the word under your cursor.
-    --  Useful when you're not sure what type a variable is and you want to see
-    --  the definition of its *type*, not where it was *defined*.
-    map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'type [D]efinition')
-    map('<leader>fD', require('telescope.builtin').lsp_document_symbols, '[D]ocument symbols')
-    map('<leader>fw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[w]orkspace symbols')
-
     map('<leader>r', vim.lsp.buf.rename, '[r]ename')
-
     map('<leader>ca', vim.lsp.buf.code_action, '[a]ction')
-
     map('gD', vim.lsp.buf.declaration, 'goto [D]eclaration')
 
     -- The following two autocommands are used to highlight references of the
@@ -204,8 +190,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- The following code creates a keymap to toggle inlay hints in your
     -- code, if the language server you are using supports them
-    --
-    -- This may be unwanted, since they displace some of your code
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
       map('<leader>lh', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })

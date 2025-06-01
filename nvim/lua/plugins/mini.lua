@@ -1,4 +1,4 @@
-return { -- Collection of various small independent plugins/modules
+return {
   'echasnovski/mini.nvim',
   config = function()
     -- Better Around/Inside textobject
@@ -19,8 +19,13 @@ return { -- Collection of various small independent plugins/modules
         animation = require('mini.indentscope').gen_animation.none(),
       },
     }
-
-    -- ... and there is more!
-    --  Check out: https://github.com/echasnovski/mini.nvim
+    vim.api.nvim_create_autocmd({ 'FileType', 'TermOpen', 'BufEnter' }, {
+      pattern = '*',
+      callback = function()
+        if vim.bo.buftype == 'terminal' or vim.bo.filetype == 'fzf' or vim.fn.bufname():match 'fzf' then
+          vim.b.miniindentscope_disable = true
+        end
+      end,
+    })
   end,
 }
