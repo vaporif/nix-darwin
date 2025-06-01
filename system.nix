@@ -122,6 +122,8 @@
     brews = [
       "podman"
       "ollama"
+      # NOTE: installed via brew
+      # so they can be managed by smithery
       "python3"
       "node"
       "bun"

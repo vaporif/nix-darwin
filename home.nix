@@ -133,6 +133,8 @@ in
         discard = "reset HEAD --hard";
         fp = "fetch --all --prune";
       };
+      # yeah signing is not cool since my ssh
+      # keys are living inside macbook secure enclave hsm
       signing = {
         key = "AC03496CA69745FE";
         signByDefault = true;
