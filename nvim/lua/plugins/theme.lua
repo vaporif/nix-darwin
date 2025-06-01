@@ -22,8 +22,7 @@ return {
       show_eob = false,
       float_style = 'bright',
       inlay_hints_background = 'none',
-      on_highlights = function(hl, _)
-        -- Natural earth tones for Rust keywords
+      on_highlights = function(hl, palette)
         hl['@keyword'] = { fg = '#9d6b47', bg = 'NONE' } -- Warm terracotta
         hl['@function.builtin'] = { fg = '#8b7d6b', bg = 'NONE' }
         hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#946b47', bg = 'NONE' }
@@ -31,7 +30,6 @@ return {
         hl['@punctuation.special'] = { fg = '#8a7766', bg = 'NONE' } -- For :: -> =>
         hl.CursorLine = { bg = '#faf3e8' }
 
-        -- Natural purple like lavender
         hl['@macro'] = { fg = '#9b7d8a', bg = 'NONE' } -- Muted mauve
         -- Softer, natural error colors
         hl.DiagnosticError = { fg = '#c85552', bg = 'NONE' } -- Muted coral
@@ -84,16 +82,17 @@ return {
         hl.DiagnosticWarn = { fg = '#c9a05a', bg = 'NONE' } -- Muted gold
         hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
         hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
+        hl.TelescopeNormal = { bg = palette.bg_dim } -- lighter background
+        hl.TelescopeBorder = { fg = palette.bg5, bg = palette.bg_dim }
+        hl.TelescopePromptNormal = { bg = palette.bg_dim }
+        hl.TelescopePromptBorder = { fg = palette.bg5, bg = palette.bg_dim }
+        hl.TelescopeResultsNormal = { bg = palette.bg_dim }
+        hl.TelescopeResultsBorder = { fg = palette.bg5, bg = palette.bg_dim }
+        hl.TelescopePreviewNormal = { bg = palette.bg_dim }
+        hl.TelescopePreviewBorder = { fg = palette.bg5, bg = palette.bg_dim }
 
-        -- hl.TelescopeNormal = { bg = palette.bg0 }
-        -- hl.NormalFloat = { bg = palette.bg0 }
-        -- hl.TelescopePromptNormal = { fg = palette.fg, bg = palette.bg0 }
-        -- hl.TelescopeResultsNormal = { fg = palette.fg, bg = palette.bg0 }
-        -- hl.TelescopePreviewNormal = { fg = palette.fg, bg = palette.bg0 }
-        -- hl.SignColumn = { fg = '#c5b6a0', bg = palette.bg1 }
-        -- hl.FloatBorder = { fg = palette.bg0, bg = 'none' }
-        -- hl.WinSeparator = { fg = palette.bg0 }
-        -- hl.NeoTreeWinSeparator = { fg = palette.bg0 }
+        hl.TelescopeSelection = { bg = palette.bg0 }
+        hl.TelescopeSelectionCaret = { fg = palette.red, bg = palette.bg0 }
       end,
       colours_override = function(palette)
         -- Main colors - all natural and muted
