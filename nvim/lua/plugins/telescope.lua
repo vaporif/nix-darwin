@@ -27,6 +27,7 @@ return {
       --  All the info you're looking for is in `:help telescope.setup()`
       --
       defaults = {
+        borderchars = { '', '', '', '', '', '', '', '' },
         preview = {
           filesize_limit = 3,
         },

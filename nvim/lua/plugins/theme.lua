@@ -14,15 +14,15 @@ return {
       disable_italic_comments = false,
       sign_column_background = 'none',
       ui_contrast = 'low',
-      dim_inactive_windows = true,
+      dim_inactive_windows = false,
       diagnostic_virtual_text = 'grey',
       diagnostic_text_highlight = false,
       diagnostic_line_highlight = false,
       spell_foreground = false,
       show_eob = false,
-      float_style = 'dim',
-      inlay_hints_background = 'dimmed',
-      on_highlights = function(hl, palette)
+      float_style = 'bright',
+      inlay_hints_background = 'none',
+      on_highlights = function(hl, _)
         -- Natural earth tones for Rust keywords
         hl['@keyword'] = { fg = '#9d6b47', bg = 'NONE' } -- Warm terracotta
         hl['@function.builtin'] = { fg = '#8b7d6b', bg = 'NONE' }
@@ -85,15 +85,15 @@ return {
         hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
         hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
 
-        hl.TelescopeNormal = { bg = palette.bg0 }
-        hl.NormalFloat = { bg = palette.bg0 }
-        hl.TelescopePromptNormal = { fg = palette.fg, bg = palette.bg0 }
-        hl.TelescopeResultsNormal = { fg = palette.fg, bg = palette.bg0 }
-        hl.TelescopePreviewNormal = { fg = palette.fg, bg = palette.bg0 }
-        hl.SignColumn = { fg = '#c5b6a0', bg = palette.bg1 }
-        hl.FloatBorder = { fg = palette.bg0, bg = 'none' }
-        hl.WinSeparator = { fg = palette.bg0 }
-        hl.NeoTreeWinSeparator = { fg = palette.bg0 }
+        -- hl.TelescopeNormal = { bg = palette.bg0 }
+        -- hl.NormalFloat = { bg = palette.bg0 }
+        -- hl.TelescopePromptNormal = { fg = palette.fg, bg = palette.bg0 }
+        -- hl.TelescopeResultsNormal = { fg = palette.fg, bg = palette.bg0 }
+        -- hl.TelescopePreviewNormal = { fg = palette.fg, bg = palette.bg0 }
+        -- hl.SignColumn = { fg = '#c5b6a0', bg = palette.bg1 }
+        -- hl.FloatBorder = { fg = palette.bg0, bg = 'none' }
+        -- hl.WinSeparator = { fg = palette.bg0 }
+        -- hl.NeoTreeWinSeparator = { fg = palette.bg0 }
       end,
       colours_override = function(palette)
         -- Main colors - all natural and muted
@@ -106,13 +106,12 @@ return {
         palette.purple = '#9b7d8a' -- Dusty lavender
 
         -- Background colors - very soft and natural
-        palette.bg_visual = '#ede7d4' -- Slightly warmer selection (currently you have it twice)
+        palette.bg_visual = '#ede7d4' -- Slightly warmer selection
         palette.bg_red = '#fce8e8' -- Very light coral
         palette.bg_green = '#f0f4e6' -- Very light sage
         palette.bg_blue = '#e8f0f3' -- Very light sky
         palette.bg_yellow = '#faf3e0' -- Very light cream
         palette.bg_dim = '#f8f1de' -- For dimmed/inactive windows
-        -- Foreground colors
 
         -- Greys - like natural stone colors
         palette.grey0 = '#859289' -- River stone
