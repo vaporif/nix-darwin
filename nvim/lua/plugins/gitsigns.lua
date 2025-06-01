@@ -27,7 +27,7 @@ return {
           else
             gitsigns.nav_hunk 'next'
           end
-        end, { desc = 'Jump to next git [c]hange' })
+        end, { desc = 'next git [c]hange' })
 
         map('n', '[c', function()
           if vim.wo.diff then
@@ -35,7 +35,7 @@ return {
           else
             gitsigns.nav_hunk 'prev'
           end
-        end, { desc = 'Jump to previous git [c]hange' })
+        end, { desc = 'prev git [c]hange' })
 
         -- Actions
         -- visual mode
@@ -46,19 +46,19 @@ return {
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'reset git hunk' })
         -- normal mode
-        map('n', '<leader>Gs', gitsigns.stage_hunk, { desc = '[s]tage hunk' })
-        map('n', '<leader>Gr', gitsigns.reset_hunk, { desc = '[r]eset hunk' })
-        map('n', '<leader>GS', gitsigns.stage_buffer, { desc = '[S]tage buffer' })
-        map('n', '<leader>GR', gitsigns.reset_buffer, { desc = '[R]eset buffer' })
-        map('n', '<leader>Gp', gitsigns.preview_hunk, { desc = '[p]review hunk' })
-        map('n', '<leader>Gb', gitsigns.blame_line, { desc = '[b]lame line' })
-        map('n', '<leader>Gd', gitsigns.diffthis, { desc = '[d]iff against index' })
-        map('n', '<leader>GD', function()
+        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[s]tage hunk' })
+        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = '[r]eset hunk' })
+        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = '[S]tage buffer' })
+        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = '[R]eset buffer' })
+        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = '[p]review hunk' })
+        map('n', '<leader>hb', gitsigns.blame_line, { desc = '[b]lame line' })
+        map('n', '<leader>hd', gitsigns.diffthis, { desc = '[d]iff against index' })
+        map('n', '<leader>hD', function()
           gitsigns.diffthis '@'
         end, { desc = '[D]iff against last commit' })
         -- Toggles
-        map('n', '<leader>Gb', gitsigns.toggle_current_line_blame, { desc = '[b]lame line' })
-        map('n', '<leader>GD', gitsigns.toggle_deleted, { desc = '[D]eleted' })
+        map('n', '<leader>hb', gitsigns.toggle_current_line_blame, { desc = '[b]lame line' })
+        map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'preview [i]nline' })
       end,
     },
   },

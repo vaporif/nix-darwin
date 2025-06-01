@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]ori
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<leader>h', ':MCPHub<CR>', { noremap = true, desc = 'MCP[h]ub' })
+vim.keymap.set('n', '<leader>H', ':MCPHub<CR>', { noremap = true, desc = 'MCP[H]ub' })
 
 -- Avante
 -- vim.keymap.set('n', '<leader>q', ':AvanteToggle<CR>', { noremap = true, desc = 'ai [q]uestion toggle' })

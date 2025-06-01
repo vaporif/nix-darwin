@@ -44,7 +44,6 @@ return {
     require('which-key').add {
       { '<leader>b', group = '[b]uffer' },
       { '<leader>s', group = '[s]plit' },
-      { '<leader>g', group = '[G]it signs' },
       { '<leader>f', group = '[f]ind' },
       { '<leader>c', group = '[c]ode' },
       { '<leader>l', group = 'tog[l]le' },
