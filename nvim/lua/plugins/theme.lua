@@ -216,7 +216,7 @@ return {
             palette.purple = '#9b7d8a' -- Dusty lavender
 
             -- Background colors - very soft and natural
-            palette.bg_visual = '#ede7d4' -- Slightly warmer selection
+            palette.bg_visual = '#d5c9b8' -- Slightly warmer selection
             palette.bg_red = '#fce8e8' -- Very light coral
             palette.bg_green = '#f0f4e6' -- Very light sage
             palette.bg_blue = '#e8f0f3' -- Very light sky
