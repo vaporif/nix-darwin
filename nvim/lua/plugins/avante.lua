@@ -4,7 +4,7 @@ return {
   version = false, -- Never set this value to "*"! Never!
   opts = {
     provider = 'openrouter_gemini_flash',
-    vendors = {
+    providers = {
       openrouter_gemini_flash = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1',
