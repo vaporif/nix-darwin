@@ -8,7 +8,7 @@ return {
   config = function()
     local everforest = require 'everforest'
     vim.opt.background = 'light'
-
+    -- NOTE:
     -- Function to apply theme based on background
     local function apply_theme()
       local is_dark = vim.o.background == 'dark'
@@ -107,34 +107,33 @@ return {
             -- ===========================
             -- LIGHT THEME CUSTOMIZATIONS (Your existing theme)
             -- ===========================
-            hl['@keyword'] = { fg = '#8b5a3c', bg = 'NONE' } -- Warm terracotta
-            hl['@function.builtin'] = { fg = '#8b7d6b', bg = 'NONE' }
-            hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#946b47', bg = 'NONE' }
-            hl['@operator'] = { fg = '#6a5756', bg = 'NONE' }
-            hl['@punctuation.special'] = { fg = '#8a7766', bg = 'NONE' } -- For :: -> =>
+            hl['@keyword'] = { fg = '#7a4f3a', bg = 'NONE' } -- Warm terracotta
+            hl['@function.builtin'] = { fg = '#7a6d5b', bg = 'NONE' }
+            hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#846347', bg = 'NONE' }
+            hl['@operator'] = { fg = '#5a4746', bg = 'NONE' }
+            hl['@punctuation.special'] = { fg = '#7a6756', bg = 'NONE' } -- For :: -> =>
             hl.CursorLine = { bg = '#faf3e8' }
 
             hl['@macro'] = { fg = '#9b7d8a', bg = 'NONE' } -- Muted mauve
             -- Softer, natural error colors
             hl.DiagnosticError = { fg = '#c85552', bg = 'NONE' } -- Muted coral
-            hl['Purple'] = { fg = '#9b7d8a' } -- Dusty purple
+            hl['Purple'] = { fg = '#8b6d7a' } -- Dusty purple
             hl['PurpleItalic'] = { fg = '#9b7d8a', italic = false }
-            hl['Red'] = { fg = '#b85450' } -- Muted coral
-            hl['Orange'] = { fg = '#d2691e', bg = 'NONE' }
+            hl['Red'] = { fg = '#a84440' } -- Muted coral
+            hl['Orange'] = { fg = '#c2591e', bg = 'NONE' }
             hl['DiagnosticUnderlineError'] = { undercurl = true, sp = '#c85552' }
             hl.ErrorFloat = { fg = '#9d6b47', bg = 'NONE' }
             hl.YankHighlight = { bg = '#e8e2cf' }
             -- Additional natural highlights for better readability
-            hl['@type'] = { fg = '#4a6b5d', bg = 'NONE' } -- Sage green
-            hl['@function'] = { fg = '#4b6b6f', bg = 'NONE' } -- Blue-grey stone
-            hl['@string'] = { fg = '#6a7a5e', bg = 'NONE' }
-            hl['@comment'] = { fg = '#a8a095' } -- Moss grey
-            hl['@variable'] = { fg = '#5d6b66', bg = 'NONE' } -- Deep forest
-            hl['@variable.builtin'] = { fg = '#a8a095', bg = 'NONE' }
-            hl['@constant'] = { fg = '#a08770', bg = 'NONE' } -- Earth brown
-            hl['@number'] = { fg = '#b8915f', bg = 'NONE' } -- Warm amber
-            hl['@boolean'] = { fg = '#a08770', bg = 'NONE' } -- Warmer tan
-            hl['@parameter'] = { fg = '#8a6a5a' }
+            hl['@type'] = { fg = '#3a5b4d', bg = 'NONE' } -- Sage green
+            hl['@function'] = { fg = '#3b5b5f', bg = 'NONE' } -- Blue-grey stone
+            hl['@string'] = { fg = '#5a6a4e', bg = 'NONE' }
+            hl['@variable'] = { fg = '#4d5b56', bg = 'NONE' } -- Deep forest
+            hl['@variable.builtin'] = { fg = '#8a8275', bg = 'NONE' }
+            hl['@constant'] = { fg = '#907760', bg = 'NONE' } -- Earth brown
+            hl['@number'] = { fg = '#a8814f', bg = 'NONE' } -- Warm amber
+            hl['@boolean'] = { fg = '#907760', bg = 'NONE' } -- Warmer tan
+            hl['@parameter'] = { fg = '#7a5a4a' }
 
             -- UI elements with natural colors
             hl['@punctuation'] = { fg = '#7d8d85', bg = 'NONE' } -- Stone grey
