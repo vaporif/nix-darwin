@@ -13,7 +13,7 @@
     mcp-hub.url = "github:ravitemer/mcp-hub";
     mcp-nixos.url = "github:utensils/mcp-nixos";
     mcp-servers-nix = {
-      url = "github:vaporif/mcp-servers-nix/qdrant";
+      url = "github:vaporif/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fzf-git-sh = {

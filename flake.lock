@@ -136,16 +136,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1748956148,
-        "narHash": "sha256-c/+NW4SSuFVvztAUZTuUVt32lB/eZjprNiq+ty933pQ=",
+        "lastModified": 1748970153,
+        "narHash": "sha256-RemfgK3FXFasyYl0yEYybJ6wGl8l2+8aIFceF5gfjog=",
         "owner": "vaporif",
         "repo": "mcp-servers-nix",
-        "rev": "f096cf747c9da49d8d50d694105938cba783f91a",
+        "rev": "c2f42783908dbb5e3690c754c5f674419a15616b",
         "type": "github"
       },
       "original": {
         "owner": "vaporif",
-        "ref": "qdrant",
         "repo": "mcp-servers-nix",
         "type": "github"
       }
