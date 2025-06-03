@@ -49,6 +49,8 @@ in
     claude-code
     mcp-hub-package
     mcp-nixos-package
+    qdrant
+    qdrant-web-ui
   ];
 
   programs = {

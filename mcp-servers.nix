@@ -19,6 +19,13 @@ let
             "Europe/Lisbon"
           ];
         };
+        qdrant = {
+          enable = true;
+          env = {
+            QDRANT_LOCAL_PATH = "/Users/vaporif/qdrant";
+            COLLECTION_NAME = "mcp-server-collection";
+          };
+        };
         everything.enable = true;
         context7.enable = true;
         memory.enable = true;
