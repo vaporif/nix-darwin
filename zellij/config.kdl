@@ -1,5 +1,5 @@
 themes {
-    everforest_light_soft {
+    everforest-light-soft {
         text_unselected {
             base 92 106 114          // #5c6a72 - fg
             background 229 223 197   // #e5dfc5 - bg2/bg_dim
@@ -144,7 +144,8 @@ themes {
         }
     }
 }
-theme "everforest_light_soft"
+// theme "everforest-light-soft"
+ theme "everforest-dark"
 
 show_startup_tips false
 pane_frames false
