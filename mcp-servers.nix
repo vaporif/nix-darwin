@@ -19,6 +19,15 @@ let
             "Europe/Lisbon"
           ];
         };
+        tavily = {
+          enable = true;
+          passwordCommand = {
+            TAVILY_API_KEY = [
+              "cat"
+              "/run/secrets/tavily-key"
+            ];
+          };
+        };
         qdrant = {
           enable = true;
           env = {

@@ -95,11 +95,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1749029003,
-        "narHash": "sha256-/drkhOo1Eq4Ab3byy7lQZ3OgqgXL1Q62B0UGzWsQim0=",
+        "lastModified": 1749091796,
+        "narHash": "sha256-+jp4yCVcctgHiXxzDKxlTxBHsktw/bZlNlVEtn1q1Cg=",
         "owner": "ravitemer",
         "repo": "mcp-hub",
-        "rev": "2b25fe1fc9bd5c3d29060ce81ca68545c0a739e3",
+        "rev": "8e84658d20554488d0a346f0801b554ed5cf9c31",
         "type": "github"
       },
       "original": {
@@ -136,15 +136,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1748970153,
-        "narHash": "sha256-RemfgK3FXFasyYl0yEYybJ6wGl8l2+8aIFceF5gfjog=",
+        "lastModified": 1749116149,
+        "narHash": "sha256-NNR0NbfD8E8IwmePMOjsXUslO2yuAWCKJ5+yVO7oPZU=",
         "owner": "vaporif",
         "repo": "mcp-servers-nix",
-        "rev": "c2f42783908dbb5e3690c754c5f674419a15616b",
+        "rev": "57c4d213b99ce72a29bcbf0551186b60e65f8ba9",
         "type": "github"
       },
       "original": {
         "owner": "vaporif",
+        "ref": "tavily",
         "repo": "mcp-servers-nix",
         "type": "github"
       }

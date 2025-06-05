@@ -24,12 +24,6 @@
     mode = "0400";
   };
 
-  sops.secrets.github-llm-pat = {
-    owner = "vaporif";
-    group = "staff";
-    mode = "0400";
-  };
-
   sops.secrets.youtube-key = {
     owner = "vaporif";
     group = "staff";

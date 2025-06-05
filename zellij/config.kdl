@@ -144,8 +144,8 @@ themes {
         }
     }
 }
-// theme "everforest-light-soft"
- theme "everforest-dark"
+theme "everforest-light-soft"
+ // theme "everforest-dark"
 
 show_startup_tips false
 pane_frames false
