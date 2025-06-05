@@ -25,7 +25,7 @@
   "marks.nvim": { "branch": "master", "commit": "f353e8c08c50f39e99a9ed474172df7eddd89b72" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "4c2cdc69d69fe00c15ae8648f7e954d99e5de3ea" },
   "mason.nvim": { "branch": "main", "commit": "8024d64e1330b86044fed4c8494ef3dcd483a67c" },
-  "mcphub.nvim": { "branch": "main", "commit": "e9d000be198df8b4b40e09fb975b675e904b42f9" },
+  "mcphub.nvim": { "branch": "main", "commit": "0aff3ec2f82c27d0739b7718c9c2dedb7e827579" },
   "mini.nvim": { "branch": "main", "commit": "5a10dfb3ab49b3ee2425bc2c215b5067ccce1c79" },
   "mini.pick": { "branch": "main", "commit": "c272dc61cd0326b344761cd9d031bfcdef1978c7" },
   "multicursor.nvim": { "branch": "main", "commit": "6fba38bccf45cfb681f4ff6098f886213f299a34" },

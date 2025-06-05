@@ -42,6 +42,9 @@ in
     hyperfine
     pango
     gnupg
+    python312Full
+    nodejs_22
+    bun
     uv
     ruff
     spacetimedb
