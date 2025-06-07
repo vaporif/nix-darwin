@@ -32,7 +32,6 @@ in
     pngpaste
     viu
     chafa
-    texlive.combined.scheme-full
     basedpyright
     ghostscript
     wget
