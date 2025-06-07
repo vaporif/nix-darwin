@@ -9,6 +9,15 @@ let
             "${config.home.homeDirectory}/Documents"
           ];
         };
+        youtube = {
+          enable = true;
+          passwordCommand = {
+            YOUTUBE_API_KEY = [
+              "cat"
+              "/run/secrets/youtube-key"
+            ];
+          };
+        };
         fetch.enable = true;
         git.enable = true;
         sequential-thinking.enable = true;
