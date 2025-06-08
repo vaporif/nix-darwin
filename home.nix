@@ -1,4 +1,4 @@
-{ pkgs, lib, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
 
 let
   kittyEverforestDarkHard = pkgs.fetchurl {
@@ -123,6 +123,27 @@ in
         export OPENROUTER_API_KEY="$(cat /run/secrets/openrouter-key)"
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export PATH="/opt/homebrew/bin:$PATH"
+
+        # Generate zellij config if it doesn't exist or update theme based on system appearance
+        ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
+        ZELLIJ_CONFIG="$ZELLIJ_CONFIG_DIR/config.kdl"
+
+        # Create directory if it doesn't exist
+        mkdir -p "$ZELLIJ_CONFIG_DIR"
+
+        # Detect current theme
+        APPEARANCE=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo "Light")
+        if [ "$APPEARANCE" = "Dark" ]; then
+          ZELLIJ_THEME="everforest-dark"
+        else
+          ZELLIJ_THEME="everforest-light-soft"
+        fi
+
+        # Copy the config file
+        cp ${./zellij/config.kdl} "$ZELLIJ_CONFIG"
+
+        # Update theme in config
+        sed -i "" "s/theme \".*\"/theme \"$ZELLIJ_THEME\"/" "$ZELLIJ_CONFIG"
       '';
     };
 
@@ -207,9 +228,6 @@ in
     '';
    ".ssh/config" = {
       source = ./.ssh/config;
-      onChange = ''
-        chmod 600 ~/.ssh/config
-      '';
     };
   };
 
@@ -227,11 +245,71 @@ in
     recursive = true;
   };
 
-  xdg.configFile."zellij/config.kdl".source = ./zellij/config.kdl;
-  xdg.configFile."bat/config".text = ''
-    --style="plain"
-    --theme="everforest-light"
-  '';
+  xdg.configFile."bat/config".text = "--style=plain\n--theme=everforest-light\n";
   xdg.configFile."bat/themes/everforest-light.tmTheme".source = ./bat_themes/everforest_light_soft_zellij.tmTheme;
   xdg.configFile.nvim.source = ./nvim;
+
+launchd.agents.zellij-theme-watcher = {
+  enable = true;
+  config = {
+    ProgramArguments = [ "${pkgs.bash}/bin/bash" "-c" ''
+      update_theme() {
+        # Detect macOS appearance mode using osascript
+        APPEARANCE=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode' 2>/dev/null)
+
+        # Set theme based on system appearance
+        if [ "$APPEARANCE" = "true" ]; then
+          ZELLIJ_THEME="everforest-dark"
+        else
+          ZELLIJ_THEME="everforest-light-soft"
+        fi
+
+        # Update the config file in place
+        sed -i "" "s/theme \".*\"/theme \"$ZELLIJ_THEME\"/" ~/.config/zellij/config.kdl
+      }
+
+      # Initial update
+      update_theme
+
+      # Use osascript to watch for appearance changes
+      osascript -l JavaScript << 'EOF'
+      ObjC.import("Cocoa");
+
+      // Function to update zellij theme
+      function updateTheme() {
+        const task = $.NSTask.alloc.init;
+        task.launchPath = "/bin/bash";
+        task.arguments = ["-c", `
+          APPEARANCE=$(osascript -e 'tell application "System Events" to tell appearance preferences to get dark mode' 2>/dev/null)
+          if [ "$APPEARANCE" = "true" ]; then
+            ZELLIJ_THEME="everforest-dark"
+          else
+            ZELLIJ_THEME="everforest-light-soft"
+          fi
+          sed -i "" "s/theme \\".*\\"/theme \\"$ZELLIJ_THEME\\"/" ~/.config/zellij/config.kdl
+        `];
+        task.launch;
+        task.waitUntilExit;
+      }
+
+      // Set up observer for appearance changes
+      $.NSDistributedNotificationCenter.defaultCenter.addObserverForNameObjectQueueUsingBlock(
+        "AppleInterfaceThemeChangedNotification",
+        null,
+        $.NSOperationQueue.mainQueue,
+        function(notification) {
+          updateTheme();
+        }
+      );
+
+      // Keep the script running
+      $.NSRunLoop.currentRunLoop.run;
+      EOF
+    '' ];
+    RunAtLoad = true;
+    KeepAlive = true;
+    StandardOutPath = "/tmp/zellij-theme-watcher.log";
+    StandardErrorPath = "/tmp/zellij-theme-watcher.err";
+  };
+};
 }
