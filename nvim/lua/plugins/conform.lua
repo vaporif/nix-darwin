@@ -2,16 +2,6 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
-  -- keys = {
-  --   {
-  --     '<leader>bf',
-  --     function()
-  --       require('conform').format { async = true, lsp_fallback = true }
-  --     end,
-  --     mode = '',
-  --     desc = '[B]uffer [f]ormat',
-  --   },
-  -- },
   opts = {
     notify_on_error = false,
     format_on_save = function(bufnr)
