@@ -9,20 +9,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   pattern = '*',
 })
-
--- Remove trailing whitespace on save
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { '*' },
-  group = augroup 'trim_whitespace',
-  callback = function()
-    -- Skip for files larger than 1MB
-    local max_size = 1 * 1024 * 1024
-    local file_size = vim.fn.getfsize(vim.fn.expand '%')
-    if file_size > max_size then
-      return
-    end
-    local cursor_position = vim.fn.getpos '.'
-    vim.cmd [[%s/\s\+$//e]]
-    vim.fn.setpos('.', cursor_position)
-  end,
-})

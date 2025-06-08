@@ -4,4 +4,20 @@ return {
   opts = {
     notifier = {},
   },
+  keys = {
+    {
+      '<leader>g',
+      function()
+        require('snacks').lazygit()
+      end,
+      desc = 'Lazy[g]it',
+    },
+    {
+      '<leader>l',
+      function()
+        require('snacks').lazygit.log()
+      end,
+      desc = 'gil [l]ogs',
+    },
+  },
 }

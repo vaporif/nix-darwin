@@ -46,7 +46,6 @@ return {
       { '<leader>s', group = '[s]plit' },
       { '<leader>f', group = '[f]ind' },
       { '<leader>c', group = '[c]ode' },
-      { '<leader>l', group = 'tog[l]le' },
       { '<leader>r', group = '[r]ename' },
       { '<leader>w', group = '[w]rite' },
       { '<leader>t', group = '[t]rouble' },
