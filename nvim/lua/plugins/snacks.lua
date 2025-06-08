@@ -17,7 +17,7 @@ return {
       function()
         require('snacks').lazygit.log()
       end,
-      desc = 'gil [l]ogs',
+      desc = 'git [l]ogs',
     },
   },
 }
