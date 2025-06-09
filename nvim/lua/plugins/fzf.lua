@@ -24,7 +24,7 @@ return {
     { '<leader>fs', '<cmd>FzfLua builtin<cr>', desc = '[s]elect fzf-lua' },
     { '<leader>fg', '<cmd>FzfLua live_grep<cr>', desc = '[g]rep' },
     { '<leader>fd', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'workspace [d]iagnostics' },
-    { '<leader>fD', '<cmd>FzfLua diagnostics_workspace<cr>', desc = '[D]ocument diagnostics' },
+    { '<leader>fD', '<cmd>FzfLua diagnostics_document<cr>', desc = '[D]ocument diagnostics' },
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[r]esume' },
     { '<leader>fm', '<cmd>FzfLua marks<cr>', desc = '[m]arks' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
@@ -59,6 +59,6 @@ return {
     { 'gI', '<cmd>FzfLua lsp_implementations<cr>', desc = 'goto [I]mplementation' },
     { '<leader>fi', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'type def[i]nition' },
     { '<leader>fs', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'document [s]ymbols' },
-    { '<leader>fw', '<cmd>FzfLua lsp_dynamic_workspace_symbols<cr>', desc = '[w]orkspace symbols' },
+    { '<leader>fw', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', desc = '[w]orkspace symbols' },
   },
 }
