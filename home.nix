@@ -99,9 +99,10 @@ in
       nix-direnv.enable = true;
       stdlib = builtins.readFile ./direnvrc;
     };
+
     oh-my-posh = {
       enable = true;
-      useTheme = "uew";
+      useTheme = "pure";
       enableZshIntegration = true;
     };
 
