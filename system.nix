@@ -115,7 +115,6 @@
     ];
 
     brews = [
-      "podman"
       "ollama"
     ];
 
@@ -130,8 +129,8 @@
       "karabiner-elements"
       "telegram"
       "tor-browser"
-      "podman-desktop"
       "vlc"
+      "orbstack"
       "qbittorrent"
       "secretive"
       "signal"
