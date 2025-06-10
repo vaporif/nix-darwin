@@ -228,9 +228,9 @@ return {
             palette.grey2 = '#b5c1b8' -- Pale stone
 
             -- Additional colors
-            palette.statusline1 = '#93a99f'
-            palette.statusline2 = '#859289'
-            palette.statusline3 = '#708c7e'
+            palette.statusline1 = '#5c6a72' -- Dark grey
+            palette.statusline2 = '#708c7e' -- Darker sage
+            palette.statusline3 = '#7a8478' -- Even darker
           end
         end,
       }
