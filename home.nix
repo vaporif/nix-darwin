@@ -23,6 +23,9 @@ in
   };
   home.packages = with pkgs; [
     nixd
+    nix-tree
+    nix-diff
+    nix-search
     tokei
     httpie
     nerd-fonts.hack
@@ -214,6 +217,7 @@ in
       extraConfig = {
         core = {
           editor = "nvim";
+          pager = "delta";
         };
         pull.ff = "only";
         push.autoSetupRemote = true;
@@ -228,6 +232,8 @@ in
         feature.experimental = true;
         help.autocorrect = "prompt";
         branch.sort = "committerdate";
+        interactive.diffFilter = "delta --color-only";
+        delta.navigate = true;
       };
     };
 
