@@ -99,6 +99,11 @@ in
       nix-direnv.enable = true;
       stdlib = builtins.readFile ./direnvrc;
     };
+    oh-my-posh = {
+      enable = true;
+      useTheme = "nordtron";
+      enableZshIntegration = true;
+    };
 
     zsh = {
       enable = true;
@@ -115,11 +120,6 @@ in
         ls = "eza -a";
         cat = "bat";
         e = "nvim";
-      };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" "rust" ];
-        theme = "robbyrussell";
       };
       initContent = ''
         ulimit -Sn 4096
