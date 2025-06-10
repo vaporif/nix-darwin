@@ -22,6 +22,9 @@ in
     stateVersion = "24.05";
   };
   home.packages = with pkgs; [
+    nixd
+    tokei
+    httpie
     nerd-fonts.hack
     yt-dlp
     mermaid-cli
