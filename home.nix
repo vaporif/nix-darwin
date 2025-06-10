@@ -101,7 +101,7 @@ in
     };
     oh-my-posh = {
       enable = true;
-      useTheme = "nordtron";
+      useTheme = "uew";
       enableZshIntegration = true;
     };
 
