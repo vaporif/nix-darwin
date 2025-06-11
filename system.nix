@@ -9,6 +9,7 @@
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.age.keyFile = "/Users/vaporif/.config/sops/age/key.txt";
+  sops.age.sshKeyPaths = [];
   sops.secrets.openrouter-key = {
     owner = "vaporif";
     group = "staff";
@@ -63,6 +64,7 @@
         cmd - 0 : open -a "Librewolf" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
     };
+    openssh.enable = false;
   };
   launchd.user.agents = {
     librewolf-hourly-update = {
