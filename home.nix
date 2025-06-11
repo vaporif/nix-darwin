@@ -1,4 +1,5 @@
-{ pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
+# { pkgs, mcp-hub-package, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
 
 let
   kittyEverforestDarkHard = pkgs.fetchurl {
@@ -55,7 +56,7 @@ in
     spacetimedb
     glances
     claude-code
-    mcp-hub-package
+    # mcp-hub-package
     mcp-nixos-package
     qdrant
     qdrant-web-ui

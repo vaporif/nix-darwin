@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix.url = "github:Mic92/sops-nix";
-    mcp-hub.url = "github:ravitemer/mcp-hub";
+    # mcp-hub.url = "github:ravitemer/mcp-hub";
     mcp-nixos.url = "github:utensils/mcp-nixos";
     mcp-servers-nix = {
       url = "github:vaporif/mcp-servers-nix";
@@ -26,11 +26,11 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, mcp-hub, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, ... }:
+  outputs = inputs@{ nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, ... }:
     let
       system = "aarch64-darwin";
 
-      mcp-hub-package = mcp-hub.packages.${system}.default;
+      # mcp-hub-package = mcp-hub.packages.${system}.default;
       mcp-nixos-package = mcp-nixos.packages.${system}.default;
       pkgs = nixpkgs.legacyPackages.${system};
       fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
@@ -58,7 +58,7 @@
               useUserPackages = true;
               extraSpecialArgs = {
                 inherit fzf-git-sh-package yamb-yazi;
-                inherit mcp-servers-nix mcp-hub-package mcp-nixos-package ;
+                inherit mcp-servers-nix mcp-nixos-package ;
               };
               users.vaporif = import ./home.nix;
             };

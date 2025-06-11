@@ -54,11 +54,11 @@
         cmd - 1 : open -a "Librewolf"
         cmd - 2 : open -a "kitty"
         cmd - 3 : open -a "Claude"
-        cmd - 4 : open -a "Telegram"
+        cmd - 4 : open -a "Signal"
         cmd - 5 : open -a "Slack"
         cmd - 6 : open -a "Activity Monitor"
         cmd - 7 : open -a "Brave Browser"
-        cmd - 8 : open -a "Signal"
+        cmd - 8 : open -a "Telegram" -- TODO: delete this fsb crap
         cmd - 9 : open -a "Spotify"
         cmd - 0 : open -a "Librewolf" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
