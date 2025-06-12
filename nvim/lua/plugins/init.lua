@@ -60,6 +60,7 @@ return {
   require 'plugins.lazydev',
 
   -- Misc
+  require 'plugins.noice',
   'LunarVim/bigfile.nvim',
   require 'plugins.snacks',
   require 'plugins.theme',

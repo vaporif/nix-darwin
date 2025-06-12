@@ -1,8 +1,14 @@
 return {
   'folke/snacks.nvim',
+  lazy = false,
+  priority = 1000,
   ---@type snacks.Config
   opts = {
     notifier = {},
+    input = {},
+    picker = {
+      ui_select = true,
+    },
   },
   keys = {
     {
