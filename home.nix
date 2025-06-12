@@ -36,7 +36,6 @@ in
     typescript-language-server
     ueberzugpp
     imagemagick
-    pngpaste
     viu
     chafa
     basedpyright
