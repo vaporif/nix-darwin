@@ -5,6 +5,9 @@ return {
     cmdline = {
       enabled = true,
     },
+    messages = {
+      enabled = true,
+    },
   },
   dependencies = {
     'MunifTanjim/nui.nvim',

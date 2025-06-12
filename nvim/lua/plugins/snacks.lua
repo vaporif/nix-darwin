@@ -4,7 +4,6 @@ return {
   priority = 1000,
   ---@type snacks.Config
   opts = {
-    notifier = {},
     input = {},
     picker = {
       ui_select = true,

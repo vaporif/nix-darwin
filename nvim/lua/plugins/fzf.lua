@@ -29,6 +29,7 @@ return {
     { '<leader>fm', '<cmd>FzfLua marks<cr>', desc = '[m]arks' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
+    { '<leader>fM', '<cmd>Noice fzf<cr>', desc = '[M]essages' },
     {
       '<leader>.',
       function()

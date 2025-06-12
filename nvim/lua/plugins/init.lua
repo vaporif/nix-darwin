@@ -4,7 +4,6 @@ return {
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
   { 'sindrets/diffview.nvim' },
-  { 'j-hui/fidget.nvim', opts = {} },
   {
     'chrisgrieser/nvim-early-retirement',
     config = true,
