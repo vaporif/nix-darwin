@@ -36,7 +36,7 @@ return {
             -- DARK THEME CUSTOMIZATIONS
             -- ===========================
             -- Natural, muted colors for dark theme - easy on eyes
-            hl['@keyword'] = { fg = '#d89b7e', bg = 'NONE' } -- Warm terracotta (softer)
+            hl['@keyword'] = { fg = '#a39a95', bg = 'NONE' } -- Warm terracotta (softer)
             hl['@function.builtin'] = { fg = '#a7c080', bg = 'NONE' }
             hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#d89b7e', bg = 'NONE' }
             hl['@lsp.type.macro.rust'] = { fg = '#b8a599', bg = 'NONE' }
@@ -80,7 +80,6 @@ return {
             hl['@lsp.type.method.rust'] = { fg = '#7fa887', bg = 'NONE' }
             hl['@keyword.modifier.rust'] = { fg = '#d4a373', bg = 'NONE' }
             hl['@string.rust'] = { fg = '#8a9485', bg = 'NONE' }
-            hl['@keyword.function.rust'] = { fg = '#c4a389', bg = 'NONE' }
             hl['@constant.builtin.rust'] = { fg = '#d4a373', bg = 'NONE' }
             hl['@lsp.mod.constant.rust'] = { fg = '#d4a373', bg = 'NONE' }
             hl['@keyword.storage.rust'] = { fg = '#d4a373', bg = 'NONE' }
