@@ -38,7 +38,6 @@ return {
             -- Natural, muted colors for dark theme - easy on eyes
             hl['@keyword'] = { fg = '#a39a95', bg = 'NONE' } -- Warm terracotta (softer)
             hl['@function.builtin'] = { fg = '#a7c080', bg = 'NONE' }
-            hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#d89b7e', bg = 'NONE' }
             hl['@lsp.type.macro.rust'] = { fg = '#b8a599', bg = 'NONE' }
             hl['@operator'] = { fg = '#e69875', bg = 'NONE' } -- Soft orange
             hl['@punctuation.special'] = { fg = '#e69875', bg = 'NONE' } -- For :: -> =>
