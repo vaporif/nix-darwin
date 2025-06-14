@@ -50,10 +50,6 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
-  -- NOTE: TBH I use claude code & desktop
-  -- this is just a backup
-  -- require 'plugins.avante',
-  -- require 'plugins.mcphub',
 
   -- Development
   require 'plugins.lazydev',
