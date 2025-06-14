@@ -133,6 +133,7 @@
       "qbittorrent"
       "secretive"
       "signal"
+      "cardinal"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
