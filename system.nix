@@ -84,6 +84,9 @@
   };
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  system.activationScripts.postActivation.text = ''
+   '${pkgs.skhd}/bin/skhd -r'
+  '';
   system.defaults.finder = {
     NewWindowTarget = "Home";
     ShowPathbar = true;
