@@ -133,6 +133,8 @@
       "simplex"
       "signal"
       "cardinal"
+      "keycastr"
+      "zoom"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
