@@ -143,6 +143,22 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Enter to Equals",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "return_or_enter"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
