@@ -18,7 +18,6 @@ let
             ];
           };
         };
-        fetch.enable = true;
         git.enable = true;
         sequential-thinking.enable = true;
         time = {

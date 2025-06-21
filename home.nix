@@ -52,10 +52,8 @@ in
     bun
     uv
     ruff
-    spacetimedb
     glances
     claude-code
-    # mcp-hub-package
     mcp-nixos-package
     qdrant
     qdrant-web-ui
