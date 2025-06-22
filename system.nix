@@ -4,7 +4,7 @@
     base16Scheme = {
       scheme = "Everforest Light Custom";
       author = "Based on Sainnhe Park";
-      base00 = "faf3e0";  # background
+      base00 = "e8dcc6";  # background
       base01 = "f8f1de";  # lighter bg
       base02 = "d5c9b8";  # selection bg
       base03 = "b5c1b8";  # comments
