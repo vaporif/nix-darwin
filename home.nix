@@ -170,6 +170,7 @@
         ghm = "gh pr merge -d";
         ghl = "gh pr list";
         t = "yy";
+        cd = "z";
         lg = "lazygit";
         ai = "claude code";
         ls = "eza -a";
@@ -292,6 +293,10 @@
   xdg.configFile."zellij/plugins/zellij-sessionizer.wasm".source = pkgs.fetchurl {
     url = "https://github.com/laperlej/zellij-sessionizer/releases/download/v0.4.3/zellij-sessionizer.wasm";
     sha256 = "sha256-AGuWbuRX7Yi9tPdZTzDKULXh3XLUs4navuieCimUgzQ=";
+  };
+  xdg.configFile."zellij/plugins/zellij-zjstatus.wasm".source = pkgs.fetchurl {
+    url = "https://github.com/dj95/zjstatus/releases/download/v0.21.0/zjstatus.wasm";
+    sha256 = "sha256-p6JTnAyim0T3TkJzGhEitzc3JpPovL5k7jb8gv+oLD4=";
   };
   xdg.configFile.nvim.source = ./nvim;
 }
