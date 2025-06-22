@@ -178,7 +178,10 @@ in
     zsh = {
       enable = true;
       enableCompletion = true;
-      autosuggestion.enable = true;
+      autosuggestion = {
+        enable = true;
+        highlight = "fg=#939f91,bold";
+      };
       syntaxHighlighting.enable = true;
       shellAliases = {
         ghc = "gh pr create -a @me";
