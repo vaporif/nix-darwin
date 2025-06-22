@@ -41,7 +41,7 @@ keybinds {
             floating true
             move_to_focused_tab true
             cwd "/"
-            root_dirs "/home/vaporif/Repos;/home/vaporif/workspaces"
+            root_dirs "/Users/vaporif/Repos;/Users/vaporif/workspaces"
             session_layout "myCustomLayout"
         }; SwitchToMode "Locked";
     }
