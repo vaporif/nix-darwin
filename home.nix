@@ -46,16 +46,6 @@
     qdrant-web-ui
   ];
 
-  stylix.targets = {
-    kitty.enable = true;
-    bat.enable = true;
-    yazi.enable = true;
-    lazygit.enable = true;
-    starship.enable = true;
-    fzf.enable = true;
-    zellij.enable = true;
-  };
-
   programs = {
     home-manager.enable = true;
     ripgrep.enable = true;
