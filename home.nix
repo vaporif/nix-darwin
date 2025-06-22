@@ -121,33 +121,52 @@ in
           $directory$git_branch$git_state$git_status$cmd_duration$line_break$character
         '';
 
-        directory.style = "blue";
+        directory = {
+          format = "[$path]($style)[$read_only]($read_only_style) ";
+          style = "bold blue";
+          truncation_length = 3;
+          truncate_to_repo = true;
+          read_only = " 🔒";
+          read_only_style = "red";
+        };
 
         character = {
-          success_symbol = "[❯](purple)";
-          error_symbol = "[❯](red)";
-          vimcmd_symbol = "[❮](green)";
+          success_symbol = "[❯](bold green)";
+          error_symbol = "[❯](bold red)";
+          vimcmd_symbol = "[❮](bold cyan)";
         };
 
         git_branch = {
-          format = "[$branch]($style)";
-          style = "bright-black";
+          format = "[ $branch]($style)";
+          style = "bold cyan";
         };
 
         git_status = {
-          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
-          style = "cyan";
+          format = "[\\[$all_status$ahead_behind\\]]($style)";
+          conflicted = "⚔️ ";
+          ahead = "⇡$count";
+          behind = "⇣$count";
+          diverged = "⇕⇡$ahead_count⇣$behind_count";
+          untracked = "🆕$count";
+          stashed = "📦$count";
+          modified = "📝$count";
+          staged = "✅$count";
+          renamed = "🔄$count";
+          deleted = "🗑️$count";
+          style = "bold yellow";
         };
 
         git_state = {
           format = ''\([$state( $progress_current/$progress_total)]($style)\) '';
-          style = "bright-black";
+          style = "bold yellow";
         };
 
         cmd_duration = {
-          format = "[$duration]($style) ";
-          style = "yellow";
+          format = "[⏱️ $duration]($style) ";
+          style = "bold yellow";
+          min_time = 2000;
         };
+
       };
     };
 
