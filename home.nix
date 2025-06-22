@@ -64,6 +64,7 @@ in
     yazi.enable = true;
     lazygit.enable = true;
     starship.enable = true;
+    fzf.enable = true;
     zellij.enable = true;
   };
 
