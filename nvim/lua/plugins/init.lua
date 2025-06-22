@@ -1,6 +1,5 @@
 return {
   { 'tpope/vim-sleuth' },
-  { 'f-person/auto-dark-mode.nvim', opts = {} },
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
   { 'sindrets/diffview.nvim' },

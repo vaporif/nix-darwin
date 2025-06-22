@@ -10,6 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix.url = "github:Mic92/sops-nix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # mcp-hub.url = "github:ravitemer/mcp-hub";
     mcp-nixos.url = "github:utensils/mcp-nixos";
     mcp-servers-nix = {
@@ -26,7 +30,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, ... }:
+  outputs = inputs@{ nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, stylix, ... }:
     let
       system = "aarch64-darwin";
 
@@ -45,6 +49,7 @@
               "claude-code"
             ];
           }
+          stylix.darwinModules.stylix
           sops-nix.darwinModules.sops
           ./system.nix
           home-manager.darwinModules.home-manager
@@ -61,6 +66,7 @@
                 inherit mcp-servers-nix mcp-nixos-package ;
               };
               users.vaporif = import ./home.nix;
+              backupFileExtension = "backup";
             };
           }
         ];

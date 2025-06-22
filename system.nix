@@ -1,4 +1,29 @@
 { pkgs, ... }: {
+  stylix = {
+    enable = true;
+    base16Scheme = ./everforest-light.yaml;
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.hack;
+        name = "Hack Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.nerd-fonts.hack;
+        name = "Hack Nerd Font";
+      };
+      serif = {
+        package = pkgs.nerd-fonts.hack;
+        name = "Hack Nerd Font";
+      };
+      sizes = {
+        applications = 12;
+        desktop = 10;
+        popups = 10;
+        terminal = 16;
+      };
+    };
+    polarity = "light";
+  };
   environment.systemPackages = with pkgs; [
     age
     libressl

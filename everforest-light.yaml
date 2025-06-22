@@ -1,0 +1,18 @@
+scheme: "Everforest Light"
+author: "Sainnhe Park (https://github.com/sainnhe)"
+base00: "fdf6e3"  # Background
+base01: "f4f0d9"  # Lighter background (status bar)
+base02: "efebd4"  # Selection background
+base03: "e6e2cc"  # Comments, invisibles
+base04: "5c6a72"  # Dark foreground (status bar)
+base05: "5c6a72"  # Default foreground
+base06: "5c6a72"  # Light foreground
+base07: "dfddc8"  # Light background
+base08: "f85552"  # Red
+base09: "f57d26"  # Orange
+base0A: "dfa000"  # Yellow
+base0B: "8da101"  # Green
+base0C: "35a77c"  # Cyan
+base0D: "3a94c5"  # Blue
+base0E: "df69ba"  # Purple
+base0F: "8b7ec8"  # Brown/Magenta
