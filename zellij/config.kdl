@@ -1,206 +1,83 @@
-// ~/.config/zellij/config.kdl
 plugins {
-    zjstatus {
-        location = "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm"
+    // Define the "autolock" plugin.
+    autolock location="file:~/.config/zellij/plugins/zellij-autolock.wasm" {
+        // Enabled at start?
+        is_enabled true
+        // Lock when any open these programs open.
+        triggers "nvim|vim|git|fzf|zoxide|atuin"
+        // Reaction to input occurs after this many seconds. (default=0.3)
+        // (An existing scheduled reaction prevents additional reactions.)
+        reaction_seconds "0.3"
     }
+    //...
 }
-themes {
-    everforest-light-soft {
-        text_unselected {
-            base 92 106 114          // #5c6a72 - fg
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        text_selected {
-            base 92 106 114          // #5c6a72 - fg
-            background 216 211 186   // #d8d3ba - bg4
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        ribbon_selected {
-            base 229 223 197         // #e5dfc5 - bg2/bg_dim
-            background 141 161 1     // #8da101 - green
-            emphasis_0 92 106 114    // #5c6a72 - fg
-            emphasis_1 248 85 82     // #f85552 - red
-            emphasis_2 223 105 186   // #df69ba - purple
-            emphasis_3 58 148 197    // #3a94c5 - blue
-        }
-        ribbon_unselected {
-            base 92 106 114          // #5c6a72 - fg
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 92 106 114    // #5c6a72 - fg
-            emphasis_1 216 211 186   // #d8d3ba - bg4
-            emphasis_2 58 148 197    // #3a94c5 - blue
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        table_title {
-            base 141 161 1           // #8da101 - green
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        table_cell_selected {
-            base 92 106 114          // #5c6a72 - fg
-            background 216 211 186   // #d8d3ba - bg4
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        table_cell_unselected {
-            base 92 106 114          // #5c6a72 - fg
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        list_selected {
-            base 92 106 114          // #5c6a72 - fg
-            background 216 211 186   // #d8d3ba - bg4
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        list_unselected {
-            base 92 106 114          // #5c6a72 - fg
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 223 105 186   // #df69ba - purple
-        }
-        frame_selected {
-            base 141 161 1           // #8da101 - green
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82     // #f85552 - red
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 223 105 186   // #df69ba - purple
-            emphasis_3 58 148 197    // #3a94c5 - blue
-        }
-        frame_highlight {
-            base 248 85 82           // #f85552 - red
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 223 105 186   // #df69ba - purple
-            emphasis_1 248 85 82     // #f85552 - red
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 58 148 197    // #3a94c5 - blue
-        }
-        exit_code_success {
-            base 141 161 1           // #8da101 - green
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 53 167 124    // #35a77c - aqua
-            emphasis_1 92 106 114    // #5c6a72 - fg
-            emphasis_2 223 105 186   // #df69ba - purple
-            emphasis_3 58 148 197    // #3a94c5 - blue
-        }
-        exit_code_error {
-            base 248 85 82           // #f85552 - red
-            background 229 223 197   // #e5dfc5 - bg2/bg_dim
-            emphasis_0 223 160 0     // #dfa000 - yellow
-            emphasis_1 53 167 124    // #35a77c - aqua
-            emphasis_2 141 161 1     // #8da101 - green
-            emphasis_3 58 148 197    // #3a94c5 - blue
-        }
-        multiplayer_user_colors {
-            player_1 223 105 186     // #df69ba - purple
-            player_2 58 148 197      // #3a94c5 - blue
-            player_3 141 161 1       // #8da101 - green
-            player_4 223 160 0       // #dfa000 - yellow
-            player_5 53 167 124      // #35a77c - aqua
-            player_6 248 85 82       // #f85552 - red
-            player_7 245 125 38      // #f57d26 - orange
-            player_8 92 106 114      // #5c6a72 - fg
-            player_9 131 165 152     // #83c092 - gray/green
-            player_10 167 192 128    // #a7c080 - light green
-        }
-        tab_bar {
-            base 92 106 114        // #5c6a72 - fg
-            background 229 223 197  // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82    // #f85552 - red
-            emphasis_1 53 167 124   // #35a77c - aqua
-            emphasis_2 141 161 1    // #8da101 - green
-            emphasis_3 223 105 186  // #df69ba - purple
-        }
-
-        status_bar {
-            base 92 106 114        // #5c6a72 - fg
-            background 229 223 197  // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82    // #f85552 - red
-            emphasis_1 53 167 124   // #35a77c - aqua
-            emphasis_2 141 161 1    // #8da101 - green
-            emphasis_3 223 105 186  // #df69ba - purple
-        }
-
-        compact_bar {
-            base 92 106 114        // #5c6a72 - fg
-            background 229 223 197  // #e5dfc5 - bg2/bg_dim
-            emphasis_0 248 85 82    // #f85552 - red
-            emphasis_1 53 167 124   // #35a77c - aqua
-            emphasis_2 141 161 1    // #8da101 - green
-            emphasis_3 223 105 186  // #df69ba - purple
-        }
-    }
+// Load this "headless" plugin on start.
+load_plugins {
+    autolock
 }
-theme "everforest-light-soft"
- // theme "everforest-dark"
+keybinds clear-defaults=true {
+    // Keybindings specific to 'Normal' mode.
+    normal {
+        bind "Shift Space" { SwitchToMode "tmux"; }
+        bind "Enter" {
+            // Passthru `Enter`.
+            WriteChars "\u{000D}";
+            // Invoke autolock to immediately assess proper lock state.
+            // (This provides a snappier experience compared to
+            // solely relying on `reaction_seconds` to elapse.)
+            MessagePlugin "autolock" {};
+        }
+        //...
+    }
+    // Keybindings specific to 'Locked' mode.
+    locked {
+        bind "Alt z" {
+            // Disable the autolock plugin.
+            MessagePlugin "autolock" {payload "disable";};
+            // Unlock Zellij.
+            SwitchToMode "Normal";
+        }
+        //...
+    }
+    // Keybindings shared across all modes.
+    shared {
+        bind "Alt Shift z" {
+            // Enable the autolock plugin.
+            MessagePlugin "autolock" {payload "enable";};
+        }
+        //...
+    }
+    // Keybindings shared across all modes, except 'Locked'.
+    shared_except "locked" {
+        // Put keybindings here if they conflict with Vim or others.
 
-show_startup_tips false
-pane_frames false
-keybinds {
-    normal clear-defaults=true {
-        bind "Ctrl k" { SwitchToMode "Tmux"; }
-        unbind "Ctrl b"
-    }
-    tmux clear-defaults=true {
-        bind "Esc" { SwitchToMode "Normal"; }
-        bind "Ctrl k" { Write 2; SwitchToMode "Normal"; }
-        bind "p" { SwitchToMode "Pane"; }
-        bind "t" { SwitchToMode "Tab"; }
-        bind "r" { SwitchToMode "Resize"; }
-        bind "m" { SwitchToMode "Move"; }
-        bind "s" { SwitchToMode "Scroll"; }
-        bind "o" { SwitchToMode "Session"; }
-        bind "b" { NewTab; SwitchToMode "Normal"; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "Up" { NewPane "Up"; SwitchToMode "Normal"; }
-        bind "Left" { NewPane "Left"; SwitchToMode "Normal"; }
-        bind "Down" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "Right" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-        bind "n" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "i" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "u" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "e" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0;}
+        bind "Alt z" {
+            // Disable the autolock plugin.
+            MessagePlugin "autolock" {payload "disable";};
+            // Lock Zellij.
+            SwitchToMode "Locked";
+        }
 
-        bind "1" { GoToTab 1; SwitchToMode "Normal"; }
-        bind "2" { GoToTab 2; SwitchToMode "Normal"; }
-        bind "3" { GoToTab 3; SwitchToMode "Normal"; }
-        bind "4" { GoToTab 4; SwitchToMode "Normal"; }
-        bind "5" { GoToTab 5; SwitchToMode "Normal"; }
-        bind "6" { GoToTab 6; SwitchToMode "Normal"; }
-        bind "7" { GoToTab 7; SwitchToMode "Normal"; }
-        bind "8" { GoToTab 8; SwitchToMode "Normal"; }
-        bind "9" { GoToTab 9; SwitchToMode "Normal"; }
-        bind "q" { ToggleFloatingPanes; SwitchToMode "Normal"; }
-        bind "Space" { NextSwapLayout; }
-        bind "," { SwitchToMode "RenameTab"; }
+        bind "Ctrl h" {
+            MoveFocusOrTab "Left";
+        }
+        bind "Ctrl l" {
+            MoveFocusOrTab "Right";
+        }
+        bind "Ctrl j" {
+            MoveFocus "Down";
+        }
+        bind "Ctrl k" {
+            MoveFocus "Up";
+        }
+
+        // bind "Ctrl d" { HalfPageScrollDown; }
+        // bind "Ctrl u" { HalfPageScrollUp; }
+
+        // bind "Ctrl f" { PageScrollDown; }
+        // bind "Ctrl b" { PageScrollUp; }
+
+        //...
     }
-    move {
-        bind "n" "Tab" { MovePane; }
-        bind "p" { MovePaneBackwards; }
-        bind "h" "Left" { MovePane "Left"; }
-        bind "e" "Down" { MovePane "Down"; }
-        bind "k" "Up" { MovePane "Up"; }
-        bind "l" "Right" { MovePane "Right"; }
-    }
+    //...
 }

@@ -281,8 +281,13 @@
     source = yamb-yazi;
     recursive = true;
   };
+
   xdg.configFile."zellij/config.kdl".text = lib.mkAfter ''
-   ${builtins.readFile ./zellij/keybinds.kdl}
+    ${builtins.readFile ./zellij/config.kdl }
   '';
+  xdg.configFile."zellij/plugins/zellij-autolock.wasm".source = pkgs.fetchurl {
+    url = "https://github.com/fresh2dev/zellij-autolock/releases/download/0.2.2/zellij-autolock.wasm";
+    sha256 = "sha256-aclWB7/ZfgddZ2KkT9vHA6gqPEkJ27vkOVLwIEh7jqQ=";
+  };
   xdg.configFile.nvim.source = ./nvim;
 }
