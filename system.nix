@@ -164,7 +164,6 @@
     casks = [
       "element"
       "librewolf"
-      "freetube"
       "claude"
       "brave-browser"
       "kitty"
