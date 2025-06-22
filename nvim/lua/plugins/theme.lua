@@ -89,6 +89,44 @@ return {
           hl.DiagnosticWarn = { fg = '#c9a05a', bg = 'NONE' } -- Muted gold
           hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
           hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
+
+          -- Todo comments highlighting (folke/todo-comments.nvim)
+          -- The plugin creates these highlight groups dynamically
+          hl['@text.todo'] = { fg = '#708c7e', bold = true }
+          hl['@text.note'] = { fg = '#6b8b8f', bold = true }
+          hl['@text.warning'] = { fg = '#c9a05a', bold = true }
+          hl['@text.danger'] = { fg = '#c85552', bold = true }
+          hl['@text.todo.unchecked'] = { fg = '#708c7e', bold = true }
+          hl['@text.todo.checked'] = { fg = '#89a05d', bold = true }
+          
+          -- Default todo-comments highlight groups
+          hl.TodoBgTODO = { bg = '#708c7e', fg = '#f8f1de', bold = true }
+          hl.TodoFgTODO = { fg = '#708c7e', bold = true }
+          hl.TodoSignTODO = { fg = '#708c7e', bold = true }
+          
+          hl.TodoBgFIX = { bg = '#c85552', fg = '#f8f1de', bold = true }
+          hl.TodoFgFIX = { fg = '#c85552', bold = true }
+          hl.TodoSignFIX = { fg = '#c85552', bold = true }
+          
+          hl.TodoBgHACK = { bg = '#c9a05a', fg = '#f8f1de', bold = true }
+          hl.TodoFgHACK = { fg = '#c9a05a', bold = true }
+          hl.TodoSignHACK = { fg = '#c9a05a', bold = true }
+          
+          hl.TodoBgWARN = { bg = '#c9a05a', fg = '#f8f1de', bold = true }
+          hl.TodoFgWARN = { fg = '#c9a05a', bold = true }
+          hl.TodoSignWARN = { fg = '#c9a05a', bold = true }
+          
+          hl.TodoBgPERF = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
+          hl.TodoFgPERF = { fg = '#9b7d8a', bold = true }
+          hl.TodoSignPERF = { fg = '#9b7d8a', bold = true }
+          
+          hl.TodoBgNOTE = { bg = '#6b8b8f', fg = '#f8f1de', bold = true }
+          hl.TodoFgNOTE = { fg = '#6b8b8f', bold = true }
+          hl.TodoSignNOTE = { fg = '#6b8b8f', bold = true }
+          
+          hl.TodoBgTEST = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
+          hl.TodoFgTEST = { fg = '#9b7d8a', bold = true }
+          hl.TodoSignTEST = { fg = '#9b7d8a', bold = true }
         end,
 
         colours_override = function(palette)
