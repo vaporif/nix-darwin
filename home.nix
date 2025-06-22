@@ -1,16 +1,4 @@
-{ pkgs, lib, config, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
-
-let
-  kittyEverforestDarkHard = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/kovidgoyal/kitty-themes/master/themes/everforest_dark_soft.conf";
-    sha256 = "sha256-Zn0aNDlUnD09PP5gZ0xD7dmbycjX3lQBKA2BigZEcoE=";
-  };
-
-  kittyEverforestLightHard = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/kovidgoyal/kitty-themes/master/themes/everforest_light_soft.conf";
-    sha256 = "sha256-6b3883Dsp0pjmDXTDmwVmscNc3HfNwIlYqpsRc5Ld1U=";
-  };
-in
+{ pkgs, lib, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix

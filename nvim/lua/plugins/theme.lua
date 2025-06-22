@@ -1,4 +1,4 @@
--- Everforest Theme with Light/Dark Mode Support
+-- Everforest Theme with Light Mode
 -- colors are changed to natural looking ones
 -- should be way easier on eyes
 return {
@@ -8,11 +8,8 @@ return {
   config = function()
     local everforest = require 'everforest'
     vim.opt.background = 'light'
-    -- NOTE:
-    -- Function to apply theme based on background
     local function apply_theme()
       everforest.setup {
-        -- Base configuration (same for both)
         background = 'soft',
         transparent_background_level = 0,
         italics = false,
@@ -98,32 +95,32 @@ return {
           hl['@text.danger'] = { fg = '#c85552', bold = true }
           hl['@text.todo.unchecked'] = { fg = '#708c7e', bold = true }
           hl['@text.todo.checked'] = { fg = '#89a05d', bold = true }
-          
+
           -- Default todo-comments highlight groups
           hl.TodoBgTODO = { bg = '#708c7e', fg = '#f8f1de', bold = true }
           hl.TodoFgTODO = { fg = '#708c7e', bold = true }
           hl.TodoSignTODO = { fg = '#708c7e', bold = true }
-          
+
           hl.TodoBgFIX = { bg = '#c85552', fg = '#f8f1de', bold = true }
           hl.TodoFgFIX = { fg = '#c85552', bold = true }
           hl.TodoSignFIX = { fg = '#c85552', bold = true }
-          
+
           hl.TodoBgHACK = { bg = '#c9a05a', fg = '#f8f1de', bold = true }
           hl.TodoFgHACK = { fg = '#c9a05a', bold = true }
           hl.TodoSignHACK = { fg = '#c9a05a', bold = true }
-          
+
           hl.TodoBgWARN = { bg = '#c9a05a', fg = '#f8f1de', bold = true }
           hl.TodoFgWARN = { fg = '#c9a05a', bold = true }
           hl.TodoSignWARN = { fg = '#c9a05a', bold = true }
-          
+
           hl.TodoBgPERF = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
           hl.TodoFgPERF = { fg = '#9b7d8a', bold = true }
           hl.TodoSignPERF = { fg = '#9b7d8a', bold = true }
-          
+
           hl.TodoBgNOTE = { bg = '#6b8b8f', fg = '#f8f1de', bold = true }
           hl.TodoFgNOTE = { fg = '#6b8b8f', bold = true }
           hl.TodoSignNOTE = { fg = '#6b8b8f', bold = true }
-          
+
           hl.TodoBgTEST = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
           hl.TodoFgTEST = { fg = '#9b7d8a', bold = true }
           hl.TodoSignTEST = { fg = '#9b7d8a', bold = true }
@@ -163,13 +160,5 @@ return {
 
     -- Apply theme on startup
     apply_theme()
-
-    -- Auto-apply theme when background changes
-    vim.api.nvim_create_autocmd('OptionSet', {
-      pattern = 'background',
-      callback = function()
-        apply_theme()
-      end,
-    })
   end,
 }
