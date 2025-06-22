@@ -74,7 +74,11 @@
         cursor_trail_start_threshold = 4;
         cursor_trail_decay = "0.05 0.2";
       };
+      keybindings = {
+        "cmd+t" = "no_op";
+      };
       extraConfig = ''
+        map shift+space send_key ~
         macos_option_as_alt yes
       '';
     };
@@ -285,9 +289,9 @@
   xdg.configFile."zellij/config.kdl".text = lib.mkAfter ''
     ${builtins.readFile ./zellij/config.kdl }
   '';
-  xdg.configFile."zellij/plugins/zellij-autolock.wasm".source = pkgs.fetchurl {
-    url = "https://github.com/fresh2dev/zellij-autolock/releases/download/0.2.2/zellij-autolock.wasm";
-    sha256 = "sha256-aclWB7/ZfgddZ2KkT9vHA6gqPEkJ27vkOVLwIEh7jqQ=";
+  xdg.configFile."zellij/plugins/zellij-sessionizer.wasm".source = pkgs.fetchurl {
+    url = "https://github.com/laperlej/zellij-sessionizer/releases/download/v0.4.3/zellij-sessionizer.wasm";
+    sha256 = "sha256-AGuWbuRX7Yi9tPdZTzDKULXh3XLUs4navuieCimUgzQ=";
   };
   xdg.configFile.nvim.source = ./nvim;
 }
