@@ -43,33 +43,6 @@ sudo darwin-rebuild switch
 direnv allow ~
 ```
 
-# ai copilot
-If you want to use [avante](https://github.com/yetone/avante.nvim) (default bind <space>a)
-1. Register at [open-router](https://openrouter.ai/)
-2. Create a new key
-3. Override my `secrets/secrets.yaml` with
-```secrets.yaml
-open-router-key: YOUR_KEY
-```
-4. Create new age key
-```shell
-age-keygen -y ~/.config/sops/age/key.txt
-```
-5. Update key path in `system.nix`
-```system.nix
-  sops.age.keyFile = "/Users/vaporif/.config/sops/age/key.txt";
-```
-6. Encrypt your secrets
-```shell
-sops -e -i secrets/secrets.yaml
-nix-shell -p sops --run "sops -e -i secrets/secrets.yaml"
-
-```
-7. Re-apply nix darwind
-```shell
-sudo darwin-rebuild switch
-```
-
 ## Learning
 
 - https://nix.dev/recommended-reading
