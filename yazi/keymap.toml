@@ -13,6 +13,11 @@ run = "cd /etc/nix-darwin/"
 desc = "Go to nix-darwin"
 
 [[mgr.prepend_keymap]]
+on = [ "b", "g" ]
+run = "cd ~/Repos/giza-axelar-starknet/"
+desc = "Go to axelar<>starknet"
+
+[[mgr.prepend_keymap]]
 on = [ "u", "a" ]
 run = "plugin yamb save"
 desc = "Add bookmark"
