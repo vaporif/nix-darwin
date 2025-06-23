@@ -18,6 +18,11 @@ run = "cd ~/Repos/giza-axelar-starknet/"
 desc = "Go to axelar<>starknet"
 
 [[mgr.prepend_keymap]]
+on = [ "b", "e" ]
+run = "cd ~/Repos/solidity-ibc-eureka"
+desc = "Go to solidity-ibc-eureka"
+
+[[mgr.prepend_keymap]]
 on = [ "u", "a" ]
 run = "plugin yamb save"
 desc = "Add bookmark"
