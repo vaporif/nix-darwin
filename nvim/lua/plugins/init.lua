@@ -55,7 +55,6 @@ return {
 
   -- Misc
   require 'plugins.noice',
-  require 'plugins.zellij',
   'LunarVim/bigfile.nvim',
   require 'plugins.snacks',
   require 'plugins.theme',
