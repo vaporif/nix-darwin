@@ -102,7 +102,7 @@
         cmd - 4 : open -a "WhatsApp"
         cmd - 5 : open -a "Slack"
         cmd - 6 : open -a "Activity Monitor"
-        cmd - 7 : open -a "Brave Browser"
+        cmd - 7 : open -a "Ableton Live 12 Suite"
         cmd - 8 : open -a "Telegram"
         cmd - 9 : open -a "Spotify"
         cmd - 0 : open -a "Librewolf" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
