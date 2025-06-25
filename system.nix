@@ -178,6 +178,7 @@
       "cardinal"
       "keycastr"
       "zoom"
+      "monitorcontrol"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
