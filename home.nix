@@ -170,7 +170,6 @@
         ghm = "gh pr merge -d";
         ghl = "gh pr list";
         t = "yy";
-        cd = "z";
         lg = "lazygit";
         ai = "claude code";
         ls = "eza -a";
