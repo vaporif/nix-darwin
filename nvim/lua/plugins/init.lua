@@ -59,6 +59,8 @@ return {
   require 'plugins.snacks',
   require 'plugins.theme',
   require 'plugins.todo',
+
+  require 'plugins.outline',
   {
     'rmagatti/auto-session',
     lazy = false,
