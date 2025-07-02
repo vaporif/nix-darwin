@@ -1,5 +1,5 @@
-keybinds clear-defaults=true {
-    normal {
+keybinds {
+    normal clear-defaults=true {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
     tmux {

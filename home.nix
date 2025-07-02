@@ -20,6 +20,8 @@
     yt-dlp
     mermaid-cli
     tectonic
+    just
+    just-lsp
     typescript-language-server
     ueberzugpp
     imagemagick
