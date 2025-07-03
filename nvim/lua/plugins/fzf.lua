@@ -28,7 +28,7 @@ return {
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[r]esume' },
     { '<leader>fm', '<cmd>FzfLua marks<cr>', desc = '[m]arks' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
-    { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
+    { '<leader>fc', '<cmd>FzfLua git_bcommits<cr>', desc = 'buffer [c]ommits' },
     { '<leader>fM', '<cmd>Noice fzf<cr>', desc = '[M]essages' },
     {
       '<leader>.',

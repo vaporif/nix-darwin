@@ -36,7 +36,6 @@ return {
             gitsigns.nav_hunk 'prev'
           end
         end, { desc = 'prev git [c]hange' })
-
         -- Actions
         -- visual mode
         map('v', '<leader>hs', function()
@@ -59,6 +58,9 @@ return {
         -- Toggles
         map('n', '<leader>hb', gitsigns.toggle_current_line_blame, { desc = '[b]lame line' })
         map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'preview [i]nline' })
+        map('n', '<leader>hh', function()
+          gitsigns.setqflist 'all'
+        end, { desc = 'file [h]istory' })
       end,
     },
   },
