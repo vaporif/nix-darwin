@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   stylix = {
     enable = true;
     base16Scheme = {
@@ -72,7 +72,12 @@
     mode = "0400";
   };
 
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    experimental-features = "nix-command flakes";
+    auto-optimise-store = true;
+    max-jobs = "auto";
+    cores = 0; # use all cores
+  };
   system.configurationRevision = null;
   system.stateVersion = 6;
   system.primaryUser = "vaporif";
@@ -121,8 +126,8 @@
         ];
         StartInterval = 3600;
         RunAtLoad = true;
-        StandardOutPath = "/Users/${builtins.getEnv "USER"}/Library/Logs/librewolf-install.log";
-        StandardErrorPath = "/Users/${builtins.getEnv "USER"}/Library/Logs/librewolf-install.error.log";
+        StandardOutPath = "/Users/${config.system.primaryUser}/Library/Logs/librewolf-install.log";
+        StandardErrorPath = "/Users/${config.system.primaryUser}/Library/Logs/librewolf-install.error.log";
       };
     };
   };
