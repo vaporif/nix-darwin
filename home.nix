@@ -14,6 +14,15 @@
     nix-tree
     nix-diff
     nix-search
+    du-dust
+    dua
+    bacon
+    cargo-info
+    rusty-man
+    ncspot
+    wiki-tui
+    mprocs
+    presenterm
     tokei
     httpie
     nerd-fonts.hack
@@ -168,9 +177,6 @@
       };
       syntaxHighlighting.enable = true;
       shellAliases = {
-        ghc = "gh pr create -a @me";
-        ghm = "gh pr merge -d";
-        ghl = "gh pr list";
         t = "yy";
         lg = "lazygit";
         ai = "claude code";
