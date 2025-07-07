@@ -1,0 +1,5 @@
+[keybindings]
+"1" = "focus library"
+"2" = "focus search"
+"3" = "focus queue"
+"4" = "focus cover"

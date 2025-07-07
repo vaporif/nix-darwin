@@ -175,6 +175,7 @@
     ];
 
     casks = [
+      "supercollider"
       "element"
       "librewolf"
       "claude"

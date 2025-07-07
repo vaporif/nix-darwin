@@ -49,6 +49,7 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
+  'tidalcycles/vim-tidal',
 
   -- Development
   require 'plugins.lazydev',

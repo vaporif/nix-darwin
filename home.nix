@@ -32,6 +32,10 @@
     just
     just-lsp
     typescript-language-server
+    ghc
+    haskellPackages.tidal
+    haskell-language-server
+    tmux
     ueberzugpp
     imagemagick
     viu
@@ -287,6 +291,8 @@
   };
 
   xdg.configFile."karabiner/karabiner.json".source = ./karabiner/karabiner.json;
+
+  xdg.configFile."ncspot/config.toml".source = ./ncspot/config.toml;
 
   xdg.configFile."yazi/init.lua".source = ./yazi/init.lua;
   xdg.configFile."yazi/keymap.toml".source = ./yazi/keymap.toml;
