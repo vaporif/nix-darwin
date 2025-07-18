@@ -2,7 +2,7 @@ return {
   'mfussenegger/nvim-dap',
   dependencies = {
     -- TODO: drop mason after fixing debugserver install via nix
-    { 'williamboman/mason.nvim', config = true },
+    { 'mason-org/mason.nvim', config = true },
     'jay-babu/mason-nvim-dap.nvim',
 
     'rcarriga/nvim-dap-ui',
