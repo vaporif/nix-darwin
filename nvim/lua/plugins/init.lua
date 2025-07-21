@@ -49,7 +49,15 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
-  'tidalcycles/vim-tidal',
+  {
+    'tidalcycles/vim-tidal',
+    config = function()
+      -- Set the GHCi command to use Nix-installed Tidal
+      vim.g.tidal_ghci = 'nix-shell -p "haskellPackages.ghcWithPackages (ps: [ps.tidal])" --run ghci'
+      -- Set the boot file location
+      vim.g.tidal_boot = vim.fn.expand('~/.config/tidal/BootTidal.hs')
+    end,
+  },
 
   -- Development
   require 'plugins.lazydev',

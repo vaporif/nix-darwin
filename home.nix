@@ -33,7 +33,9 @@
     just-lsp
     typescript-language-server
     ghc
+    tmux
     haskellPackages.tidal
+    haskellPackages.cabal-install
     haskell-language-server
     tmux
     ueberzugpp
@@ -60,7 +62,6 @@
     qdrant
     qdrant-web-ui
   ];
-
   programs = {
     home-manager.enable = true;
     ripgrep.enable = true;
@@ -74,7 +75,6 @@
       enable = true;
       enableZshIntegration = true;
     };
-
     kitty = {
       enable = true;
       font = {
