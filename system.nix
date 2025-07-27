@@ -170,12 +170,8 @@
       "oven-sh/bun"
     ];
 
-    brews = [
-      "ollama"
-    ];
-
     casks = [
-      "supercollider"
+      # "supercollider"
       "element"
       "librewolf"
       "claude"
@@ -193,6 +189,7 @@
       "keycastr"
       "zoom"
       "monitorcontrol"
+     "ollama"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
