@@ -171,7 +171,7 @@
     ];
 
     casks = [
-      # "supercollider"
+      "supercollider"
       "element"
       "librewolf"
       "claude"
