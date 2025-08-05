@@ -38,7 +38,7 @@
         applications = 12;
         desktop = 10;
         popups = 10;
-        terminal = 18;
+        terminal = 16;
       };
     };
     polarity = "light";
