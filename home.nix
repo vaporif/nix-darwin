@@ -79,7 +79,6 @@
       enable = true;
       font = {
         name = "Hack Nerd Font Mono";
-        size = 16;
       };
       settings = {
         scrollback_lines = 20000;
