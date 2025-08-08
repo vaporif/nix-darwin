@@ -25,7 +25,6 @@
     presenterm
     tokei
     httpie
-    nerd-fonts.hack
     yt-dlp
     mermaid-cli
     tectonic
@@ -37,7 +36,6 @@
     haskellPackages.tidal
     haskellPackages.cabal-install
     haskell-language-server
-    tmux
     ueberzugpp
     imagemagick
     viu
