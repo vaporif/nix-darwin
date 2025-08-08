@@ -10,7 +10,9 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 
 ### System Management
 - `sudo darwin-rebuild switch` - Apply configuration changes after modifying any .nix files
-- `direnv allow ~` - Allow direnv .envrc for the external Rust devshell (required after initial setup)
+- `direnv allow ~` - Allow direnv .envrc in home directory for the external Rust devshell (required after initial setup)
+- `nix flake update` - Update all flake inputs to latest versions
+- `nix flake show` - Display available outputs from the flake
 
 ### Shell Aliases
 - `ai` - Claude Code CLI
@@ -43,7 +45,7 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 - `/yazi/` - File manager configuration with yamb bookmarks plugin
 
 ### External Dependencies
-- Rust devshell from `github:vaporif/nix-devshells` (provides additional development tools)
+- Rust devshell from `github:vaporif/nix-devshells` (provides additional development tools via ~/.envrc)
 - MCP servers for AI capabilities (filesystem, git, youtube, search, memory, etc.)
 
 ## Important Configuration Details
@@ -75,7 +77,7 @@ The configuration includes extensive AI capabilities through MCP servers:
 - **github**: Repository operations
 
 ### Security
-- Secrets managed via SOPS with age encryption
+- Secrets managed via SOPS with age encryption (configured in `.sops.yaml`)
 - Age key location: `/Users/vaporif/.config/sops/age/key.txt`
 - Encrypted secrets: `/secrets/secrets.yaml` (includes API keys for OpenRouter, Tavily, YouTube)
 - TouchID enabled for sudo authentication
