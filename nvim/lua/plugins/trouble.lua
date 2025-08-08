@@ -24,7 +24,7 @@ return {
       desc = '[L]SP Definitions / references / ...',
     },
     {
-      '<leader>tL',
+      '<leader>tl',
       '<cmd>Trouble loclist toggle<cr>',
       desc = '[l]ocation',
     },
