@@ -1,7 +1,7 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    -- NOTE: While i can remove mason and point to lldb directly
+    -- NOTE: While i can remove mason and point to binaries directly
     -- it's not better in any way and less maintainable
     { 'mason-org/mason.nvim', config = true },
     'jay-babu/mason-nvim-dap.nvim',
