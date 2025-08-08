@@ -1,7 +1,8 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    -- TODO: drop mason after fixing debugserver install via nix
+    -- NOTE: While i can remove mason and point to lldb directly
+    -- it's not better in any way and less maintainable
     { 'mason-org/mason.nvim', config = true },
     'jay-babu/mason-nvim-dap.nvim',
 
