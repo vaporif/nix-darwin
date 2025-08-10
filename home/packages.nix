@@ -24,16 +24,12 @@
     mermaid-cli
     tectonic
     just
-    just-lsp
     k9s
 
     ghc
     tmux
-    typescript-language-server
     haskellPackages.tidal
     haskellPackages.cabal-install
-    haskell-language-server
-    basedpyright
 
     ueberzugpp
     imagemagick

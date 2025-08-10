@@ -89,6 +89,10 @@
         lua51Packages.lua
         lua-language-server
         stylua
+        typescript-language-server
+        haskell-language-server
+        basedpyright
+        just-lsp
       ];
     };
 
