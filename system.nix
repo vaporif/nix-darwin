@@ -105,6 +105,8 @@
   };
   system.defaults.dock.autohide-delay = 0.2;
   system.defaults.NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
+  system.defaults.NSGlobalDomain.AppleShowAllFiles = true;
+  system.defaults.NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
   services = {
     skhd = {
       enable = true;

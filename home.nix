@@ -29,13 +29,13 @@
     mermaid-cli
     tectonic
     just
-    just-lsp
-    typescript-language-server
     ghc
     tmux
+    typescript-language-server
     haskellPackages.tidal
     haskellPackages.cabal-install
     haskell-language-server
+    just-lsp
     ueberzugpp
     imagemagick
     viu
