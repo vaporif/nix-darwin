@@ -1,7 +1,8 @@
-{ pkgs, lib, mcp-nixos-package, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, lib, fzf-git-sh-package, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix
+    ./packages.nix
   ];
 
   home = {
@@ -9,57 +10,6 @@
     username = "vaporif";
     stateVersion = "24.05";
   };
-  home.packages = with pkgs; [
-    nixd
-    nix-tree
-    nix-diff
-    nix-search
-    du-dust
-    dua
-    bacon
-    cargo-info
-    rusty-man
-    ncspot
-    wiki-tui
-    mprocs
-    presenterm
-    tokei
-    httpie
-    yt-dlp
-    mermaid-cli
-    tectonic
-    just
-    ghc
-    tmux
-    typescript-language-server
-    haskellPackages.tidal
-    haskellPackages.cabal-install
-    haskell-language-server
-    just-lsp
-    ueberzugpp
-    imagemagick
-    viu
-    chafa
-    basedpyright
-    ghostscript
-    wget
-    delta
-    tldr
-    bottom
-    hyperfine
-    pango
-    gnupg
-    python312Full
-    nodejs_22
-    bun
-    uv
-    ruff
-    glances
-    claude-code
-    mcp-nixos-package
-    qdrant
-    qdrant-web-ui
-  ];
   programs = {
     home-manager.enable = true;
     ripgrep.enable = true;
