@@ -29,7 +29,6 @@ return {
   require 'plugins.mini',
   require 'plugins.neo-tree',
   require 'plugins.marksnvim',
-  require 'plugins.snipe',
   require 'plugins.harpoon',
   require 'plugins.multicursor',
 
@@ -55,7 +54,7 @@ return {
       -- Set the GHCi command to use Nix-installed Tidal
       vim.g.tidal_ghci = 'nix-shell -p "haskellPackages.ghcWithPackages (ps: [ps.tidal])" --run ghci'
       -- Set the boot file location
-      vim.g.tidal_boot = vim.fn.expand('~/.config/tidal/BootTidal.hs')
+      vim.g.tidal_boot = vim.fn.expand '~/.config/tidal/BootTidal.hs'
     end,
   },
 

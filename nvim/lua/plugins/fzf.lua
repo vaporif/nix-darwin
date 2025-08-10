@@ -23,13 +23,13 @@ return {
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = '[f]iles' },
     { '<leader>fs', '<cmd>FzfLua builtin<cr>', desc = '[s]elect fzf-lua' },
     { '<leader>fg', '<cmd>FzfLua live_grep<cr>', desc = '[g]rep' },
-    { '<leader>fd', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'workspace [d]iagnostics' },
-    { '<leader>fD', '<cmd>FzfLua diagnostics_document<cr>', desc = '[D]ocument diagnostics' },
+    { '<leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = '[d]ocument diagnostics' },
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[r]esume' },
     { '<leader>fm', '<cmd>FzfLua marks<cr>', desc = '[m]arks' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
     { '<leader>fc', '<cmd>FzfLua git_bcommits<cr>', desc = 'buffer [c]ommits' },
     { '<leader>fM', '<cmd>Noice fzf<cr>', desc = '[M]essages' },
+    { '<leader>d', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'workspace [d]iagnostics' },
     {
       '<leader>.',
       function()

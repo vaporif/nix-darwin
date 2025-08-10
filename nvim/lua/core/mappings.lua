@@ -30,7 +30,6 @@ vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { noremap = true, desc = '[v]er
 vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]orizontally' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
 -- yanky
 vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
 vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)')
