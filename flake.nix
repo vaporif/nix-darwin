@@ -65,7 +65,7 @@
                 inherit fzf-git-sh-package yamb-yazi;
                 inherit mcp-servers-nix mcp-nixos-package ;
               };
-              users.vaporif = import ./home.nix;
+              users.vaporif = import ./home;
               backupFileExtension = "backup";
             };
           }
