@@ -127,6 +127,9 @@ vim.lsp.config.ruff = {
 }
 vim.lsp.enable 'ruff'
 
+vim.lsp.config.just_ls = {}
+vim.lsp.enable 'just_ls'
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
