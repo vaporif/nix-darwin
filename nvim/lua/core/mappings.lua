@@ -43,6 +43,37 @@ vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')
 vim.keymap.set('n', '<M-u>', '<cmd>cprev<Cr>')
 
+-- Find & replace
+vim.keymap.set({ 'n', 'v' }, '<leader>qg', function()
+  local grug = require 'grug-far'
+  local ext = vim.bo.buftype == '' and vim.fn.expand '%:e'
+  grug.open {
+    transient = true,
+    prefills = {
+      filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
+    },
+  }
+end, { desc = '[g]lobal' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>qw', function()
+  local grug = require 'grug-far'
+  local is_visual = vim.fn.mode():match '[vV]'
+
+  if is_visual then
+    -- Use visual selection
+    grug.with_visual_selection()
+  else
+    -- Use whole buffer
+    local buf_name = vim.api.nvim_buf_get_name(0)
+    grug.open {
+      transient = true,
+      prefills = {
+        paths = buf_name ~= '' and buf_name or nil,
+      },
+    }
+  end
+end, { desc = '[w]ithin buffer/selection' })
+
 -- subversive
 vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)', {})
 vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)', {})

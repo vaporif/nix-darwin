@@ -47,6 +47,7 @@ return {
   require 'plugins.trouble',
   require 'plugins.cursorword',
   require 'plugins.markdown',
+  require 'plugins.grug-far',
   {
     'tidalcycles/vim-tidal',
     config = function()

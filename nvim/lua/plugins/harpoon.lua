@@ -7,11 +7,11 @@ return {
   end,
   keys = {
     {
-      '<leader>A',
+      '<leader>a',
       function()
         require('harpoon'):list():add()
       end,
-      desc = 'harpoon [A]dd',
+      desc = 'harpoon [a]dd',
     },
     {
       '<leader>p',

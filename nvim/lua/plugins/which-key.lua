@@ -45,6 +45,7 @@ return {
       { '<leader>b', group = '[b]uffer' },
       { '<leader>s', group = '[s]plit' },
       { '<leader>f', group = '[f]ind' },
+      { '<leader>q', group = '[q]uickreplace' },
       { '<leader>c', group = '[c]ode' },
       { '<leader>r', group = '[r]ename' },
       { '<leader>w', group = '[w]rite' },
