@@ -30,7 +30,6 @@ return {
   require 'plugins.neo-tree',
   require 'plugins.marksnvim',
   require 'plugins.harpoon',
-  require 'plugins.multicursor',
 
   -- Code features
   require 'plugins.blink-cmp',
