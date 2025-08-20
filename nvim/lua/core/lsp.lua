@@ -159,14 +159,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd('CursorHold', {
         buffer = event.buf,
         callback = function()
-          vim.diagnostic.open_float(nil, { focus = false })
+          local opts = {
+            focus = false,
+            scope = 'cursor',
+            close_events = { 'CursorMoved', 'CursorMovedI', 'BufHidden', 'InsertEnter', 'WinLeave' },
+          }
+          vim.diagnostic.open_float(nil, opts)
         end,
       })
 
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
         buffer = event.buf,
         group = highlight_augroup,
-        callback = vim.lsp.buf.clear_references,
+        callback = function()
+          vim.lsp.buf.clear_references()
+          -- Close any lingering diagnostic float windows
+          for _, win in pairs(vim.api.nvim_list_wins()) do
+            local config = vim.api.nvim_win_get_config(win)
+            if config.relative ~= '' then
+              vim.api.nvim_win_close(win, true)
+            end
+          end
+        end,
       })
 
       vim.api.nvim_create_autocmd('LspDetach', {
