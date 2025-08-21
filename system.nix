@@ -125,22 +125,6 @@
     };
     openssh.enable = false;
   };
-  launchd.user.agents = {
-    librewolf-hourly-update = {
-      serviceConfig = {
-        Label = "com.user.librewolf-hourly-install";
-        ProgramArguments = [
-          "/bin/sh"
-          "-c"
-          "/opt/homebrew/bin/brew install --cask librewolf || /opt/homebrew/bin/brew upgrade --cask librewolf"
-        ];
-        StartInterval = 3600;
-        RunAtLoad = true;
-        StandardOutPath = "/Users/${config.system.primaryUser}/Library/Logs/librewolf-install.log";
-        StandardErrorPath = "/Users/${config.system.primaryUser}/Library/Logs/librewolf-install.error.log";
-      };
-    };
-  };
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.finder = {
@@ -157,6 +141,11 @@
     Show24Hour = true;
     ShowDayOfMonth = true;
   };
+
+  system.activationScripts.postActivation.text = ''
+    echo "Installing/updating LibreWolf..."
+    /bin/bash /etc/nix-darwin/scripts/install-librewolf.sh
+  '';
 
   homebrew = {
     enable = true;
@@ -175,7 +164,6 @@
     casks = [
       "supercollider"
       "element"
-      "librewolf"
       "claude"
       "brave-browser"
       "kitty"
