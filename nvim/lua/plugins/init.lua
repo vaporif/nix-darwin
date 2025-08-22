@@ -32,6 +32,7 @@ return {
   require 'plugins.harpoon',
 
   -- Code features
+ 'neovim/nvim-lspconfig',
   require 'plugins.blink-cmp',
   require 'plugins.neotest',
   require 'plugins.rustacean',
