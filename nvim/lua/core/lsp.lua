@@ -63,6 +63,9 @@ vim.lsp.enable 'cairo_ls'
 
 local nixpkgs_expr = string.format('import (builtins.getFlake "%s").inputs.nixpkgs { }', vim.fn.getcwd())
 vim.lsp.config.nixd = {
+  cmd = { 'nixd' },
+  filetypes = { 'nix' },
+  root_markers = { 'flake.nix', '.git' },
   settings = {
     nixd = {
       nixpkgs = {
@@ -74,6 +77,7 @@ vim.lsp.config.nixd = {
     },
   },
 }
+
 vim.lsp.enable 'nixd'
 
 vim.lsp.config.basepyright = {
