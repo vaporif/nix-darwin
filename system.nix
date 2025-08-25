@@ -112,7 +112,7 @@
       enable = true;
       skhdConfig = ''
         cmd - 1 : open -a "Librewolf"
-        cmd - 2 : open -a "kitty"
+        cmd - 2 : open -a "wezterm"
         cmd - 3 : open -a "Claude"
         cmd - 4 : open -a "WhatsApp"
         cmd - 5 : open -a "Slack"
@@ -166,7 +166,7 @@
       "element"
       "claude"
       "brave-browser"
-      "kitty"
+      "wezterm"
       "karabiner-elements"
       "tor-browser"
       "vlc"

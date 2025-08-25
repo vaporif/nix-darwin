@@ -17,6 +17,7 @@ return {
     },
   },
   'gennaro-tedesco/nvim-peekup',
+  require 'plugins.smear',
 
   -- UI and navigation
   require 'plugins.gitsigns',
@@ -30,9 +31,10 @@ return {
   require 'plugins.neo-tree',
   require 'plugins.marksnvim',
   require 'plugins.harpoon',
+  require 'plugins.toggleterm',
 
   -- Code features
- 'neovim/nvim-lspconfig',
+  'neovim/nvim-lspconfig',
   require 'plugins.blink-cmp',
   require 'plugins.neotest',
   require 'plugins.rustacean',
