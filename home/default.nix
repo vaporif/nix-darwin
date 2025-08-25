@@ -1,4 +1,4 @@
-{ pkgs, lib, fzf-git-sh-package, yamb-yazi, ... }:
+{ pkgs, lib, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix

@@ -30,11 +30,10 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, stylix, ... }:
+  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, stylix, ... }:
     let
       system = "aarch64-darwin";
 
-      # mcp-hub-package = mcp-hub.packages.${system}.default;
       mcp-nixos-package = mcp-nixos.packages.${system}.default;
       pkgs = nixpkgs.legacyPackages.${system};
       fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
@@ -47,6 +46,9 @@
             nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
               "spacetimedb"
               "claude-code"
+            ];
+            nixpkgs.overlays = [
+              (import ./overlays/tectonic-fix.nix)
             ];
           }
           stylix.darwinModules.stylix
