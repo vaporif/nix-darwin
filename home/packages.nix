@@ -35,6 +35,7 @@
     imagemagick
     viu
     chafa
+    tdf
 
     ghostscript
     wget
