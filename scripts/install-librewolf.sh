@@ -22,6 +22,13 @@ get_latest_version() {
 
 # Function to download and install
 install_librewolf() {
+    # Check if LibreWolf is running
+    if pgrep -i "librewolf" > /dev/null; then
+        echo "LibreWolf is currently running. Skipping update."
+        hdiutil detach "$MOUNT_POINT" -quiet 2>/dev/null || true
+        rm -rf "$TEMP_DIR"
+        exit 0
+    fi
     echo "Fetching latest LibreWolf version..."
     VERSION=$(get_latest_version)
 
@@ -51,13 +58,6 @@ install_librewolf() {
     MOUNT_POINT=$(hdiutil info | grep "LibreWolf" | awk '{print $1}' | head -1)
     VOLUME_PATH="/Volumes/LibreWolf"
 
-    # Check if LibreWolf is running
-    if pgrep -i "librewolf" > /dev/null; then
-        echo "LibreWolf is currently running. Skipping update."
-        hdiutil detach "$MOUNT_POINT" -quiet 2>/dev/null || true
-        rm -rf "$TEMP_DIR"
-        exit 0
-    fi
 
     # Remove old installation if exists
     if [ -d "${INSTALL_PATH}/${APP_NAME}" ]; then
