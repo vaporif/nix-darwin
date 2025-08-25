@@ -25,6 +25,9 @@
         local wezterm = require 'wezterm'
         local act = wezterm.action
         local config = wezterm.config_builder()
+        config.front_end = "WebGpu"
+        config.max_fps = 120
+        config.animation_fps = 120
 
         -- Window configuration
         config.window_padding = {
