@@ -44,9 +44,10 @@
         config.tab_bar_at_bottom = true
         config.hide_tab_bar_if_only_one_tab = true
         config.tab_max_width = 32
+        config.cursor_blink_rate = 0
 
         -- Scrollback
-        config.scrollback_lines = 10000
+        config.scrollback_lines = 50000
 
         -- Disable dead keys
         config.use_dead_keys = false
@@ -55,14 +56,12 @@
 
         config.keys = {
           -- Pane management
-          { key = 'b', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } }, -- New tab
+          { key = 'b', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' }, -- New tab
           { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane { confirm = false } }, -- Close pane
 
           -- Split panes
-          { key = 'UpArrow', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
-          { key = 'DownArrow', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
-          { key = 'LeftArrow', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-          { key = 'RightArrow', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+          { key = 'v', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+          { key = 'h', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
 
           -- Navigate panes
           { key = 'n', mods = 'LEADER', action = act.ActivatePaneDirection 'Left' },
@@ -117,7 +116,7 @@
           } },
 
           -- Session management
-          { key = 's', mods = 'LEADER', action = act.ShowLauncher },
+          { key = 'o', mods = 'LEADER', action = act.ShowLauncher },
 
           -- Quick session switcher
           { key = 'z', mods = 'LEADER', action = act.ShowLauncherArgs {
