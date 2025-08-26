@@ -113,7 +113,7 @@
       shellAliases = {
         t = "yy";
         lg = "lazygit";
-        ai = "claude code";
+        ai = "claude";
         ls = "eza -a";
         cat = "bat";
         e = "nvim";
