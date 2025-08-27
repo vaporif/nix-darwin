@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = wezterm.config_builder()
-config.front_end = "WebGpu"
+config.front_end = 'WebGpu'
 config.max_fps = 120
 config.animation_fps = 120
 
@@ -74,7 +74,7 @@ config.keys = {
   },
 
   -- Search mode
-  { key = '/', mods = 'LEADER', action = act.Search { CaseSensitiveString = "" } },
+  { key = '/', mods = 'LEADER', action = act.Search { CaseSensitiveString = '' } },
 
   -- Scroll mode
   { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
