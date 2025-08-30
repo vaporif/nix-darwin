@@ -163,6 +163,8 @@
 
     casks = [
       "supercollider"
+      "blackhole-2ch"
+      "blackhole-16ch"
       "element"
       "claude"
       "brave-browser"

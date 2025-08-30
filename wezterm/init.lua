@@ -38,6 +38,33 @@ config.keys = {
   -- Split panes
   { key = 'v', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'h', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  
+  -- Toggle horizontal pane (open/close)
+  {
+    key = ' ',
+    mods = 'LEADER',
+    action = wezterm.action_callback(function(window, pane)
+      local tab = window:active_tab()
+      local panes = tab:panes()
+      
+      if #panes == 1 then
+        -- No split exists, create horizontal split
+        window:perform_action(act.SplitHorizontal { domain = 'CurrentPaneDomain' }, pane)
+      elseif #panes == 2 then
+        -- Two panes exist, close the non-active one
+        for _, p in ipairs(panes) do
+          if p:pane_id() ~= pane:pane_id() then
+            p:activate()
+            window:perform_action(act.CloseCurrentPane { confirm = false }, p)
+            break
+          end
+        end
+      else
+        -- More than 2 panes, just close current pane
+        window:perform_action(act.CloseCurrentPane { confirm = false }, pane)
+      end
+    end),
+  },
 
   -- Navigate panes
   { key = 'n', mods = 'LEADER', action = act.ActivatePaneDirection 'Left' },
