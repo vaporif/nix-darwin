@@ -28,9 +28,13 @@
       url = "github:h-hg/yamb.yazi";
       flake = false;
     };
+    vim-tidal = {
+      url = "github:tidalcycles/vim-tidal";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi,  mcp-servers-nix, stylix, ... }:
+  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, vim-tidal, mcp-servers-nix, stylix, ... }:
     let
       system = "aarch64-darwin";
 
@@ -64,7 +68,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit fzf-git-sh-package yamb-yazi;
+                inherit fzf-git-sh-package yamb-yazi vim-tidal;
                 inherit mcp-servers-nix mcp-nixos-package ;
               };
               users.vaporif = import ./home;

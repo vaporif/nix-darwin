@@ -31,22 +31,33 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 
 ## Architecture
 
+### Configuration Flow
+The configuration follows a hierarchical module system:
+1. `flake.nix` → Entry point defining inputs and instantiating configurations
+2. `system.nix` → System-level Darwin settings (imported by flake)
+3. `home/default.nix` → User-level home-manager configuration (imported by flake)
+4. `home/*.nix` → Modular home configuration files (imported by home/default.nix)
+
 ### Core Configuration Files
 - `flake.nix` - Main entry point defining inputs (nixpkgs, home-manager, stylix, sops-nix, mcp-servers) and system configuration
 - `system.nix` - System-level settings: Homebrew packages, fonts, system preferences, launchd agents, skhd shortcuts
-- `home.nix` - User-level settings: shell configuration, development tools, application settings, shell aliases
-- `mcp-servers.nix` - MCP (Model Context Protocol) server configurations for AI integrations
+- `home/default.nix` - Main home configuration that imports all modular components
+- `home/shell.nix` - Shell environment (zsh, aliases, prompt, completions)
+- `home/packages.nix` - User-installed packages and development tools
+- `home/mcp-servers.nix` - MCP (Model Context Protocol) server configurations for AI integrations
 
 ### Key Directories
-- `/nvim/` - Neovim configuration with 30+ plugins, LSP settings, and custom keybindings
+- `/nvim/` - Neovim configuration with 30+ plugins, LSP settings, custom keybindings, and lazy-lock.json for reproducibility
 - `/karabiner/` - Keyboard customization rules
 - `/secrets/` - SOPS-encrypted secrets (SSH keys, API tokens)
-- `/zellij/` - Terminal multiplexer configuration with sessionizer plugin
+- `/wezterm/` - Terminal emulator with tmux-like keybindings
 - `/yazi/` - File manager configuration with yamb bookmarks plugin
+- `/scripts/` - Custom scripts including LibreWolf auto-updater
 
 ### External Dependencies
 - Rust devshell from `github:vaporif/nix-devshells` (provides additional development tools via ~/.envrc)
 - MCP servers for AI capabilities (filesystem, git, youtube, search, memory, etc.)
+- Nixpkgs overlay for package fixes (e.g., Tectonic version pinning)
 
 ## Important Configuration Details
 
@@ -57,7 +68,7 @@ When working with this configuration, these values in `flake.nix` are user-speci
 - Home directory: `/Users/vaporif`
 
 ### Theme System
-Uses Stylix for consistent theming across all applications with Everforest Light theme. Color scheme and fonts are centrally managed in `system.nix`.
+Uses Stylix for consistent theming across all applications with custom Everforest Light theme. Color scheme and fonts are centrally managed in `system.nix`.
 
 ### Development Environment
 - Primary shell: Zsh with extensive configuration
@@ -75,6 +86,7 @@ The configuration includes extensive AI capabilities through MCP servers:
 - **qdrant**: Vector database for embeddings
 - **memory**: Persistent AI memory
 - **github**: Repository operations
+- **sequential-thinking**: AI reasoning capabilities
 
 ### Security
 - Secrets managed via SOPS with age encryption (configured in `.sops.yaml`)
@@ -83,8 +95,27 @@ The configuration includes extensive AI capabilities through MCP servers:
 - TouchID enabled for sudo authentication
 
 ### System Automation
-- LibreWolf browser auto-updates hourly via launchd agent
+- LibreWolf browser auto-updates via custom script (`scripts/install-librewolf.sh`) and launchd agent
 - Homebrew auto-update, upgrade, and cleanup on system activation
+- Direnv integration for project-specific environments
+
+### Special Configurations
+
+#### Tidal Live Coding
+- Complete TidalCycles setup for algorithmic music
+- Custom shell scripts (`tidal`, `tidalvim`) for workflow
+- GHC with Tidal packages pre-configured
+- SuperCollider integration for audio synthesis
+
+#### WezTerm Terminal
+- Tmux-like keybindings with leader key (Ctrl-b)
+- Smart pane management with toggle functionality
+- Integration with Yazi file manager
+
+#### Package Version Management
+- Nixpkgs overlay fixing Tectonic compilation issues
+- Pinned nixpkgs-24.05 for specific packages
+- Unfree package allowlist (spacetimedb, claude-code)
 
 ## Testing Changes
 
@@ -94,3 +125,23 @@ After modifying any .nix files:
 3. Restart affected applications if needed
 
 For Neovim changes, restart Neovim to load new configurations.
+
+## Common Development Tasks
+
+### Adding a New Package
+1. Edit `home/packages.nix` for user packages or `system.nix` for system packages
+2. Run `sudo darwin-rebuild switch`
+
+### Updating Secrets
+1. Edit secrets with: `sops secrets/secrets.yaml`
+2. Reference in configuration via `config.sops.secrets.<name>.path`
+
+### Modifying Shell Aliases
+1. Edit `home/shell.nix` in the `shellAliases` section
+2. Apply with `sudo darwin-rebuild switch`
+3. Restart shell or source new configuration
+
+### Adding MCP Servers
+1. Edit `home/mcp-servers.nix`
+2. Add server configuration following existing patterns
+3. Apply changes and restart Claude app
