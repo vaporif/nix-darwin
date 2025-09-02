@@ -1,14 +1,14 @@
 return {
-  "akinsho/toggleterm.nvim",
-  version = "*",
+  'akinsho/toggleterm.nvim',
+  version = '*',
   config = function()
-    require("toggleterm").setup({
+    require('toggleterm').setup {
       size = function(term)
-        if term.direction == "horizontal" then
+        if term.direction == 'horizontal' then
           return 15
-        elseif term.direction == "vertical" then
+        elseif term.direction == 'vertical' then
           return vim.o.columns * 0.4
-        elseif term.direction == "float" then
+        elseif term.direction == 'float' then
           return 20
         end
       end,
@@ -22,11 +22,11 @@ return {
       terminal_mappings = true,
       persist_size = true,
       persist_mode = true,
-      direction = "float",
+      direction = 'float',
       close_on_exit = true,
       shell = vim.o.shell,
       float_opts = {
-        border = "curved",
+        border = 'curved',
         width = function()
           return math.floor(vim.o.columns * 0.8)
         end,
@@ -35,10 +35,11 @@ return {
         end,
         winblend = 3,
       },
-    })
+    }
 
-    vim.keymap.set({ "n", "t" }, "<space><space>", function()
-      vim.cmd("ToggleTerm")
-    end, { desc = "Toggle floating terminal" })
+    vim.keymap.set({ 'n', 't' }, '<C-t>', function()
+      vim.cmd 'ToggleTerm'
+    end, { desc = 'Toggle floating terminal' })
   end,
 }
+
