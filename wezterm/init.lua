@@ -7,9 +7,9 @@ config.animation_fps = 120
 
 -- Window configuration
 config.window_padding = {
-  left = 5,
-  right = 5,
-  top = 5,
+  left = 15,
+  right = 15,
+  top = 10,
   bottom = 5,
 }
 config.window_decorations = 'RESIZE'
@@ -38,7 +38,7 @@ config.keys = {
   -- Split panes
   { key = 'v', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'h', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-  
+
   -- Toggle horizontal pane (open/close)
   {
     key = ' ',
@@ -46,7 +46,7 @@ config.keys = {
     action = wezterm.action_callback(function(window, pane)
       local tab = window:active_tab()
       local panes = tab:panes()
-      
+
       if #panes == 1 then
         -- No split exists, create horizontal split
         window:perform_action(act.SplitHorizontal { domain = 'CurrentPaneDomain' }, pane)
