@@ -52,6 +52,7 @@ return {
 
     opts.cmdline = {
       enabled = true,
+      keymap = { preset = 'inherit' },
     }
 
     opts.signature = { enabled = true }
@@ -59,6 +60,12 @@ return {
     opts.completion = {
       trigger = {
         show_on_trigger_character = true,
+      },
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = false,
+        },
       },
       menu = {
         draw = {
@@ -90,8 +97,8 @@ return {
       ['<C-p>'] = { 'select_prev', 'fallback' },
       ['<C-n>'] = { 'select_next', 'fallback' },
 
-      ['<S-k>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<S-j>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<S-j>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<S-k>'] = { 'scroll_documentation_down', 'fallback' },
 
       ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
       ['<C-e>'] = { 'hide', 'fallback' },
