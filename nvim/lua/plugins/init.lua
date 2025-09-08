@@ -17,7 +17,7 @@ return {
     },
   },
   'gennaro-tedesco/nvim-peekup',
-  require 'plugins.smear',
+  -- require 'plugins.smear',
 
   -- UI and navigation
   require 'plugins.gitsigns',
@@ -41,8 +41,6 @@ return {
   require 'plugins.crates',
   require 'plugins.conform',
   require 'plugins.autopairs',
-  -- TODO: maybe update after bugfixes
-  -- require 'plugins.blink-pairs',
   require 'plugins.treesitter',
   require 'plugins.treesitter-context',
   require 'plugins.dap',
