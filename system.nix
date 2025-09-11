@@ -181,7 +181,7 @@
       "keycastr"
       "zoom"
       "monitorcontrol"
-      # "ollama"
+      "gimp"
     ];
   };
   nixpkgs.hostPlatform = "aarch64-darwin";
