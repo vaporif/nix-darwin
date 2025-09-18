@@ -117,6 +117,7 @@
         ls = "eza -a";
         cat = "bat";
         e = "nvim";
+        x = "exit";
       };
       initContent = ''
         ulimit -Sn 4096

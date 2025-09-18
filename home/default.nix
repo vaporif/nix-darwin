@@ -100,7 +100,7 @@
     recursive = true;
   };
   xdg.configFile.nvim.source = ../nvim;
-  
+
   # Tidal configuration (from vim-tidal)
   xdg.configFile."tidal/Tidal.ghci".text = ''
     :set -XOverloadedStrings

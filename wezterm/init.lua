@@ -51,14 +51,8 @@ config.keys = {
         -- No split exists, create horizontal split
         window:perform_action(act.SplitHorizontal { domain = 'CurrentPaneDomain' }, pane)
       elseif #panes == 2 then
-        -- Two panes exist, close the non-active one
-        for _, p in ipairs(panes) do
-          if p:pane_id() ~= pane:pane_id() then
-            p:activate()
-            window:perform_action(act.CloseCurrentPane { confirm = false }, p)
-            break
-          end
-        end
+        -- Two panes exist, close the active one
+        window:perform_action(act.CloseCurrentPane { confirm = false }, pane)
       else
         -- More than 2 panes, just close current pane
         window:perform_action(act.CloseCurrentPane { confirm = false }, pane)
@@ -101,7 +95,7 @@ config.keys = {
   },
 
   -- Search mode
-  { key = '/', mods = 'LEADER', action = act.Search { CaseSensitiveString = '' } },
+  { key = '/', mods = 'LEADER', action = act.Search { CaseInSensitiveString = '' } },
 
   -- Scroll mode
   { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
@@ -132,9 +126,11 @@ config.keys = {
   { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
   { key = '0', mods = 'CMD', action = act.ResetFontSize },
 
+  { key = 'Tab', mods = 'LEADER', action = act.ActivateTabRelative(1) },
+  { key = 'Tab', mods = 'LEADER|SHIFT', action = act.ActivateTabRelative(-1) },
   -- Copy/Paste
-  { key = 'c', mods = 'CMD', action = act.CopyTo 'Clipboard' },
-  { key = 'v', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
+  { key = 'y', mods = 'CMD', action = act.CopyTo 'Clipboard' },
+  { key = 'p', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
 }
 
 -- Key tables for resize and move modes
