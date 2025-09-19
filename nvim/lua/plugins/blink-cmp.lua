@@ -52,7 +52,6 @@ return {
 
     opts.cmdline = {
       enabled = true,
-      keymap = { preset = 'inherit' },
     }
 
     opts.signature = { enabled = true }
