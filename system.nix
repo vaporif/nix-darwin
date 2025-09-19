@@ -120,7 +120,6 @@
         cmd - 7 : open -a "Ableton Live 12 Suite"
         cmd - 8 : open -a "Telegram"
         cmd - 9 : open -a "Spotify"
-        cmd - 0 : open -a "Librewolf" "https://anitube.in.ua/3734-uma-musume-pretty-derby-tv-season-2.html"
       '';
     };
     openssh.enable = false;
