@@ -59,7 +59,7 @@ in
     pango
     gnupg
 
-    python312Full
+    python312
     nodejs_22
     bun
     uv
