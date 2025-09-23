@@ -120,14 +120,15 @@ config.keys = {
     flags = 'FUZZY|WORKSPACES',
   } },
 
+  -- Pane cycling with Tab
+  { key = 'Tab', mods = 'LEADER', action = act.ActivatePaneDirection 'Next' },
+
   -- Additional useful bindings
   { key = 'Enter', mods = 'ALT', action = act.ToggleFullScreen },
   { key = '+', mods = 'CMD', action = act.IncreaseFontSize },
   { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
   { key = '0', mods = 'CMD', action = act.ResetFontSize },
 
-  { key = 'Tab', mods = 'LEADER', action = act.ActivateTabRelative(1) },
-  { key = 'Tab', mods = 'LEADER|SHIFT', action = act.ActivateTabRelative(-1) },
   -- Copy/Paste
   { key = 'y', mods = 'CMD', action = act.CopyTo 'Clipboard' },
   { key = 'p', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
