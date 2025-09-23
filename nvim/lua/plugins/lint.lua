@@ -49,5 +49,8 @@ return { -- Linting
         lint.try_lint()
       end,
     })
+    vim.keymap.set('n', '<leader>cl', function()
+      lint.try_lint()
+    end, { desc = '[l]int' })
   end,
 }
