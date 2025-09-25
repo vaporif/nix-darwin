@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -34,12 +35,13 @@
     };
   };
 
-  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, vim-tidal, mcp-servers-nix, stylix, ... }:
+  outputs = { nixpkgs, nixpkgs-stable, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, vim-tidal, mcp-servers-nix, stylix, ... }:
     let
       system = "aarch64-darwin";
 
       mcp-nixos-package = mcp-nixos.packages.${system}.default;
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
       fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
     in
     {
@@ -69,7 +71,7 @@
               useUserPackages = true;
               extraSpecialArgs = {
                 inherit fzf-git-sh-package yamb-yazi vim-tidal;
-                inherit mcp-servers-nix mcp-nixos-package ;
+                inherit mcp-servers-nix mcp-nixos-package pkgs-stable;
               };
               users.vaporif = import ./home;
               backupFileExtension = "backup";

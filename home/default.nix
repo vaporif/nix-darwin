@@ -1,4 +1,4 @@
-{ pkgs, yamb-yazi, ... }:
+{ pkgs, pkgs-stable, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix
@@ -26,6 +26,7 @@
 
     git = {
       enable = true;
+      package = pkgs-stable.git;
       userName = "Dmytro Onypko";
       userEmail = "vaporif@proton.me";
       aliases = {

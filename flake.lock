@@ -282,6 +282,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1758589230,
+        "narHash": "sha256-zMTCFGe8aVGTEr2RqUi/QzC1nOIQ0N1HRsbqB4f646k=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d1d883129b193f0b495d75c148c2c3a7d95789a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1753939845,
@@ -363,6 +379,7 @@
         "mcp-servers-nix": "mcp-servers-nix",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "vim-tidal": "vim-tidal",
