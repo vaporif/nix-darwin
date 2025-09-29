@@ -1,7 +1,7 @@
 return {
   'saghen/blink.cmp',
   enabled = true,
-  build = 'nix run .#build-plugin',
+  version = '1.*',
   opts = function(_, opts)
     opts.sources = vim.tbl_deep_extend('force', opts.sources or {}, {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
