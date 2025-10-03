@@ -1,6 +1,7 @@
 return {
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  lazy = false, -- Load immediately, not lazily
+  priority = 100, -- Load early to ensure it's available
   config = function() -- This is the function that runs, AFTER loading
     require('which-key').setup {
       icons = {
