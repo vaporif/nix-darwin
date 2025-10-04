@@ -17,7 +17,6 @@ return {
     },
   },
   'gennaro-tedesco/nvim-peekup',
-  -- require 'plugins.smear',
 
   -- UI and navigation
   require 'plugins.gitsigns',
