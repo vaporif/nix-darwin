@@ -9,15 +9,15 @@ let
             "${config.home.homeDirectory}/Documents"
           ];
         };
-        youtube = {
-          enable = true;
-          passwordCommand = {
-            YOUTUBE_API_KEY = [
-              "cat"
-              "/run/secrets/youtube-key"
-            ];
-          };
-        };
+        # youtube = {
+        #   enable = true;
+        #   passwordCommand = {
+        #     YOUTUBE_API_KEY = [
+        #       "cat"
+        #       "/run/secrets/youtube-key"
+        #     ];
+        #   };
+        # };
         git.enable = true;
         sequential-thinking.enable = true;
         time = {
@@ -27,22 +27,15 @@ let
             "Europe/Lisbon"
           ];
         };
-        tavily = {
-          enable = true;
-          passwordCommand = {
-            TAVILY_API_KEY = [
-              "cat"
-              "/run/secrets/tavily-key"
-            ];
-          };
-        };
-        qdrant = {
-          enable = true;
-          env = {
-            QDRANT_LOCAL_PATH = "/Users/vaporif/qdrant";
-            COLLECTION_NAME = "mcp-server-collection";
-          };
-        };
+        # tavily = {
+        #   enable = true;
+        #   passwordCommand = {
+        #     TAVILY_API_KEY = [
+        #       "cat"
+        #       "/run/secrets/tavily-key"
+        #     ];
+        #   };
+        # };
         everything.enable = true;
         context7.enable = true;
         memory.enable = true;
