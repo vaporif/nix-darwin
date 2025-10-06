@@ -1,5 +1,5 @@
 # Move default direnv cache folder out from project folder
-# Fixes rust-analyzer 'roots scanned' hang
+# Fixes rust-analyzer 'roots scanned' hanging
 
 : ${XDG_CACHE_HOME:=$HOME/.cache}
 declare -A direnv_layout_dirs
