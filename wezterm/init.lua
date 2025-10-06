@@ -32,33 +32,11 @@ config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
   -- Pane management
-  { key = 'b', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' }, -- New tab
   { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane { confirm = false } }, -- Close pane
 
   -- Split panes
   { key = 'v', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = 'h', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-
-  -- Toggle horizontal pane (open/close)
-  {
-    key = ' ',
-    mods = 'LEADER',
-    action = wezterm.action_callback(function(window, pane)
-      local tab = window:active_tab()
-      local panes = tab:panes()
-
-      if #panes == 1 then
-        -- No split exists, create horizontal split
-        window:perform_action(act.SplitHorizontal { domain = 'CurrentPaneDomain' }, pane)
-      elseif #panes == 2 then
-        -- Two panes exist, close the active one
-        window:perform_action(act.CloseCurrentPane { confirm = false }, pane)
-      else
-        -- More than 2 panes, just close current pane
-        window:perform_action(act.CloseCurrentPane { confirm = false }, pane)
-      end
-    end),
-  },
 
   -- Navigate panes
   { key = 'n', mods = 'LEADER', action = act.ActivatePaneDirection 'Left' },
@@ -132,6 +110,36 @@ config.keys = {
   -- Copy/Paste
   { key = 'y', mods = 'CMD', action = act.CopyTo 'Clipboard' },
   { key = 'p', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
+  {
+    key = 't',
+    mods = 'CTRL',
+    action = wezterm.action_callback(function(window, pane)
+      local tab = window:active_tab()
+      local panes = tab:panes_with_info()
+
+      if #panes == 1 then
+        -- Create bottom pane
+        pane:split {
+          direction = 'Bottom',
+          size = 0.7,
+        }
+      elseif #panes == 2 then
+        -- Check if we're zoomed
+        for _, p in ipairs(panes) do
+          if p.is_zoomed then
+            -- Unzoom to show the terminal
+            window:perform_action(act.TogglePaneZoomState, pane)
+            -- Switch to the bottom pane
+            window:perform_action(act.ActivatePaneDirection 'Down', pane)
+            return
+          end
+        end
+        -- Not zoomed - hide the terminal by zooming the main pane
+        window:perform_action(act.ActivatePaneDirection 'Up', pane)
+        window:perform_action(act.TogglePaneZoomState, pane)
+      end
+    end),
+  },
 }
 
 -- Key tables for resize and move modes

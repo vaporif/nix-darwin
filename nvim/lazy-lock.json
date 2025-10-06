@@ -41,7 +41,6 @@
   "rustaceanvim": { "branch": "master", "commit": "12504405821c05874d2d1f6b5ec919f9808e2c99" },
   "snacks.nvim": { "branch": "main", "commit": "bfe8c26dbd83f7c4fbc222787552e29b4eccfcc0" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
-  "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "trouble.nvim": { "branch": "main", "commit": "f176232e7759c4f8abd923c21e3e5a5c76cd6837" },
   "undotree": { "branch": "main", "commit": "1c3e7531fad0a9c27942c5438be5adbd26260470" },
   "vim-plugin-AnsiEsc": { "branch": "master", "commit": "690f820d20b6e3a79ba20499874eb7333aa4ca5c" },

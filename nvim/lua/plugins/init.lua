@@ -30,7 +30,6 @@ return {
   require 'plugins.neo-tree',
   require 'plugins.marksnvim',
   require 'plugins.harpoon',
-  require 'plugins.toggleterm',
 
   -- Code features
   'neovim/nvim-lspconfig',
