@@ -38,7 +38,9 @@ return {
   require 'plugins.rustacean',
   require 'plugins.crates',
   require 'plugins.conform',
-  require 'plugins.autopairs',
+  require 'plugins.blink-pairs',
+
+  -- require 'plugins.autopairs',
   require 'plugins.treesitter',
   require 'plugins.treesitter-context',
   require 'plugins.dap',
