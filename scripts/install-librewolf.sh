@@ -20,6 +20,15 @@ get_latest_version() {
         sed 's/"tag_name":"\([^"]*\)"/\1/'
 }
 
+# Function to get installed version
+get_installed_version() {
+    if [ -d "${INSTALL_PATH}/${APP_NAME}" ]; then
+        /usr/bin/defaults read "${INSTALL_PATH}/${APP_NAME}/Contents/Info.plist" CFBundleShortVersionString 2>/dev/null || echo ""
+    else
+        echo ""
+    fi
+}
+
 # Function to download and install
 install_librewolf() {
     # Check if LibreWolf is running
@@ -38,6 +47,18 @@ install_librewolf() {
     fi
 
     echo "Latest version: $VERSION"
+
+    # Check installed version
+    INSTALLED_VERSION=$(get_installed_version)
+    if [ -n "$INSTALLED_VERSION" ]; then
+        echo "Installed version: $INSTALLED_VERSION"
+        if [ "$INSTALLED_VERSION" = "$VERSION" ]; then
+            echo "LibreWolf is already up to date. Skipping installation."
+            exit 0
+        fi
+    else
+        echo "LibreWolf not currently installed."
+    fi
 
     # Construct download URL for ARM64
     DMG_URL="${GITLAB_API}/projects/${PROJECT_ID}/packages/generic/librewolf/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg"
