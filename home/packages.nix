@@ -37,6 +37,7 @@ in
     tectonic
     just
     k9s
+    btop
 
     (haskellPackages.ghcWithPackages (pkgs: with pkgs; [
       tidal
