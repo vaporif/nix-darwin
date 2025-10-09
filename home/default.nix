@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, yamb-yazi, ... }:
+{ pkgs, pkgs-stable, pkgs-pinned, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix
@@ -76,7 +76,7 @@
         stylua
         typescript-language-server
         haskell-language-server
-        basedpyright
+        pkgs-pinned.basedpyright # Using pinned version to avoid Node.js 22 compilation issue
         just-lsp
       ];
     };
