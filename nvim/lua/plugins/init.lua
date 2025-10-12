@@ -39,8 +39,8 @@ return {
   require 'plugins.crates',
   require 'plugins.conform',
   require 'plugins.blink-pairs',
+  require 'plugins.nvim-ufo',
 
-  -- require 'plugins.autopairs',
   require 'plugins.treesitter',
   require 'plugins.treesitter-context',
   require 'plugins.dap',
