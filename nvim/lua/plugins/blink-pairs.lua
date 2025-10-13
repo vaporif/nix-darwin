@@ -15,8 +15,8 @@ return {
     highlights = {
       enabled = true,
       groups = {
-        'String',
-        'Type',
+        'BlinkPairsWarm1',
+        'BlinkPairsWarm2',
       },
     },
     debug = false,

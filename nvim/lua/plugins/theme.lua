@@ -124,6 +124,10 @@ return {
           hl.TodoBgTEST = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
           hl.TodoFgTEST = { fg = '#9b7d8a', bold = true }
           hl.TodoSignTEST = { fg = '#9b7d8a', bold = true }
+
+          -- Blink-pairs custom highlight groups
+          hl.BlinkPairsWarm1 = { fg = '#c08563' } -- base09: warm orange
+          hl.BlinkPairsWarm2 = { fg = '#859289' } -- base0F: neutral brown
         end,
 
         colours_override = function(palette)
