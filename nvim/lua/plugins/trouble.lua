@@ -9,7 +9,7 @@ return {
       desc = '[d]iagnostics',
     },
     {
-      '<leader>tB',
+      '<leader>tb',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
       desc = '[b]uffer',
     },
@@ -19,19 +19,19 @@ return {
       desc = '[s]ymbols',
     },
     {
-      '<leader>tL',
+      '<leader>tl',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
       desc = '[L]SP Definitions / references / ...',
     },
     {
-      '<leader>tl',
+      '<leader>to',
       '<cmd>Trouble loclist toggle<cr>',
-      desc = '[l]ocation',
+      desc = 'l[o]ocation',
     },
     {
-      '<leader>tQ',
+      '<leader>tq',
       '<cmd>Trouble qflist toggle<cr>',
-      desc = '[Q]uickfix',
+      desc = '[q]uickfix',
     },
     {
       ']t',
