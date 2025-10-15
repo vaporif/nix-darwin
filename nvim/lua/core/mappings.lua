@@ -15,7 +15,7 @@ vim.keymap.set('n', '<leader>ck', vim.diagnostic.setloclist, { desc = 'quic[k]fi
 
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
-vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = 'write' })
+vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = '[w]rite' })
 vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree float toggle reveal_force_cwd<CR>', { desc = 'n[e]otree' })
 vim.keymap.set('n', '<Leader>E', '<Cmd>Neotree float git_status toggle reveal<CR>', { desc = 'n[E]otree git' })
 -- Buffers
