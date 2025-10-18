@@ -45,10 +45,7 @@ return {
     { '<leader>f', group = '[f]ind' },
     { '<leader>q', group = '[q]uickreplace' },
     { '<leader>c', group = '[c]ode' },
-    { '<leader>r', group = '[r]ename' },
-    { '<leader>w', group = '[w]rite' },
     { '<leader>t', group = '[t]rouble' },
-    { '<leader>x', group = 'e[x]tend cursor' },
     { '<leader>h', group = 'git [h]unk', mode = { 'n', 'v' } },
   },
 }
