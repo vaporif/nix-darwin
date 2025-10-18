@@ -22,7 +22,7 @@ vim.keymap.set('n', '<Leader>E', '<Cmd>Neotree float git_status toggle reveal<CR
 vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { noremap = true, desc = '[n]ext buffer' })
 vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { noremap = true, desc = '[p]revious buffer' })
 vim.keymap.set('n', '<leader>bb', '<C-^>', { noremap = true, desc = 'toggle [b]uffer' })
-vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, desc = 'tab buffers' })
+vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, desc = '[tab] buffers' })
 
 vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { noremap = true, desc = '[v]ertically' })
 vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]orizontally' })
