@@ -36,6 +36,7 @@ return {
   require 'plugins.blink-cmp',
   require 'plugins.neotest',
   require 'plugins.rustacean',
+  require 'plugins.go-nvim',
   require 'plugins.crates',
   require 'plugins.conform',
   require 'plugins.blink-pairs',
