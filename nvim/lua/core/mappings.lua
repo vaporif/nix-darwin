@@ -96,6 +96,9 @@ vim.keymap.set('o', 'j', '<Nop>', { noremap = true })
 vim.keymap.set('o', 'k', '<Nop>', { noremap = true })
 vim.keymap.set('o', 'l', '<Nop>', { noremap = true })
 
+-- ; -> :
+vim.keymap.set({ 'n', 'v', 'x' }, ';', ':')
+
 -- delete default code operations
 vim.keymap.del('n', 'grn')
 vim.keymap.del('n', 'grr')
