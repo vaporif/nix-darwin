@@ -21,7 +21,6 @@ return {
   -- UI and navigation
   require 'plugins.gitsigns',
   require 'plugins.flash',
-  require 'plugins.undotree',
   require 'plugins.which-key',
   require 'plugins.fzf',
   require 'plugins.dashboard',
