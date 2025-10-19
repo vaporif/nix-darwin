@@ -41,6 +41,7 @@ return {
   require 'plugins.conform',
   require 'plugins.blink-pairs',
   require 'plugins.nvim-ufo',
+  require 'plugins.treesitter-textobjects',
 
   require 'plugins.treesitter',
   require 'plugins.treesitter-context',
