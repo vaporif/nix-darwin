@@ -52,21 +52,13 @@ return {
   {
     'tidalcycles/vim-tidal',
     config = function()
-      -- Use Neovim's built-in terminal for Tidal REPL
       vim.g.tidal_target = 'terminal'
-
-      -- Set the path to ghci
       vim.g.tidal_ghci = 'ghci'
-
-      -- Set the boot file path to our Nix-managed Tidal.ghci
       vim.g.tidal_boot = vim.fn.expand '~/.config/tidal/Tidal.ghci'
-
-      -- Disable SuperCollider terminal (we'll start it separately)
       vim.g.tidal_sc_enable = false
     end,
   },
 
-  -- Development
   require 'plugins.lazydev',
 
   -- Misc
