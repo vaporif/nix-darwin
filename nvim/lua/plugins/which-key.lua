@@ -45,6 +45,7 @@ return {
     { '<leader>f', group = '[f]ind' },
     { '<leader>q', group = '[q]uickreplace' },
     { '<leader>c', group = '[c]ode' },
+    { '<leader>d', group = '[d]ebug' },
     { '<leader>t', group = '[t]rouble' },
     { '<leader>h', group = 'git [h]unk', mode = { 'n', 'v' } },
   },

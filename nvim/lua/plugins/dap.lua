@@ -12,46 +12,46 @@ return {
   },
   keys = {
     {
-      '<F5>',
+      '<leader>dc',
       function()
         require('dap').continue()
       end,
-      desc = 'Debug: Start/Continue',
+      desc = 'start/[c]ontinue',
     },
     {
-      '<F1>',
+      '<leader>di',
       function()
         require('dap').step_into()
       end,
-      desc = 'Debug: Step Into',
+      desc = 'step [i]nto',
     },
     {
-      '<F2>',
+      '<leader>dr',
       function()
         require('dap').step_over()
       end,
-      desc = 'Debug: Step Over',
+      desc = 'step ove[r]',
     },
     {
-      '<F3>',
+      '<leader>do',
       function()
         require('dap').step_out()
       end,
-      desc = 'Debug: Step Out',
+      desc = 'step [o]ut',
     },
     {
-      '<leader>cb',
+      '<leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
-      desc = 'toggle [b]reakpoint',
+      desc = '[b]reakpoint',
     },
     {
-      '<F7>',
+      '<leader>dl',
       function()
         require('dapui').toggle()
       end,
-      desc = 'Debug: See last session result.',
+      desc = '[l]ast session result',
     },
   },
   config = function()
