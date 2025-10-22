@@ -118,7 +118,7 @@
         cmd - 5 : open -a "Slack"
         cmd - 6 : open -a "Activity Monitor"
         cmd - 7 : open -a "Ableton Live 12 Suite"
-        cmd - 8 : open -a "Telegram"
+        cmd - 8 : open -a "Signal"
         cmd - 9 : open -a "Spotify"
       '';
     };
