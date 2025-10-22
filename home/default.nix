@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, pkgs-pinned, yamb-yazi, ... }:
+{ pkgs, pkgs-pinned, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix
@@ -26,7 +26,6 @@
 
     git = {
       enable = true;
-      package = pkgs-stable.git;
       settings = {
         user = {
           name = "Dmytro Onypko";
@@ -75,7 +74,7 @@
         stylua
         typescript-language-server
         haskell-language-server
-        pkgs-pinned.basedpyright # Using pinned version to avoid Node.js 22 compilation issue
+        pkgs.basedpyright # Using pinned version to avoid Node.js 22 compilation issue
         just-lsp
       ];
     };
