@@ -58,8 +58,6 @@
         interactive.diffFilter = "delta --color-only";
         delta.navigate = true;
       };
-      # yeah signing is not cool since my ssh
-      # keys are living inside macbook secure enclave hsm
       signing = {
         key = "AE206889199EC9E9";
         signByDefault = true;
