@@ -1,4 +1,4 @@
-{ pkgs, pkgs-pinned, yamb-yazi, ... }:
+{ pkgs, yamb-yazi, ... }:
 {
   imports = [
     ./mcp-servers.nix
