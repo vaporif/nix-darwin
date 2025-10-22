@@ -21,17 +21,16 @@ let
         everything.enable = true;
         context7.enable = true;
         memory.enable = true;
-        github = {
-          enable = true;
-          passwordCommand = {
-            GITHUB_PERSONAL_ACCESS_TOKEN = [
-              (pkgs.lib.getExe config.programs.gh.package)
-              "auth"
-              "token"
-            ];
-          };
-        };
-
+        # github = {
+        #   enable = true;
+        #   passwordCommand = {
+        #     GITHUB_PERSONAL_ACCESS_TOKEN = [
+        #       (pkgs.lib.getExe config.programs.gh.package)
+        #       "auth"
+        #       "token"
+        #     ];
+        #   };
+        # };
         # tavily = {
         #   enable = true;
         #   passwordCommand = {

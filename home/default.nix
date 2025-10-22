@@ -27,23 +27,17 @@
     git = {
       enable = true;
       package = pkgs-stable.git;
-      userName = "Dmytro Onypko";
-      userEmail = "vaporif@proton.me";
-      aliases = {
-        co = "checkout";
-        cob = "checkout -b";
-        discard = "reset HEAD --hard";
-        fp = "fetch --all --prune";
-      };
-      # yeah signing is not cool since my ssh
-      # keys are living inside macbook secure enclave hsm
-      signing = {
-        key = "AC03496CA69745FE";
-        signByDefault = true;
-        format = "openpgp";
-      };
-
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Dmytro Onypko";
+          email = "vaporif@proton.me";
+        };
+        aliases = {
+          co = "checkout";
+          cob = "checkout -b";
+          discard = "reset HEAD --hard";
+          fp = "fetch --all --prune";
+        };
         core = {
           editor = "nvim";
           pager = "delta";
@@ -63,6 +57,13 @@
         branch.sort = "committerdate";
         interactive.diffFilter = "delta --color-only";
         delta.navigate = true;
+      };
+      # yeah signing is not cool since my ssh
+      # keys are living inside macbook secure enclave hsm
+      signing = {
+        key = "AC03496CA69745FE";
+        signByDefault = true;
+        format = "openpgp";
       };
     };
 
