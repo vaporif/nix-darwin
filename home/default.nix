@@ -76,6 +76,7 @@
         haskell-language-server
         pkgs.basedpyright # Using pinned version to avoid Node.js 22 compilation issue
         just-lsp
+        golangci-lint
       ];
     };
   };

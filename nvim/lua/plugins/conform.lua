@@ -22,11 +22,19 @@ return {
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
+      go = { 'golangci_lint' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+    },
+    formatters = {
+      golangci_lint = {
+        command = 'golangci-lint',
+        args = { 'run', '--fix', '$FILENAME' },
+        stdin = false,
+      },
     },
   },
 }
