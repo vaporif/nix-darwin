@@ -18,7 +18,6 @@ let
             "Europe/Lisbon"
           ];
         };
-        everything.enable = true;
         context7.enable = true;
         memory.enable = true;
         # github = {

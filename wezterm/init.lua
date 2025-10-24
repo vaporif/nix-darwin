@@ -28,7 +28,7 @@ config.scrollback_lines = 50000
 -- Disable dead keys
 config.use_dead_keys = false
 
-config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.leader = { key = 'z', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
   -- Pane management
