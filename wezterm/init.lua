@@ -64,7 +64,7 @@ config.keys = {
     mods = 'LEADER',
     action = act.PromptInputLine {
       description = 'Enter new name for tab',
-      action = wezterm.action_callback(function(window, pane, line)
+      action = wezterm.action_callback(function(window, _, line)
         if line then
           window:active_tab():set_title(line)
         end
@@ -211,7 +211,7 @@ config.launch_menu = {
 local mux = wezterm.mux
 
 wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = mux.spawn_window(cmd or {})
+  local _, _, window = mux.spawn_window(cmd or {})
   window:gui_window():maximize()
 end)
 
