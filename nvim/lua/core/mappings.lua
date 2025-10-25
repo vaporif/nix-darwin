@@ -34,10 +34,6 @@ vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
 vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
 vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
--- Quickfix
-vim.keymap.set('n', '<M-e>', '<cmd>cnext<Cr>')
-vim.keymap.set('n', '<M-u>', '<cmd>cprev<Cr>')
-
 -- Find & replace
 vim.keymap.set({ 'n', 'v' }, '<leader>qg', function()
   local grug = require 'grug-far'
