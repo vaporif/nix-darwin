@@ -25,7 +25,7 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 
 ### System-wide Application Shortcuts (skhd)
 - `cmd + 1` - Librewolf browser
-- `cmd + 2` - Kitty terminal  
+- `cmd + 2` - Kitty terminal
 - `cmd + 3` - Claude app
 - `cmd + 4-9` - WhatsApp, Slack, Activity Monitor, Ableton, Telegram, Spotify
 
@@ -75,12 +75,12 @@ Uses Stylix for consistent theming across all applications with custom Everfores
 - Package managers: Nix (primary), Homebrew (for casks and specific tools)
 - Language servers: nixd, typescript-language-server, basedpyright, ruff, lua-language-server, haskell-language-server, just-lsp
 - Development tools: bacon, cargo-info, rusty-man (Rust), uv (Python 3.12), bun (JavaScript)
-- System tools: du-dust, dua, mprocs, presenterm, tokei, hyperfine
+- System tools: dust, dua, mprocs, presenterm, tokei, hyperfine
 
 ### MCP Server Integrations
 The configuration includes extensive AI capabilities through MCP servers:
 - **filesystem**: Access to ~/Documents
-- **youtube**: API integration for video operations  
+- **youtube**: API integration for video operations
 - **git**: Git repository operations
 - **tavily**: Search API integration
 - **qdrant**: Vector database for embeddings

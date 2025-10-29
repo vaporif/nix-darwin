@@ -18,7 +18,7 @@ in
     nix-diff
     nix-search
 
-    du-dust
+    dust
     dua
 
     bacon
