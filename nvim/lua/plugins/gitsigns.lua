@@ -56,7 +56,7 @@ return {
           gitsigns.diffthis '@'
         end, { desc = '[D]iff against last commit' })
         -- Toggles
-        map('n', '<leader>hb', gitsigns.toggle_current_line_blame, { desc = '[b]lame line' })
+        map('n', '<leader>hB', gitsigns.toggle_current_line_blame, { desc = 'toggle [B]lame' })
         map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'preview [i]nline' })
         map('n', '<leader>hh', function()
           gitsigns.setqflist 'all'

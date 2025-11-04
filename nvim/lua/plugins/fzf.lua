@@ -21,7 +21,7 @@ return {
     { '<leader>fh', '<cmd>FzfLua help_tags<cr>', desc = '[h]elp' },
     { '<leader>fk', '<cmd>FzfLua keymaps<cr>', desc = '[k]eymaps' },
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = '[f]iles' },
-    { '<leader>fs', '<cmd>FzfLua builtin<cr>', desc = '[s]elect fzf-lua' },
+    { '<leader>fz', '<cmd>FzfLua builtin<cr>', desc = 'f[z]f' },
     { '<leader>fg', '<cmd>FzfLua live_grep<cr>', desc = '[g]rep' },
     { '<leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = '[d]ocument diagnostics' },
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[r]esume' },
