@@ -17,7 +17,7 @@ vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true 
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = '[w]rite' })
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree float toggle reveal_force_cwd<CR>', { desc = 'n[e]otree' })
-vim.keymap.set('n', '<leader>E', '<cmd>Neotree float git_status toggle reveal<CR>', { desc = 'n[E]otree git' })
+vim.keymap.set('n', '<leader>n', '<cmd>Neotree float git_status toggle reveal<CR>', { desc = '[n]eotree git' })
 
 vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, desc = '[tab] pane' })
 
