@@ -1,4 +1,5 @@
 require 'core'
+require 'core.debug-helpers'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
