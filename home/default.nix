@@ -85,12 +85,16 @@
     ".envrc".text = ''
         use flake github:vaporif/nix-devshells/77a2a97e4518c611bb69114e3f595f958dd5f9ba
     '';
-   ".ssh/config" = {
+    ".ssh/config" = {
       source = ../.ssh/config;
+    };
+    ".librewolf/librewolf.overrides.cfg" = {
+      source = ../librewolf/librewolf.overrides.cfg;
     };
   };
 
   # XDG configuration files
+  xdg.configFile.nvim.source = ../nvim;
   xdg.configFile."karabiner/karabiner.json".source = ../karabiner/karabiner.json;
   xdg.configFile."ncspot/config.toml".source = ../ncspot/config.toml;
   xdg.configFile."yazi/init.lua".source = ../yazi/init.lua;
@@ -99,8 +103,6 @@
     source = yamb-yazi;
     recursive = true;
   };
-  xdg.configFile.nvim.source = ../nvim;
 
-  # Tidal configuration (from vim-tidal)
   xdg.configFile."tidal/Tidal.ghci".source = ../tidal/Tidal.ghci;
 }
