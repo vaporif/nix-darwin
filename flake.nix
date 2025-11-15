@@ -52,6 +52,12 @@
             ];
             nixpkgs.overlays = [
               (import ./overlays/tectonic-fix.nix)
+              # Disable fish tests since we don't use fish and tests are failing
+              (final: prev: {
+                fish = prev.fish.overrideAttrs (old: {
+                  doCheck = false;
+                });
+              })
             ];
           }
           stylix.darwinModules.stylix
