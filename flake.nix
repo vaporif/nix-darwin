@@ -11,7 +11,7 @@
     };
     sops-nix.url = "github:Mic92/sops-nix";
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:danth/stylix/29dc3dd858c507bfd1038716197f84f40e41f28d";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-nixos.url = "github:utensils/mcp-nixos";
