@@ -167,7 +167,7 @@
       "element"
       "claude"
       "brave-browser"
-      "wezterm"
+      "wezterm@nightly"
       "karabiner-elements"
       "tor-browser"
       "vlc"
