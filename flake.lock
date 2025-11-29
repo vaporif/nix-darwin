@@ -160,13 +160,13 @@
     "fzf-git-sh": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-RgRP767r4JNXDDicS36YG5czvCRq3FLcE6T0Q31TGgI=",
+        "narHash": "sha256-WVtg7TszGUVG/J0YPJXsUQLnzbL0A5KIuX5qp/JK77Y=",
         "type": "file",
-        "url": "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh"
+        "url": "https://raw.githubusercontent.com/junegunn/fzf-git.sh/c823ffd521cb4a3a65a5cf87f1b1104ef651c3de/fzf-git.sh"
       },
       "original": {
         "type": "file",
-        "url": "https://raw.githubusercontent.com/junegunn/fzf-git.sh/28b544a7b6d284b8e46e227b36000089b45e9e00/fzf-git.sh"
+        "url": "https://raw.githubusercontent.com/junegunn/fzf-git.sh/c823ffd521cb4a3a65a5cf87f1b1104ef651c3de/fzf-git.sh"
       }
     },
     "gnome-shell": {
