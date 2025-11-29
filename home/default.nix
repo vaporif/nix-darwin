@@ -46,6 +46,7 @@
         gui.encoding = "utf-8";
         merge.conflictstyle = "diff3";
         init.defaultBranch = "main";
+        init.defaultRefFormat = "files";
         rebase.autosquash = true;
         rebase.autostash = true;
         commit.verbose = true;
