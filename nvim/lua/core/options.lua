@@ -31,6 +31,7 @@ opt.splitbelow = true
 -- File handling options
 opt.swapfile = false
 opt.undofile = true
+opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 -- Search options
 opt.ignorecase = true

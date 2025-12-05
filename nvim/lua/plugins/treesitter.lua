@@ -6,7 +6,9 @@ return { -- Highlight, edit, and navigate code
   opts = {
     ensure_installed = {
       'go',
+      'gowork',
       'helm',
+      'html',
       'json',
       'cairo',
       'gitignore',
@@ -19,6 +21,7 @@ return { -- Highlight, edit, and navigate code
       'markdown',
       'markdown_inline',
       'query',
+      'regex',
       'vim',
       'rust',
       'vimdoc',
