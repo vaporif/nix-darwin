@@ -132,6 +132,13 @@ vim.lsp.enable 'ruff'
 vim.lsp.config.just_ls = {}
 vim.lsp.enable 'just_ls'
 
+vim.lsp.config.solidity_ls_nomicfoundation = {
+  cmd = { 'nomicfoundation-solidity-language-server', '--stdio' },
+  filetypes = { 'solidity' },
+  root_markers = { 'hardhat.config.js', 'hardhat.config.ts', 'foundry.toml', 'remappings.txt', '.git' },
+}
+vim.lsp.enable 'solidity_ls_nomicfoundation'
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)

@@ -29,6 +29,46 @@ let
         -exec sed -i 's/\.collect::<Result<Box<_>, _>>()/.collect::<Result<Vec<_>, _>>().map(|v| v.into_boxed_slice())/g' {} \;
     '';
   };
+
+  nomicfoundation-solidity-language-server = pkgs.buildNpmPackage {
+    pname = "nomicfoundation-solidity-language-server";
+    version = "0.8.25";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "NomicFoundation";
+      repo = "hardhat-vscode";
+      rev = "v0.8.25";
+      hash = "sha256-DJm/qv5WMfjwLs8XBL2EfL11f5LR9MHfTT5eR2Ir37U=";
+    };
+
+    npmDepsHash = "sha256-bLP5kVpfRIvHPCutUvTz5MFal6g5fimzXGNdQEhB+Lw=";
+    npmWorkspace = "server";
+
+    postPatch = ''
+      # Remove test workspaces that try to run npm install during build
+      rm -rf test
+
+      # Patch bundle.js to not require analytics secrets
+      substituteInPlace server/scripts/bundle.js \
+        --replace-fail 'if (!value || value === "")' 'if (false)'
+    '';
+
+    nativeBuildInputs = with pkgs; [ pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [ clang_20 ];
+
+    buildInputs = [ pkgs.libsecret ];
+
+    postInstall = ''
+      # Remove dangling symlinks created by npm workspaces
+      find -L $out -type l -print -delete
+    '';
+
+    meta = {
+      description = "Language server for Solidity";
+      homepage = "https://github.com/NomicFoundation/hardhat-vscode/tree/development/server";
+      license = pkgs.lib.licenses.mit;
+      mainProgram = "nomicfoundation-solidity-language-server";
+    };
+  };
 in
 {
   home.packages = with pkgs; [
@@ -93,5 +133,6 @@ in
 
     tidal-script
     unclog
+    nomicfoundation-solidity-language-server
   ];
 }
