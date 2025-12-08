@@ -53,7 +53,9 @@ let
         --replace-fail 'if (!value || value === "")' 'if (false)'
     '';
 
-    nativeBuildInputs = with pkgs; [ pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [ clang_20 ];
+    nativeBuildInputs = with pkgs; [ pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+      (if pkgs.stdenv.hostPlatform.isAarch64 then clang_20 else llvmPackages_17.clang)
+    ];
 
     buildInputs = [ pkgs.libsecret ];
 
