@@ -84,7 +84,7 @@
 
   home.file = {
     ".envrc".text = ''
-        use flake github:vaporif/nix-devshells/a3d421e95dbdb4ee3c7b8c595fe60b2bea883dbd
+        use flake github:vaporif/nix-devshells/ebd3bbdde917db4cba86c322235d68ce6f0c9d5d
     '';
     ".ssh/config" = {
       source = ../.ssh/config;
