@@ -44,6 +44,7 @@
     {
       darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
         inherit system;
+        specialArgs = { inherit mcp-servers-nix; };
         modules = [
           {
             nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [

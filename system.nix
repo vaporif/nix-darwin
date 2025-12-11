@@ -1,4 +1,23 @@
-{ pkgs, ... }: {
+{ pkgs, mcp-servers-nix, ... }:
+let
+  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs {
+    programs = {
+      filesystem = {
+        enable = true;
+        args = [ "/Users/vaporif/Documents" ];
+      };
+      git.enable = true;
+      sequential-thinking.enable = true;
+      time = {
+        enable = true;
+        args = [ "--local-timezone" "Europe/Lisbon" ];
+      };
+      context7.enable = true;
+      memory.enable = true;
+    };
+  };
+in
+{
   stylix = {
     enable = true;
     base16Scheme = {
@@ -144,6 +163,10 @@
   system.activationScripts.postActivation.text = ''
     echo "Installing/updating LibreWolf..."
     /bin/bash /etc/nix-darwin/scripts/install-librewolf.sh
+
+    echo "Setting up Claude Code managed MCP config..."
+    mkdir -p "/Library/Application Support/ClaudeCode"
+    cp ${mcpServersConfig} "/Library/Application Support/ClaudeCode/managed-mcp.json"
   '';
 
   homebrew = {

@@ -119,6 +119,7 @@
         cat = "bat";
         e = "nvim";
         x = "exit";
+        mcp-scan = "uvx mcp-scan@latest";
       };
       initContent = ''
         ulimit -Sn 4096
