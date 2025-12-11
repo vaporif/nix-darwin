@@ -8,7 +8,6 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
--- Return plain table for Stylix to merge
 return {
   front_end = 'WebGpu',
   max_fps = 120,
