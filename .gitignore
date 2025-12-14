@@ -1,0 +1,4 @@
+# Override global ignores - track these in this repo
+!.serena
+!.claude
+!CLAUDE.md
