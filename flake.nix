@@ -41,64 +41,63 @@
       pkgs = nixpkgs.legacyPackages.${system};
       fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
 
-      mcpPrograms = {
-        filesystem = {
-          enable = true;
-          args = [ "/Users/vaporif/Documents" ];
-        };
-        git.enable = true;
-        sequential-thinking.enable = true;
-        time = {
-          enable = true;
-          args = [ "--local-timezone" "Europe/Lisbon" ];
-        };
-        context7.enable = true;
-        memory.enable = true;
-        serena = {
-          enable = true;
-          extraPackages = with pkgs; [
-            rust-analyzer
-            gopls
-            nixd
-            typescript-language-server
-            basedpyright
-            lua-language-server
-          ];
-        };
-        github = {
-          enable = true;
-          passwordCommand = {
-            GITHUB_PERSONAL_ACCESS_TOKEN = [
-              (pkgs.lib.getExe pkgs.gh)
-              "auth"
-              "token"
+      mcpConfig = {
+        programs = {
+          filesystem = {
+            enable = true;
+            args = [ "/Users/vaporif/Documents" ];
+          };
+          git.enable = true;
+          sequential-thinking.enable = true;
+          time = {
+            enable = true;
+            args = [ "--local-timezone" "Europe/Lisbon" ];
+          };
+          context7.enable = true;
+          memory.enable = true;
+          serena = {
+            enable = true;
+            extraPackages = with pkgs; [
+              rust-analyzer
+              gopls
+              nixd
+              typescript-language-server
+              basedpyright
+              lua-language-server
             ];
           };
+          github = {
+            enable = true;
+            passwordCommand = {
+              GITHUB_PERSONAL_ACCESS_TOKEN = [
+                (pkgs.lib.getExe pkgs.gh)
+                "auth"
+                "token"
+              ];
+            };
+          };
+          # youtube = {
+          #   enable = true;
+          #   passwordCommand = {
+          #     YOUTUBE_API_KEY = [
+          #       "cat"
+          #       "/run/secrets/youtube-key"
+          #     ];
+          #   };
+          # };
         };
-        # tavily = {
-        #   enable = true;
-        #   passwordCommand = {
-        #     TAVILY_API_KEY = [
-        #       "cat"
-        #       "/run/secrets/tavily-key"
-        #     ];
-        #   };
-        # };
-        # youtube = {
-        #   enable = true;
-        #   passwordCommand = {
-        #     YOUTUBE_API_KEY = [
-        #       "cat"
-        #       "/run/secrets/youtube-key"
-        #     ];
-        #   };
-        # };
+        settings.servers.tavily = {
+          command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
+            export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
+            exec ${pkgs.lib.getExe' pkgs.nodejs "npx"} -y tavily-mcp@0.2.10
+          ''}";
+        };
       };
     in
     {
       darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = { inherit mcp-servers-nix mcpPrograms; };
+        specialArgs = { inherit mcp-servers-nix mcpConfig; };
         modules = [
           {
             nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
@@ -120,7 +119,7 @@
               useUserPackages = true;
               extraSpecialArgs = {
                 inherit fzf-git-sh-package yamb-yazi vim-tidal;
-                inherit mcp-servers-nix mcp-nixos-package mcpPrograms;
+                inherit mcp-servers-nix mcp-nixos-package mcpConfig;
               };
               users.vaporif = import ./home;
               backupFileExtension = "backup";

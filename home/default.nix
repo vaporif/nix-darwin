@@ -1,8 +1,6 @@
-{ pkgs, config, lib, yamb-yazi, mcp-servers-nix, mcpPrograms, ... }:
+{ pkgs, config, lib, yamb-yazi, mcp-servers-nix, mcpConfig, ... }:
 let
-  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs {
-    programs = mcpPrograms;
-  };
+  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
 in
 {
   imports = [

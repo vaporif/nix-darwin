@@ -1,8 +1,6 @@
-{ pkgs, mcp-servers-nix, mcpPrograms, ... }:
+{ pkgs, mcp-servers-nix, mcpConfig, ... }:
 let
-  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs {
-    programs = mcpPrograms;
-  };
+  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
 in
 {
   stylix = {
