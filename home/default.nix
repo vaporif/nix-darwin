@@ -1,7 +1,11 @@
-{ pkgs, yamb-yazi, ... }:
+{ pkgs, config, lib, yamb-yazi, mcp-servers-nix, mcpPrograms, ... }:
+let
+  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs {
+    programs = mcpPrograms;
+  };
+in
 {
   imports = [
-    ./mcp-servers.nix
     ./packages.nix
     ./shell.nix
   ];
@@ -93,6 +97,9 @@
     ".librewolf/librewolf.overrides.cfg" = {
       source = ../librewolf/librewolf.overrides.cfg;
     };
+    "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
+  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    "Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
   };
 
   # XDG configuration files
