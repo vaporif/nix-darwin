@@ -1,55 +1,8 @@
-{ pkgs, config, lib, mcp-servers-nix, ... }:
+{ pkgs, config, lib, mcp-servers-nix, mcpPrograms, ... }:
 let
-  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs
-    {
-      programs = {
-        filesystem = {
-          enable = true;
-          args = [
-            "${config.home.homeDirectory}/Documents"
-          ];
-        };
-        git.enable = true;
-        sequential-thinking.enable = true;
-        time = {
-          enable = true;
-          args = [
-            "--local-timezone"
-            "Europe/Lisbon"
-          ];
-        };
-        context7.enable = true;
-        memory.enable = true;
-        # github = {
-        #   enable = true;
-        #   passwordCommand = {
-        #     GITHUB_PERSONAL_ACCESS_TOKEN = [
-        #       (pkgs.lib.getExe config.programs.gh.package)
-        #       "auth"
-        #       "token"
-        #     ];
-        #   };
-        # };
-        # tavily = {
-        #   enable = true;
-        #   passwordCommand = {
-        #     TAVILY_API_KEY = [
-        #       "cat"
-        #       "/run/secrets/tavily-key"
-        #     ];
-        #   };
-        # };
-        # youtube = {
-        #   enable = true;
-        #   passwordCommand = {
-        #     YOUTUBE_API_KEY = [
-        #       "cat"
-        #       "/run/secrets/youtube-key"
-        #     ];
-        #   };
-        # };
-      };
-    };
+  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs {
+    programs = mcpPrograms;
+  };
 in
 {
   home.file = {

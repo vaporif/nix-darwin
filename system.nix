@@ -1,20 +1,7 @@
-{ pkgs, mcp-servers-nix, ... }:
+{ pkgs, mcp-servers-nix, mcpPrograms, ... }:
 let
   mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs {
-    programs = {
-      filesystem = {
-        enable = true;
-        args = [ "/Users/vaporif/Documents" ];
-      };
-      git.enable = true;
-      sequential-thinking.enable = true;
-      time = {
-        enable = true;
-        args = [ "--local-timezone" "Europe/Lisbon" ];
-      };
-      context7.enable = true;
-      memory.enable = true;
-    };
+    programs = mcpPrograms;
   };
 in
 {

@@ -26,6 +26,7 @@
 
     git = {
       enable = true;
+      ignores = [ ".serena" ".claude" "CLAUDE.md" ];
       settings = {
         user = {
           name = "Dmytro Onypko";
