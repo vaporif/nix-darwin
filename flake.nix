@@ -86,11 +86,16 @@
           #   };
           # };
         };
-        settings.servers.tavily = {
-          command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
-            export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
-            exec ${pkgs.lib.getExe' pkgs.nodejs "npx"} -y tavily-mcp@0.2.10
-          ''}";
+        settings.servers = {
+          tavily = {
+            command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
+              export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
+              exec ${mcp-servers-nix.packages.${system}.tavily-mcp}/bin/tavily-mcp
+            ''}";
+          };
+          nixos = {
+            command = "${mcp-nixos-package}/bin/mcp-nixos";
+          };
         };
       };
     in

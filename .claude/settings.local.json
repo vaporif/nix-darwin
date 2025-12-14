@@ -35,7 +35,8 @@
       "mcp__serena__write_memory",
       "mcp__serena__get_current_config",
       "mcp__serena__get_symbols_overview",
-      "mcp__serena__create_text_file"
+      "mcp__serena__create_text_file",
+      "mcp__tavily__tavily-search"
     ],
     "deny": [],
     "ask": []
