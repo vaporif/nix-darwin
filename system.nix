@@ -111,7 +111,7 @@ in
       AppleShowAllFiles = true;
     };
     screencapture.location = "~/screenshots";
-    screensaver.askForPasswordDelay = 10;
+    screensaver.askForPasswordDelay = 0;
   };
   system.defaults.dock.autohide-delay = 0.2;
   system.defaults.NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
