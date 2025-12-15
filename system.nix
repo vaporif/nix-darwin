@@ -76,6 +76,12 @@ in
     mode = "0400";
   };
 
+  sops.secrets.deepl-key = {
+    owner = "vaporif";
+    group = "staff";
+    mode = "0400";
+  };
+
   nix.settings = {
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;

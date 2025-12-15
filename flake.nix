@@ -16,7 +16,7 @@
     };
     mcp-nixos.url = "github:utensils/mcp-nixos";
     mcp-servers-nix = {
-      url = "github:natsukium/mcp-servers-nix";
+      url = "github:vaporif/mcp-servers-nix/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fzf-git-sh = {
@@ -74,6 +74,12 @@
                 "auth"
                 "token"
               ];
+            };
+          };
+          deepl = {
+            enable = true;
+            passwordCommand = {
+              DEEPL_API_KEY = [ "cat" "/run/secrets/deepl-key" ];
             };
           };
           # youtube = {

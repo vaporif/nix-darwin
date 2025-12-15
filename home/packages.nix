@@ -99,6 +99,7 @@ in
     just
     k9s
     btop
+    sops
 
     (haskellPackages.ghcWithPackages (pkgs: with pkgs; [
       tidal
