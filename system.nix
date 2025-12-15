@@ -117,6 +117,14 @@ in
   system.defaults.NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
   system.defaults.NSGlobalDomain.AppleShowAllFiles = true;
   system.defaults.NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
+  networking.applicationFirewall = {
+    enable = true;
+    enableStealthMode = true;
+    blockAllIncoming = false;
+    allowSigned = true;
+    allowSignedApp = false;
+  };
+
   services = {
     skhd = {
       enable = true;
@@ -135,6 +143,9 @@ in
     openssh.enable = false;
   };
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=1
+  '';
 
   system.defaults.finder = {
     NewWindowTarget = "Home";
@@ -149,6 +160,18 @@ in
   system.defaults.menuExtraClock = {
     Show24Hour = true;
     ShowDayOfMonth = true;
+  };
+
+  system.defaults.CustomUserPreferences = {
+    "com.apple.remoteappleevents" = {
+      enabled = false;
+    };
+    "com.apple.assistant.support" = {
+      "Siri Data Sharing Opt-In Status" = 0;
+    };
+    "com.apple.AdLib" = {
+      allowApplePersonalizedAdvertising = false;
+    };
   };
 
   system.activationScripts.postActivation.text = ''

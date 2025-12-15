@@ -37,7 +37,9 @@
       "mcp__serena__get_symbols_overview",
       "mcp__serena__create_text_file",
       "mcp__tavily__tavily-search",
-      "mcp__github__get_file_contents"
+      "mcp__github__get_file_contents",
+      "mcp__nixos__darwin_search",
+      "mcp__nixos__darwin_options_by_prefix"
     ],
     "deny": [],
     "ask": []
