@@ -172,7 +172,22 @@ in
     "com.apple.AdLib" = {
       allowApplePersonalizedAdvertising = false;
     };
+    "com.apple.CrashReporter" = {
+      DialogType = "none";
+    };
+    NSGlobalDomain = {
+      NSDocumentSaveNewDocumentsToCloud = false;
+    };
+    # Secure keyboard entry - prevents keyloggers from capturing terminal input
+    "com.apple.Terminal" = {
+      SecureKeyboardEntry = true;
+    };
   };
+
+  # Stricter umask - new files only readable by owner
+  system.activationScripts.umask.text = ''
+    launchctl config user umask 077
+  '';
 
   system.activationScripts.postActivation.text = ''
     echo "Installing/updating LibreWolf..."

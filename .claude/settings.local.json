@@ -39,7 +39,9 @@
       "mcp__tavily__tavily-search",
       "mcp__github__get_file_contents",
       "mcp__nixos__darwin_search",
-      "mcp__nixos__darwin_options_by_prefix"
+      "mcp__nixos__darwin_options_by_prefix",
+      "mcp__tavily__tavily-extract",
+      "mcp__github__search_issues"
     ],
     "deny": [],
     "ask": []
