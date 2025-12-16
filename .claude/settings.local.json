@@ -41,7 +41,8 @@
       "mcp__nixos__darwin_search",
       "mcp__nixos__darwin_options_by_prefix",
       "mcp__tavily__tavily-extract",
-      "mcp__github__search_issues"
+      "mcp__github__search_issues",
+      "Bash(/nix/store/5pm29jvsk94cid44iw7wnjqjpj7zymkx-serena-0.1.4-unstable-2025-12-12/bin/serena start-mcp-server:*)"
     ],
     "deny": [],
     "ask": []
