@@ -5,12 +5,19 @@
 
 set -e
 
+# Ensure Nix paths are available (for gpg, curl, etc.)
+export PATH="/etc/profiles/per-user/vaporif/bin:/run/current-system/sw/bin:$PATH"
+
 # Configuration
 PROJECT_ID="44042130"
 GITLAB_API="https://gitlab.com/api/v4"
 TEMP_DIR="/tmp/librewolf-install"
 APP_NAME="LibreWolf.app"
 INSTALL_PATH="/Applications"
+
+# GPG verification
+LIBREWOLF_GPG_KEY="40339DD82B12EF16"
+GPG_KEY_URL="https://repo.librewolf.net/pubkey.gpg"
 
 # Function to get latest version
 get_latest_version() {
@@ -70,6 +77,26 @@ install_librewolf() {
 
     # Download DMG
     curl -L -o "${TEMP_DIR}/librewolf.dmg" "$DMG_URL"
+
+    # Download signature file
+    SIG_URL="${GITLAB_API}/projects/${PROJECT_ID}/packages/generic/librewolf/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg.sig"
+    echo "Downloading GPG signature..."
+    curl -L -o "${TEMP_DIR}/librewolf.dmg.sig" "$SIG_URL"
+
+    # Import LibreWolf GPG key if not already present
+    if ! gpg --list-keys "$LIBREWOLF_GPG_KEY" &>/dev/null; then
+        echo "Importing LibreWolf GPG key..."
+        curl -sL "$GPG_KEY_URL" | gpg --import
+    fi
+
+    # Verify GPG signature
+    echo "Verifying GPG signature..."
+    if ! gpg --verify "${TEMP_DIR}/librewolf.dmg.sig" "${TEMP_DIR}/librewolf.dmg" 2>&1 | grep -q "Good signature"; then
+        echo "ERROR: GPG signature verification failed!"
+        rm -rf "$TEMP_DIR"
+        exit 1
+    fi
+    echo "GPG signature verified."
 
     # Mount DMG
     echo "Mounting DMG..."
