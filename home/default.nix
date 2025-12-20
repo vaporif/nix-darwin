@@ -1,6 +1,65 @@
-{ pkgs, config, lib, yamb-yazi, mcp-servers-nix, mcpConfig, ... }:
+{ pkgs, config, lib, yamb-yazi, mcp-servers-nix, mcpConfig, claude-code-plugins, ... }:
 let
   mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
+
+  # Claude Code settings with plugins enabled (preserving existing settings)
+  claudeSettings = {
+    "$schema" = "https://json.schemastore.org/claude-code-settings.json";
+    alwaysThinkingEnabled = true;
+    enabledPlugins = {
+      "feature-dev@nix-plugins" = true;
+      "ralph-wiggum@nix-plugins" = true;
+      "code-review@nix-plugins" = true;
+    };
+  };
+
+  # Marketplace manifest for our Nix-managed plugins
+  nixPluginsMarketplace = builtins.toJSON {
+    "$schema" = "https://anthropic.com/claude-code/marketplace.schema.json";
+    name = "nix-plugins";
+    description = "Nix-managed Claude Code plugins";
+    owner = {
+      name = "nix";
+      email = "nix@localhost";
+    };
+    plugins = [
+      {
+        name = "feature-dev";
+        description = "Comprehensive feature development workflow";
+        source = "./feature-dev";
+      }
+      {
+        name = "ralph-wiggum";
+        description = "Iterative development loops";
+        source = "./ralph-wiggum";
+      }
+      {
+        name = "code-review";
+        description = "Multi-agent PR code review";
+        source = "./code-review";
+      }
+    ];
+  };
+
+  # Register marketplaces (preserving claude-plugins-official + adding nix-plugins)
+  knownMarketplaces = builtins.toJSON {
+    "claude-plugins-official" = {
+      source = {
+        source = "github";
+        repo = "anthropics/claude-plugins-official";
+      };
+      installLocation = "${config.home.homeDirectory}/.claude/plugins/marketplaces/claude-plugins-official";
+      lastUpdated = "2025-01-01T00:00:00.000Z";
+    };
+    "nix-plugins" = {
+      source = {
+        source = "directory";
+        path = "${config.home.homeDirectory}/.claude/plugins/marketplaces/nix-plugins";
+      };
+      installLocation = "${config.home.homeDirectory}/.claude/plugins/marketplaces/nix-plugins";
+      lastUpdated = "2025-01-01T00:00:00.000Z";
+    };
+  };
 in
 {
   imports = [
@@ -96,6 +155,16 @@ in
       source = ../librewolf/librewolf.overrides.cfg;
     };
     "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
+
+    # Claude Code plugins - create a local marketplace structure
+    ".claude/plugins/marketplaces/nix-plugins/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
+    ".claude/plugins/marketplaces/nix-plugins/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
+    ".claude/plugins/marketplaces/nix-plugins/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
+    ".claude/plugins/marketplaces/nix-plugins/code-review".source = "${claude-code-plugins}/plugins/code-review";
+
+    # Claude Code settings with plugins enabled
+    ".claude/settings.json".text = builtins.toJSON claudeSettings;
+    ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
   } // lib.optionalAttrs pkgs.stdenv.isDarwin {
     "Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
   };

@@ -31,9 +31,13 @@
       url = "github:tidalcycles/vim-tidal";
       flake = false;
     };
+    claude-code-plugins = {
+      url = "github:anthropics/claude-code";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, vim-tidal, mcp-servers-nix, stylix, ... }:
+  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, vim-tidal, mcp-servers-nix, stylix, claude-code-plugins, ... }:
     let
       system = "aarch64-darwin";
 
@@ -130,7 +134,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
-                inherit fzf-git-sh-package yamb-yazi vim-tidal;
+                inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
                 inherit mcp-servers-nix mcp-nixos-package mcpConfig;
               };
               users.vaporif = import ./home;
