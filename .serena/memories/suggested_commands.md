@@ -12,7 +12,7 @@
 | Alias | Command | Description |
 |-------|---------|-------------|
 | `a` | `claude` | Claude Code CLI |
-| `lg` / `g` | `lazygit` | Git TUI |
+| `g` | `lazygit` | Git TUI |
 | `e` | `nvim` | Neovim editor |
 | `t` | `yy` | Yazi file manager |
 | `ls` | `eza -a` | Enhanced ls |

@@ -45,7 +45,9 @@
       "Bash(/nix/store/5pm29jvsk94cid44iw7wnjqjpj7zymkx-serena-0.1.4-unstable-2025-12-12/bin/serena start-mcp-server:*)",
       "mcp__filesystem__list_directory",
       "Bash(xargs:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

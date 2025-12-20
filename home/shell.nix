@@ -112,7 +112,6 @@
       syntaxHighlighting.enable = true;
       shellAliases = {
         t = "yy";
-        lg = "lazygit";
         g = "lazygit";
         a = "claude";
         ls = "eza -a";

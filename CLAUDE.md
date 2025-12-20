@@ -16,7 +16,7 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 
 ### Shell Aliases
 - `ai` - Claude Code CLI
-- `lg` - Lazygit for Git operations
+- `g` - Lazygit for Git operations
 - `e` - Neovim editor
 - `t` - Yazi file manager (alias for `yy`)
 - `ls` - Enhanced ls with eza (shows hidden files)

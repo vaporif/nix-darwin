@@ -86,7 +86,6 @@ in
     cargo-info
     rusty-man
 
-    ncspot
     wiki-tui
     yt-dlp
 
@@ -109,15 +108,12 @@ in
 
     ueberzugpp
     imagemagick
-    viu
-    chafa
     tdf
 
     ghostscript
     wget
     delta
     tldr
-    bottom
     hyperfine
     pango
     gnupg
@@ -127,7 +123,6 @@ in
     bun
     uv
     ruff
-    glances
 
     claude-code
     mcp-nixos-package
