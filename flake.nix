@@ -57,7 +57,7 @@
           memory.enable = true;
           serena = {
             enable = true;
-            enableWebDashboard = false;
+            enableWebDashboard = true;
             extraPackages = with pkgs; [
               rust-analyzer
               gopls
