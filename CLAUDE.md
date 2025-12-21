@@ -15,36 +15,41 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 - `nix flake show` - Display available outputs from the flake
 
 ### Shell Aliases
-- `ai` - Claude Code CLI
+- `a` - Claude Code CLI
 - `g` - Lazygit for Git operations
 - `e` - Neovim editor
 - `t` - Yazi file manager (alias for `yy`)
+- `x` - Exit shell
 - `ls` - Enhanced ls with eza (shows hidden files)
 - `cat` - Syntax-highlighted cat with bat
-- `ghc` / `ghm` - GitHub PR shortcuts (provided by external devshell)
+- `mcp-scan` - Run MCP security scanner
 
 ### System-wide Application Shortcuts (skhd)
 - `cmd + 1` - Librewolf browser
-- `cmd + 2` - Kitty terminal
+- `cmd + 2` - WezTerm terminal
 - `cmd + 3` - Claude app
-- `cmd + 4-9` - WhatsApp, Slack, Activity Monitor, Ableton, Telegram, Spotify
+- `cmd + 4` - WhatsApp
+- `cmd + 5` - Slack
+- `cmd + 6` - Brave Browser
+- `cmd + 7` - Ableton Live 12 Suite
+- `cmd + 8` - Signal
+- `cmd + 9` - Spotify
 
 ## Architecture
 
 ### Configuration Flow
 The configuration follows a hierarchical module system:
-1. `flake.nix` → Entry point defining inputs and instantiating configurations
+1. `flake.nix` → Entry point defining inputs, MCP server config, and instantiating configurations
 2. `system.nix` → System-level Darwin settings (imported by flake)
 3. `home/default.nix` → User-level home-manager configuration (imported by flake)
 4. `home/*.nix` → Modular home configuration files (imported by home/default.nix)
 
 ### Core Configuration Files
-- `flake.nix` - Main entry point defining inputs (nixpkgs, home-manager, stylix, sops-nix, mcp-servers) and system configuration
+- `flake.nix` - Main entry point defining inputs (nixpkgs, home-manager, stylix, sops-nix, mcp-servers-nix), MCP server configuration, and system modules
 - `system.nix` - System-level settings: Homebrew packages, fonts, system preferences, launchd agents, skhd shortcuts
-- `home/default.nix` - Main home configuration that imports all modular components
+- `home/default.nix` - Main home configuration that imports modules and configures Claude Code plugins
 - `home/shell.nix` - Shell environment (zsh, aliases, prompt, completions)
 - `home/packages.nix` - User-installed packages and development tools
-- `home/mcp-servers.nix` - MCP (Model Context Protocol) server configurations for AI integrations
 
 ### Key Directories
 - `/nvim/` - Neovim configuration with 30+ plugins, LSP settings, custom keybindings, and lazy-lock.json for reproducibility
@@ -53,11 +58,14 @@ The configuration follows a hierarchical module system:
 - `/wezterm/` - Terminal emulator with tmux-like keybindings
 - `/yazi/` - File manager configuration with yamb bookmarks plugin
 - `/scripts/` - Custom scripts including LibreWolf auto-updater
+- `/librewolf/` - LibreWolf browser configuration overrides
+- `/ncspot/` - Spotify terminal client configuration
+- `/tidal/` - TidalCycles live coding configuration
+- `/.claude/` - Claude Code settings and permissions
 
 ### External Dependencies
-- Rust devshell from `github:vaporif/nix-devshells` (provides additional development tools via ~/.envrc)
-- MCP servers for AI capabilities (filesystem, git, youtube, search, memory, etc.)
-- Nixpkgs overlay for package fixes (e.g., Tectonic version pinning)
+- Rust devshell from `github:vaporif/nix-devshells` (pinned commit, provides additional development tools via ~/.envrc)
+- MCP servers for AI capabilities configured inline in flake.nix
 
 ## Important Configuration Details
 
@@ -73,29 +81,41 @@ Uses Stylix for consistent theming across all applications with custom Everfores
 ### Development Environment
 - Primary shell: Zsh with extensive configuration
 - Package managers: Nix (primary), Homebrew (for casks and specific tools)
-- Language servers: nixd, typescript-language-server, basedpyright, ruff, lua-language-server, haskell-language-server, just-lsp
+- Language servers (neovim): lua-language-server, typescript-language-server, basedpyright, haskell-language-server, just-lsp, golangci-lint
+- Additional tools (packages): nixd, ruff
 - Development tools: bacon, cargo-info, rusty-man (Rust), uv (Python 3.12), bun (JavaScript)
 - System tools: dust, dua, mprocs, presenterm, tokei, hyperfine
 
 ### MCP Server Integrations
-The configuration includes extensive AI capabilities through MCP servers:
+The configuration includes extensive AI capabilities through MCP servers (configured in flake.nix):
 - **filesystem**: Access to ~/Documents
-- **youtube**: API integration for video operations
 - **git**: Git repository operations
-- **tavily**: Search API integration
-- **qdrant**: Vector database for embeddings
-- **memory**: Persistent AI memory
-- **github**: Repository operations
 - **sequential-thinking**: AI reasoning capabilities
+- **time**: Time operations (Europe/Lisbon timezone)
+- **context7**: Library documentation lookup
+- **memory**: Persistent AI memory
+- **serena**: Semantic code editing with LSP support (rust-analyzer, gopls, nixd, typescript-language-server, basedpyright, lua-language-server)
+- **github**: GitHub repository operations (uses `gh auth token`)
+- **deepl**: Translation API integration
+- **tavily**: Search API integration
+- **nixos**: NixOS/nix-darwin option search
+
+### Claude Code Plugins
+Nix-managed Claude Code plugins (configured in home/default.nix):
+- **feature-dev**: Comprehensive feature development workflow
+- **ralph-wiggum**: Iterative development loops
+- **code-review**: Multi-agent PR code review
+
+Plugins are sourced from `github:anthropics/claude-code` and enabled via settings.json.
 
 ### Security
 - Secrets managed via SOPS with age encryption (configured in `.sops.yaml`)
 - Age key location: `/Users/vaporif/.config/sops/age/key.txt`
-- Encrypted secrets: `/secrets/secrets.yaml` (includes API keys for OpenRouter, Tavily, YouTube)
+- Encrypted secrets: `/secrets/secrets.yaml` (includes API keys for OpenRouter, Tavily, YouTube, DeepL)
 - TouchID enabled for sudo authentication
 
 ### System Automation
-- LibreWolf browser auto-updates via custom script (`scripts/install-librewolf.sh`) and launchd agent
+- LibreWolf browser auto-updates via custom script (`scripts/install-librewolf.sh`) and activation script
 - Homebrew auto-update, upgrade, and cleanup on system activation
 - Direnv integration for project-specific environments
 
@@ -113,8 +133,6 @@ The configuration includes extensive AI capabilities through MCP servers:
 - Integration with Yazi file manager
 
 #### Package Version Management
-- Nixpkgs overlay fixing Tectonic compilation issues
-- Pinned nixpkgs-24.05 for specific packages
 - Unfree package allowlist (spacetimedb, claude-code)
 
 ## Testing Changes
@@ -142,6 +160,6 @@ For Neovim changes, restart Neovim to load new configurations.
 3. Restart shell or source new configuration
 
 ### Adding MCP Servers
-1. Edit `home/mcp-servers.nix`
+1. Edit `mcpConfig` in `flake.nix`
 2. Add server configuration following existing patterns
 3. Apply changes and restart Claude app
