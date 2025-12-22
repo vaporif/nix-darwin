@@ -109,6 +109,8 @@ in
       AppleShowAllExtensions = true;
       FXPreferredViewStyle = "clmv";
       AppleShowAllFiles = true;
+      NewWindowTarget = "Home";
+      ShowPathbar = true;
     };
     screencapture.location = "~/screenshots";
     screensaver.askForPasswordDelay = 0;
@@ -146,11 +148,6 @@ in
   security.sudo.extraConfig = ''
     Defaults timestamp_timeout=1
   '';
-
-  system.defaults.finder = {
-    NewWindowTarget = "Home";
-    ShowPathbar = true;
-  };
 
   system.defaults.loginwindow = {
     GuestEnabled = false;
