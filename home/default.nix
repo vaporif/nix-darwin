@@ -73,7 +73,13 @@ in {
     home-manager.enable = true;
 
     gh.enable = true;
-    lazygit.enable = true;
+    lazygit = {
+      enable = true;
+      settings = {
+        gui.nerdFontsVersion = "3";
+        git.pagers.diff = "delta --paging=never";
+      };
+    };
 
     wezterm = {
       enable = true;
