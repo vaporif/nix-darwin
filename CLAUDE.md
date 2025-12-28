@@ -90,7 +90,11 @@ Uses Stylix for consistent theming across all applications with custom Everfores
 - Media tools: yt-dlp, wiki-tui, mermaid-cli, tectonic
 
 ### MCP Server Integrations
-The configuration includes extensive AI capabilities through MCP servers (configured in flake.nix):
+The configuration includes extensive AI capabilities through MCP servers (configured in flake.nix).
+
+**Recommended for this repo:** Use Serena for semantic code navigation and editing. It provides symbol-level operations (find definitions, references, rename) that are more precise than text-based search. Configured LSPs relevant to this repo:
+- `nixd` for `.nix` files (flake, system, home-manager configs)
+- `lua-language-server` for Lua files (Neovim config in `/nvim/`, WezTerm config)
 - **filesystem**: Access to ~/Documents
 - **git**: Git repository operations
 - **sequential-thinking**: AI reasoning capabilities

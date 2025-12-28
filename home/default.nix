@@ -148,6 +148,8 @@ in
     ".envrc".text = ''
         use flake github:vaporif/nix-devshells/683da1d6207cb130c611db98933e82b4a43f7900
     '';
+    # Stable symlink to Neovim runtime for .luarc.json
+    ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
     ".ssh/config" = {
       source = ../.ssh/config;
     };
