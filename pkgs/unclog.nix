@@ -1,0 +1,22 @@
+{pkgs}:
+pkgs.rustPlatform.buildRustPackage rec {
+  pname = "unclog";
+  version = "0.7.3";
+
+  src = pkgs.fetchFromGitHub {
+    owner = "informalsystems";
+    repo = "unclog";
+    rev = "v${version}";
+    hash = "sha256-UebNRzPEhMPwbzlRIvrKl5sdjbwyo6nA6fJQeqM0I6g=";
+  };
+
+  cargoHash = "sha256-sHYdDhfkxDazKQjhho3q+dN2ylbPeSeBPJai1lgDeRk=";
+  nativeBuildInputs = [pkgs.pkg-config];
+  buildInputs = [pkgs.openssl];
+
+  # Patch to fix time crate Rust 1.80+ compatibility
+  postPatch = ''
+    find $cargoDepsCopy -name "mod.rs" -path "*time-*/format_description/parse/*" \
+      -exec sed -i 's/\.collect::<Result<Box<_>, _>>()/.collect::<Result<Vec<_>, _>>().map(|v| v.into_boxed_slice())/g' {} \;
+  '';
+}

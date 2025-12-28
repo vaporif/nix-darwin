@@ -15,24 +15,7 @@
     '';
   };
 
-  unclog = pkgs.rustPlatform.buildRustPackage rec {
-    pname = "unclog";
-    version = "0.7.3";
-    src = pkgs.fetchFromGitHub {
-      owner = "informalsystems";
-      repo = "unclog";
-      rev = "v${version}";
-      hash = "sha256-UebNRzPEhMPwbzlRIvrKl5sdjbwyo6nA6fJQeqM0I6g=";
-    };
-    cargoHash = "sha256-sHYdDhfkxDazKQjhho3q+dN2ylbPeSeBPJai1lgDeRk=";
-    nativeBuildInputs = [pkgs.pkg-config];
-    buildInputs = [pkgs.openssl];
-    # Patch to fix time crate Rust 1.80+ compatibility
-    postPatch = ''
-      find $cargoDepsCopy -name "mod.rs" -path "*time-*/format_description/parse/*" \
-        -exec sed -i 's/\.collect::<Result<Box<_>, _>>()/.collect::<Result<Vec<_>, _>>().map(|v| v.into_boxed_slice())/g' {} \;
-    '';
-  };
+  unclog = import ../pkgs/unclog.nix {inherit pkgs;};
 
   # Auto-formatter for Claude Code hooks
   claudeFormatter = pkgs.writeShellScriptBin "claude-formatter" ''
@@ -46,53 +29,7 @@
     esac
   '';
 
-  nomicfoundation-solidity-language-server = pkgs.buildNpmPackage {
-    pname = "nomicfoundation-solidity-language-server";
-    version = "0.8.25";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "NomicFoundation";
-      repo = "hardhat-vscode";
-      rev = "v0.8.25";
-      hash = "sha256-DJm/qv5WMfjwLs8XBL2EfL11f5LR9MHfTT5eR2Ir37U=";
-    };
-
-    npmDepsHash = "sha256-bLP5kVpfRIvHPCutUvTz5MFal6g5fimzXGNdQEhB+Lw=";
-    npmWorkspace = "server";
-
-    postPatch = ''
-      # Remove test workspaces that try to run npm install during build
-      rm -rf test
-
-      # Patch bundle.js to not require analytics secrets
-      substituteInPlace server/scripts/bundle.js \
-        --replace-fail 'if (!value || value === "")' 'if (false)'
-    '';
-
-    nativeBuildInputs = with pkgs;
-      [pkg-config]
-      ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-        (
-          if pkgs.stdenv.hostPlatform.isAarch64
-          then clang_20
-          else llvmPackages_17.clang
-        )
-      ];
-
-    buildInputs = [pkgs.libsecret];
-
-    postInstall = ''
-      # Remove dangling symlinks created by npm workspaces
-      find -L $out -type l -print -delete
-    '';
-
-    meta = {
-      description = "Language server for Solidity";
-      homepage = "https://github.com/NomicFoundation/hardhat-vscode/tree/development/server";
-      license = pkgs.lib.licenses.mit;
-      mainProgram = "nomicfoundation-solidity-language-server";
-    };
-  };
+  nomicfoundation-solidity-language-server = import ../pkgs/nomicfoundation-solidity-language-server.nix {inherit pkgs;};
 in {
   home.packages = with pkgs; [
     nixd
