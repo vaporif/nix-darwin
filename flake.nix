@@ -45,6 +45,17 @@
       pkgs = nixpkgs.legacyPackages.${system};
       fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
 
+      # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
+      serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (old: {
+        version = "0.1.4-unstable-2025-12-28";
+        src = pkgs.fetchFromGitHub {
+          owner = "vaporif";
+          repo = "serena";
+          rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
+          hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
+        };
+      });
+
       mcpConfig = {
         programs = {
           filesystem = {
@@ -61,6 +72,7 @@
           memory.enable = true;
           serena = {
             enable = true;
+            package = serenaPatched;
             enableWebDashboard = true;
             extraPackages = with pkgs; [
               rust-analyzer
