@@ -72,12 +72,29 @@ in {
   programs = {
     home-manager.enable = true;
 
-    gh.enable = true;
+    gh = {
+      enable = true;
+      extensions = [pkgs.gh-dash];
+      settings.aliases = {
+        co = "pr checkout";
+        pv = "pr view --web";
+        pl = "pr list";
+        ps = "pr status";
+        pm = "pr merge";
+        d = "dash";
+      };
+    };
     lazygit = {
       enable = true;
       settings = {
         gui.nerdFontsVersion = "3";
-        git.pagers.diff = "delta --paging=never";
+        git.pagers = [
+          {
+            applyToPager = "diff";
+            pager = "delta --paging=never";
+            colorArg = "always";
+          }
+        ];
       };
     };
 
@@ -114,13 +131,14 @@ in {
         rebase.autosquash = true;
         rebase.autostash = true;
         commit.verbose = true;
-        diff.colorMoved = true;
+        diff.external = "difft";
         diff.algorithm = "histogram";
         feature.experimental = true;
         help.autocorrect = "prompt";
         branch.sort = "committerdate";
         interactive.diffFilter = "delta --color-only";
         delta.navigate = true;
+        delta.syntax-theme = "gruvbox-light";
       };
       signing = {
         key = "AE206889199EC9E9";
