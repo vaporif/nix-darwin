@@ -77,6 +77,7 @@
             "/private/etc/nix-darwin"
             "/Users/vaporif/.cargo"
             "/Users/vaporif/go"
+            "/nix/store"
           ];
         };
         git.enable = true;
