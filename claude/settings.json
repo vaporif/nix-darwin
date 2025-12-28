@@ -100,7 +100,13 @@
       "Edit(/Users/vaporif/Library/Application Support/AddressBook/**)",
       "Read(/Users/vaporif/Library/Application Support/obsidian/**)",
       "Write(/Users/vaporif/Library/Application Support/obsidian/**)",
-      "Edit(/Users/vaporif/Library/Application Support/obsidian/**)"
+      "Edit(/Users/vaporif/Library/Application Support/obsidian/**)",
+      "Read(/Users/vaporif/.local/share/atuin/**)",
+      "Write(/Users/vaporif/.local/share/atuin/**)",
+      "Edit(/Users/vaporif/.local/share/atuin/**)",
+      "Read(/Users/vaporif/.zsh_history)",
+      "Write(/Users/vaporif/.zsh_history)",
+      "Edit(/Users/vaporif/.zsh_history)"
     ],
     "allow": [
       "mcp__filesystem__read_file",
