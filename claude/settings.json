@@ -85,7 +85,22 @@
       "Edit(/Users/vaporif/Library/Containers/com.apple.Notes/**)",
       "Read(/Users/vaporif/Library/Application Support/discord/**)",
       "Write(/Users/vaporif/Library/Application Support/discord/**)",
-      "Edit(/Users/vaporif/Library/Application Support/discord/**)"
+      "Edit(/Users/vaporif/Library/Application Support/discord/**)",
+      "Read(/Users/vaporif/Library/Messages/**)",
+      "Write(/Users/vaporif/Library/Messages/**)",
+      "Edit(/Users/vaporif/Library/Messages/**)",
+      "Read(/Users/vaporif/Library/Mail/**)",
+      "Write(/Users/vaporif/Library/Mail/**)",
+      "Edit(/Users/vaporif/Library/Mail/**)",
+      "Read(/Users/vaporif/Library/Calendars/**)",
+      "Write(/Users/vaporif/Library/Calendars/**)",
+      "Edit(/Users/vaporif/Library/Calendars/**)",
+      "Read(/Users/vaporif/Library/Application Support/AddressBook/**)",
+      "Write(/Users/vaporif/Library/Application Support/AddressBook/**)",
+      "Edit(/Users/vaporif/Library/Application Support/AddressBook/**)",
+      "Read(/Users/vaporif/Library/Application Support/obsidian/**)",
+      "Write(/Users/vaporif/Library/Application Support/obsidian/**)",
+      "Edit(/Users/vaporif/Library/Application Support/obsidian/**)"
     ],
     "allow": [
       "mcp__filesystem__read_file",
