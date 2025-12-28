@@ -172,7 +172,6 @@ in
   # XDG configuration files
   xdg.configFile.nvim.source = ../nvim;
   xdg.configFile."karabiner/karabiner.json".source = ../karabiner/karabiner.json;
-  xdg.configFile."ncspot/config.toml".source = ../ncspot/config.toml;
   xdg.configFile."yazi/init.lua".source = ../yazi/init.lua;
   xdg.configFile."yazi/keymap.toml".source = ../yazi/keymap.toml;
   xdg.configFile."yazi/plugins/yamb.yazi/" = {

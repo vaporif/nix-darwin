@@ -59,7 +59,6 @@ The configuration follows a hierarchical module system:
 - `/yazi/` - File manager configuration with yamb bookmarks plugin
 - `/scripts/` - Custom scripts including LibreWolf auto-updater
 - `/librewolf/` - LibreWolf browser configuration overrides
-- `/ncspot/` - Spotify terminal client configuration
 - `/tidal/` - TidalCycles live coding configuration
 - `/.claude/` - Claude Code settings and permissions
 
@@ -81,10 +80,14 @@ Uses Stylix for consistent theming across all applications with custom Everfores
 ### Development Environment
 - Primary shell: Zsh with extensive configuration
 - Package managers: Nix (primary), Homebrew (for casks and specific tools)
-- Language servers (neovim): lua-language-server, typescript-language-server, basedpyright, haskell-language-server, just-lsp, golangci-lint
-- Additional tools (packages): nixd, ruff
-- Development tools: bacon, cargo-info, rusty-man (Rust), uv (Python 3.12), bun (JavaScript)
-- System tools: dust, dua, mprocs, presenterm, tokei, hyperfine
+- Language servers (neovim): lua-language-server, typescript-language-server, basedpyright, haskell-language-server, just-lsp, golangci-lint, nomicfoundation-solidity-language-server
+- Nix tools: nixd, nix-tree, nix-diff, nix-search
+- Rust tools: bacon, cargo-info, rusty-man
+- Python tools: uv, ruff, Python 3.12
+- JavaScript tools: bun, Node.js 22
+- System tools: dust, dua, mprocs, presenterm, tokei, hyperfine, btop, just, httpie, k9s
+- AI/Vector DB: qdrant, qdrant-web-ui
+- Media tools: yt-dlp, wiki-tui, mermaid-cli, tectonic
 
 ### MCP Server Integrations
 The configuration includes extensive AI capabilities through MCP servers (configured in flake.nix):
@@ -94,7 +97,7 @@ The configuration includes extensive AI capabilities through MCP servers (config
 - **time**: Time operations (Europe/Lisbon timezone)
 - **context7**: Library documentation lookup
 - **memory**: Persistent AI memory
-- **serena**: Semantic code editing with LSP support (rust-analyzer, gopls, nixd, typescript-language-server, basedpyright, lua-language-server)
+- **serena**: Semantic code editing with LSP support and web dashboard (rust-analyzer, gopls, nixd, typescript-language-server, basedpyright, lua-language-server)
 - **github**: GitHub repository operations (uses `gh auth token`)
 - **deepl**: Translation API integration
 - **tavily**: Search API integration
@@ -113,11 +116,26 @@ Plugins are sourced from `github:anthropics/claude-code` and enabled via setting
 - Age key location: `/Users/vaporif/.config/sops/age/key.txt`
 - Encrypted secrets: `/secrets/secrets.yaml` (includes API keys for OpenRouter, Tavily, YouTube, DeepL)
 - TouchID enabled for sudo authentication
+- Application firewall with stealth mode enabled
+- Stricter umask (077) - new files only readable by owner
+- Secure keyboard entry for Terminal (anti-keylogger)
+- Sudo timeout set to 1 minute
 
 ### System Automation
 - LibreWolf browser auto-updates via custom script (`scripts/install-librewolf.sh`) and activation script
 - Homebrew auto-update, upgrade, and cleanup on system activation
+- Claude Code managed MCP config deployed to `/Library/Application Support/ClaudeCode/`
 - Direnv integration for project-specific environments
+
+### Homebrew Applications (Casks)
+Key applications managed via Homebrew:
+- **Browsers**: Brave Browser, Tor Browser
+- **Communication**: Element, Signal, Simplex
+- **Development**: OrbStack (Docker), Karabiner Elements
+- **Media**: VLC, SuperCollider, Cardinal (audio plugins), BlackHole (audio routing)
+- **Productivity**: Claude, Zoom, MonitorControl, KeyCastr
+- **Privacy**: Proton Mail, Proton Drive, ProtonVPN, Secretive (SSH keys)
+- **Other**: GIMP, qBittorrent
 
 ### Special Configurations
 

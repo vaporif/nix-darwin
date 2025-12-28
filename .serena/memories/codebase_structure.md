@@ -58,7 +58,6 @@ flake.nix (Entry point)
 | `karabiner/` | Keyboard customization rules |
 | `tidal/` | TidalCycles live coding setup |
 | `librewolf/` | Browser overrides |
-| `ncspot/` | Spotify TUI configuration |
 | `scripts/` | Custom shell scripts |
 | `.ssh/` | SSH configuration |
 
