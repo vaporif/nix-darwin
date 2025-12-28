@@ -121,6 +121,7 @@ in {
         signByDefault = true;
         format = "openpgp";
       };
+      maintenance.enable = true;
     };
 
     neovim = {

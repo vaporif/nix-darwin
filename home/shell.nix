@@ -9,6 +9,13 @@
       settings.updates.auto_update = true;
     };
 
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    jq.enable = true;
+
     yazi = {
       enable = true;
       enableZshIntegration = true;

@@ -42,7 +42,6 @@ in {
     dua
     sd
     jaq
-    jq
 
     bacon
     cargo-info
