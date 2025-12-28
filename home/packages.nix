@@ -76,7 +76,8 @@ in {
     ghostscript
     wget
     delta
-    tldr
+    difftastic
+    ouch
     hyperfine
     pango
     gnupg

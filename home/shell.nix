@@ -4,6 +4,11 @@
     fd.enable = true;
     bat.enable = true;
 
+    tealdeer = {
+      enable = true;
+      settings.updates.auto_update = true;
+    };
+
     yazi = {
       enable = true;
       enableZshIntegration = true;
