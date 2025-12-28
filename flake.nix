@@ -60,7 +60,12 @@
         programs = {
           filesystem = {
             enable = true;
-            args = [ "/Users/vaporif/Documents" ];
+            args = [
+              "/Users/vaporif/Documents"
+              "/private/etc/nix-darwin"
+              "/Users/vaporif/.cargo"
+              "/Users/vaporif/go"
+            ];
           };
           git.enable = true;
           sequential-thinking.enable = true;

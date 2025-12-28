@@ -114,6 +114,9 @@
         t = "yy";
         g = "lazygit";
         a = "claude";
+        ap = "claude --print";
+        ai = "claude --dangerously-skip-permissions";
+        ar = "claude --resume";
         ls = "eza -a";
         cat = "bat";
         e = "nvim";
