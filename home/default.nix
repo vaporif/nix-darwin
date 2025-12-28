@@ -139,6 +139,7 @@ in {
         interactive.diffFilter = "delta --color-only";
         delta.navigate = true;
         delta.syntax-theme = "gruvbox-light";
+        delta.line-numbers = true;
       };
       signing = {
         key = "AE206889199EC9E9";
