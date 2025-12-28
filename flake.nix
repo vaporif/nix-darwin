@@ -78,6 +78,8 @@
             "/Users/vaporif/.cargo"
             "/Users/vaporif/go"
             "/nix/store"
+            "/Users/vaporif/.config"
+            "/Users/vaporif/.local/share"
           ];
         };
         git.enable = true;
