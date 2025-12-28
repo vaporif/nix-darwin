@@ -4,20 +4,20 @@ local M = {}
 
 -- Check current leader key and space mapping
 function M.check_leader()
-  print("Leader key: " .. vim.inspect(vim.g.mapleader))
-  print("Local leader: " .. vim.inspect(vim.g.maplocalleader))
+  print('Leader key: ' .. vim.inspect(vim.g.mapleader))
+  print('Local leader: ' .. vim.inspect(vim.g.maplocalleader))
 
   -- Check if space is mapped
-  local space_mappings = vim.api.nvim_get_keymap('n')
+  local space_mappings = vim.api.nvim_get_keymap 'n'
   local space_found = false
   for _, mapping in ipairs(space_mappings) do
     if mapping.lhs == ' ' then
-      print("Space is mapped to: " .. vim.inspect(mapping))
+      print('Space is mapped to: ' .. vim.inspect(mapping))
       space_found = true
     end
   end
   if not space_found then
-    print("WARNING: Space key has no normal mode mapping!")
+    print 'WARNING: Space key has no normal mode mapping!'
   end
 end
 
@@ -25,7 +25,7 @@ end
 function M.reset_leader()
   vim.g.mapleader = ' '
   vim.g.maplocalleader = ' '
-  print("Leader key reset to space")
+  print 'Leader key reset to space'
   -- Force WhichKey to reload
   M.reload_whichkey()
 end
@@ -41,7 +41,7 @@ function M.reload_whichkey()
   local ok, wk = pcall(require, 'which-key')
   if ok then
     -- Re-register the groups
-    wk.add({
+    wk.add {
       { '<leader>b', group = '[b]uffer' },
       { '<leader>s', group = '[s]plit' },
       { '<leader>f', group = '[f]ind' },
@@ -50,73 +50,73 @@ function M.reload_whichkey()
       { '<leader>d', group = '[d]ebug' },
       { '<leader>t', group = '[t]rouble' },
       { '<leader>h', group = 'git [h]unk', mode = { 'n', 'v' } },
-    })
-    print("WhichKey reloaded successfully")
+    }
+    print 'WhichKey reloaded successfully'
   else
-    print("Failed to reload WhichKey")
+    print 'Failed to reload WhichKey'
   end
 end
 
 -- Check for conflicting keymaps
 function M.check_conflicts()
-  local mappings = vim.api.nvim_get_keymap('n')
+  local mappings = vim.api.nvim_get_keymap 'n'
   local leader_mappings = {}
 
   for _, mapping in ipairs(mappings) do
-    if mapping.lhs:match('^<leader>') or mapping.lhs:match('^<Leader>') then
+    if mapping.lhs:match '^<leader>' or mapping.lhs:match '^<Leader>' then
       local key = mapping.lhs:lower()
       if leader_mappings[key] then
-        print("CONFLICT: " .. key .. " mapped by both:")
-        print("  1. " .. (leader_mappings[key].desc or leader_mappings[key].rhs or "unknown"))
-        print("  2. " .. (mapping.desc or mapping.rhs or "unknown"))
+        print('CONFLICT: ' .. key .. ' mapped by both:')
+        print('  1. ' .. (leader_mappings[key].desc or leader_mappings[key].rhs or 'unknown'))
+        print('  2. ' .. (mapping.desc or mapping.rhs or 'unknown'))
       else
         leader_mappings[key] = mapping
       end
     end
   end
-  print("Conflict check complete. Found " .. vim.tbl_count(leader_mappings) .. " leader mappings")
+  print('Conflict check complete. Found ' .. vim.tbl_count(leader_mappings) .. ' leader mappings')
 end
 
 -- Check LSP status and hover capability
 function M.check_lsp_hover()
   local clients = vim.lsp.get_clients()
   if #clients == 0 then
-    print("No LSP clients attached")
+    print 'No LSP clients attached'
     return
   end
 
   for _, client in ipairs(clients) do
-    print("LSP: " .. client.name)
+    print('LSP: ' .. client.name)
     if client.server_capabilities.hoverProvider then
-      print("  ✓ Hover supported")
+      print '  ✓ Hover supported'
     else
-      print("  ✗ Hover NOT supported")
+      print '  ✗ Hover NOT supported'
     end
   end
 
   -- Check if K is mapped
   local k_mapping = vim.fn.maparg('K', 'n')
   if k_mapping ~= '' then
-    print("K is mapped to: " .. k_mapping)
+    print('K is mapped to: ' .. k_mapping)
   else
-    print("K has default mapping (vim.lsp.buf.hover)")
+    print 'K has default mapping (vim.lsp.buf.hover)'
   end
 end
 
 -- Full diagnostics
 function M.full_diagnostic()
-  print("=== WhichKey & Mapping Diagnostics ===")
-  print("")
-  print("--- Leader Key Status ---")
+  print '=== WhichKey & Mapping Diagnostics ==='
+  print ''
+  print '--- Leader Key Status ---'
   M.check_leader()
-  print("")
-  print("--- LSP Hover Status ---")
+  print ''
+  print '--- LSP Hover Status ---'
   M.check_lsp_hover()
-  print("")
-  print("--- Checking for Conflicts ---")
+  print ''
+  print '--- Checking for Conflicts ---'
   M.check_conflicts()
-  print("")
-  print("=== End Diagnostics ===")
+  print ''
+  print '=== End Diagnostics ==='
 end
 
 -- Create user commands
@@ -131,7 +131,7 @@ vim.api.nvim_create_user_command('WhichKeyDiagnostic', M.full_diagnostic, {})
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
   callback = function()
     if vim.g.mapleader ~= ' ' then
-      vim.notify("WARNING: Leader key changed from space to: " .. vim.inspect(vim.g.mapleader), vim.log.levels.WARN)
+      vim.notify('WARNING: Leader key changed from space to: ' .. vim.inspect(vim.g.mapleader), vim.log.levels.WARN)
     end
   end,
 })
