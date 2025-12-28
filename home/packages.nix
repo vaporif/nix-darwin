@@ -26,6 +26,7 @@
       *.nix) alejandra -q "$file_path" 2>/dev/null || true ;;
       *.go)  gofmt -w "$file_path" 2>/dev/null || true ;;
       *.rs)  rustfmt "$file_path" 2>/dev/null || true ;;
+      *.lua) stylua "$file_path" 2>/dev/null || true ;;
     esac
   '';
 
@@ -42,6 +43,7 @@ in {
     dua
     sd
     jaq
+    stylua
 
     bacon
     cargo-info
