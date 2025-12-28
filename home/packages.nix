@@ -34,6 +34,18 @@
     '';
   };
 
+  # Auto-formatter for Claude Code hooks
+  claudeFormatter = pkgs.writeShellScriptBin "claude-formatter" ''
+    file_path=$(${pkgs.jq}/bin/jq -r '.tool_input.file_path // empty')
+    [ -z "$file_path" ] || [ ! -f "$file_path" ] && exit 0
+
+    case "$file_path" in
+      *.nix) alejandra -q "$file_path" 2>/dev/null || true ;;
+      *.go)  gofmt -w "$file_path" 2>/dev/null || true ;;
+      *.rs)  rustfmt "$file_path" 2>/dev/null || true ;;
+    esac
+  '';
+
   nomicfoundation-solidity-language-server = pkgs.buildNpmPackage {
     pname = "nomicfoundation-solidity-language-server";
     version = "0.8.25";
@@ -143,5 +155,6 @@ in {
     tidal-script
     unclog
     nomicfoundation-solidity-language-server
+    claudeFormatter
   ];
 }
