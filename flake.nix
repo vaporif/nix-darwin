@@ -37,128 +37,146 @@
     };
   };
 
-  outputs = { nixpkgs, nix-darwin, mcp-nixos, home-manager, sops-nix, fzf-git-sh, yamb-yazi, vim-tidal, mcp-servers-nix, stylix, claude-code-plugins, ... }:
-    let
-      system = "aarch64-darwin";
+  outputs = {
+    nixpkgs,
+    nix-darwin,
+    mcp-nixos,
+    home-manager,
+    sops-nix,
+    fzf-git-sh,
+    yamb-yazi,
+    vim-tidal,
+    mcp-servers-nix,
+    stylix,
+    claude-code-plugins,
+    ...
+  }: let
+    system = "aarch64-darwin";
 
-      mcp-nixos-package = mcp-nixos.packages.${system}.default;
-      pkgs = nixpkgs.legacyPackages.${system};
-      fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
+    mcp-nixos-package = mcp-nixos.packages.${system}.default;
+    pkgs = nixpkgs.legacyPackages.${system};
+    fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
 
-      # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
-      serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (old: {
-        version = "0.1.4-unstable-2025-12-28";
-        src = pkgs.fetchFromGitHub {
-          owner = "vaporif";
-          repo = "serena";
-          rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
-          hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
+    # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
+    serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (old: {
+      version = "0.1.4-unstable-2025-12-28";
+      src = pkgs.fetchFromGitHub {
+        owner = "vaporif";
+        repo = "serena";
+        rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
+        hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
+      };
+    });
+
+    mcpConfig = {
+      programs = {
+        filesystem = {
+          enable = true;
+          args = [
+            "/Users/vaporif/Documents"
+            "/private/etc/nix-darwin"
+            "/Users/vaporif/.cargo"
+            "/Users/vaporif/go"
+          ];
         };
-      });
-
-      mcpConfig = {
-        programs = {
-          filesystem = {
-            enable = true;
-            args = [
-              "/Users/vaporif/Documents"
-              "/private/etc/nix-darwin"
-              "/Users/vaporif/.cargo"
-              "/Users/vaporif/go"
+        git.enable = true;
+        sequential-thinking.enable = true;
+        time = {
+          enable = true;
+          args = ["--local-timezone" "Europe/Lisbon"];
+        };
+        context7.enable = true;
+        memory.enable = true;
+        serena = {
+          enable = true;
+          package = serenaPatched;
+          enableWebDashboard = true;
+          extraPackages = with pkgs; [
+            rust-analyzer
+            gopls
+            nixd
+            typescript-language-server
+            basedpyright
+            lua-language-server
+          ];
+        };
+        github = {
+          enable = true;
+          passwordCommand = {
+            GITHUB_PERSONAL_ACCESS_TOKEN = [
+              (pkgs.lib.getExe pkgs.gh)
+              "auth"
+              "token"
             ];
           };
-          git.enable = true;
-          sequential-thinking.enable = true;
-          time = {
-            enable = true;
-            args = [ "--local-timezone" "Europe/Lisbon" ];
-          };
-          context7.enable = true;
-          memory.enable = true;
-          serena = {
-            enable = true;
-            package = serenaPatched;
-            enableWebDashboard = true;
-            extraPackages = with pkgs; [
-              rust-analyzer
-              gopls
-              nixd
-              typescript-language-server
-              basedpyright
-              lua-language-server
-            ];
-          };
-          github = {
-            enable = true;
-            passwordCommand = {
-              GITHUB_PERSONAL_ACCESS_TOKEN = [
-                (pkgs.lib.getExe pkgs.gh)
-                "auth"
-                "token"
-              ];
-            };
-          };
-          deepl = {
-            enable = true;
-            passwordCommand = {
-              DEEPL_API_KEY = [ "cat" "/run/secrets/deepl-key" ];
-            };
-          };
-          # youtube = {
-          #   enable = true;
-          #   passwordCommand = {
-          #     YOUTUBE_API_KEY = [
-          #       "cat"
-          #       "/run/secrets/youtube-key"
-          #     ];
-          #   };
-          # };
         };
-        settings.servers = {
-          tavily = {
-            command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
-              export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
-              exec ${mcp-servers-nix.packages.${system}.tavily-mcp}/bin/tavily-mcp
-            ''}";
+        deepl = {
+          enable = true;
+          passwordCommand = {
+            DEEPL_API_KEY = ["cat" "/run/secrets/deepl-key"];
           };
-          nixos = {
-            command = "${mcp-nixos-package}/bin/mcp-nixos";
-          };
+        };
+        # youtube = {
+        #   enable = true;
+        #   passwordCommand = {
+        #     YOUTUBE_API_KEY = [
+        #       "cat"
+        #       "/run/secrets/youtube-key"
+        #     ];
+        #   };
+        # };
+      };
+      settings.servers = {
+        tavily = {
+          command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
+            export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
+            exec ${mcp-servers-nix.packages.${system}.tavily-mcp}/bin/tavily-mcp
+          ''}";
+        };
+        nixos = {
+          command = "${mcp-nixos-package}/bin/mcp-nixos";
         };
       };
-    in
-    {
-      darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        inherit system;
-        specialArgs = { inherit mcp-servers-nix mcpConfig; };
-        modules = [
-          {
-            nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+    };
+  in {
+    formatter.${system} = pkgs.alejandra;
+
+    checks.${system}.formatting = pkgs.runCommand "check-formatting" {} ''
+      ${pkgs.alejandra}/bin/alejandra -c ${./.} && touch $out
+    '';
+
+    darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      inherit system;
+      specialArgs = {inherit mcp-servers-nix mcpConfig;};
+      modules = [
+        {
+          nixpkgs.config.allowUnfreePredicate = pkg:
+            builtins.elem (nixpkgs.lib.getName pkg) [
               "spacetimedb"
               "claude-code"
             ];
-          }
-          stylix.darwinModules.stylix
-          sops-nix.darwinModules.sops
-          ./system.nix
-          home-manager.darwinModules.home-manager
-          {
-            users.users.vaporif = {
-              name = "vaporif";
-              home = "/Users/vaporif";
+        }
+        stylix.darwinModules.stylix
+        sops-nix.darwinModules.sops
+        ./system.nix
+        home-manager.darwinModules.home-manager
+        {
+          users.users.vaporif = {
+            name = "vaporif";
+            home = "/Users/vaporif";
+          };
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = {
+              inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
+              inherit mcp-servers-nix mcp-nixos-package mcpConfig;
             };
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
-                inherit mcp-servers-nix mcp-nixos-package mcpConfig;
-              };
-              users.vaporif = import ./home;
-              backupFileExtension = "backup";
-            };
-          }
-        ];
-      };
+            users.vaporif = import ./home;
+            backupFileExtension = "backup";
+          };
+        }
+      ];
     };
+  };
 }

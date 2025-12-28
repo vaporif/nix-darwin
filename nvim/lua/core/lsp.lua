@@ -70,7 +70,7 @@ vim.lsp.config.nixd = {
         expr = nixpkgs_expr,
       },
       formatting = {
-        command = { 'nixfmt' },
+        command = { 'alejandra', '-q' },
       },
     },
   },

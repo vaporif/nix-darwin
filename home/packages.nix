@@ -1,5 +1,9 @@
-{ pkgs, mcp-nixos-package, vim-tidal, ... }:
-let
+{
+  pkgs,
+  mcp-nixos-package,
+  vim-tidal,
+  ...
+}: let
   tidal-script = pkgs.stdenv.mkDerivation {
     name = "tidal";
     src = "${vim-tidal}/bin/tidal";
@@ -21,8 +25,8 @@ let
       hash = "sha256-UebNRzPEhMPwbzlRIvrKl5sdjbwyo6nA6fJQeqM0I6g=";
     };
     cargoHash = "sha256-sHYdDhfkxDazKQjhho3q+dN2ylbPeSeBPJai1lgDeRk=";
-    nativeBuildInputs = [ pkgs.pkg-config ];
-    buildInputs = [ pkgs.openssl ];
+    nativeBuildInputs = [pkgs.pkg-config];
+    buildInputs = [pkgs.openssl];
     # Patch to fix time crate Rust 1.80+ compatibility
     postPatch = ''
       find $cargoDepsCopy -name "mod.rs" -path "*time-*/format_description/parse/*" \
@@ -53,11 +57,17 @@ let
         --replace-fail 'if (!value || value === "")' 'if (false)'
     '';
 
-    nativeBuildInputs = with pkgs; [ pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-      (if pkgs.stdenv.hostPlatform.isAarch64 then clang_20 else llvmPackages_17.clang)
-    ];
+    nativeBuildInputs = with pkgs;
+      [pkg-config]
+      ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+        (
+          if pkgs.stdenv.hostPlatform.isAarch64
+          then clang_20
+          else llvmPackages_17.clang
+        )
+      ];
 
-    buildInputs = [ pkgs.libsecret ];
+    buildInputs = [pkgs.libsecret];
 
     postInstall = ''
       # Remove dangling symlinks created by npm workspaces
@@ -71,10 +81,10 @@ let
       mainProgram = "nomicfoundation-solidity-language-server";
     };
   };
-in
-{
+in {
   home.packages = with pkgs; [
     nixd
+    alejandra
     nix-tree
     nix-diff
     nix-search
@@ -100,10 +110,11 @@ in
     btop
     sops
 
-    (haskellPackages.ghcWithPackages (pkgs: with pkgs; [
-      tidal
-      cabal-install
-    ]))
+    (haskellPackages.ghcWithPackages (pkgs:
+      with pkgs; [
+        tidal
+        cabal-install
+      ]))
     tmux
 
     ueberzugpp

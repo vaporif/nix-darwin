@@ -1,6 +1,27 @@
-{ pkgs, config, lib, yamb-yazi, mcp-servers-nix, mcpConfig, claude-code-plugins, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  yamb-yazi,
+  mcp-servers-nix,
+  mcpConfig,
+  claude-code-plugins,
+  ...
+}: let
   mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
+
+  # Auto-formatter script for Claude Code hooks
+  # Uses shell PATH so project devshells can override formatters
+  claudeFormatter = pkgs.writeShellScript "claude-formatter" ''
+    file_path=$(${pkgs.jq}/bin/jq -r '.tool_input.file_path // empty')
+    [ -z "$file_path" ] || [ ! -f "$file_path" ] && exit 0
+
+    case "$file_path" in
+      *.nix) alejandra -q "$file_path" 2>/dev/null || true ;;
+      *.go)  gofmt -w "$file_path" 2>/dev/null || true ;;
+      *.rs)  rustfmt "$file_path" 2>/dev/null || true ;;
+    esac
+  '';
 
   # Claude Code settings with plugins enabled (preserving existing settings)
   claudeSettings = {
@@ -170,6 +191,19 @@ let
         "WebSearch"
       ];
     };
+    hooks = {
+      PostToolUse = [
+        {
+          matcher = "Edit|Write";
+          hooks = [
+            {
+              type = "command";
+              command = "${claudeFormatter}";
+            }
+          ];
+        }
+      ];
+    };
   };
 
   # Marketplace manifest for our Nix-managed plugins
@@ -219,8 +253,7 @@ let
       lastUpdated = "2025-01-01T00:00:00.000Z";
     };
   };
-in
-{
+in {
   imports = [
     ./packages.nix
     ./shell.nix
@@ -246,7 +279,7 @@ in
 
     git = {
       enable = true;
-      ignores = [ ".serena" ".claude" "CLAUDE.md" ];
+      ignores = [".serena" ".claude" "CLAUDE.md"];
       settings = {
         user = {
           name = "Dmytro Onypko";
@@ -303,32 +336,34 @@ in
     };
   };
 
-  home.file = {
-    ".envrc".text = ''
+  home.file =
+    {
+      ".envrc".text = ''
         use flake github:vaporif/nix-devshells/683da1d6207cb130c611db98933e82b4a43f7900
-    '';
-    # Stable symlink to Neovim runtime for .luarc.json
-    ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
-    ".ssh/config" = {
-      source = ../.ssh/config;
-    };
-    ".librewolf/librewolf.overrides.cfg" = {
-      source = ../librewolf/librewolf.overrides.cfg;
-    };
-    "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
+      '';
+      # Stable symlink to Neovim runtime for .luarc.json
+      ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
+      ".ssh/config" = {
+        source = ../.ssh/config;
+      };
+      ".librewolf/librewolf.overrides.cfg" = {
+        source = ../librewolf/librewolf.overrides.cfg;
+      };
+      "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
 
-    # Claude Code plugins - create a local marketplace structure
-    ".claude/plugins/marketplaces/nix-plugins/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
-    ".claude/plugins/marketplaces/nix-plugins/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
-    ".claude/plugins/marketplaces/nix-plugins/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
-    ".claude/plugins/marketplaces/nix-plugins/code-review".source = "${claude-code-plugins}/plugins/code-review";
+      # Claude Code plugins - create a local marketplace structure
+      ".claude/plugins/marketplaces/nix-plugins/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
+      ".claude/plugins/marketplaces/nix-plugins/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
+      ".claude/plugins/marketplaces/nix-plugins/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
+      ".claude/plugins/marketplaces/nix-plugins/code-review".source = "${claude-code-plugins}/plugins/code-review";
 
-    # Claude Code settings with plugins enabled
-    ".claude/settings.json".text = builtins.toJSON claudeSettings;
-    ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
-  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
-    "Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
-  };
+      # Claude Code settings with plugins enabled
+      ".claude/settings.json".text = builtins.toJSON claudeSettings;
+      ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      "Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
+    };
 
   # XDG configuration files
   xdg.configFile.nvim.source = ../nvim;

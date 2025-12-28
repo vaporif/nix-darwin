@@ -1,5 +1,4 @@
-{ fzf-git-sh-package, ... }:
-{
+{fzf-git-sh-package, ...}: {
   programs = {
     ripgrep.enable = true;
     fd.enable = true;
