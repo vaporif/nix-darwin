@@ -12,7 +12,10 @@
 }: let
   mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
 
-  # Marketplace manifest for our Nix-managed plugins
+  claudePluginsBase = ".claude/plugins/marketplaces";
+  nixPluginsPath = "${claudePluginsBase}/nix-plugins";
+
+  # Marketplace manifest for Nix-managed plugins
   nixPluginsMarketplace = builtins.toJSON {
     "$schema" = "https://anthropic.com/claude-code/marketplace.schema.json";
     name = "nix-plugins";
@@ -47,15 +50,15 @@
         source = "github";
         repo = "anthropics/claude-plugins-official";
       };
-      installLocation = "${config.home.homeDirectory}/.claude/plugins/marketplaces/claude-plugins-official";
+      installLocation = "${config.home.homeDirectory}/${claudePluginsBase}/claude-plugins-official";
       lastUpdated = "2025-01-01T00:00:00.000Z";
     };
     "nix-plugins" = {
       source = {
         source = "directory";
-        path = "${config.home.homeDirectory}/.claude/plugins/marketplaces/nix-plugins";
+        path = "${config.home.homeDirectory}/${nixPluginsPath}";
       };
-      installLocation = "${config.home.homeDirectory}/.claude/plugins/marketplaces/nix-plugins";
+      installLocation = "${config.home.homeDirectory}/${nixPluginsPath}";
       lastUpdated = "2025-01-01T00:00:00.000Z";
     };
   };
@@ -184,10 +187,10 @@ in {
       "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
 
       # Claude Code plugins - create a local marketplace structure
-      ".claude/plugins/marketplaces/nix-plugins/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
-      ".claude/plugins/marketplaces/nix-plugins/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
-      ".claude/plugins/marketplaces/nix-plugins/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
-      ".claude/plugins/marketplaces/nix-plugins/code-review".source = "${claude-code-plugins}/plugins/code-review";
+      "${nixPluginsPath}/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
+      "${nixPluginsPath}/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
+      "${nixPluginsPath}/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
+      "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
 
       # Claude Code settings
       ".claude/settings.json".source = ../claude/settings.json;

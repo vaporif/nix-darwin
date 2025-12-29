@@ -60,7 +60,7 @@
     tavily = {
       command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
-        exec ${mcp-servers-nix.packages.${pkgs.system}.tavily-mcp}/bin/tavily-mcp
+        exec ${mcp-servers-nix.packages.${pkgs.stdenv.hostPlatform.system}.tavily-mcp}/bin/tavily-mcp
       ''}";
     };
     nixos = {
