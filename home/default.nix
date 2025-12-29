@@ -193,6 +193,7 @@ in {
       "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
 
       # Claude Code settings
+      ".claude/CLAUDE.md".source = ../claude/CLAUDE.md;
       ".claude/settings.json".source = ../claude/settings.json;
       ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
     }
