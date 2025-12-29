@@ -206,4 +206,6 @@ in {
   };
 
   xdg.configFile."tidal/Tidal.ghci".source = ../tidal/Tidal.ghci;
+
+  xdg.configFile."procs/config.toml".source = ../procs/config.toml;
 }

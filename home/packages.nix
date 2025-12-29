@@ -61,6 +61,7 @@ in {
     just
     k9s
     btop
+    procs
     sops
 
     (haskellPackages.ghcWithPackages (pkgs:

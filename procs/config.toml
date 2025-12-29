@@ -1,0 +1,48 @@
+[[columns]]
+kind = "Pid"
+style = "BrightYellow"
+numeric_search = true
+nonnumeric_search = false
+
+[[columns]]
+kind = "User"
+style = "BrightGreen"
+
+[[columns]]
+kind = "State"
+style = "ByState"
+
+[[columns]]
+kind = "UsageCpu"
+style = "BrightCyan"
+
+[[columns]]
+kind = "UsageMem"
+style = "BrightMagenta"
+
+[[columns]]
+kind = "VmSize"
+style = "BrightBlue"
+
+[[columns]]
+kind = "StartTime"
+style = "White"
+
+[[columns]]
+kind = "TcpPort"
+style = "Yellow"
+
+[[columns]]
+kind = "Command"
+style = "BrightWhite"
+
+[style.by_state]
+color_d = "BrightBlack"
+color_r = "BrightGreen"
+color_s = "BrightYellow"
+color_t = "BrightRed"
+color_z = "BrightRed"
+color_x = "BrightBlack"
+color_k = "BrightRed"
+color_w = "BrightBlue"
+color_p = "BrightBlack"
