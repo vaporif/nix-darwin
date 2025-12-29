@@ -51,6 +51,8 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      defaultCommand = "fd --type f --hidden --follow --exclude .git";
+      fileWidgetCommand = "fd --type f --hidden --follow --exclude .git";
       historyWidgetOptions = [
         "--no-sort"
         "--tiebreak=index"
@@ -150,8 +152,6 @@
         export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/key.txt"
         export PATH="/opt/homebrew/bin:$HOME/.cargo/bin:$PATH"
         export GPG_TTY=$(tty)
-        export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
-        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         bindkey '^F' fzf-file-widget
         bindkey -r '^T'
       '';
