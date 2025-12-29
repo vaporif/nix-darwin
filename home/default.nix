@@ -193,8 +193,13 @@ in {
       ".claude/settings.json".source = ../claude/settings.json;
       ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
     }
-    // lib.optionalAttrs pkgs.stdenv.isDarwin {
-      "Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
+    // {
+      ${
+        if pkgs.stdenv.isDarwin
+        then "Library/Application Support/Claude/claude_desktop_config.json"
+        else ".config/Claude/claude_desktop_config.json"
+      }.source =
+        mcpServersConfig;
     };
 
   # XDG configuration files
