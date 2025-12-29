@@ -16,7 +16,10 @@ pkgs.rustPlatform.buildRustPackage rec {
 
   # Patch to fix time crate Rust 1.80+ compatibility
   postPatch = ''
-    find $cargoDepsCopy -name "mod.rs" -path "*time-*/format_description/parse/*" \
-      -exec sed -i 's/\.collect::<Result<Box<_>, _>>()/.collect::<Result<Vec<_>, _>>().map(|v| v.into_boxed_slice())/g' {} \;
+    for f in $(find $cargoDepsCopy -name "mod.rs" -path "*time-*/format_description/parse/*"); do
+      substituteInPlace "$f" \
+        --replace-quiet '.collect::<Result<Box<_>, _>>()' \
+                        '.collect::<Result<Vec<_>, _>>().map(|v| v.into_boxed_slice())'
+    done
   '';
 }
