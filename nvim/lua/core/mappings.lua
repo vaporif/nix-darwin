@@ -66,10 +66,10 @@ vim.keymap.set({ 'n', 'v' }, '<leader>qw', function()
 end, { desc = '[w]ithin buffer/selection' })
 
 -- subversive
-vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)', {})
-vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)', {})
-vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', {})
-vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)', {})
+vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)')
+vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
+vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
+vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)')
 vim.keymap.set('i', 'ii', '<Esc>')
 
 -- Unbind hjkl since I use extend layer & colemak
@@ -96,7 +96,6 @@ vim.keymap.set('o', 'l', '<Nop>', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'x' }, ';', ':')
 
 -- delete default code operations
-vim.keymap.del('n', 'grn')
-vim.keymap.del('n', 'grr')
-vim.keymap.del('n', 'gri')
-vim.keymap.del('n', 'gra')
+for _, key in ipairs { 'grn', 'grr', 'gri', 'gra' } do
+  pcall(vim.keymap.del, 'n', key)
+end

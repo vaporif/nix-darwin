@@ -39,7 +39,7 @@ opt.smartcase = true
 
 -- Enable inlay hints if available
 if vim.lsp.inlay_hint then
-  vim.lsp.inlay_hint.enable()
+  vim.lsp.inlay_hint.enable(true)
 end
 
 -- Setup clipboard (deferred to avoid startup issues)
