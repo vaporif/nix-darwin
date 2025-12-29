@@ -53,10 +53,13 @@
   }: let
     system = "aarch64-darwin";
     user = "vaporif";
-    homeDir = "/Users/${user}";
+    pkgs = nixpkgs.legacyPackages.${system};
+    homeDir =
+      if pkgs.stdenv.isDarwin
+      then "/Users/${user}"
+      else "/home/${user}";
 
     mcp-nixos-package = mcp-nixos.packages.${system}.default;
-    pkgs = nixpkgs.legacyPackages.${system};
     fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
 
     # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
