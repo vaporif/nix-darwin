@@ -2,6 +2,8 @@
   pkgs,
   config,
   lib,
+  user,
+  homeDir,
   yamb-yazi,
   mcp-servers-nix,
   mcpConfig,
@@ -64,8 +66,8 @@ in {
   ];
 
   home = {
-    homeDirectory = "/Users/vaporif";
-    username = "vaporif";
+    homeDirectory = homeDir;
+    username = user;
     stateVersion = "24.05";
   };
 

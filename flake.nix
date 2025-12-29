@@ -52,6 +52,8 @@
     ...
   }: let
     system = "aarch64-darwin";
+    user = "vaporif";
+    homeDir = "/Users/${user}";
 
     mcp-nixos-package = mcp-nixos.packages.${system}.default;
     pkgs = nixpkgs.legacyPackages.${system};
@@ -73,13 +75,13 @@
         filesystem = {
           enable = true;
           args = [
-            "/Users/vaporif/Documents"
+            "${homeDir}/Documents"
             "/private/etc/nix-darwin"
-            "/Users/vaporif/.cargo"
-            "/Users/vaporif/go"
+            "${homeDir}/.cargo"
+            "${homeDir}/go"
             "/nix/store"
-            "/Users/vaporif/.config"
-            "/Users/vaporif/.local/share"
+            "${homeDir}/.config"
+            "${homeDir}/.local/share"
           ];
         };
         git.enable = true;
@@ -150,7 +152,7 @@
 
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
       inherit system;
-      specialArgs = {inherit mcp-servers-nix mcpConfig;};
+      specialArgs = {inherit user homeDir mcp-servers-nix mcpConfig;};
       modules = [
         {
           nixpkgs.config.allowUnfreePredicate = pkg:
@@ -164,18 +166,19 @@
         ./system.nix
         home-manager.darwinModules.home-manager
         {
-          users.users.vaporif = {
-            name = "vaporif";
-            home = "/Users/vaporif";
+          users.users.${user} = {
+            name = user;
+            home = homeDir;
           };
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
+              inherit user homeDir;
               inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
               inherit mcp-servers-nix mcp-nixos-package mcpConfig;
             };
-            users.vaporif = import ./home;
+            users.${user} = import ./home;
             backupFileExtension = "backup";
           };
         }

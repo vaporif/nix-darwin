@@ -1,5 +1,8 @@
 {
   pkgs,
+  lib,
+  user,
+  homeDir,
   mcp-servers-nix,
   mcpConfig,
   ...
@@ -59,7 +62,7 @@ in {
   nix.enable = false;
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.age.keyFile = "/Users/vaporif/.config/sops/age/key.txt";
+  sops.age.keyFile = "${homeDir}/.config/sops/age/key.txt";
   sops.age.sshKeyPaths = [];
   sops.secrets.openrouter-key = {
     owner = "vaporif";
@@ -101,10 +104,11 @@ in {
   };
   system.configurationRevision = null;
   system.stateVersion = 6;
-  system.primaryUser = "vaporif";
+  system.primaryUser = user;
   system.defaults = {
     dock = {
       autohide = true;
+      autohide-delay = 0.2;
       mru-spaces = false;
       wvous-br-corner = 1;
     };
@@ -115,13 +119,14 @@ in {
       NewWindowTarget = "Home";
       ShowPathbar = true;
     };
+    NSGlobalDomain = {
+      "com.apple.sound.beep.volume" = 0.0;
+      AppleShowAllFiles = true;
+      AppleShowScrollBars = "WhenScrolling";
+    };
     screencapture.location = "~/screenshots";
     screensaver.askForPasswordDelay = 0;
   };
-  system.defaults.dock.autohide-delay = 0.2;
-  system.defaults.NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
-  system.defaults.NSGlobalDomain.AppleShowAllFiles = true;
-  system.defaults.NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
   networking.applicationFirewall = {
     enable = true;
     enableStealthMode = true;
@@ -155,7 +160,7 @@ in {
   system.defaults.loginwindow = {
     GuestEnabled = false;
     LoginwindowText = "derp durp";
-    autoLoginUser = "vaporif";
+    autoLoginUser = user;
   };
   system.defaults.menuExtraClock = {
     Show24Hour = true;
