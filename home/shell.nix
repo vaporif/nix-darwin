@@ -148,7 +148,6 @@
         ulimit -Sn 4096
         ulimit -Sl unlimited
         source ${fzf-git-sh-package}/bin/fzf-git.sh
-        export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
         export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/key.txt"
         export PATH="/opt/homebrew/bin:$HOME/.cargo/bin:$PATH"
         export GPG_TTY=$(tty)

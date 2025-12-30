@@ -28,11 +28,11 @@
       flake = false;
     };
     vim-tidal = {
-      url = "github:tidalcycles/vim-tidal";
+      url = "github:tidalcycles/vim-tidal/e440fe5bdfe07f805e21e6872099685d38e8b761";
       flake = false;
     };
     claude-code-plugins = {
-      url = "github:anthropics/claude-code";
+      url = "github:anthropics/claude-code/d213a74fc8e3b6efded52729196e0c2d4c3abb3e";
       flake = false;
     };
   };

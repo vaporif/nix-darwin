@@ -194,13 +194,16 @@ in {
     launchctl config user umask 077
   '';
 
-  system.activationScripts.postActivation.text = ''
+  system.activationScripts.postActivation.text = let
+    librewolfInstaller = ./scripts/install-librewolf.sh;
+    claudeCodeConfigDir = "/Library/Application Support/ClaudeCode";
+  in ''
     echo "Installing/updating LibreWolf..."
-    /bin/bash /etc/nix-darwin/scripts/install-librewolf.sh
+    ${pkgs.bash}/bin/bash ${librewolfInstaller}
 
     echo "Setting up Claude Code managed MCP config..."
-    mkdir -p "/Library/Application Support/ClaudeCode"
-    cp ${mcpServersConfig} "/Library/Application Support/ClaudeCode/managed-mcp.json"
+    mkdir -p "${claudeCodeConfigDir}"
+    cp ${mcpServersConfig} "${claudeCodeConfigDir}/managed-mcp.json"
   '';
 
   homebrew = {
