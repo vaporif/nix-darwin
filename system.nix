@@ -64,29 +64,14 @@ in {
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.age.keyFile = "${homeDir}/.config/sops/age/key.txt";
   sops.age.sshKeyPaths = [];
-  sops.secrets.openrouter-key = {
-    owner = "vaporif";
-    group = "staff";
-    mode = "0400";
-  };
-
-  sops.secrets.tavily-key = {
-    owner = "vaporif";
-    group = "staff";
-    mode = "0400";
-  };
-
-  sops.secrets.youtube-key = {
-    owner = "vaporif";
-    group = "staff";
-    mode = "0400";
-  };
-
-  sops.secrets.deepl-key = {
-    owner = "vaporif";
-    group = "staff";
-    mode = "0400";
-  };
+  sops.secrets =
+    lib.genAttrs
+    ["openrouter-key" "tavily-key" "youtube-key" "deepl-key"]
+    (_: {
+      owner = user;
+      group = "staff";
+      mode = "0400";
+    });
 
   nix.settings = {
     experimental-features = "nix-command flakes";
@@ -126,6 +111,24 @@ in {
     };
     screencapture.location = "~/screenshots";
     screensaver.askForPasswordDelay = 0;
+    loginwindow = {
+      GuestEnabled = false;
+      LoginwindowText = "derp durp";
+      autoLoginUser = user;
+    };
+    menuExtraClock = {
+      Show24Hour = true;
+      ShowDayOfMonth = true;
+    };
+    CustomUserPreferences = {
+      "com.apple.remoteappleevents".enabled = false;
+      "com.apple.assistant.support"."Siri Data Sharing Opt-In Status" = 0;
+      "com.apple.AdLib".allowApplePersonalizedAdvertising = false;
+      "com.apple.CrashReporter".DialogType = "none";
+      NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+      # Secure keyboard entry - prevents keyloggers from capturing terminal input
+      "com.apple.Terminal".SecureKeyboardEntry = true;
+    };
   };
   networking.applicationFirewall = {
     enable = true;
@@ -156,38 +159,6 @@ in {
   security.sudo.extraConfig = ''
     Defaults timestamp_timeout=1
   '';
-
-  system.defaults.loginwindow = {
-    GuestEnabled = false;
-    LoginwindowText = "derp durp";
-    autoLoginUser = user;
-  };
-  system.defaults.menuExtraClock = {
-    Show24Hour = true;
-    ShowDayOfMonth = true;
-  };
-
-  system.defaults.CustomUserPreferences = {
-    "com.apple.remoteappleevents" = {
-      enabled = false;
-    };
-    "com.apple.assistant.support" = {
-      "Siri Data Sharing Opt-In Status" = 0;
-    };
-    "com.apple.AdLib" = {
-      allowApplePersonalizedAdvertising = false;
-    };
-    "com.apple.CrashReporter" = {
-      DialogType = "none";
-    };
-    NSGlobalDomain = {
-      NSDocumentSaveNewDocumentsToCloud = false;
-    };
-    # Secure keyboard entry - prevents keyloggers from capturing terminal input
-    "com.apple.Terminal" = {
-      SecureKeyboardEntry = true;
-    };
-  };
 
   # Stricter umask - new files only readable by owner
   system.activationScripts.umask.text = ''
