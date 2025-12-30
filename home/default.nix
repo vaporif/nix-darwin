@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   user,
   homeDir,
   yamb-yazi,
@@ -164,7 +163,7 @@ in {
         stylua
         typescript-language-server
         haskell-language-server
-        pkgs.basedpyright # Using pinned version to avoid Node.js 22 compilation issue
+        basedpyright
         just-lsp
         golangci-lint
       ];
@@ -206,17 +205,16 @@ in {
         mcpServersConfig;
     };
 
-  # XDG configuration files
-  xdg.configFile.nvim.source = ../nvim;
-  xdg.configFile."karabiner/karabiner.json".source = ../karabiner/karabiner.json;
-  xdg.configFile."yazi/init.lua".source = ../yazi/init.lua;
-  xdg.configFile."yazi/keymap.toml".source = ../yazi/keymap.toml;
-  xdg.configFile."yazi/plugins/yamb.yazi/" = {
-    source = yamb-yazi;
-    recursive = true;
+  xdg.configFile = {
+    "nvim".source = ../nvim;
+    "karabiner/karabiner.json".source = ../karabiner/karabiner.json;
+    "yazi/init.lua".source = ../yazi/init.lua;
+    "yazi/keymap.toml".source = ../yazi/keymap.toml;
+    "yazi/plugins/yamb.yazi" = {
+      source = yamb-yazi;
+      recursive = true;
+    };
+    "tidal/Tidal.ghci".source = ../tidal/Tidal.ghci;
+    "procs/config.toml".source = ../procs/config.toml;
   };
-
-  xdg.configFile."tidal/Tidal.ghci".source = ../tidal/Tidal.ghci;
-
-  xdg.configFile."procs/config.toml".source = ../procs/config.toml;
 }
