@@ -28,5 +28,5 @@ require('lazy').setup(require 'plugins', {
       lazy = '💤 ',
     },
   },
-  lockfile = '/etc/nix-darwin/nvim/lazy-lock.json',
+  lockfile = '/etc/nix-darwin/config/nvim/lazy-lock.json',
 })
