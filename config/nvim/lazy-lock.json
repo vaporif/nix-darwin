@@ -10,7 +10,7 @@
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "everforest-nvim": { "branch": "main", "commit": "557bce922401e247a596583679bc181d4d688554" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
-  "fzf-lua": { "branch": "main", "commit": "a899e3e33c6c26ffeda5739fb6e7157cfc21ad6f" },
+  "fzf-lua": { "branch": "main", "commit": "19d7020b700879759d7f834fc717dde086f673a7" },
   "gitsigns.nvim": { "branch": "main", "commit": "130beacf8a51f00aede9c31064c749136679a321" },
   "go.nvim": { "branch": "master", "commit": "41a18f0c05534c375bafec7ed05cdb409c4abcc6" },
   "grug-far.nvim": { "branch": "main", "commit": "74eef260e1142264ab994fb9c88e4f420e9486d7" },
