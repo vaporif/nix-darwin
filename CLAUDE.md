@@ -40,27 +40,35 @@ This is a Nix-darwin + Home Manager configuration for macOS that manages system-
 ### Configuration Flow
 The configuration follows a hierarchical module system:
 1. `flake.nix` → Entry point defining inputs, MCP server config, and instantiating configurations
-2. `system.nix` → System-level Darwin settings (imported by flake)
+2. `system/` → System-level Darwin settings (imported by flake)
 3. `home/default.nix` → User-level home-manager configuration (imported by flake)
 4. `home/*.nix` → Modular home configuration files (imported by home/default.nix)
 
 ### Core Configuration Files
 - `flake.nix` - Main entry point defining inputs (nixpkgs, home-manager, stylix, sops-nix, mcp-servers-nix), MCP server configuration, and system modules
-- `system.nix` - System-level settings: Homebrew packages, fonts, system preferences, launchd agents, skhd shortcuts
+- `system/default.nix` - System-level settings: nix config, system preferences, skhd shortcuts
+- `system/theme.nix` - Stylix theme configuration (Everforest Light)
+- `system/security.nix` - SOPS secrets, firewall, TouchID
+- `system/homebrew.nix` - Homebrew casks and taps
 - `home/default.nix` - Main home configuration that imports modules and configures Claude Code plugins
 - `home/shell.nix` - Shell environment (zsh, aliases, prompt, completions)
 - `home/packages.nix` - User-installed packages and development tools
 
 ### Key Directories
-- `/nvim/` - Neovim configuration with 30+ plugins, LSP settings, custom keybindings, and lazy-lock.json for reproducibility
-- `/karabiner/` - Keyboard customization rules
-- `/secrets/` - SOPS-encrypted secrets (SSH keys, API tokens)
-- `/wezterm/` - Terminal emulator with tmux-like keybindings
-- `/yazi/` - File manager configuration with yamb bookmarks plugin
+- `/config/` - Application configuration files (dotfiles)
+  - `nvim/` - Neovim configuration with 30+ plugins, LSP settings, custom keybindings
+  - `wezterm/` - Terminal emulator with tmux-like keybindings
+  - `yazi/` - File manager configuration with yamb bookmarks plugin
+  - `karabiner/` - Keyboard customization rules
+  - `librewolf/` - LibreWolf browser configuration overrides
+  - `tidal/` - TidalCycles live coding configuration
+  - `claude/` - Claude Code settings and permissions
+  - `procs/` - Process viewer configuration
+- `/home/` - Nix home-manager modules
+- `/system/` - Nix darwin system modules
+- `/pkgs/` - Custom Nix package definitions
+- `/secrets/` - SOPS-encrypted secrets (API tokens)
 - `/scripts/` - Custom scripts including LibreWolf auto-updater
-- `/librewolf/` - LibreWolf browser configuration overrides
-- `/tidal/` - TidalCycles live coding configuration
-- `/.claude/` - Claude Code settings and permissions
 
 ### External Dependencies
 - Rust devshell from `github:vaporif/nix-devshells` (pinned commit, provides additional development tools via ~/.envrc)
@@ -94,7 +102,7 @@ The configuration includes extensive AI capabilities through MCP servers (config
 
 **Recommended for this repo:** Use Serena for semantic code navigation and editing. It provides symbol-level operations (find definitions, references, rename) that are more precise than text-based search. Configured LSPs relevant to this repo:
 - `nixd` for `.nix` files (flake, system, home-manager configs)
-- `lua-language-server` for Lua files (Neovim config in `/nvim/`, WezTerm config)
+- `lua-language-server` for Lua files (Neovim config in `/config/nvim/`, WezTerm config in `/config/wezterm/`)
 - **filesystem**: Access to ~/Documents
 - **git**: Git repository operations
 - **sequential-thinking**: AI reasoning capabilities

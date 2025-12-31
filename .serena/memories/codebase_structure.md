@@ -3,7 +3,11 @@
 ## Configuration Flow
 ```
 flake.nix (Entry point)
-    ├── system.nix (System-level Darwin settings)
+    ├── system/ (System-level Darwin settings)
+    │       ├── default.nix (nix config, system defaults, skhd)
+    │       ├── theme.nix (Stylix theme)
+    │       ├── security.nix (SOPS, firewall, TouchID)
+    │       └── homebrew.nix (Homebrew casks)
     └── home/default.nix (User-level home-manager config)
             ├── home/packages.nix (User packages)
             └── home/shell.nix (Shell configuration)
@@ -16,8 +20,16 @@ flake.nix (Entry point)
 |----------|---------|
 | `flake.nix` | Main entry point, defines inputs and outputs |
 | `flake.lock` | Locked versions of all flake inputs |
-| `system.nix` | System-level settings (Homebrew, skhd, secrets, Stylix) |
+| `mcp.nix` | MCP server configuration |
 | `CLAUDE.md` | Instructions for Claude Code |
+
+### `system/` - Darwin System Configuration
+| File | Purpose |
+|------|---------|
+| `default.nix` | Nix settings, system defaults, skhd shortcuts |
+| `theme.nix` | Stylix theme (Everforest Light) |
+| `security.nix` | SOPS secrets, firewall, TouchID |
+| `homebrew.nix` | Homebrew casks and taps |
 
 ### `home/` - Home Manager Configuration
 | File | Purpose |
@@ -26,43 +38,37 @@ flake.nix (Entry point)
 | `packages.nix` | User-installed packages and custom derivations |
 | `shell.nix` | Zsh config, aliases, shell tools (fzf, starship, etc.) |
 
-### `nvim/` - Neovim Configuration
+### `config/` - Application Configurations (Dotfiles)
 | Path | Purpose |
 |------|---------|
-| `init.lua` | Entry point for Neovim |
-| `lua/core/` | Core settings (options, mappings, LSP, autocmds) |
-| `lua/plugins/` | Plugin configurations (30+ plugins) |
-| `lazy-lock.json` | Plugin version lockfile |
-| `.stylua.toml` | Lua formatter configuration |
+| `nvim/` | Neovim config (init.lua, lua/core/, lua/plugins/, lazy-lock.json) |
+| `wezterm/` | Terminal config with tmux-like keybindings |
+| `yazi/` | File manager config (init.lua, keymap.toml) |
+| `karabiner/` | Keyboard customization rules |
+| `librewolf/` | Browser configuration overrides |
+| `tidal/` | TidalCycles live coding setup |
+| `claude/` | Claude Code settings and CLAUDE.md |
+| `procs/` | Process viewer configuration |
+| `direnvrc` | Direnv library functions |
 
-### `wezterm/` - Terminal Configuration
+### `pkgs/` - Custom Nix Packages
 | File | Purpose |
 |------|---------|
-| `init.lua` | WezTerm configuration with tmux-like keybindings |
-
-### `yazi/` - File Manager Configuration
-| File | Purpose |
-|------|---------|
-| `init.lua` | Yazi initialization |
-| `keymap.toml` | Custom keybindings |
-| `bookmark` | Bookmark data |
+| `unclog.nix` | Custom package |
+| `nomicfoundation-solidity-language-server.nix` | Solidity LSP |
 
 ### `secrets/` - Encrypted Secrets
 | File | Purpose |
 |------|---------|
 | `secrets.yaml` | SOPS-encrypted secrets (API keys, tokens) |
 
-### Other Configuration Directories
+### Other Directories
 | Directory | Purpose |
 |-----------|---------|
-| `karabiner/` | Keyboard customization rules |
-| `tidal/` | TidalCycles live coding setup |
-| `librewolf/` | Browser overrides |
-| `scripts/` | Custom shell scripts |
+| `scripts/` | Custom shell scripts (LibreWolf installer) |
 | `.ssh/` | SSH configuration |
 
 ### Special Files
 | File | Purpose |
 |------|---------|
 | `.sops.yaml` | SOPS encryption configuration |
-| `direnvrc` | Direnv library functions |

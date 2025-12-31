@@ -12,23 +12,28 @@ flake.nix (entry point)
 ├── Inputs: nixpkgs, nix-darwin, home-manager, sops-nix, stylix, mcp-servers-nix
 ├── Overlays: allowUnfreePredicate for spacetimedb, claude-code
 │
-├── system.nix (Darwin system configuration)
-│   ├── Stylix theming
-│   ├── SOPS secrets
-│   ├── Nix settings
-│   ├── System defaults (Dock, Finder, etc.)
-│   ├── Services (skhd hotkeys)
-│   ├── Homebrew casks
-│   └── Activation scripts
+├── system/ (Darwin system configuration)
+│   ├── default.nix - Nix settings, system defaults, skhd hotkeys
+│   ├── theme.nix - Stylix theming (Everforest Light)
+│   ├── security.nix - SOPS secrets, firewall, TouchID
+│   └── homebrew.nix - Homebrew casks
 │
-└── home/ (Home Manager user configuration)
-    ├── default.nix - Programs: git, neovim, wezterm, gh, lazygit
-    ├── packages.nix - User packages + custom derivations
-    └── shell.nix - Zsh, shell tools, aliases
+├── home/ (Home Manager user configuration)
+│   ├── default.nix - Programs: git, neovim, wezterm, gh, lazygit
+│   ├── packages.nix - User packages + custom derivations
+│   └── shell.nix - Zsh, shell tools, aliases
+│
+└── config/ (Application dotfiles)
+    ├── nvim/ - Neovim configuration
+    ├── wezterm/ - Terminal configuration
+    ├── yazi/ - File manager configuration
+    ├── karabiner/ - Keyboard customization
+    ├── claude/ - Claude Code settings
+    └── ...
 ```
 
 ### Key Design Pattern
-- **Separation of concerns**: System-level config in `system.nix`, user-level in `home/`
+- **Separation of concerns**: System-level config in `system/`, user-level in `home/`, dotfiles in `config/`
 - **Modular imports**: Each concern has its own file
 - **XDG compliance**: Configs placed via `xdg.configFile`
 - **Declarative dotfiles**: All configs managed through Nix, not manually
@@ -37,7 +42,7 @@ flake.nix (entry point)
 
 ## 2. Theming System (Stylix)
 
-**Location**: `system.nix` → `stylix` attribute
+**Location**: `system/theme.nix`
 
 **Implementation**:
 - Custom Everforest Light base16 color scheme
@@ -58,7 +63,7 @@ stylix = {
 
 ## 3. Secrets Management (SOPS)
 
-**Location**: `system.nix` → `sops`, `secrets/secrets.yaml`
+**Location**: `system/security.nix`, `secrets/secrets.yaml`
 
 **Implementation**:
 - Encryption: Age (key at `~/.config/sops/age/key.txt`)
@@ -106,11 +111,11 @@ sops.secrets.openrouter-key = { owner = "vaporif"; mode = "0400"; };
 
 ## 5. Neovim Configuration
 
-**Location**: `nvim/` directory, managed via `xdg.configFile.nvim`
+**Location**: `config/nvim/` directory, managed via `xdg.configFile.nvim`
 
 ### Structure
 ```
-nvim/
+config/nvim/
 ├── init.lua          # Bootstrap lazy.nvim, load core & plugins
 ├── lazy-lock.json    # Plugin version lockfile (committed)
 ├── .stylua.toml      # Lua formatter config
@@ -161,7 +166,7 @@ nvim/
 
 ## 6. WezTerm Configuration
 
-**Location**: `wezterm/init.lua`
+**Location**: `config/wezterm/init.lua`
 
 ### Features
 - **Frontend**: WebGPU (120 FPS)
@@ -231,7 +236,7 @@ cat = "bat";
 
 ## 8. Yazi File Manager
 
-**Location**: `yazi/`
+**Location**: `config/yazi/`
 
 ### Plugins
 - **yamb.yazi**: Bookmark manager (from flake input)
@@ -251,7 +256,7 @@ cat = "bat";
 ## 9. System Services
 
 ### skhd (Hotkey Daemon)
-**Location**: `system.nix` → `services.skhd`
+**Location**: `system/default.nix` → `services.skhd`
 
 | Hotkey | Application |
 |--------|-------------|
@@ -315,7 +320,7 @@ Builds Hardhat's Solidity LSP from npm with:
 
 ## 12. Homebrew Integration
 
-**Location**: `system.nix` → `homebrew`
+**Location**: `system/homebrew.nix`
 
 ### Behavior
 - Auto-update on activation

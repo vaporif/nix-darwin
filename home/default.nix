@@ -106,7 +106,7 @@ in {
     wezterm = {
       enable = true;
       enableZshIntegration = true;
-      extraConfig = builtins.readFile ../wezterm/init.lua;
+      extraConfig = builtins.readFile ../config/wezterm/init.lua;
     };
 
     git = {
@@ -181,7 +181,7 @@ in {
         source = ../.ssh/config;
       };
       ".librewolf/librewolf.overrides.cfg" = {
-        source = ../librewolf/librewolf.overrides.cfg;
+        source = ../config/librewolf/librewolf.overrides.cfg;
       };
       "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
 
@@ -191,9 +191,8 @@ in {
       "${nixPluginsPath}/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
       "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
 
-      # Claude Code settings
-      ".claude/CLAUDE.md".source = ../claude/CLAUDE.md;
-      ".claude/settings.json".source = ../claude/settings.json;
+      ".claude/CLAUDE.md".source = ../config/claude/CLAUDE.md;
+      ".claude/settings.json".source = ../config/claude/settings.json;
       ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
     }
     // {
@@ -206,15 +205,15 @@ in {
     };
 
   xdg.configFile = {
-    "nvim".source = ../nvim;
-    "karabiner/karabiner.json".source = ../karabiner/karabiner.json;
-    "yazi/init.lua".source = ../yazi/init.lua;
-    "yazi/keymap.toml".source = ../yazi/keymap.toml;
+    "nvim".source = ../config/nvim;
+    "karabiner/karabiner.json".source = ../config/karabiner/karabiner.json;
+    "yazi/init.lua".source = ../config/yazi/init.lua;
+    "yazi/keymap.toml".source = ../config/yazi/keymap.toml;
     "yazi/plugins/yamb.yazi" = {
       source = yamb-yazi;
       recursive = true;
     };
-    "tidal/Tidal.ghci".source = ../tidal/Tidal.ghci;
-    "procs/config.toml".source = ../procs/config.toml;
+    "tidal/Tidal.ghci".source = ../config/tidal/Tidal.ghci;
+    "procs/config.toml".source = ../config/procs/config.toml;
   };
 }
