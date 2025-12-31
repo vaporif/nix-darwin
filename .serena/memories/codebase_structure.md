@@ -49,6 +49,7 @@ flake.nix (Entry point)
 | `tidal/` | TidalCycles live coding setup |
 | `claude/` | Claude Code settings and CLAUDE.md |
 | `procs/` | Process viewer configuration |
+| `.ssh/` | SSH configuration |
 | `direnvrc` | Direnv library functions |
 
 ### `pkgs/` - Custom Nix Packages
@@ -66,7 +67,6 @@ flake.nix (Entry point)
 | Directory | Purpose |
 |-----------|---------|
 | `scripts/` | Custom shell scripts (LibreWolf installer) |
-| `.ssh/` | SSH configuration |
 
 ### Special Files
 | File | Purpose |

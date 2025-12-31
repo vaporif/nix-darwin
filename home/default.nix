@@ -178,7 +178,7 @@ in {
       # Stable symlink to Neovim runtime for .luarc.json
       ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
       ".ssh/config" = {
-        source = ../.ssh/config;
+        source = ../config/.ssh/config;
       };
       ".librewolf/librewolf.overrides.cfg" = {
         source = ../config/librewolf/librewolf.overrides.cfg;

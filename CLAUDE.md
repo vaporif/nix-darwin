@@ -64,6 +64,7 @@ The configuration follows a hierarchical module system:
   - `tidal/` - TidalCycles live coding configuration
   - `claude/` - Claude Code settings and permissions
   - `procs/` - Process viewer configuration
+  - `.ssh/` - SSH configuration
 - `/home/` - Nix home-manager modules
 - `/system/` - Nix darwin system modules
 - `/pkgs/` - Custom Nix package definitions
@@ -114,6 +115,10 @@ The configuration includes extensive AI capabilities through MCP servers (config
 - **deepl**: Translation API integration
 - **tavily**: Search API integration
 - **nixos**: NixOS/nix-darwin option search
+
+### Claude Code Configuration
+- **Global preferences**: `~/.claude/CLAUDE.md` (managed via `config/claude/CLAUDE.md`) - applies to all projects
+- **Project-specific**: `/private/etc/nix-darwin/CLAUDE.md` (this file) - applies only to this repo
 
 ### Claude Code Plugins
 Nix-managed Claude Code plugins (configured in home/default.nix):
