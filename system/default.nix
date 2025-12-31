@@ -1,58 +1,18 @@
 {
   pkgs,
-  lib,
   user,
-  homeDir,
   mcp-servers-nix,
   mcpConfig,
   ...
 }: let
   mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
 in {
-  stylix = {
-    enable = true;
-    base16Scheme = {
-      scheme = "Everforest Light Custom";
-      author = "Based on Sainnhe Park";
-      base00 = "e8dcc6"; # background
-      base01 = "f8f1de"; # lighter bg
-      base02 = "d5c9b8"; # selection bg
-      base03 = "b5c1b8"; # comments
-      base04 = "9da9a0"; # dark fg
-      base05 = "5c6a72"; # default fg
-      base06 = "4d5b56"; # light fg
-      base07 = "3a5b4d"; # light bg
-      base08 = "b85450"; # red
-      base09 = "c08563"; # orange
-      base0A = "c9a05a"; # yellow
-      base0B = "89a05d"; # green
-      base0C = "6b9b91"; # cyan
-      base0D = "6b8b8f"; # blue
-      base0E = "9b7d8a"; # purple
-      base0F = "859289"; # brown
-    };
-    fonts = {
-      monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
-      };
-      sansSerif = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font";
-      };
-      serif = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font";
-      };
-      sizes = {
-        applications = 12;
-        desktop = 10;
-        popups = 10;
-        terminal = 16;
-      };
-    };
-    polarity = "light";
-  };
+  imports = [
+    ./theme.nix
+    ./security.nix
+    ./homebrew.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     age
     libressl
@@ -60,18 +20,6 @@ in {
 
   # Address the Determinate error
   nix.enable = false;
-
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.age.keyFile = "${homeDir}/.config/sops/age/key.txt";
-  sops.age.sshKeyPaths = [];
-  sops.secrets =
-    lib.genAttrs
-    ["openrouter-key" "tavily-key" "youtube-key" "deepl-key"]
-    (_: {
-      owner = user;
-      group = "staff";
-      mode = "0400";
-    });
 
   nix.settings = {
     experimental-features = "nix-command flakes";
@@ -87,9 +35,11 @@ in {
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
+
   system.configurationRevision = null;
   system.stateVersion = 6;
   system.primaryUser = user;
+
   system.defaults = {
     dock = {
       autohide = true;
@@ -130,13 +80,6 @@ in {
       "com.apple.Terminal".SecureKeyboardEntry = true;
     };
   };
-  networking.applicationFirewall = {
-    enable = true;
-    enableStealthMode = true;
-    blockAllIncoming = false;
-    allowSigned = true;
-    allowSignedApp = false;
-  };
 
   services = {
     skhd = {
@@ -155,18 +98,9 @@ in {
     };
     openssh.enable = false;
   };
-  security.pam.services.sudo_local.touchIdAuth = true;
-  security.sudo.extraConfig = ''
-    Defaults timestamp_timeout=1
-  '';
-
-  # Stricter umask - new files only readable by owner
-  system.activationScripts.umask.text = ''
-    launchctl config user umask 077
-  '';
 
   system.activationScripts.postActivation.text = let
-    librewolfInstaller = ./scripts/install-librewolf.sh;
+    librewolfInstaller = ../scripts/install-librewolf.sh;
     claudeCodeConfigDir = "/Library/Application Support/ClaudeCode";
   in ''
     echo "Installing/updating LibreWolf..."
@@ -177,45 +111,5 @@ in {
     cp ${mcpServersConfig} "${claudeCodeConfigDir}/managed-mcp.json"
   '';
 
-  homebrew = {
-    enable = true;
-    onActivation = {
-      autoUpdate = true;
-      upgrade = true;
-      cleanup = "zap";
-    };
-
-    taps = [
-      "homebrew/bundle"
-      "homebrew/services"
-      "oven-sh/bun"
-    ];
-
-    casks = [
-      "supercollider"
-      "blackhole-2ch"
-      "blackhole-16ch"
-      "element"
-      "claude"
-      "brave-browser"
-      "wezterm@nightly"
-      "karabiner-elements"
-      "tor-browser"
-      "vlc"
-      "orbstack"
-      "qbittorrent"
-      "secretive"
-      "simplex"
-      "signal"
-      "cardinal"
-      "keycastr"
-      "zoom"
-      "monitorcontrol"
-      "proton-mail"
-      "proton-drive"
-      "protonvpn"
-      "gimp"
-    ];
-  };
   nixpkgs.hostPlatform = "aarch64-darwin";
 }

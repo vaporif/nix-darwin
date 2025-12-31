@@ -3,6 +3,7 @@
   config,
   user,
   homeDir,
+  sharedLspPackages,
   yamb-yazi,
   mcp-servers-nix,
   mcpConfig,
@@ -156,17 +157,16 @@ in {
     neovim = {
       viAlias = true;
       enable = true;
-      extraPackages = with pkgs; [
-        lua51Packages.luarocks
-        lua51Packages.lua
-        lua-language-server
-        stylua
-        typescript-language-server
-        haskell-language-server
-        basedpyright
-        just-lsp
-        golangci-lint
-      ];
+      extraPackages =
+        sharedLspPackages
+        ++ (with pkgs; [
+          lua51Packages.luarocks
+          lua51Packages.lua
+          stylua
+          haskell-language-server
+          just-lsp
+          golangci-lint
+        ]);
     };
   };
 

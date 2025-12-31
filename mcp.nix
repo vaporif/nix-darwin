@@ -4,6 +4,7 @@
   serenaPatched,
   mcp-servers-nix,
   mcp-nixos-package,
+  sharedLspPackages,
 }: {
   programs = {
     filesystem = {
@@ -30,14 +31,12 @@
       enable = true;
       package = serenaPatched;
       enableWebDashboard = true;
-      extraPackages = with pkgs; [
-        rust-analyzer
-        gopls
-        nixd
-        typescript-language-server
-        basedpyright
-        lua-language-server
-      ];
+      extraPackages =
+        sharedLspPackages
+        ++ (with pkgs; [
+          rust-analyzer
+          gopls
+        ]);
     };
     github = {
       enable = true;

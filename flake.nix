@@ -62,6 +62,14 @@
     mcp-nixos-package = mcp-nixos.packages.${system}.default;
     fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
 
+    # Shared LSP packages used by both neovim and serena
+    sharedLspPackages = with pkgs; [
+      lua-language-server
+      typescript-language-server
+      basedpyright
+      nixd
+    ];
+
     # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
     serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (old: {
       version = "0.1.4-unstable-2025-12-28";
@@ -74,7 +82,7 @@
     });
 
     mcpConfig = import ./mcp.nix {
-      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package;
+      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages;
     };
   in {
     formatter.${system} = pkgs.alejandra;
@@ -96,7 +104,7 @@
         }
         stylix.darwinModules.stylix
         sops-nix.darwinModules.sops
-        ./system.nix
+        ./system
         home-manager.darwinModules.home-manager
         {
           users.users.${user} = {
@@ -107,7 +115,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit user homeDir;
+              inherit user homeDir sharedLspPackages;
               inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
               inherit mcp-servers-nix mcp-nixos-package mcpConfig;
             };
