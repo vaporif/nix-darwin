@@ -16,7 +16,7 @@
     };
     mcp-nixos.url = "github:utensils/mcp-nixos";
     mcp-servers-nix = {
-      url = "github:vaporif/mcp-servers-nix/dev";
+      url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fzf-git-sh = {
