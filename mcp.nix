@@ -38,16 +38,6 @@
           gopls
         ]);
     };
-    github = {
-      enable = true;
-      passwordCommand = {
-        GITHUB_PERSONAL_ACCESS_TOKEN = [
-          (pkgs.lib.getExe pkgs.gh)
-          "auth"
-          "token"
-        ];
-      };
-    };
     deepl = {
       enable = true;
       passwordCommand = {
@@ -56,6 +46,12 @@
     };
   };
   settings.servers = {
+    github = {
+      command = "${pkgs.writeShellScript "github-mcp-wrapper" ''
+        export GITHUB_PERSONAL_ACCESS_TOKEN="$(${pkgs.lib.getExe pkgs.gh} auth token)"
+        exec ${pkgs.lib.getExe pkgs.github-mcp-server} stdio
+      ''}";
+    };
     tavily = {
       command = "${pkgs.writeShellScript "tavily-mcp-wrapper" ''
         export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
