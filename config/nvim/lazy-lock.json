@@ -11,7 +11,7 @@
   "everforest-nvim": { "branch": "main", "commit": "557bce922401e247a596583679bc181d4d688554" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "fzf-lua": { "branch": "main", "commit": "a03d68e40eea835a1cdbd9f93049708dab3621e6" },
-  "gitsigns.nvim": { "branch": "main", "commit": "6bd29494e3f79ff08be1d35bc1926ed23c22ed9a" },
+  "gitsigns.nvim": { "branch": "main", "commit": "dfac404ac94b0eb1461bd7da32279e16950dfd67" },
   "go.nvim": { "branch": "master", "commit": "41a18f0c05534c375bafec7ed05cdb409c4abcc6" },
   "grug-far.nvim": { "branch": "main", "commit": "794f03c97afc7f4b03fb6ec5111be507df1850cf" },
   "guihua.lua": { "branch": "master", "commit": "ef44ba40f12e56c1c9fa45967f2b4d142e4b97a0" },
