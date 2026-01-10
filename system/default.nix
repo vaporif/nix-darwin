@@ -85,15 +85,19 @@ in {
     skhd = {
       enable = true;
       skhdConfig = ''
-        cmd - 1 : open -a "Librewolf"
-        cmd - 2 : open -a "wezterm"
-        cmd - 3 : open -a "Claude"
-        cmd - 4 : open -a "WhatsApp"
-        cmd - 5 : open -a "Slack"
-        cmd - 6 : open -a "Brave Browser"
-        cmd - 7 : open -a "Ableton Live 12 Suite"
-        cmd - 8 : open -a "Signal"
-        cmd - 9 : open -a "Spotify"
+        # App shortcuts (hyper = caps lock via karabiner)
+        # Left hand
+        hyper - r : open -a "Librewolf"             # lib[r]ewolf
+        hyper - t : open -a "wezterm"               # [t]erminal
+        hyper - c : open -a "Claude"                # [c]laude
+        hyper - s : open -a "Slack"                 # [s]lack
+        hyper - b : open -a "Brave Browser"         # [b]rave
+        hyper - d : open -a "Discord"               # [d]iscord
+        # Right hand
+        hyper - w : open -a "WhatsApp"              # [w]hatsapp
+        hyper - m : open -a "Ableton Live 12 Suite" # [m]usic
+        hyper - l : open -a "Signal"                # signa[l]
+        hyper - p : open -a "Spotify"               # s[p]otify
       '';
     };
     openssh.enable = false;

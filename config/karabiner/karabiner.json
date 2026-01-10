@@ -4,7 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Extend layer - Arrows only",
+                        "description": "Extend layer - Arrows (ijkl) + Hyper (app shortcuts)",
                         "manipulators": [
                             {
                                 "from": {
@@ -99,6 +99,186 @@
                                     }
                                 },
                                 "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "r", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "f", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "c", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "d", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "b", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "g", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "u", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "m", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "s", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "p", "modifiers": ["left_command", "left_control", "left_option", "left_shift"] }],
                                 "type": "basic"
                             }
                         ]
