@@ -151,6 +151,8 @@
         export SOPS_AGE_KEY_FILE="$HOME/.config/sops/age/key.txt"
         export PATH="/opt/homebrew/bin:$HOME/.cargo/bin:$PATH"
         export GPG_TTY=$(tty)
+        export EDITOR="nvim"
+        export VISUAL="nvim"
         bindkey '^F' fzf-file-widget
         bindkey -r '^T'
       '';
