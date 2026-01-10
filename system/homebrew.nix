@@ -27,7 +27,6 @@
       "orbstack"
       "qbittorrent"
       "secretive"
-      "simplex"
       "signal"
       "cardinal"
       "keycastr"
@@ -37,6 +36,7 @@
       "proton-drive"
       "protonvpn"
       "gimp"
+      "rectangle"
     ];
   };
 }
