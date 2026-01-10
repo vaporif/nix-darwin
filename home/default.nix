@@ -176,7 +176,7 @@ in {
           source = "Apple";
           padding.top = 1;
         };
-        display.separator = " → ";
+        display.separator = " ❯ ";
         modules = [
           {
             type = "os";
@@ -215,7 +215,6 @@ in {
             key = "Nix";
             text = "nix --version";
           }
-          "break"
           {
             type = "cpu";
             key = "CPU";
@@ -232,6 +231,10 @@ in {
             type = "command";
             key = "Sound";
             text = "system_profiler SPAudioDataType 2>/dev/null | awk '/^        [^ ]/{device=$0} /Default System Output Device: Yes/{print device}' | sed 's/://g' | xargs";
+          }
+          {
+            type = "keyboard";
+            key = "Keyboard";
           }
           {
             type = "memory";
