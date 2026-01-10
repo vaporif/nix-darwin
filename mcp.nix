@@ -30,6 +30,7 @@
     serena = {
       enable = true;
       package = serenaPatched;
+      context = "claude-code";
       enableWebDashboard = true;
       extraPackages =
         sharedLspPackages
@@ -61,5 +62,6 @@
     nixos = {
       command = "${mcp-nixos-package}/bin/mcp-nixos";
     };
+    serena.args = pkgs.lib.mkAfter ["--project-from-cwd"];
   };
 }
