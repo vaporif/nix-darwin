@@ -68,6 +68,13 @@ in {
     ./shell.nix
   ];
 
+  # Disable manual generation to avoid builtins.toFile warning (home-manager#7935)
+  manual = {
+    manpages.enable = false;
+    html.enable = false;
+    json.enable = false;
+  };
+
   home = {
     homeDirectory = homeDir;
     username = user;
