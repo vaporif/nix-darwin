@@ -169,6 +169,20 @@ in {
         ]);
     };
 
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      extraOptionOverrides = {
+        StrictHostKeyChecking = "accept-new";
+        IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+      };
+      matchBlocks."*" = {
+        addKeysToAgent = "yes";
+        serverAliveInterval = 60;
+        serverAliveCountMax = 3;
+      };
+    };
+
     fastfetch = {
       enable = true;
       settings = {
@@ -261,9 +275,6 @@ in {
       '';
       # Stable symlink to Neovim runtime for .luarc.json
       ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
-      ".ssh/config" = {
-        source = ../config/.ssh/config;
-      };
       ".librewolf/librewolf.overrides.cfg" = {
         source = ../config/librewolf/librewolf.overrides.cfg;
       };
