@@ -278,7 +278,7 @@ in {
   home.file =
     {
       ".envrc".text = ''
-        use flake github:vaporif/nix-devshells/11b7a8af7649f404ad100374166a7a139dbff571
+        use flake github:vaporif/nix-devshells/b21a387fa69a1ba5230536d100524e1cfd9c1821
       '';
       # Stable symlink to Neovim runtime for .luarc.json
       ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
