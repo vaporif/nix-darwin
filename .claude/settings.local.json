@@ -53,7 +53,8 @@
       "mcp__serena__edit_memory",
       "Bash(uvx mcp-scan@latest scan:*)",
       "mcp__qdrant__qdrant-store",
-      "mcp__qdrant__qdrant-find"
+      "mcp__qdrant__qdrant-find",
+      "mcp__nixos__nix"
     ],
     "deny": [],
     "ask": []
