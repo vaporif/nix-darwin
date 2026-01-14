@@ -203,6 +203,17 @@ in {
       ".envrc".text = ''
         use flake github:vaporif/nix-devshells/${nix-devshells.rev}
       '';
+      # Qdrant config - localhost only
+      ".qdrant/config.yaml".text = ''
+        service:
+          host: 127.0.0.1
+          http_port: 6333
+          grpc_port: 6334
+        storage:
+          storage_path: ${homeDir}/.qdrant/storage
+          snapshots_path: ${homeDir}/.qdrant/snapshots
+        telemetry_disabled: true
+      '';
       # Stable symlink to Neovim runtime for .luarc.json
       ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
       ".librewolf/librewolf.overrides.cfg" = {
@@ -215,6 +226,10 @@ in {
       "${nixPluginsPath}/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
       "${nixPluginsPath}/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
       "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
+
+      # Claude Code custom commands
+      ".claude/commands/remember.md".source = ../config/claude-commands/remember.md;
+      ".claude/commands/recall.md".source = ../config/claude-commands/recall.md;
 
       ".claude/CLAUDE.md".source = ../config/claude/CLAUDE.md;
       ".claude/settings.json".source = ../config/claude/settings.json;
@@ -240,5 +255,21 @@ in {
     };
     "tidal/Tidal.ghci".source = ../config/tidal/Tidal.ghci;
     "procs/config.toml".source = ../config/procs/config.toml;
+  };
+
+  launchd.agents.qdrant = {
+    enable = true;
+    config = {
+      Label = "org.qdrant.server";
+      ProgramArguments = [
+        "${pkgs.qdrant}/bin/qdrant"
+        "--config-path"
+        "${homeDir}/.qdrant/config.yaml"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "${homeDir}/.qdrant/qdrant.log";
+      StandardErrorPath = "${homeDir}/.qdrant/qdrant.err";
+    };
   };
 }

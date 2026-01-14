@@ -50,7 +50,9 @@
       "Bash(python3:*)",
       "mcp__filesystem__directory_tree",
       "Bash(wc:*)",
-      "mcp__serena__edit_memory"
+      "mcp__serena__edit_memory",
+      "Bash(uvx mcp-scan@latest scan:*)",
+      "mcp__qdrant__qdrant-store"
     ],
     "deny": [],
     "ask": []

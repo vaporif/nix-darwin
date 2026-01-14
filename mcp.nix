@@ -45,6 +45,13 @@
         DEEPL_API_KEY = ["cat" "/run/secrets/deepl-key"];
       };
     };
+    qdrant = {
+      enable = true;
+      env = {
+        QDRANT_URL = "http://localhost:6333";
+        COLLECTION_NAME = "claude-memory";
+      };
+    };
   };
   settings.servers = {
     github = {
