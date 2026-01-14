@@ -37,6 +37,7 @@
       url = "github:anthropics/claude-code/d213a74fc8e3b6efded52729196e0c2d4c3abb3e";
       flake = false;
     };
+    nix-devshells.url = "github:vaporif/nix-devshells";
   };
 
   outputs = {
@@ -51,6 +52,7 @@
     mcp-servers-nix,
     stylix,
     claude-code-plugins,
+    nix-devshells,
     ...
   }: let
     system = "aarch64-darwin";
@@ -119,7 +121,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit user homeDir sharedLspPackages mcpServersConfig;
+              inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells;
               inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
               inherit mcp-nixos-package;
             };

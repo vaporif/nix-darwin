@@ -7,6 +7,7 @@
   yamb-yazi,
   mcpServersConfig,
   claude-code-plugins,
+  nix-devshells,
   ...
 }: let
   claudePluginsBase = ".claude/plugins/marketplaces";
@@ -200,7 +201,7 @@ in {
   home.file =
     {
       ".envrc".text = ''
-        use flake github:vaporif/nix-devshells/b21a387fa69a1ba5230536d100524e1cfd9c1821
+        use flake github:vaporif/nix-devshells/${nix-devshells.rev}
       '';
       # Stable symlink to Neovim runtime for .luarc.json
       ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
