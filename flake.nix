@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-servers-nix = {
-      url = "github:vaporif/mcp-servers-nix/fix-ts-prune";
+      url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcp-nixos.url = "github:utensils/mcp-nixos";

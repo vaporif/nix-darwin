@@ -291,16 +291,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1768075539,
-        "narHash": "sha256-b+hvUQBi4Az4XlNWYUpowwy/RiJoTziSLcPZHgl92YI=",
-        "owner": "vaporif",
+        "lastModified": 1768404925,
+        "narHash": "sha256-hRKBj4VmlDKYK9EC0yuNw4YbgbJi2Tzm3LlTTZjuGKQ=",
+        "owner": "natsukium",
         "repo": "mcp-servers-nix",
-        "rev": "5a0753064b64a7d08a0967160906e3ab12cf16a8",
+        "rev": "ee4920725b6e88e9344aefe20c53e41f6a8fb3eb",
         "type": "github"
       },
       "original": {
-        "owner": "vaporif",
-        "ref": "fix-ts-prune",
+        "owner": "natsukium",
         "repo": "mcp-servers-nix",
         "type": "github"
       }
