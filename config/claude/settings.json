@@ -254,10 +254,25 @@
     ]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(rm -rf|rm -r|git push --force|git push -f|git reset --hard)",
+        "hooks": [{"type": "prompt", "prompt": "This is a destructive command. Explain why it's necessary and confirm with user before proceeding."}]
+      },
+      {
+        "matcher": "mcp__filesystem__delete_file",
+        "hooks": [{"type": "prompt", "prompt": "This will delete a file. Confirm this is intended before proceeding."}]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
         "hooks": [{"type": "command", "command": "claude-formatter"}]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [{"type": "prompt", "prompt": "Before ending, run /remember to save a session summary to Qdrant."}]
       }
     ]
   }
