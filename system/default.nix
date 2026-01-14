@@ -1,12 +1,9 @@
 {
   pkgs,
   user,
-  mcp-servers-nix,
-  mcpConfig,
+  mcpServersConfig,
   ...
-}: let
-  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
-in {
+}: {
   imports = [
     ./theme.nix
     ./security.nix

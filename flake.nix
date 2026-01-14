@@ -86,6 +86,8 @@
     mcpConfig = import ./mcp.nix {
       inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages;
     };
+
+    mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
   in {
     formatter.${system} = pkgs.alejandra;
 
@@ -95,7 +97,7 @@
 
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
       inherit system;
-      specialArgs = {inherit user homeDir mcp-servers-nix mcpConfig;};
+      specialArgs = {inherit user homeDir mcpServersConfig;};
       modules = [
         {
           nixpkgs.config.allowUnfreePredicate = pkg:
@@ -117,9 +119,9 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit user homeDir sharedLspPackages;
+              inherit user homeDir sharedLspPackages mcpServersConfig;
               inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
-              inherit mcp-servers-nix mcp-nixos-package mcpConfig;
+              inherit mcp-nixos-package;
             };
             users.${user} = import ./home;
             backupFileExtension = "backup";

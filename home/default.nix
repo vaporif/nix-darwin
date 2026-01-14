@@ -5,13 +5,10 @@
   homeDir,
   sharedLspPackages,
   yamb-yazi,
-  mcp-servers-nix,
-  mcpConfig,
+  mcpServersConfig,
   claude-code-plugins,
   ...
 }: let
-  mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
-
   claudePluginsBase = ".claude/plugins/marketplaces";
   nixPluginsPath = "${claudePluginsBase}/nix-plugins";
 
