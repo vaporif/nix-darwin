@@ -41,6 +41,22 @@ Review and clean up all added/changed code in the current git branch compared to
 - Sensitive data exposure
 - Race conditions or unsafe concurrency
 
+**Performance:**
+- Obvious inefficiencies (N+1 queries, unnecessary loops, repeated computations)
+- Unnecessary allocations or copies
+
+**Error Handling:**
+- Are errors informative and actionable?
+- Proper error propagation (not swallowing errors silently)
+
+**Naming:**
+- Are names clear and descriptive?
+- Consistent with domain terminology?
+
+**Dependencies:**
+- Any unnecessary new dependencies introduced?
+- Could use existing utilities instead?
+
 **Challenge:**
 - Is this abstraction necessary or premature?
 - Could this be done more simply?
