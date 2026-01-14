@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # LibreWolf DMG installer script for macOS ARM64
-# This script downloads and installs the latest LibreWolf from GitLab
+# This script downloads and installs the latest LibreWolf from Codeberg
 
 set -e
 
@@ -9,8 +9,8 @@ set -e
 export PATH="/etc/profiles/per-user/vaporif/bin:/run/current-system/sw/bin:$PATH"
 
 # Configuration
-PROJECT_ID="44042130"
-GITLAB_API="https://gitlab.com/api/v4"
+CODEBERG_API="https://codeberg.org/api/v1"
+CODEBERG_PACKAGES="https://codeberg.org/api/packages/librewolf/generic/librewolf"
 TEMP_DIR="/tmp/librewolf-install"
 APP_NAME="LibreWolf.app"
 INSTALL_PATH="/Applications"
@@ -21,10 +21,11 @@ GPG_KEY_URL="https://repo.librewolf.net/pubkey.gpg"
 
 # Function to get latest version
 get_latest_version() {
-    curl -s "${GITLAB_API}/projects/${PROJECT_ID}/releases" | \
-        grep -o '"tag_name":"[^"]*"' | \
-        head -1 | \
-        sed 's/"tag_name":"\([^"]*\)"/\1/'
+    curl -s "${CODEBERG_API}/packages/librewolf" | \
+        grep -o '"version":"[0-9][0-9]*\.[0-9][^"]*"' | \
+        sed 's/"version":"\([^"]*\)"/\1/' | \
+        sort -V | \
+        tail -1
 }
 
 # Function to get installed version
@@ -68,7 +69,7 @@ install_librewolf() {
     fi
 
     # Construct download URL for ARM64
-    DMG_URL="${GITLAB_API}/projects/${PROJECT_ID}/packages/generic/librewolf/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg"
+    DMG_URL="${CODEBERG_PACKAGES}/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg"
 
     echo "Downloading LibreWolf ${VERSION} for ARM64..."
 
@@ -79,7 +80,7 @@ install_librewolf() {
     curl -L -o "${TEMP_DIR}/librewolf.dmg" "$DMG_URL"
 
     # Download signature file
-    SIG_URL="${GITLAB_API}/projects/${PROJECT_ID}/packages/generic/librewolf/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg.sig"
+    SIG_URL="${CODEBERG_PACKAGES}/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg.sig"
     echo "Downloading GPG signature..."
     curl -L -o "${TEMP_DIR}/librewolf.dmg.sig" "$SIG_URL"
 
