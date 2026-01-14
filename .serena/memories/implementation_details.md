@@ -86,26 +86,31 @@ sops.secrets.openrouter-key = { owner = "vaporif"; mode = "0400"; };
 
 ## 4. MCP Servers Integration
 
-**Location**: `flake.nix` → `mcpPrograms`, `system.nix` → `mcpServersConfig`
+**Location**: `mcp.nix` (config), `flake.nix` (mcpServersConfig built once and passed via specialArgs)
 
 **Implementation**:
 - Uses `mcp-servers-nix` flake for declarative MCP config
-- Config generated via `mcp-servers-nix.lib.mkConfig`
-- Output written to multiple locations via activation script:
-  - `/Library/Application Support/ClaudeCode/managed-mcp.json`
+- Config generated once in `flake.nix` via `mcp-servers-nix.lib.mkConfig`
+- `mcpServersConfig` passed to both system and home-manager via specialArgs (deduplicated)
+- Output written to multiple locations:
+  - `/Library/Application Support/ClaudeCode/managed-mcp.json` (via activation script)
   - `~/Library/Application Support/Claude/claude_desktop_config.json`
   - `~/.config/mcphub/servers.json`
 
-**Enabled Servers**:
+**Enabled Servers** (configured in `mcp.nix`):
 | Server | Purpose | Config |
 |--------|---------|--------|
-| filesystem | File access | args: `/Users/vaporif/Documents` |
+| filesystem | File access | Multiple paths including ~/Documents, /private/etc/nix-darwin |
 | git | Git operations | default |
 | sequential-thinking | AI reasoning | default |
 | time | Time utilities | local-timezone: Europe/Lisbon |
-| context7 | Context management | default |
+| context7 | Library documentation | default |
 | memory | Persistent memory | default |
-| serena | Code intelligence | extraPackages: LSPs (rust-analyzer, gopls, nixd, etc.) |
+| serena | Code intelligence | extraPackages: LSPs (rust-analyzer, gopls, nixd, lua-language-server, etc.) |
+| github | GitHub operations | Uses `gh auth token` |
+| tavily | Web search | API key from SOPS |
+| deepl | Translation | API key from SOPS |
+| nixos | NixOS/nix-darwin options | default |
 
 ---
 
@@ -258,17 +263,20 @@ cat = "bat";
 ### skhd (Hotkey Daemon)
 **Location**: `system/default.nix` → `services.skhd`
 
+Uses `hyper` key (caps lock remapped via Karabiner):
+
 | Hotkey | Application |
 |--------|-------------|
-| `Cmd+1` | LibreWolf |
-| `Cmd+2` | WezTerm |
-| `Cmd+3` | Claude |
-| `Cmd+4` | WhatsApp |
-| `Cmd+5` | Slack |
-| `Cmd+6` | Brave |
-| `Cmd+7` | Ableton Live |
-| `Cmd+8` | Signal |
-| `Cmd+9` | Spotify |
+| `hyper + r` | LibreWolf |
+| `hyper + t` | WezTerm |
+| `hyper + c` | Claude |
+| `hyper + s` | Slack |
+| `hyper + b` | Brave |
+| `hyper + d` | Discord |
+| `hyper + w` | WhatsApp |
+| `hyper + m` | Ableton Live |
+| `hyper + l` | Signal |
+| `hyper + p` | Spotify |
 
 ### LibreWolf Auto-Updater
 **Location**: `scripts/install-librewolf.sh`

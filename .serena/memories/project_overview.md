@@ -24,6 +24,7 @@ This is a **Nix-darwin + Home Manager configuration** for macOS that manages sys
 - `sops-nix`
 - `stylix`
 - `mcp-servers-nix` - MCP server configurations
+- `nix-devshells` - External Rust devshell (referenced in ~/.envrc)
 
 ## User-Specific Values
 - Machine name: `MacBook-Pro`

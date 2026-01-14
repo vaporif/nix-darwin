@@ -12,6 +12,9 @@
 | Alias | Command | Description |
 |-------|---------|-------------|
 | `a` | `claude` | Claude Code CLI |
+| `ap` | `claude --print` | Claude Code print mode |
+| `ai` | `claude --dangerously-skip-permissions` | Claude Code skip permissions |
+| `ar` | `claude --resume` | Claude Code resume session |
 | `g` | `lazygit` | Git TUI |
 | `e` | `nvim` | Neovim editor |
 | `t` | `yy` | Yazi file manager |
