@@ -79,6 +79,15 @@ in {
     homeDirectory = homeDir;
     username = user;
     stateVersion = "24.05";
+    sessionPath = [
+      "/opt/homebrew/bin"
+      "$HOME/.cargo/bin"
+    ];
+    sessionVariables = {
+      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/key.txt";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
 
   programs = {
