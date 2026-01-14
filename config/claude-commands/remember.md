@@ -5,8 +5,34 @@ argument-hint: Optional info to store
 
 Store information in Qdrant memory using `mcp__qdrant__qdrant-store`.
 
-**If arguments provided**: Store "$ARGUMENTS" with metadata `{"type": "note", "date": "<today>"}`.
+**Before storing**: Search Qdrant to check if similar information already exists. If found, skip or update instead of duplicating.
 
-**If no arguments**: Summarize this entire conversation (goals, problems solved, solutions, key files/commands) and store with metadata `{"type": "session-summary", "date": "<today>", "project": "<if applicable>"}`.
+**If arguments provided**: Store "$ARGUMENTS" with metadata:
+```json
+{
+  "type": "<note|decision|error-resolution|architecture>",
+  "date": "<today>",
+  "project": "<current repo/directory name>"
+}
+```
 
-Confirm what was stored.
+Choose type based on content:
+- `note` - general information
+- `decision` - key decisions made and why
+- `error-resolution` - problems solved and solutions
+- `architecture` - design patterns, structure choices
+
+**If no arguments**: Summarize this entire conversation and store with metadata:
+```json
+{
+  "type": "session-summary",
+  "date": "<today>",
+  "project": "<current repo/directory name>",
+  "goals": "<what was attempted>",
+  "outcome": "<success|partial|blocked>"
+}
+```
+
+Include: goals, problems solved, solutions, key files modified, commands used.
+
+Confirm what was stored with the type and a brief preview.
