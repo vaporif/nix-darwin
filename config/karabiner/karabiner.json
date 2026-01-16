@@ -4,9 +4,44 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Safety: Escape resets stuck extend layer",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "extend",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "escape"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "extend",
+                                            "value": 0
+                                        }
+                                    },
+                                    { "key_code": "escape" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Extend layer - Arrows (ijkl) + Hyper (app shortcuts)",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            { "is_built_in_keyboard": true }
+                                        ]
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
