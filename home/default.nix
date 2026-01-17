@@ -276,12 +276,12 @@ in {
     };
   };
 
-  launchd.agents.rectangle = {
-    enable = true;
-    config = {
-      Label = "com.knollsoft.Rectangle";
-      ProgramArguments = ["/usr/bin/open" "-a" "Rectangle"];
-      RunAtLoad = true;
-    };
-  };
+  # launchd.agents.rectangle = {
+  #   enable = true;
+  #   config = {
+  #     Label = "com.knollsoft.Rectangle";
+  #     ProgramArguments = ["/usr/bin/open" "-a" "Rectangle"];
+  #     RunAtLoad = true;
+  #   };
+  # };
 }

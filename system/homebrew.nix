@@ -36,7 +36,7 @@
       "proton-drive"
       "protonvpn"
       "gimp"
-      "rectangle"
+      # "rectangle"
     ];
   };
 }

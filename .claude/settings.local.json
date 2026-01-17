@@ -54,7 +54,8 @@
       "Bash(uvx mcp-scan@latest scan:*)",
       "mcp__qdrant__qdrant-store",
       "mcp__qdrant__qdrant-find",
-      "mcp__nixos__nix"
+      "mcp__nixos__nix",
+      "Bash(log show:*)"
     ],
     "deny": [],
     "ask": []
