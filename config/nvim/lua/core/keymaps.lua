@@ -100,7 +100,6 @@ vim.keymap.set('n', '[t', function()
 end, { desc = 'Previous trouble item' })
 
 -- Code (generic)
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[a]ction' })
 vim.keymap.set('n', '<leader>cf', '<cmd>DiffviewOpen<Cr>', { desc = 'di[f]f tool' })
 vim.keymap.set('n', '<leader>ci', '<cmd>AnsiEsc<Cr>', { desc = 'ans[i] escape' })
 vim.keymap.set('n', '<leader>ck', vim.diagnostic.setloclist, { desc = 'quic[k]fix list' })
