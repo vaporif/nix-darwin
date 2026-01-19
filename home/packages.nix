@@ -45,6 +45,7 @@ in {
     jaq
     stylua
     selene
+    typos
 
     bacon
     cargo-info

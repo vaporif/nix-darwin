@@ -1,0 +1,27 @@
+[files]
+extend-exclude = [
+  "*.lock",
+  "lazy-lock.json",
+  "secrets/*",
+]
+
+[default.extend-words]
+# Allow these "typos" (technical terms, usernames, etc.)
+hl = "hl"
+# Plugin names
+noice = "noice"
+Noice = "Noice"
+# [x]word patterns for which-key descriptions
+ist = "ist"
+nstall = "nstall"
+nto = "nto"
+ove = "ove"
+reakpoint = "reakpoint"
+uffer = "uffer"
+eferences = "eferences"
+ymbols = "ymbols"
+ocation = "ocation"
+uffers = "uffers"
+ommits = "ommits"
+efinition = "efinition"
+tage = "tage"

@@ -45,8 +45,34 @@ jobs:
           chmod +x stylua
           sudo mv stylua /usr/local/bin/
 
-      - name: Lint lua
-        run: selene config/nvim/lua
+      - name: Lint nvim lua
+        working-directory: config/nvim
+        run: selene lua after init.lua
 
       - name: Check lua formatting
-        run: stylua --check config/nvim/lua
+        run: |
+          stylua --check config/nvim
+          stylua --check config/wezterm
+          stylua --check config/yazi
+
+  json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Validate karabiner.json
+        run: jq empty config/karabiner/karabiner.json
+
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Install typos
+        run: |
+          curl -sSL https://github.com/crate-ci/typos/releases/latest/download/typos-v1.28.4-x86_64-unknown-linux-musl.tar.gz -o typos.tar.gz
+          tar xzf typos.tar.gz
+          sudo mv typos /usr/local/bin/
+
+      - name: Check for typos
+        run: typos

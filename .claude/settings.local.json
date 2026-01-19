@@ -55,7 +55,16 @@
       "mcp__qdrant__qdrant-store",
       "mcp__qdrant__qdrant-find",
       "mcp__nixos__nix",
-      "Bash(log show:*)"
+      "Bash(log show:*)",
+      "Bash(selene:*)",
+      "Bash(stylua:*)",
+      "Bash(jaq:*)",
+      "Bash(just --list:*)",
+      "Bash(just lint-lua:*)",
+      "Bash(just lint-json:*)",
+      "Bash(just lint-nix:*)",
+      "Bash(just check-typos:*)",
+      "Bash(just check:*)"
     ],
     "deny": [],
     "ask": []
