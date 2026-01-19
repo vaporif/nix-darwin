@@ -111,7 +111,7 @@ install_librewolf() {
     # Remove old installation if exists
     if [ -d "${INSTALL_PATH}/${APP_NAME}" ]; then
         echo "Removing old LibreWolf installation..."
-        rm -rf "${INSTALL_PATH}/${APP_NAME}"
+        rm -rf "${INSTALL_PATH:?}/${APP_NAME:?}"
     fi
 
     # Copy app to Applications
