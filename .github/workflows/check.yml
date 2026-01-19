@@ -17,6 +17,11 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: nix-community/cache-nix-action@v6
+        with:
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+
       - name: Check nix flake
         run: nix flake check
 
