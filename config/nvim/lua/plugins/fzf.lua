@@ -42,7 +42,7 @@ return {
           },
         }
       end,
-      desc = 'Fuzzily search in current buffer',
+      desc = 'buffer fuzz search',
     },
     {
       '<leader>fn',

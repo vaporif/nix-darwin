@@ -10,50 +10,6 @@ return {
     'nvim-neotest/nvim-nio',
     'leoluz/nvim-dap-go',
   },
-  keys = {
-    {
-      '<leader>dc',
-      function()
-        require('dap').continue()
-      end,
-      desc = 'start/[c]ontinue',
-    },
-    {
-      '<leader>di',
-      function()
-        require('dap').step_into()
-      end,
-      desc = 'step [i]nto',
-    },
-    {
-      '<leader>dr',
-      function()
-        require('dap').step_over()
-      end,
-      desc = 'step ove[r]',
-    },
-    {
-      '<leader>do',
-      function()
-        require('dap').step_out()
-      end,
-      desc = 'step [o]ut',
-    },
-    {
-      '<leader>db',
-      function()
-        require('dap').toggle_breakpoint()
-      end,
-      desc = '[b]reakpoint',
-    },
-    {
-      '<leader>dl',
-      function()
-        require('dapui').toggle()
-      end,
-      desc = '[l]ast session result',
-    },
-  },
   config = function()
     require('mason').setup()
     local dap = require 'dap'

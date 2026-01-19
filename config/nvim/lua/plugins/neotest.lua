@@ -5,4 +5,12 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
+  cmd = 'Neotest',
+  config = function()
+    require('neotest').setup {
+      adapters = {
+        require 'rustaceanvim.neotest',
+      },
+    }
+  end,
 }
