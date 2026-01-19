@@ -49,3 +49,8 @@ check-typos:
 
 # Format all
 fmt: fmt-lua fmt-nix fmt-toml
+
+# Build and push to cachix
+cache:
+    nix build .#darwinConfigurations."MacBook-Pro".system
+    cachix push vaporif ./result

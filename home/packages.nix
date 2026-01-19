@@ -49,6 +49,7 @@ in {
     taplo
     shellcheck
     actionlint
+    cachix
 
     bacon
     cargo-info

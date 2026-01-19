@@ -8,6 +8,8 @@ extend-exclude = [
 [default.extend-words]
 # Allow these "typos" (technical terms, usernames, etc.)
 hl = "hl"
+# Nix terminology
+substituters = "substituters"
 # Plugin names
 noice = "noice"
 Noice = "Noice"
