@@ -1,5 +1,5 @@
 vim.keymap.set('n', '<leader>ci', function()
-  vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+  vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' }, diagnostics = {} }, apply = true }
 end, { buffer = 0, desc = 'organize [i]mports' })
 
 vim.keymap.set('n', '<leader>cr', '<cmd>!python %<CR>', { buffer = 0, desc = '[r]un file' })

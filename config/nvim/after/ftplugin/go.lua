@@ -1,13 +1,13 @@
 vim.keymap.set('n', '<leader>ci', function()
-  vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+  vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' }, diagnostics = {} }, apply = true }
 end, { buffer = 0, desc = 'organize [i]mports' })
 
 vim.keymap.set('n', '<leader>ce', function()
-  vim.lsp.buf.code_action { context = { only = { 'refactor.rewrite.fillStruct' } }, apply = true }
+  vim.lsp.buf.code_action { context = { only = { 'refactor.rewrite.fillStruct' }, diagnostics = {} }, apply = true }
 end, { buffer = 0, desc = 'fill struct' })
 
 vim.keymap.set('n', '<leader>ct', function()
-  vim.lsp.buf.code_action { context = { only = { 'gopls.tidy' } }, apply = true }
+  vim.lsp.buf.code_action { context = { only = { 'gopls.tidy' }, diagnostics = {} }, apply = true }
 end, { buffer = 0, desc = 'go mod [t]idy' })
 
 vim.opt_local.makeprg = 'go build ./...'
