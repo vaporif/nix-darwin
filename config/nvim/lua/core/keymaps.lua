@@ -34,9 +34,9 @@ end, { desc = 'step [o]ut' })
 vim.keymap.set('n', '<leader>db', function()
   require('dap').toggle_breakpoint()
 end, { desc = '[b]reakpoint' })
-vim.keymap.set('n', '<leader>dl', function()
+vim.keymap.set('n', '<leader>du', function()
   require('dapui').toggle()
-end, { desc = '[l]ast session result' })
+end, { desc = 'toggle [u]i' })
 
 -- Flash (motion)
 vim.keymap.set({ 'n', 'x', 'o' }, 'l', function()
@@ -88,10 +88,10 @@ vim.keymap.set('n', '<leader>bs', '<cmd>Trouble symbols toggle focus=false<cr>',
 vim.keymap.set('n', '<leader>bl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', { desc = '[L]SP Definitions / references / ...' })
 vim.keymap.set('n', '<leader>bo', '<cmd>Trouble loclist toggle<cr>', { desc = 'l[o]ocation' })
 vim.keymap.set('n', '<leader>bq', '<cmd>Trouble qflist toggle<cr>', { desc = '[q]uickfix' })
-vim.keymap.set('n', ']b', function()
+vim.keymap.set('n', ']x', function()
   require('trouble').next { skip_groups = true, jump = true }
 end, { desc = 'Next trouble item' })
-vim.keymap.set('n', '[b', function()
+vim.keymap.set('n', '[x', function()
   require('trouble').prev { skip_groups = true, jump = true }
 end, { desc = 'Previous trouble item' })
 
@@ -106,9 +106,8 @@ vim.keymap.set('n', ']e', function()
 end, { desc = 'Next error' })
 
 -- Code (generic)
-vim.keymap.set('n', '<leader>cf', '<cmd>DiffviewOpen<CR>', { desc = 'di[f]f tool' })
-vim.keymap.set('n', '<leader>ci', '<cmd>AnsiEsc<CR>', { desc = 'ans[i] escape' })
-vim.keymap.set('n', '<leader>ck', vim.diagnostic.setloclist, { desc = 'quic[k]fix list' })
+vim.keymap.set('n', '<leader>cd', '<cmd>DiffviewOpen<CR>', { desc = '[d]iff tool' })
+vim.keymap.set('n', '<leader>cA', '<cmd>AnsiEsc<CR>', { desc = '[A]nsi escape' })
 
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
