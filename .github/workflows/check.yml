@@ -29,18 +29,16 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: extractions/setup-just@v2
 
-      - name: Install tools
-        run: |
-          curl -sSL https://github.com/Kampfkarren/selene/releases/latest/download/selene-linux.zip -o selene.zip
-          unzip selene.zip && chmod +x selene && sudo mv selene /usr/local/bin/
-          curl -sSL https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux-x86_64.zip -o stylua.zip
-          unzip stylua.zip && chmod +x stylua && sudo mv stylua /usr/local/bin/
-          curl -sSL https://github.com/crate-ci/typos/releases/latest/download/typos-v1.28.4-x86_64-unknown-linux-musl.tar.gz | tar xz
-          sudo mv typos /usr/local/bin/
-          curl -sSL https://github.com/tamasfe/taplo/releases/latest/download/taplo-full-linux-x86_64.gz | gunzip > taplo
-          chmod +x taplo && sudo mv taplo /usr/local/bin/
-          curl -sSL https://github.com/rhysd/actionlint/releases/latest/download/actionlint_1.7.7_linux_amd64.tar.gz | tar xz
-          sudo mv actionlint /usr/local/bin/
-
-      - name: Run checks
-        run: just lint-lua lint-json lint-toml lint-shell lint-actions check-typos
+      - uses: Kampfkarren/selene-action@v1
+      - uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --check config/
+      - uses: tamasfe/taplo-action@v0.4.2
+        with:
+          arguments: check
+      - uses: crate-ci/typos@v1
+      - uses: ludeeus/action-shellcheck@v2
+        with:
+          scandir: scripts
+      - uses: raven-actions/actionlint@v2
