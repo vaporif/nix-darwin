@@ -105,6 +105,29 @@ export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
 Run `just` to see available commands:
 - `just check` - run all linting checks
 - `just fmt` - format all files
+- `just cache` - build and push to Cachix
+
+### Git Hooks
+
+Enable git hooks (auto-format on commit, lint + cache on push):
+```shell
+just setup-hooks
+```
+
+Skip hooks when needed:
+```shell
+git commit --no-verify
+git push --no-verify
+```
+
+### Cachix
+
+Binary cache for faster builds. Setup:
+```shell
+cachix authtoken <your-token>
+```
+
+Then `just cache` builds and pushes to the cache.
 
 ## Learning
 

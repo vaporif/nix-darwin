@@ -22,12 +22,29 @@ Run `just` to see all available commands. Key ones:
 
 | Command | Description |
 |---------|-------------|
-| `just check` | Run all checks (lint-lua, lint-nix, lint-json, check-typos) |
+| `just check` | Run all checks (lint-lua, lint-nix, lint-json, lint-toml, lint-shell, lint-actions, check-typos) |
 | `just lint-lua` | Selene + stylua for Lua files |
 | `just lint-nix` | Flake check + alejandra |
-| `just fmt` | Format all (Lua + Nix) |
+| `just fmt` | Format all (Lua + Nix + TOML) |
+| `just cache` | Build and push to Cachix |
+| `just setup-hooks` | Enable git hooks |
 
-Tools: `selene`, `stylua`, `alejandra`, `typos`, `jaq`
+Tools: `selene`, `stylua`, `alejandra`, `typos`, `taplo`, `shellcheck`, `actionlint`, `jaq`
+
+## Git Hooks
+
+Enable with `just setup-hooks` or `git config core.hooksPath .githooks`:
+- **pre-commit**: Auto-formats code with `just fmt`
+- **pre-push**: Runs `just check` then `just cache`
+
+Skip hooks when needed: `git commit --no-verify` or `git push --no-verify`
+
+## Cachix
+
+Binary cache at https://vaporif.cachix.org for faster builds:
+- CI automatically pushes builds
+- Local: `just cache` to build and push
+- Auth: `cachix authtoken <token>` (one-time setup)
 
 ## Shell Aliases
 

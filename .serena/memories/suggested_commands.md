@@ -12,6 +12,12 @@
 | `just fmt` | Format all (Lua + Nix) |
 | `just fmt-lua` | Format Lua with stylua |
 | `just fmt-nix` | Format Nix with alejandra |
+| `just fmt-toml` | Format TOML with taplo |
+| `just lint-toml` | Lint TOML with taplo |
+| `just lint-shell` | Lint shell scripts with shellcheck |
+| `just lint-actions` | Lint GitHub Actions with actionlint |
+| `just cache` | Build and push to Cachix |
+| `just setup-hooks` | Enable git hooks |
 
 ## System Management
 | Command | Description |
@@ -60,6 +66,16 @@
 | `bun` | JavaScript runtime/bundler |
 | `just` | Command runner |
 | `mprocs` | Process manager |
+| `cachix` | Binary cache CLI |
+
+## Git Hooks
+Enable with `just setup-hooks` or `git config core.hooksPath .githooks`:
+| Hook | Action |
+|------|--------|
+| pre-commit | Auto-formats with `just fmt` |
+| pre-push | Runs `just check` then `just cache` |
+
+Skip hooks: `git commit --no-verify` or `git push --no-verify`
 
 ## Nix-Specific
 | Command | Description |
