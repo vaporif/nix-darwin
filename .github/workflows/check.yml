@@ -20,59 +20,23 @@ jobs:
       - name: Check nix flake
         run: nix flake check
 
-      - name: Check nix formatting
-        run: nix run nixpkgs#nixpkgs-fmt -- --check .
-
       - name: Build nix
         run: nix build .#darwinConfigurations."MacBook-Pro".system
 
-  lua:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: extractions/setup-just@v2
 
-      - name: Install selene
+      - name: Install tools
         run: |
           curl -sSL https://github.com/Kampfkarren/selene/releases/latest/download/selene-linux.zip -o selene.zip
-          unzip selene.zip
-          chmod +x selene
-          sudo mv selene /usr/local/bin/
-
-      - name: Install stylua
-        run: |
+          unzip selene.zip && chmod +x selene && sudo mv selene /usr/local/bin/
           curl -sSL https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux-x86_64.zip -o stylua.zip
-          unzip stylua.zip
-          chmod +x stylua
-          sudo mv stylua /usr/local/bin/
-
-      - name: Lint nvim lua
-        working-directory: config/nvim
-        run: selene lua after init.lua
-
-      - name: Check lua formatting
-        run: |
-          stylua --check config/nvim
-          stylua --check config/wezterm
-          stylua --check config/yazi
-
-  json:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-
-      - name: Validate karabiner.json
-        run: jq empty config/karabiner/karabiner.json
-
-  typos:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-
-      - name: Install typos
-        run: |
-          curl -sSL https://github.com/crate-ci/typos/releases/latest/download/typos-v1.28.4-x86_64-unknown-linux-musl.tar.gz -o typos.tar.gz
-          tar xzf typos.tar.gz
+          unzip stylua.zip && chmod +x stylua && sudo mv stylua /usr/local/bin/
+          curl -sSL https://github.com/crate-ci/typos/releases/latest/download/typos-v1.28.4-x86_64-unknown-linux-musl.tar.gz | tar xz
           sudo mv typos /usr/local/bin/
 
-      - name: Check for typos
-        run: typos
+      - name: Run checks
+        run: just lint-lua lint-json check-typos

@@ -20,6 +20,8 @@ flake.nix (Entry point)
 |----------|---------|
 | `flake.nix` | Main entry point, defines inputs and outputs |
 | `flake.lock` | Locked versions of all flake inputs |
+| `justfile` | Task runner for linting/formatting commands |
+| `typos.toml` | Typos checker configuration |
 | `mcp.nix` | MCP server configuration |
 | `CLAUDE.md` | Instructions for Claude Code |
 
@@ -41,7 +43,7 @@ flake.nix (Entry point)
 ### `config/` - Application Configurations (Dotfiles)
 | Path | Purpose |
 |------|---------|
-| `nvim/` | Neovim config (init.lua, lua/core/, lua/plugins/, lazy-lock.json) |
+| `nvim/` | Neovim config (init.lua, lua/core/, lua/plugins/, selene.toml, vim.yml) |
 | `wezterm/` | Terminal config with tmux-like keybindings |
 | `yazi/` | File manager config (init.lua, keymap.toml) |
 | `karabiner/` | Keyboard customization rules |

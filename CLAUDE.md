@@ -12,7 +12,22 @@ Nix-darwin + Home Manager configuration for macOS. Manages system and user confi
 sudo darwin-rebuild switch    # Apply configuration changes
 nix flake update              # Update all flake inputs
 sops secrets/secrets.yaml     # Edit encrypted secrets
+just check                    # Run all linting checks
+just fmt                      # Format all files
 ```
+
+## Linting & Formatting
+
+Run `just` to see all available commands. Key ones:
+
+| Command | Description |
+|---------|-------------|
+| `just check` | Run all checks (lint-lua, lint-nix, lint-json, check-typos) |
+| `just lint-lua` | Selene + stylua for Lua files |
+| `just lint-nix` | Flake check + alejandra |
+| `just fmt` | Format all (Lua + Nix) |
+
+Tools: `selene`, `stylua`, `alejandra`, `typos`, `jaq`
 
 ## Shell Aliases
 

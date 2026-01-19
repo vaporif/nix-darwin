@@ -23,9 +23,9 @@ lint-nix:
 fmt-nix:
     alejandra .
 
-# Validate JSON configs
+# Validate JSON configs (use jq or jaq)
 lint-json:
-    jaq empty config/karabiner/karabiner.json
+    @which jaq >/dev/null 2>&1 && jaq empty config/karabiner/karabiner.json || jq empty config/karabiner/karabiner.json
 
 # Check for typos
 check-typos:

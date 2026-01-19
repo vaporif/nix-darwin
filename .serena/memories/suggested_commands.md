@@ -1,5 +1,18 @@
 # Suggested Commands
 
+## Linting & Formatting (via justfile)
+| Command | Description |
+|---------|-------------|
+| `just` | List all available commands |
+| `just check` | Run all checks (lint-lua, lint-nix, lint-json, check-typos) |
+| `just lint-lua` | Selene + stylua for Lua files |
+| `just lint-nix` | Flake check + alejandra |
+| `just lint-json` | Validate karabiner.json |
+| `just check-typos` | Check for typos |
+| `just fmt` | Format all (Lua + Nix) |
+| `just fmt-lua` | Format Lua with stylua |
+| `just fmt-nix` | Format Nix with alejandra |
+
 ## System Management
 | Command | Description |
 |---------|-------------|

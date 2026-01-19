@@ -1,6 +1,7 @@
 # Code Style and Conventions
 
 ## Nix Files (.nix)
+- **Formatter**: Alejandra (`alejandra`)
 - **Indentation**: 2 spaces
 - **Naming**: kebab-case for file names, camelCase for attribute names
 - **Structure**: Module pattern with `{ pkgs, config, lib, ... }:` at top
@@ -27,7 +28,8 @@
 ```
 
 ## Lua Files (Neovim, WezTerm, Yazi)
-- **Formatter**: StyLua
+- **Formatter**: StyLua (`stylua`)
+- **Linter**: Selene (`selene`) - for Neovim Lua only
 - **Indentation**: 2 spaces
 - **Line endings**: Unix (LF)
 - **Column width**: 160 characters
