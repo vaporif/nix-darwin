@@ -37,6 +37,8 @@ jobs:
           unzip stylua.zip && chmod +x stylua && sudo mv stylua /usr/local/bin/
           curl -sSL https://github.com/crate-ci/typos/releases/latest/download/typos-v1.28.4-x86_64-unknown-linux-musl.tar.gz | tar xz
           sudo mv typos /usr/local/bin/
+          curl -sSL https://github.com/tamasfe/taplo/releases/latest/download/taplo-full-linux-x86_64.gz | gunzip > taplo
+          chmod +x taplo && sudo mv taplo /usr/local/bin/
 
       - name: Run checks
-        run: just lint-lua lint-json check-typos
+        run: just lint-lua lint-json lint-toml check-typos

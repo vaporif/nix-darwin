@@ -3,7 +3,7 @@ default:
     @just --list
 
 # Run all checks
-check: lint-lua lint-nix lint-json check-typos
+check: lint-lua lint-nix lint-json lint-toml check-typos
 
 # Lint nvim lua with selene
 lint-lua:
@@ -27,9 +27,17 @@ fmt-nix:
 lint-json:
     @which jaq >/dev/null 2>&1 && jaq empty config/karabiner/karabiner.json || jq empty config/karabiner/karabiner.json
 
+# Lint TOML files
+lint-toml:
+    taplo check
+
+# Format TOML files
+fmt-toml:
+    taplo fmt
+
 # Check for typos
 check-typos:
     typos
 
 # Format all
-fmt: fmt-lua fmt-nix
+fmt: fmt-lua fmt-nix fmt-toml

@@ -46,6 +46,7 @@ in {
     stylua
     selene
     typos
+    taplo
 
     bacon
     cargo-info
