@@ -1,8 +1,20 @@
 name: "check"
 on:
   pull_request:
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - '.serena/**'
+      - '.github/**'
+      - '.githooks/**'
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - '.serena/**'
+      - '.github/**'
+      - '.githooks/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,6 +36,9 @@ jobs:
 
       - name: Check nix flake
         run: nix flake check
+
+      - name: Check nix formatting
+        run: nix run nixpkgs#alejandra -- --check .
 
       - name: Build nix
         run: nix build .#darwinConfigurations."MacBook-Pro".system
