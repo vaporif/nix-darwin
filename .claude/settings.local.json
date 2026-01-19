@@ -64,7 +64,8 @@
       "Bash(just lint-json:*)",
       "Bash(just lint-nix:*)",
       "Bash(just check-typos:*)",
-      "Bash(just check:*)"
+      "Bash(just check:*)",
+      "Bash(chmod:*)"
     ],
     "deny": [],
     "ask": []

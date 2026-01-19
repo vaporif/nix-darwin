@@ -50,6 +50,10 @@ check-typos:
 # Format all
 fmt: fmt-lua fmt-nix fmt-toml
 
+# Set up git hooks
+setup-hooks:
+    git config core.hooksPath .githooks
+
 # Build and push to cachix
 cache:
     nix build .#darwinConfigurations."MacBook-Pro".system
