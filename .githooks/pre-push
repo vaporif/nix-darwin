@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Running lint checks..."
-just check
+# Get changed files between HEAD and remote
+changed=$(git diff --name-only @{push}.. 2>/dev/null || git diff --name-only HEAD~1)
 
-echo "Building and pushing to cachix..."
-just cache
+# Skip if only docs/config files changed
+if echo "$changed" | grep -qvE '\.(md|gitignore)$'; then
+    echo "Running lint checks..."
+    just check
+
+    echo "Building and pushing to cachix..."
+    just cache
+else
+    echo "Only docs changed, skipping lint and build"
+fi

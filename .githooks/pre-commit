@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Formatting..."
-just fmt
-
-git add -u
+# Check if any formattable files are staged
+if git diff --cached --name-only | grep -qE '\.(nix|lua|toml)$'; then
+    echo "Formatting..."
+    just fmt
+    git add -u
+fi
