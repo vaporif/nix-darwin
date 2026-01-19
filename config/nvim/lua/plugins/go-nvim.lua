@@ -9,7 +9,7 @@ return {
     -- lsp_keymaps = false,
     -- other options
   },
-  config = function(lp, opts)
+  config = function(_, opts)
     require('go').setup(opts)
   end,
   event = { 'CmdlineEnter' },

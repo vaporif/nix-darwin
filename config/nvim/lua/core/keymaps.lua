@@ -115,7 +115,6 @@ vim.keymap.set('n', '<leader>cA', '<cmd>AnsiEsc<CR>', { desc = '[A]nsi escape' }
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = '[w]rite' })
-vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'e[x]it buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree float toggle reveal_force_cwd<CR>', { desc = 'n[e]otree' })
 
 vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { desc = 'next pane' })

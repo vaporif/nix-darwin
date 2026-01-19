@@ -25,7 +25,7 @@ return {
         float_style = 'bright',
         inlay_hints_background = 'none',
 
-        on_highlights = function(hl, palette)
+        on_highlights = function(hl, _palette)
           hl['@keyword'] = { fg = '#7a4f3a', bg = 'NONE' } -- Warm terracotta
           hl['@function.builtin'] = { fg = '#7a6d5b', bg = 'NONE' }
           hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#846347', bg = 'NONE' }

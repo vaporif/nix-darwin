@@ -44,6 +44,7 @@ in {
     sd
     jaq
     stylua
+    selene
 
     bacon
     cargo-info
