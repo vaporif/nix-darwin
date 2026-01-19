@@ -39,6 +39,8 @@ jobs:
           sudo mv typos /usr/local/bin/
           curl -sSL https://github.com/tamasfe/taplo/releases/latest/download/taplo-full-linux-x86_64.gz | gunzip > taplo
           chmod +x taplo && sudo mv taplo /usr/local/bin/
+          curl -sSL https://github.com/rhysd/actionlint/releases/latest/download/actionlint_1.7.7_linux_amd64.tar.gz | tar xz
+          sudo mv actionlint /usr/local/bin/
 
       - name: Run checks
-        run: just lint-lua lint-json lint-toml check-typos
+        run: just lint-lua lint-json lint-toml lint-shell lint-actions check-typos

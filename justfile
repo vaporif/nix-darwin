@@ -3,7 +3,7 @@ default:
     @just --list
 
 # Run all checks
-check: lint-lua lint-nix lint-json lint-toml check-typos
+check: lint-lua lint-nix lint-json lint-toml lint-shell lint-actions check-typos
 
 # Lint nvim lua with selene
 lint-lua:
@@ -34,6 +34,14 @@ lint-toml:
 # Format TOML files
 fmt-toml:
     taplo fmt
+
+# Lint shell scripts
+lint-shell:
+    shellcheck scripts/*.sh
+
+# Lint GitHub Actions
+lint-actions:
+    actionlint
 
 # Check for typos
 check-typos:

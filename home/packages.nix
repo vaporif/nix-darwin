@@ -47,6 +47,8 @@ in {
     selene
     typos
     taplo
+    shellcheck
+    actionlint
 
     bacon
     cargo-info
