@@ -1,9 +1,5 @@
 [files]
-extend-exclude = [
-  "*.lock",
-  "lazy-lock.json",
-  "secrets/*",
-]
+extend-exclude = ["*.lock", "lazy-lock.json", "secrets/*"]
 
 [default.extend-words]
 # Allow these "typos" (technical terms, usernames, etc.)

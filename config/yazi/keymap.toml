@@ -1,63 +1,63 @@
 [[mgr.prepend_keymap]]
-on = [ "<Enter>" ]
+on = ["<Enter>"]
 run = '''shell 'nvim "$1"' --block'''
 
 [[mgr.prepend_keymap]]
-on = [ "b", "r" ]
+on = ["b", "r"]
 run = "cd ~/Repos/"
 desc = "Go to Repos"
 
 [[mgr.prepend_keymap]]
-on = [ "b", "m" ]
+on = ["b", "m"]
 run = "cd /etc/nix-darwin/"
 desc = "Go to nix-darwin"
 
 [[mgr.prepend_keymap]]
-on = [ "b", "g" ]
+on = ["b", "g"]
 run = "cd ~/Repos/giza-axelar-starknet/"
 desc = "Go to axelar<>starknet"
 
 [[mgr.prepend_keymap]]
-on = [ "b", "e" ]
+on = ["b", "e"]
 run = "cd ~/Repos/solidity-ibc-eureka"
 desc = "Go to solidity-ibc-eureka"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "a" ]
+on = ["u", "a"]
 run = "plugin yamb save"
 desc = "Add bookmark"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "g" ]
+on = ["u", "g"]
 run = "plugin yamb jump_by_key"
 desc = "Jump bookmark by key"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "G" ]
+on = ["u", "G"]
 run = "plugin yamb jump_by_fzf"
 desc = "Jump bookmark by fzf"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "d" ]
+on = ["u", "d"]
 run = "plugin yamb delete_by_key"
 desc = "Delete bookmark by key"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "D" ]
+on = ["u", "D"]
 run = "plugin yamb delete_by_fzf"
 desc = "Delete bookmark by fzf"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "A" ]
+on = ["u", "A"]
 run = "plugin yamb delete_all"
 desc = "Delete all bookmarks"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "r" ]
+on = ["u", "r"]
 run = "plugin yamb rename_by_key"
 desc = "Rename bookmark by key"
 
 [[mgr.prepend_keymap]]
-on = [ "u", "R" ]
+on = ["u", "R"]
 run = "plugin yamb rename_by_fzf"
 desc = "Rename bookmark by fzf"
