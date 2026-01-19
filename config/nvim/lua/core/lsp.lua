@@ -146,10 +146,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
     end
 
-    map('gr', '<cmd>lua vim.lsp.buf.references()<CR>', 'goto [r]eferences (quickfix)')
+    map('gr', vim.lsp.buf.references, 'goto [r]eferences')
+    map('gD', vim.lsp.buf.declaration, 'goto [D]eclaration')
     map('<leader>r', vim.lsp.buf.rename, '[r]ename')
     map('<leader>ca', vim.lsp.buf.code_action, '[a]ction')
-    map('gD', vim.lsp.buf.declaration, 'goto [D]eclaration')
+    map('<leader>cR', '<cmd>LspRestart<CR>', '[R]estart LSP')
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.

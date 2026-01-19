@@ -99,6 +99,16 @@ vim.keymap.set('n', '[t', function()
   require('trouble').prev { skip_groups = true, jump = true }
 end, { desc = 'Previous trouble item' })
 
+-- Diagnostics
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '[e', function()
+  vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Prev error' })
+vim.keymap.set('n', ']e', function()
+  vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Next error' })
+
 -- Code (generic)
 vim.keymap.set('n', '<leader>cf', '<cmd>DiffviewOpen<Cr>', { desc = 'di[f]f tool' })
 vim.keymap.set('n', '<leader>ci', '<cmd>AnsiEsc<Cr>', { desc = 'ans[i] escape' })
@@ -113,6 +123,10 @@ vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, desc = '[tab] p
 
 vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { noremap = true, desc = '[v]ertically' })
 vim.keymap.set('n', '<leader>sh', ':split<CR>', { noremap = true, desc = '[h]orizontally' })
+
+-- Buffer navigation
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<CR>', { desc = 'Prev buffer' })
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- yanky
