@@ -4,9 +4,10 @@
 # This script downloads and installs the latest LibreWolf from Codeberg
 
 set -e
+shopt -s inherit_errexit
 
 # Ensure Nix paths are available (for gpg, curl, etc.)
-export PATH="/etc/profiles/per-user/vaporif/bin:/run/current-system/sw/bin:$PATH"
+export PATH="/etc/profiles/per-user/vaporif/bin:/run/current-system/sw/bin:${PATH}"
 
 # Configuration
 CODEBERG_API="https://codeberg.org/api/v1"
@@ -21,16 +22,19 @@ GPG_KEY_URL="https://repo.librewolf.net/pubkey.gpg"
 
 # Function to get latest version
 get_latest_version() {
-    curl -s "${CODEBERG_API}/packages/librewolf" | \
-        grep -o '"version":"[0-9][0-9]*\.[0-9][^"]*"' | \
-        sed 's/"version":"\([^"]*\)"/\1/' | \
-        sort -V | \
-        tail -1
+    local api_response grep_result sed_result sorted_result
+    api_response=$(curl -s "${CODEBERG_API}/packages/librewolf")
+    grep_result=$(echo "${api_response}" | grep -o '"version":"[0-9][0-9]*\.[0-9][^"]*"' || true)
+    # Extract version numbers from "version":"X.Y.Z" format
+    sed_result="${grep_result//\"version\":\"/}"
+    sed_result="${sed_result//\"/}"
+    sorted_result=$(echo "${sed_result}" | sort -V)
+    echo "${sorted_result}" | tail -1
 }
 
 # Function to get installed version
 get_installed_version() {
-    if [ -d "${INSTALL_PATH}/${APP_NAME}" ]; then
+    if [[ -d "${INSTALL_PATH}/${APP_NAME}" ]]; then
         /usr/bin/defaults read "${INSTALL_PATH}/${APP_NAME}/Contents/Info.plist" CFBundleShortVersionString 2>/dev/null || echo ""
     else
         echo ""
@@ -39,28 +43,30 @@ get_installed_version() {
 
 # Function to download and install
 install_librewolf() {
+    local VERSION INSTALLED_VERSION DMG_URL SIG_URL MOUNT_POINT VOLUME_PATH
+
     # Check if LibreWolf is running
     if pgrep -i "librewolf" > /dev/null; then
         echo "LibreWolf is currently running. Skipping update."
-        hdiutil detach "$MOUNT_POINT" -quiet 2>/dev/null || true
-        rm -rf "$TEMP_DIR"
+        hdiutil detach "${MOUNT_POINT}" -quiet 2>/dev/null || true
+        rm -rf "${TEMP_DIR}"
         exit 0
     fi
     echo "Fetching latest LibreWolf version..."
     VERSION=$(get_latest_version)
 
-    if [ -z "$VERSION" ]; then
+    if [[ -z "${VERSION}" ]]; then
         echo "Error: Could not determine latest version"
         exit 1
     fi
 
-    echo "Latest version: $VERSION"
+    echo "Latest version: ${VERSION}"
 
     # Check installed version
     INSTALLED_VERSION=$(get_installed_version)
-    if [ -n "$INSTALLED_VERSION" ]; then
-        echo "Installed version: $INSTALLED_VERSION"
-        if [ "$INSTALLED_VERSION" = "$VERSION" ]; then
+    if [[ -n "${INSTALLED_VERSION}" ]]; then
+        echo "Installed version: ${INSTALLED_VERSION}"
+        if [[ "${INSTALLED_VERSION}" = "${VERSION}" ]]; then
             echo "LibreWolf is already up to date. Skipping installation."
             exit 0
         fi
@@ -74,27 +80,31 @@ install_librewolf() {
     echo "Downloading LibreWolf ${VERSION} for ARM64..."
 
     # Create temp directory
-    mkdir -p "$TEMP_DIR"
+    mkdir -p "${TEMP_DIR}"
 
     # Download DMG
-    curl -L -o "${TEMP_DIR}/librewolf.dmg" "$DMG_URL"
+    curl -L -o "${TEMP_DIR}/librewolf.dmg" "${DMG_URL}"
 
     # Download signature file
     SIG_URL="${CODEBERG_PACKAGES}/${VERSION}/librewolf-${VERSION}-macos-arm64-package.dmg.sig"
     echo "Downloading GPG signature..."
-    curl -L -o "${TEMP_DIR}/librewolf.dmg.sig" "$SIG_URL"
+    curl -L -o "${TEMP_DIR}/librewolf.dmg.sig" "${SIG_URL}"
 
     # Import LibreWolf GPG key if not already present
-    if ! gpg --list-keys "$LIBREWOLF_GPG_KEY" &>/dev/null; then
+    if ! gpg --list-keys "${LIBREWOLF_GPG_KEY}" &>/dev/null; then
         echo "Importing LibreWolf GPG key..."
-        curl -sL "$GPG_KEY_URL" | gpg --import
+        local gpg_key
+        gpg_key=$(curl -sL "${GPG_KEY_URL}")
+        echo "${gpg_key}" | gpg --import
     fi
 
     # Verify GPG signature
     echo "Verifying GPG signature..."
-    if ! gpg --verify "${TEMP_DIR}/librewolf.dmg.sig" "${TEMP_DIR}/librewolf.dmg" 2>&1 | grep -q "Good signature"; then
+    local gpg_output
+    gpg_output=$(gpg --verify "${TEMP_DIR}/librewolf.dmg.sig" "${TEMP_DIR}/librewolf.dmg" 2>&1 || true)
+    if ! echo "${gpg_output}" | grep -q "Good signature"; then
         echo "ERROR: GPG signature verification failed!"
-        rm -rf "$TEMP_DIR"
+        rm -rf "${TEMP_DIR}"
         exit 1
     fi
     echo "GPG signature verified."
@@ -104,12 +114,16 @@ install_librewolf() {
     hdiutil attach "${TEMP_DIR}/librewolf.dmg" -nobrowse -quiet
 
     # Find mount point
-    MOUNT_POINT=$(hdiutil info | grep "LibreWolf" | awk '{print $1}' | head -1)
+    local hdiutil_output grep_output awk_output
+    hdiutil_output=$(hdiutil info)
+    grep_output=$(echo "${hdiutil_output}" | grep "LibreWolf" || true)
+    awk_output=$(echo "${grep_output}" | awk '{print $1}')
+    MOUNT_POINT=$(echo "${awk_output}" | head -1)
     VOLUME_PATH="/Volumes/LibreWolf"
 
 
     # Remove old installation if exists
-    if [ -d "${INSTALL_PATH}/${APP_NAME}" ]; then
+    if [[ -d "${INSTALL_PATH}/${APP_NAME}" ]]; then
         echo "Removing old LibreWolf installation..."
         rm -rf "${INSTALL_PATH:?}/${APP_NAME:?}"
     fi
@@ -120,10 +134,10 @@ install_librewolf() {
 
     # Unmount DMG
     echo "Cleaning up..."
-    hdiutil detach "$MOUNT_POINT" -quiet
+    hdiutil detach "${MOUNT_POINT}" -quiet
 
     # Clean up temp files
-    rm -rf "$TEMP_DIR"
+    rm -rf "${TEMP_DIR}"
 
     # Remove quarantine attribute (since it's unsigned)
     xattr -r -d com.apple.quarantine "${INSTALL_PATH}/${APP_NAME}" 2>/dev/null || true
@@ -132,7 +146,8 @@ install_librewolf() {
 }
 
 # Check if running on ARM64
-if [[ $(uname -m) != "arm64" ]]; then
+arch=$(uname -m)
+if [[ "${arch}" != "arm64" ]]; then
     echo "Warning: This script is intended for ARM64 Macs"
 fi
 
