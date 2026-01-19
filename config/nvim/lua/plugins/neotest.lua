@@ -7,6 +7,7 @@ return {
     'fredrikaverpil/neotest-golang',
     'nvim-neotest/neotest-python',
     'marilari88/neotest-vitest',
+    'llllvvuu/neotest-foundry',
   },
   cmd = 'Neotest',
   config = function()
@@ -19,6 +20,7 @@ return {
           pytest_discover_instances = true,
         },
         require 'neotest-vitest',
+        require 'neotest-foundry',
       },
     }
   end,
