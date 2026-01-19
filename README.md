@@ -100,6 +100,12 @@ export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
    ```
 3. Reference via `/run/secrets/my-new-secret`
 
+## Development
+
+Run `just` to see available commands:
+- `just check` - run all linting checks
+- `just fmt` - format all files
+
 ## Learning
 
 - https://nix.dev/recommended-reading
