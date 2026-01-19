@@ -176,25 +176,10 @@ vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
 vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)')
 vim.keymap.set('i', 'ii', '<Esc>')
 
--- Unbind hjkl since I use extend layer & colemak
---
--- Normal mode
-vim.keymap.set('n', 'h', '<Nop>', { noremap = true })
-vim.keymap.set('n', 'j', '<Nop>', { noremap = true })
-vim.keymap.set('n', 'k', '<Nop>', { noremap = true })
-vim.keymap.set('n', 'l', '<Nop>', { noremap = true })
-
--- Visual mode
-vim.keymap.set('v', 'h', '<Nop>', { noremap = true })
-vim.keymap.set('v', 'j', '<Nop>', { noremap = true })
-vim.keymap.set('v', 'k', '<Nop>', { noremap = true })
-vim.keymap.set('v', 'l', '<Nop>', { noremap = true })
-
--- Operator-pending mode
-vim.keymap.set('o', 'h', '<Nop>', { noremap = true })
-vim.keymap.set('o', 'j', '<Nop>', { noremap = true })
-vim.keymap.set('o', 'k', '<Nop>', { noremap = true })
-vim.keymap.set('o', 'l', '<Nop>', { noremap = true })
+-- Unbind hjk since I use extend layer & colemak (l is used by Flash)
+vim.keymap.set({ 'n', 'v', 'o' }, 'h', '<Nop>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'o' }, 'j', '<Nop>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'o' }, 'k', '<Nop>', { noremap = true })
 
 -- ; -> :
 vim.keymap.set({ 'n', 'v', 'x' }, ';', ':')
