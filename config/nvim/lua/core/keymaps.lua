@@ -1,16 +1,16 @@
--- Test (neotest)
-vim.keymap.set('n', '<leader>Tt', function()
+-- Neotest
+vim.keymap.set('n', '<leader>ot', function()
   require('neotest').run.run()
 end, { desc = 'run [t]est' })
-vim.keymap.set('n', '<leader>Tf', function()
+vim.keymap.set('n', '<leader>of', function()
   require('neotest').run.run(vim.fn.expand '%')
 end, { desc = 'run [f]ile' })
-vim.keymap.set('n', '<leader>Ts', function()
+vim.keymap.set('n', '<leader>os', function()
   require('neotest').summary.toggle()
 end, { desc = '[s]ummary' })
-vim.keymap.set('n', '<leader>To', function()
+vim.keymap.set('n', '<leader>op', function()
   require('neotest').output_panel.toggle()
-end, { desc = '[o]utput panel' })
+end, { desc = 'output [p]anel' })
 
 -- Debug (dap)
 vim.keymap.set('n', '<leader>dc', function()
@@ -74,7 +74,7 @@ vim.keymap.set('n', '<leader>5', function()
 end, { desc = 'mark [5]' })
 
 -- Outline
-vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = '[o]utline' })
+vim.keymap.set('n', '<leader>co', '<cmd>Outline<CR>', { desc = '[o]utline' })
 
 -- Snacks (git)
 vim.keymap.set('n', '<leader>g', function()
@@ -118,7 +118,6 @@ vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true 
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = '[w]rite' })
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree float toggle reveal_force_cwd<CR>', { desc = 'n[e]otree' })
-vim.keymap.set('n', '<leader>n', '<cmd>Neotree float git_status toggle reveal<CR>', { desc = '[n]eotree git' })
 
 vim.keymap.set('n', '<leader><Tab>', '<C-w>w', { noremap = true, desc = '[tab] pane' })
 
