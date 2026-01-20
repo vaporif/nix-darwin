@@ -364,6 +364,7 @@ passthru.tests.pkgname = mkTest "pkgname" ''
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
 | `check.yml` | PR, push to main | Flake check, build, lint (Lua, Nix, TOML, shell, actions), typos, gitleaks |
+| `vulns.yml` | PR, push to main, daily 8am UTC | Vulnerability scanning with vulnix |
 | `update-flake.yml` | Daily at 12pm UTC | Auto-update flake.lock and create PR |
 
 ### Local Commands
