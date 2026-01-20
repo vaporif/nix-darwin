@@ -160,7 +160,7 @@ comment = "Image format library"
 comment = "Audio library"
 
 [fontforge]
-comment = "Font editor, not regularly used"
+comment = "Build dependency for dejavu-fonts, not runtime"
 
 [imagemagick]
 comment = "Build-time dependency for noto-fonts-color-emoji, not runtime"
