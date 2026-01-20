@@ -153,7 +153,6 @@
         ulimit -Sn 4096
         ulimit -Sl unlimited
         source ${fzf-git-sh-package}/bin/fzf-git.sh
-        export GPG_TTY=$(tty)
         bindkey '^F' fzf-file-widget
         bindkey -r '^T'
       '';

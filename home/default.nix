@@ -178,6 +178,7 @@ in {
         signByDefault = userConfig.git.signingKey != "";
         format = "ssh";
       };
+      # Note: "gpg.ssh" is git's config namespace for SSH signing, not GPG
       settings.gpg.ssh.allowedSignersFile = "${homeDir}/.ssh/allowed_signers";
       maintenance.enable = true;
     };

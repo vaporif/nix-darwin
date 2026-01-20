@@ -74,7 +74,7 @@ cat > user.nix << EOF
   git = {
     name = "${GIT_NAME}";
     email = "${GIT_EMAIL}";
-    # GPG signing key (leave empty to disable signing)
+    # SSH signing key (used with Secretive)
     signingKey = "";
   };
 
@@ -176,4 +176,4 @@ echo "  3. Run: sudo darwin-rebuild switch --flake .#${HOSTNAME}"
 echo ""
 echo "Optional:"
 echo "  - Set up Cachix: https://app.cachix.org"
-echo "  - Set up GPG signing key and update user.nix"
+echo "  - Set up SSH signing key in user.nix (uses Secretive)"
