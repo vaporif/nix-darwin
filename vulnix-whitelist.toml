@@ -141,9 +141,6 @@ comment = "Parallel computing library, build-time"
 [thrift]
 comment = "Serialization library, not exposed"
 
-[yarn]
-comment = "JS package manager, low severity"
-
 [sd]
 comment = "CLI tool, local use only"
 
