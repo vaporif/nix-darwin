@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     nixd
     alejandra
+    statix
     nix-tree
     nix-diff
     nix-search

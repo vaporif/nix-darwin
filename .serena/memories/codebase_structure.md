@@ -21,7 +21,7 @@ flake.nix (Entry point)
 ### Root Level
 | File/Dir | Purpose |
 |----------|---------|
-| `user.nix` | User-specific config (username, hostname, git, timezone) |
+| `user.nix` | User-specific config (user, hostname, git, timezone) |
 | `flake.nix` | Main entry point, defines inputs and outputs |
 | `flake.lock` | Locked versions of all flake inputs |
 | `justfile` | Task runner for linting/formatting/update commands |

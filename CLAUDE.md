@@ -103,10 +103,14 @@ Application configs live in `/config/` and are symlinked via `xdg.configFile`:
 
 ## User-Specific Values
 
-Update these in `flake.nix` when forking:
-- `darwinConfigurations."MacBook-Pro"` - machine name
-- `user = "vaporif"` - username
-- `homeDir` - derived from user
+Update `user.nix` when forking:
+- `user` - macOS username
+- `hostname` - machine name
+- `system` - architecture
+- `git.*` - git identity and signing key
+- `cachix.*` - binary cache config
+- `timezone` - system timezone
+- `sshAgent` - SSH agent type
 
 ## MCP Servers
 

@@ -35,7 +35,7 @@ direnv allow ~
 If you prefer manual configuration:
 
 1. **Edit `user.nix`** with your values:
-   - `username` - your macOS username
+   - `user` - your macOS username
    - `hostname` - your machine name (System Settings → Sharing → Local hostname)
    - `system` - `"aarch64-darwin"` (Apple Silicon) or `"x86_64-darwin"` (Intel)
    - `git.name` / `git.email` - your git identity

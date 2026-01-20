@@ -57,8 +57,7 @@
   }: let
     # Import user configuration
     userConfig = import ./user.nix;
-    system = userConfig.system;
-    user = userConfig.username;
+    inherit (userConfig) system user;
 
     # Apply custom overlays
     localPackages = import ./overlays {inherit vim-tidal;};

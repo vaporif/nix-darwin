@@ -8,7 +8,7 @@ This document describes what's implemented in this nix-darwin configuration and 
 
 ### Module Hierarchy
 ```
-user.nix (user-specific config: username, hostname, git, timezone, ssh-agent)
+user.nix (user-specific config: user, hostname, git, timezone, ssh-agent)
 flake.nix (entry point)
 ├── Inputs: nixpkgs, nix-darwin, home-manager, sops-nix, stylix, mcp-servers-nix
 ├── Overlays: localPackages (custom packages), allowUnfreePredicate

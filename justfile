@@ -18,6 +18,7 @@ fmt-lua:
 lint-nix:
     nix flake check
     alejandra --check .
+    statix check
 
 # Format nix files
 fmt-nix:

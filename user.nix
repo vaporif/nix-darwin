@@ -1,8 +1,8 @@
 # User-specific configuration
 # Fork this repo and update these values for your setup
 {
-  # Your username (macOS user account name)
-  username = "vaporif";
+  # Your macOS user account name
+  user = "vaporif";
 
   # Your machine's hostname (System Settings → General → Sharing → Local hostname)
   hostname = "MacBook-Pro";

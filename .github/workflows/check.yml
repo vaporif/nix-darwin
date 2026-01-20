@@ -40,6 +40,9 @@ jobs:
       - name: Check nix formatting
         run: nix run nixpkgs#alejandra -- --check .
 
+      - name: Lint nix (statix)
+        run: nix run nixpkgs#statix -- check
+
       - name: Build nix
         run: nix build .#darwinConfigurations."MacBook-Pro".system
 

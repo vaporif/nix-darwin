@@ -134,8 +134,7 @@ in {
       ignores = [".serena" ".claude" "CLAUDE.md"];
       settings = {
         user = {
-          name = userConfig.git.name;
-          email = userConfig.git.email;
+          inherit (userConfig.git) name email;
         };
         aliases = {
           co = "checkout";
@@ -162,9 +161,11 @@ in {
         help.autocorrect = "prompt";
         branch.sort = "committerdate";
         interactive.diffFilter = "delta --color-only";
-        delta.navigate = true;
-        delta.syntax-theme = "gruvbox-light";
-        delta.line-numbers = true;
+        delta = {
+          navigate = true;
+          syntax-theme = "gruvbox-light";
+          line-numbers = true;
+        };
       };
       signing = {
         key = userConfig.git.signingKey;
