@@ -57,5 +57,8 @@ setup-hooks:
 
 # Build and push to cachix
 cache:
-    nix build .#darwinConfigurations."MacBook-Pro".system
-    cachix push vaporif ./result
+    #!/usr/bin/env bash
+    hostname=$(nix eval --raw -f user.nix hostname)
+    cachix_name=$(nix eval --raw -f user.nix cachix.name)
+    nix build ".#darwinConfigurations.${hostname}.system"
+    [[ -n "$cachix_name" ]] && cachix push "$cachix_name" ./result
