@@ -1,0 +1,166 @@
+# Vulnix whitelist - false positives and accepted risks
+# https://github.com/nix-community/vulnix#whitelist
+
+# Haskell packages - name collisions with unrelated vulnerable software
+[async]
+comment = "Haskell async library, not npm async"
+
+[curl]
+comment = "Haskell curl bindings, not curl CLI"
+
+[Diff]
+comment = "Haskell Diff library"
+
+[focus]
+comment = "Haskell focus, not Firefox Focus"
+
+[hedgehog]
+comment = "Haskell property testing library"
+
+[idna]
+comment = "Haskell idna, not python idna"
+
+[jose]
+comment = "Haskell jose JWT library"
+
+[network]
+comment = "Haskell network library"
+
+[opentelemetry]
+comment = "Haskell opentelemetry bindings"
+
+[paste]
+comment = "Haskell paste library"
+
+[regex]
+comment = "Haskell regex library"
+
+[safe]
+comment = "Haskell safe library, not F-Secure SAFE"
+
+[ShellCheck]
+comment = "Build dependency, Haskell linter"
+
+[stringbuilder]
+comment = "Haskell stringbuilder"
+
+[systemd]
+comment = "Haskell systemd bindings"
+
+[tap]
+comment = "Haskell tap library, not Jenkins tap"
+
+[tar]
+comment = "Haskell tar library, not GNU tar"
+
+[vault]
+comment = "Haskell vault, not HashiCorp Vault"
+
+[warp]
+comment = "Haskell warp web server"
+
+[websockets]
+comment = "Haskell websockets library"
+
+[word-wrap]
+comment = "Haskell word-wrap"
+
+[yaml]
+comment = "Haskell yaml library"
+
+[zlib]
+comment = "Haskell zlib bindings (zlib-0.7.x)"
+until = "2099-12-31"
+
+# Build-time dependencies
+[python]
+comment = "Build-time only (python 2.7)"
+until = "2099-12-31"
+
+[pip]
+comment = "Build-time Python package manager"
+
+[setuptools]
+comment = "Build-time Python build tool"
+
+[wheel]
+comment = "Build-time Python packaging"
+
+[go]
+comment = "Go compiler, build-time"
+
+[ninja]
+comment = "Build system, build-time"
+
+[yasm]
+comment = "Assembler, build-time"
+
+[binutils]
+comment = "Build tools, low severity CVEs"
+
+[rubygems]
+comment = "Ruby package manager, build-time"
+
+# Accepted risks - review periodically
+[git]
+comment = "CVEs are for Jenkins Git plugin, not git itself"
+cve = [
+  "CVE-2022-36882",
+  "CVE-2022-30947",
+  "CVE-2022-36883",
+  "CVE-2022-38663",
+  "CVE-2021-21684",
+  "CVE-2022-36884",
+]
+
+[mercurial]
+comment = "CVE-2022-43410 is Jenkins plugin, not mercurial"
+cve = ["CVE-2022-43410"]
+
+[dash]
+comment = "Build scripts only, not runtime shell"
+
+[lapack]
+comment = "Numerical library, limited attack surface"
+
+[libmemcached]
+comment = "Client library, not exposed"
+
+[memcached]
+comment = "Test dependency via mcp-server-qdrant → fastmcp → moto chain, not runtime"
+
+[snappy]
+comment = "Compression library CVEs - npm snappy, not C++ snappy"
+
+[lua]
+comment = "Embedded scripting, limited attack surface"
+
+[openmp]
+comment = "Parallel computing library, build-time"
+
+[thrift]
+comment = "Serialization library, not exposed"
+
+[yarn]
+comment = "JS package manager, low severity"
+
+[sd]
+comment = "CLI tool, local use only"
+
+[shellcheck]
+comment = "Linter tool, local use only"
+
+[jbig2dec]
+comment = "Image decoder, limited exposure"
+
+[giflib]
+comment = "Image library, limited exposure"
+
+[openexr]
+comment = "Image format library"
+
+[libsndfile]
+comment = "Audio library"
+
+[fontforge]
+comment = "Font editor, not regularly used"

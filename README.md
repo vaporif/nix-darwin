@@ -92,7 +92,8 @@ Run `just` to see available commands:
 | Command | Description |
 |---------|-------------|
 | `just switch` | Apply configuration (darwin-rebuild switch) |
-| `just check` | Run all linting checks (statix, deadnix, alejandra, etc.) |
+| `just check` | Run all checks (lint + policy) |
+| `just check-policy` | Run policy checks (freshness, pinning) |
 | `just fmt` | Format all files |
 | `just cache` | Build and push to Cachix |
 | `just setup-hooks` | Enable git hooks |
@@ -109,6 +110,17 @@ Skip hooks when needed:
 git commit --no-verify
 git push --no-verify
 ```
+
+### Policy Enforcement
+
+Security and compliance checks run in CI and locally:
+- **Vulnerability scanning** - `vulnix` with whitelist for false positives
+- **Input freshness** - Warns if flake inputs are >30 days old
+- **Pinned inputs** - Fails if any inputs are unpinned (indirect)
+- **Secret scanning** - `gitleaks` prevents committing secrets
+- **License compliance** - Unfree packages must be explicitly allowlisted
+
+Run locally: `just check-vulns` or `just check-policy`
 
 ### Cachix
 
@@ -141,7 +153,9 @@ flake.nix                    # Entry point, inputs
 │   └── secrets.yaml.template
 └── scripts/
     ├── setup.sh             # Bootstrap script for forks
-    └── install-librewolf.sh
+    ├── install-librewolf.sh
+    └── check-flake-age.sh   # Flake input freshness check
+vulnix-whitelist.toml        # CVE whitelist for vulnix
 ```
 
 ## Learning

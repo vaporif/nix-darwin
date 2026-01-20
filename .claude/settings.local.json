@@ -70,7 +70,8 @@
       "Bash(else)",
       "Bash(fi)",
       "Bash(__NEW_LINE_8e98b7d1f8c085f6__ echo \"\")",
-      "Bash(just lint-shell:*)"
+      "Bash(just lint-shell:*)",
+      "Bash(just lint-toml:*)"
     ],
     "deny": [],
     "ask": []

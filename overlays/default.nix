@@ -1,4 +1,4 @@
-{vim-tidal}: final: _: let
+{vim-tidal}: final: prev: let
   mkTest = name: cmd:
     final.runCommand "${name}-test" {} ''
       ${cmd}
@@ -49,4 +49,19 @@ in {
         test -x ${final.tidal_script}/bin/tidal
       '';
     });
+
+  # Disable ffmpeg due to CVEs (video previews disabled in yazi.toml anyway)
+  yazi = prev.yazi.override {
+    optionalDeps = with final; [
+      jq
+      poppler-utils
+      _7zz
+      fd
+      ripgrep
+      fzf
+      zoxide
+      chafa
+      resvg
+    ];
+  };
 }

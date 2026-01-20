@@ -23,14 +23,15 @@ Run `just` to see all available commands. Key ones:
 | Command | Description |
 |---------|-------------|
 | `just switch` | Apply configuration (darwin-rebuild switch) |
-| `just check` | Run all checks (lint-lua, lint-nix, lint-json, lint-toml, lint-shell, lint-actions, check-typos) |
+| `just check` | Run all checks (lint + policy) |
+| `just check-policy` | Policy checks (freshness, pinning) |
 | `just lint-lua` | Selene + stylua for Lua files |
 | `just lint-nix` | Flake check + alejandra + statix + deadnix |
 | `just fmt` | Format all (Lua + Nix + TOML) |
 | `just cache` | Build and push to Cachix |
 | `just setup-hooks` | Enable git hooks |
 
-Tools: `selene`, `stylua`, `alejandra`, `statix`, `deadnix`, `typos`, `taplo`, `shellcheck`, `actionlint`, `jaq`
+Tools: `selene`, `stylua`, `alejandra`, `statix`, `deadnix`, `typos`, `taplo`, `shellcheck`, `actionlint`, `jaq`, `gitleaks`
 
 ## Git Hooks
 
@@ -141,13 +142,20 @@ Nix-managed plugins from `github:anthropics/claude-code`:
 - **ralph-wiggum** - Iterative development loops
 - **code-review** - PR code review
 
-## Security
+## Security & Policy Enforcement
 
 - **Secrets**: SOPS with age encryption (key at `~/.config/sops/age/key.txt`)
 - **TouchID**: Enabled for sudo via `security.pam.services.sudo_local.touchIdAuth`
 - **Firewall**: Application firewall with stealth mode enabled
 - **Umask**: Stricter 077 - new files only readable by owner
 - **Sudo timeout**: 1 minute
+
+### CI Policy Checks
+- **Vulnerability scanning**: `vulnix` with `vulnix-whitelist.toml`
+- **Input freshness**: Warns if flake inputs >30 days old
+- **Pinned inputs**: Fails if any inputs are unpinned
+- **Secret scanning**: `gitleaks` prevents committing secrets
+- **License compliance**: Unfree packages must be allowlisted in `flake.nix`
 
 ## Key Implementation Details
 

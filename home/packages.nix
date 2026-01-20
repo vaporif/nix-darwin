@@ -23,6 +23,7 @@
     shellcheck
     actionlint
     cachix
+    vulnix
 
     bacon
     cargo-info
@@ -50,8 +51,6 @@
       ]))
     tmux
 
-    ueberzugpp
-    imagemagick
     tdf
 
     ghostscript

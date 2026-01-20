@@ -1,0 +1,19 @@
+# Yazi configuration
+# Video previews disabled due to ffmpeg CVEs (CVE-2023-51795 etc)
+
+[preview]
+max_width = 1000
+max_height = 1000
+
+[plugin]
+prepend_previewers = [
+  # Disable video previews - ffmpeg has unpatched CVEs
+  { name = "*.mp4", run = "empty" },
+  { name = "*.mkv", run = "empty" },
+  { name = "*.avi", run = "empty" },
+  { name = "*.mov", run = "empty" },
+  { name = "*.webm", run = "empty" },
+  { name = "*.flv", run = "empty" },
+  { name = "*.wmv", run = "empty" },
+  { name = "*.m4v", run = "empty" },
+]

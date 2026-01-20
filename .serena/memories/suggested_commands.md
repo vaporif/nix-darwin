@@ -4,7 +4,10 @@
 | Command | Description |
 |---------|-------------|
 | `just` | List all available commands |
-| `just check` | Run all checks (lint-lua, lint-nix, lint-json, check-typos) |
+| `just check` | Run all checks (lint + policy) |
+| `just check-policy` | Policy checks (freshness, pinning) |
+| `just check-freshness` | Check flake input ages |
+| `just check-pinned` | Verify inputs are pinned |
 | `just lint-lua` | Selene + stylua for Lua files |
 | `just lint-nix` | Flake check + alejandra |
 | `just lint-json` | Validate karabiner.json |

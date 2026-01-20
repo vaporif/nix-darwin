@@ -262,6 +262,7 @@ in {
   xdg.configFile = {
     "nvim".source = ../config/nvim;
     "karabiner/karabiner.json".source = ../config/karabiner/karabiner.json;
+    "yazi/yazi.toml".source = ../config/yazi/yazi.toml;
     "yazi/init.lua".source = ../config/yazi/init.lua;
     "yazi/keymap.toml".source = ../config/yazi/keymap.toml;
     "yazi/plugins/yamb.yazi" = {
