@@ -36,7 +36,6 @@
     presenterm
     tokei
     httpie
-    mermaid-cli
     tectonic
     just
     k9s
@@ -53,7 +52,6 @@
 
     tdf
 
-    ghostscript
     wget
     delta
     difftastic

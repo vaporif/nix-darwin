@@ -147,9 +147,6 @@ comment = "CVE-2021-28794 is for VS Code extension, not CLI tool"
 [yarn]
 comment = "Build dependency for typescript-language-server, not runtime"
 
-[jbig2dec]
-comment = "Build dependency for ghostscript/mupdf"
-
 [giflib]
 comment = "Build dependency for fontforge/libwebp"
 
