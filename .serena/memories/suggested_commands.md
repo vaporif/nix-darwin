@@ -16,6 +16,7 @@
 | `just lint-toml` | Lint TOML with taplo |
 | `just lint-shell` | Lint shell scripts with shellcheck |
 | `just lint-actions` | Lint GitHub Actions with actionlint |
+| `just switch` | Apply configuration (sudo darwin-rebuild switch) |
 | `just cache` | Build and push to Cachix |
 | `just setup-hooks` | Enable git hooks |
 

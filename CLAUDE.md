@@ -9,7 +9,7 @@ Nix-darwin + Home Manager configuration for macOS. Manages system and user confi
 ## Essential Commands
 
 ```bash
-sudo darwin-rebuild switch    # Apply configuration changes
+just switch                   # Apply configuration changes
 nix flake update              # Update all flake inputs
 sops secrets/secrets.yaml     # Edit encrypted secrets
 just check                    # Run all linting checks
@@ -22,14 +22,15 @@ Run `just` to see all available commands. Key ones:
 
 | Command | Description |
 |---------|-------------|
+| `just switch` | Apply configuration (darwin-rebuild switch) |
 | `just check` | Run all checks (lint-lua, lint-nix, lint-json, lint-toml, lint-shell, lint-actions, check-typos) |
 | `just lint-lua` | Selene + stylua for Lua files |
-| `just lint-nix` | Flake check + alejandra |
+| `just lint-nix` | Flake check + alejandra + statix + deadnix |
 | `just fmt` | Format all (Lua + Nix + TOML) |
 | `just cache` | Build and push to Cachix |
 | `just setup-hooks` | Enable git hooks |
 
-Tools: `selene`, `stylua`, `alejandra`, `typos`, `taplo`, `shellcheck`, `actionlint`, `jaq`
+Tools: `selene`, `stylua`, `alejandra`, `statix`, `deadnix`, `typos`, `taplo`, `shellcheck`, `actionlint`, `jaq`
 
 ## Git Hooks
 

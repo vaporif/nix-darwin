@@ -59,14 +59,9 @@ If you prefer manual configuration:
    sops -e -i secrets/secrets.yaml
    ```
 
-5. **Update justfile and CI** with your hostname:
+5. **Apply**:
    ```shell
-   sed -i '' 's/MacBook-Pro/YOUR-HOSTNAME/g' justfile .github/workflows/check.yml
-   ```
-
-6. **Apply**:
-   ```shell
-   sudo darwin-rebuild switch
+   just switch
    ```
 
 ## Working with SOPS Secrets
@@ -96,7 +91,8 @@ Run `just` to see available commands:
 
 | Command | Description |
 |---------|-------------|
-| `just check` | Run all linting checks |
+| `just switch` | Apply configuration (darwin-rebuild switch) |
+| `just check` | Run all linting checks (statix, deadnix, alejandra, etc.) |
 | `just fmt` | Format all files |
 | `just cache` | Build and push to Cachix |
 | `just setup-hooks` | Enable git hooks |

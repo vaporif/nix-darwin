@@ -52,6 +52,10 @@ check-typos:
 # Format all
 fmt: fmt-lua fmt-nix fmt-toml
 
+# Apply configuration
+switch:
+    sudo darwin-rebuild switch
+
 # Set up git hooks
 setup-hooks:
     git config core.hooksPath .githooks
