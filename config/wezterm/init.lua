@@ -9,6 +9,9 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 return {
+  -- Use Secretive's SSH agent for git signing and SSH auth
+  default_ssh_auth_sock = wezterm.home_dir .. '/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh',
+
   front_end = 'WebGpu',
   max_fps = 120,
   animation_fps = 120,
