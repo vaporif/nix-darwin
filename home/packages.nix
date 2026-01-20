@@ -1,37 +1,8 @@
 {
   pkgs,
   mcp-nixos-package,
-  vim-tidal,
   ...
-}: let
-  tidal-script = pkgs.stdenv.mkDerivation {
-    name = "tidal";
-    src = "${vim-tidal}/bin/tidal";
-    dontUnpack = true;
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/tidal
-      chmod +x $out/bin/tidal
-    '';
-  };
-
-  unclog = import ../pkgs/unclog.nix {inherit pkgs;};
-
-  # Auto-formatter for Claude Code hooks
-  claudeFormatter = pkgs.writeShellScriptBin "claude-formatter" ''
-    file_path=$(${pkgs.jaq}/bin/jaq -r '.tool_input.file_path // empty')
-    [ -z "$file_path" ] || [ ! -f "$file_path" ] && exit 0
-
-    case "$file_path" in
-      *.nix) alejandra -q "$file_path" 2>/dev/null || true ;;
-      *.go)  gofmt -w "$file_path" 2>/dev/null || true ;;
-      *.rs)  rustfmt "$file_path" 2>/dev/null || true ;;
-      *.lua) stylua "$file_path" 2>/dev/null || true ;;
-    esac
-  '';
-
-  nomicfoundation-solidity-language-server = import ../pkgs/nomicfoundation-solidity-language-server.nix {inherit pkgs;};
-in {
+}: {
   home.packages = with pkgs; [
     nixd
     alejandra
@@ -101,9 +72,9 @@ in {
     qdrant
     qdrant-web-ui
 
-    tidal-script
+    tidal_script
     unclog
-    nomicfoundation-solidity-language-server
-    claudeFormatter
+    nomicfoundation_solidity_language_server
+    claude_formatter
   ];
 }

@@ -59,7 +59,13 @@
     userConfig = import ./user.nix;
     system = userConfig.system;
     user = userConfig.username;
-    pkgs = nixpkgs.legacyPackages.${system};
+
+    # Apply custom overlays
+    localPackages = import ./overlays {inherit vim-tidal;};
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [localPackages];
+    };
     homeDir =
       if pkgs.stdenv.isDarwin
       then "/Users/${user}"
@@ -104,6 +110,7 @@
       specialArgs = {inherit user homeDir mcpServersConfig userConfig;};
       modules = [
         {
+          nixpkgs.overlays = [localPackages];
           nixpkgs.config.allowUnfreePredicate = pkg:
             builtins.elem (nixpkgs.lib.getName pkg) [
               "spacetimedb"
@@ -124,7 +131,7 @@
             useUserPackages = true;
             extraSpecialArgs = {
               inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells userConfig;
-              inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
+              inherit fzf-git-sh-package yamb-yazi claude-code-plugins;
               inherit mcp-nixos-package;
             };
             users.${user} = import ./home;

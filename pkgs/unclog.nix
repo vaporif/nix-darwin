@@ -1,9 +1,14 @@
-{pkgs}:
-pkgs.rustPlatform.buildRustPackage rec {
+{
+  rustPlatform,
+  fetchFromGitHub,
+  pkg-config,
+  openssl,
+}:
+rustPlatform.buildRustPackage rec {
   pname = "unclog";
   version = "0.7.3";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "informalsystems";
     repo = "unclog";
     rev = "v${version}";
@@ -11,8 +16,8 @@ pkgs.rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-sHYdDhfkxDazKQjhho3q+dN2ylbPeSeBPJai1lgDeRk=";
-  nativeBuildInputs = [pkgs.pkg-config];
-  buildInputs = [pkgs.openssl];
+  nativeBuildInputs = [pkg-config];
+  buildInputs = [openssl];
 
   # Patch to fix time crate Rust 1.80+ compatibility
   postPatch = ''
