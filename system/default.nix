@@ -11,6 +11,8 @@
     ./homebrew.nix
   ];
 
+  time.timeZone = userConfig.timezone;
+
   environment.systemPackages = with pkgs; [
     age
     libressl

@@ -5,13 +5,14 @@
   mcp-servers-nix,
   mcp-nixos-package,
   sharedLspPackages,
+  userConfig,
 }: {
   programs = {
     filesystem = {
       enable = true;
       args = [
         "${homeDir}/Documents"
-        "/private/etc/nix-darwin"
+        userConfig.configPath
         "${homeDir}/.cargo"
         "${homeDir}/go"
         "/nix/store"
@@ -23,7 +24,7 @@
     sequential-thinking.enable = true;
     time = {
       enable = true;
-      args = ["--local-timezone" "Europe/Lisbon"];
+      args = ["--local-timezone" userConfig.timezone];
     };
     context7.enable = true;
     memory.enable = true;

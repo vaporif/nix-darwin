@@ -41,6 +41,9 @@ If you prefer manual configuration:
    - `git.name` / `git.email` - your git identity
    - `git.signingKey` - your GPG key ID (or empty to disable signing)
    - `cachix` - your Cachix cache (or empty strings to disable)
+   - `configPath` - path to this repo (e.g., `/etc/nix-darwin`)
+   - `timezone` - your timezone (run `sudo systemsetup -listtimezones`)
+   - `sshAgent` - `"secretive"` for Secretive.app or `""` for default
 
 2. **Generate age key** for secrets:
    ```shell
@@ -63,7 +66,7 @@ If you prefer manual configuration:
 
 6. **Apply**:
    ```shell
-   sudo darwin-rebuild switch --flake .#YOUR-HOSTNAME
+   sudo darwin-rebuild switch
    ```
 
 ## Working with SOPS Secrets

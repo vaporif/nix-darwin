@@ -61,6 +61,11 @@
       lastUpdated = "2025-01-01T00:00:00.000Z";
     };
   };
+  # Homebrew path differs by architecture
+  homebrewPath =
+    if pkgs.stdenv.hostPlatform.isAarch64
+    then "/opt/homebrew/bin"
+    else "/usr/local/bin";
 in {
   imports = [
     ./packages.nix
@@ -79,7 +84,7 @@ in {
     username = user;
     stateVersion = "24.05";
     sessionPath = [
-      "/opt/homebrew/bin"
+      homebrewPath
       "$HOME/.cargo/bin"
     ];
     sessionVariables = {
@@ -187,10 +192,15 @@ in {
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      extraOptionOverrides = {
-        StrictHostKeyChecking = "accept-new";
-        IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-      };
+      extraOptionOverrides =
+        {
+          StrictHostKeyChecking = "accept-new";
+        }
+        // (
+          if userConfig.sshAgent == "secretive"
+          then {IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";}
+          else {}
+        );
       matchBlocks."*" = {
         addKeysToAgent = "yes";
         serverAliveInterval = 60;

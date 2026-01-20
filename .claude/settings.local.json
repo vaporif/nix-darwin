@@ -65,7 +65,12 @@
       "Bash(just lint-nix:*)",
       "Bash(just check-typos:*)",
       "Bash(just check:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(bash:*)",
+      "Bash(else)",
+      "Bash(fi)",
+      "Bash(__NEW_LINE_8e98b7d1f8c085f6__ echo \"\")",
+      "Bash(just lint-shell:*)"
     ],
     "deny": [],
     "ask": []

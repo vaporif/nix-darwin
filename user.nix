@@ -25,4 +25,14 @@
     name = "vaporif";
     publicKey = "vaporif.cachix.org-1:y/fKd8ILM10UJCdXFFYn/n8+AqXnRLzwHjX+BikcUf8=";
   };
+
+  # Path to this config repo (for MCP filesystem access)
+  configPath = "/private/etc/nix-darwin";
+
+  # Timezone (used by system and MCP time server)
+  # Run `sudo systemsetup -listtimezones` for valid values
+  timezone = "Europe/Lisbon";
+
+  # SSH agent: "secretive" for Secretive.app, or "" for default ssh-agent
+  sshAgent = "secretive";
 }

@@ -44,9 +44,16 @@ HOSTNAME="${INPUT_HOST:-${CURRENT_HOSTNAME}}"
 
 read -rp "Git name: " GIT_NAME
 read -rp "Git email: " GIT_EMAIL
+read -rp "Timezone [UTC]: " INPUT_TZ
+TIMEZONE="${INPUT_TZ:-UTC}"
+read -rp "SSH agent (secretive/default) [default]: " INPUT_SSH
+SSH_AGENT="${INPUT_SSH:-}"
 
 echo ""
 echo -e "${YELLOW}Updating user.nix...${NC}"
+
+# Get current directory for configPath
+CONFIG_PATH=$(pwd)
 
 # Update user.nix
 cat > user.nix << EOF
@@ -77,6 +84,15 @@ cat > user.nix << EOF
     name = "";
     publicKey = "";
   };
+
+  # Path to this config repo (for MCP filesystem access)
+  configPath = "${CONFIG_PATH}";
+
+  # Timezone for MCP time server
+  timezone = "${TIMEZONE}";
+
+  # SSH agent: "secretive" for Secretive.app, or "" for default ssh-agent
+  sshAgent = "${SSH_AGENT}";
 }
 EOF
 

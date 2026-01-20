@@ -88,7 +88,7 @@
     });
 
     mcpConfig = import ./mcp.nix {
-      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages;
+      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages userConfig;
     };
 
     mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
