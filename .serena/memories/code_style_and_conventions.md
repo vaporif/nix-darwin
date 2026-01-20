@@ -48,7 +48,7 @@ call_parentheses = "None"
 
 ## Git Configuration
 - **Default branch**: `main`
-- **Commits**: Signed with GPG (key: `AE206889199EC9E9`)
+- **Commits**: Signed with SSH via Secretive (Secure Enclave)
 - **Commit style**: Verbose commits enabled
 - **Diff algorithm**: Histogram
 - **Merge style**: diff3 conflict markers

@@ -39,11 +39,11 @@ If you prefer manual configuration:
    - `hostname` - your machine name (System Settings → Sharing → Local hostname)
    - `system` - `"aarch64-darwin"` (Apple Silicon) or `"x86_64-darwin"` (Intel)
    - `git.name` / `git.email` - your git identity
-   - `git.signingKey` - your GPG key ID (or empty to disable signing)
+   - `git.signingKey` - SSH public key from Secretive for commit signing (or empty to disable)
    - `cachix` - your Cachix cache (or empty strings to disable)
    - `configPath` - path to this repo (e.g., `/etc/nix-darwin`)
    - `timezone` - your timezone (run `sudo systemsetup -listtimezones`)
-   - `sshAgent` - `"secretive"` for Secretive.app or `""` for default
+   - `sshAgent` - `"secretive"` for Secretive.app or `""` for default (required for git signing)
 
 2. **Generate age key** for secrets:
    ```shell

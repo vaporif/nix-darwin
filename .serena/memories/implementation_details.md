@@ -324,7 +324,7 @@ passthru.tests.pkgname = mkTest "pkgname" ''
 **Location**: `home/default.nix` → `programs.git`
 
 ### Features
-- GPG signing (key: `AE206889199EC9E9`)
+- SSH signing via Secretive (Secure Enclave backed)
 - Delta as pager (syntax highlighting)
 - Histogram diff algorithm
 - Auto-setup remote on push
