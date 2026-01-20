@@ -164,3 +164,6 @@ comment = "Audio library"
 
 [fontforge]
 comment = "Font editor, not regularly used"
+
+[imagemagick]
+comment = "Build-time dependency for noto-fonts-color-emoji, not runtime"
