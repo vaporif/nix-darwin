@@ -96,7 +96,10 @@ install_librewolf() {
     curl -L -o "${TEMP_DIR}/librewolf.dmg.sig" "${SIG_URL}"
 
     # Import LibreWolf GPG key if not already present
-    if ! gpg --list-keys "${LIBREWOLF_GPG_KEY}" &>/dev/null; then
+    local key_exists=0
+    # shellcheck disable=SC2310 # intentionally capturing exit code
+    gpg --list-keys "${LIBREWOLF_GPG_KEY}" &>/dev/null || key_exists=$?
+    if [[ ${key_exists} -ne 0 ]]; then
         echo "Importing LibreWolf GPG key..."
         curl -sL "${GPG_KEY_URL}" -o "${TEMP_DIR}/librewolf-key.gpg"
         gpg --import "${TEMP_DIR}/librewolf-key.gpg"
@@ -105,6 +108,7 @@ install_librewolf() {
     # Verify GPG signature
     echo "Verifying GPG signature..."
     local gpg_output
+    # shellcheck disable=SC2310 # intentionally capturing output regardless of exit code
     gpg_output=$(gpg --verify "${TEMP_DIR}/librewolf.dmg.sig" "${TEMP_DIR}/librewolf.dmg" 2>&1 || true)
     if ! echo "${gpg_output}" | grep -q "Good signature"; then
         echo "ERROR: GPG signature verification failed!"
