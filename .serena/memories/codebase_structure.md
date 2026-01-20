@@ -2,7 +2,10 @@
 
 ## Configuration Flow
 ```
+user.nix (User-specific config - edit when forking)
 flake.nix (Entry point)
+    ├── overlays/ (Custom package overlays)
+    ├── pkgs/ (Custom package definitions)
     ├── system/ (System-level Darwin settings)
     │       ├── default.nix (nix config, system defaults, skhd)
     │       ├── theme.nix (Stylix theme)
@@ -18,12 +21,18 @@ flake.nix (Entry point)
 ### Root Level
 | File/Dir | Purpose |
 |----------|---------|
+| `user.nix` | User-specific config (username, hostname, git, timezone) |
 | `flake.nix` | Main entry point, defines inputs and outputs |
 | `flake.lock` | Locked versions of all flake inputs |
-| `justfile` | Task runner for linting/formatting commands |
+| `justfile` | Task runner for linting/formatting/update commands |
 | `typos.toml` | Typos checker configuration |
 | `mcp.nix` | MCP server configuration |
 | `CLAUDE.md` | Instructions for Claude Code |
+
+### `overlays/` - Custom Package Overlays
+| File | Purpose |
+|------|---------|
+| `default.nix` | Overlay with custom packages (unclog, solidity-lsp, claude_formatter, tidal_script) |
 
 ### `system/` - Darwin System Configuration
 | File | Purpose |
@@ -54,7 +63,7 @@ flake.nix (Entry point)
 | `.ssh/` | SSH configuration |
 | `direnvrc` | Direnv library functions |
 
-### `pkgs/` - Custom Nix Packages
+### `pkgs/` - Custom Nix Package Definitions (with passthru.tests)
 | File | Purpose |
 |------|---------|
 | `unclog.nix` | Custom package |

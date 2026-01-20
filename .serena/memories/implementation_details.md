@@ -8,9 +8,10 @@ This document describes what's implemented in this nix-darwin configuration and 
 
 ### Module Hierarchy
 ```
+user.nix (user-specific config: username, hostname, git, timezone, ssh-agent)
 flake.nix (entry point)
 ├── Inputs: nixpkgs, nix-darwin, home-manager, sops-nix, stylix, mcp-servers-nix
-├── Overlays: allowUnfreePredicate for spacetimedb, claude-code
+├── Overlays: localPackages (custom packages), allowUnfreePredicate
 │
 ├── system/ (Darwin system configuration)
 │   ├── default.nix - Nix settings, system defaults, skhd hotkeys
@@ -290,21 +291,31 @@ Uses `hyper` key (caps lock remapped via Karabiner):
 
 ---
 
-## 10. Custom Derivations
+## 10. Custom Packages (Overlay)
 
-**Location**: `home/packages.nix`
+**Location**: `overlays/default.nix`, `pkgs/`
 
-### tidal-script
-Wraps vim-tidal's tidal script for TidalCycles live coding.
+### Architecture
+- Packages defined in `pkgs/*.nix` using callPackage pattern
+- Exposed via overlay in `overlays/default.nix`
+- Each package has `passthru.tests` for CI verification
+- Tests run automatically via `nix flake check`
 
-### unclog
-Builds `unclog` (changelog tool) from source with Rust 1.80+ compatibility patch.
+### Packages
 
-### nomicfoundation-solidity-language-server
-Builds Hardhat's Solidity LSP from npm with:
-- Removes test workspaces (break build)
-- Patches analytics requirement
-- macOS-specific clang setup
+| Package | Purpose |
+|---------|---------|
+| `unclog` | Rust changelog tool (with 1.80+ compat patch) |
+| `nomicfoundation_solidity_language_server` | Hardhat Solidity LSP |
+| `claude_formatter` | Auto-formatter for Claude Code hooks |
+| `tidal_script` | vim-tidal wrapper for TidalCycles |
+
+### Test Pattern
+```nix
+passthru.tests.pkgname = mkTest "pkgname" ''
+  ${final.pkgname}/bin/pkgname --help > /dev/null
+'';
+```
 
 ---
 
@@ -341,3 +352,29 @@ Builds Hardhat's Solidity LSP from npm with:
 - karabiner-elements (keyboard)
 - proton-mail, protonvpn, proton-drive (privacy)
 - secretive (SSH key management)
+
+---
+
+## 13. CI/CD & Automation
+
+**Location**: `.github/workflows/`
+
+### Workflows
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `check.yml` | PR, push to main | Flake check, build, lint (Lua, Nix, TOML, shell, actions), typos, gitleaks |
+| `update-flake.yml` | Daily at 12pm UTC | Auto-update flake.lock and create PR |
+
+### Local Commands
+
+| Command | Purpose |
+|---------|---------|
+| `just check` | Run all lint checks |
+| `just cache` | Build and push to Cachix |
+
+### Git Hooks (`.githooks/`)
+- **pre-commit**: `just fmt`
+- **pre-push**: `just check && just cache`
+
+Enable with `just setup-hooks`
