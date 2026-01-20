@@ -66,8 +66,8 @@ comment = "Haskell word-wrap"
 comment = "Haskell yaml library"
 
 [zlib]
-comment = "Haskell zlib bindings (zlib-0.7.x)"
-until = "2099-12-31"
+comment = "Haskell zlib bindings (name collision); C zlib-1.3.1 is patched; CVE-2026-22184 only affects untgz demo"
+cve = ["CVE-2026-22184", "CVE-2023-6992", "CVE-2022-37434", "CVE-2023-45853"]
 
 # Build-time dependencies
 [python]
@@ -120,13 +120,13 @@ comment = "Plotly Dash (Python) CVE, not dash shell"
 cve = ["CVE-2024-21485"]
 
 [lapack]
-comment = "Build dep: numpy → scipy → mcp-server-qdrant"
+comment = "Build-time only (not runtime): numpy → scipy → mcp-server-qdrant"
 
 [libmemcached]
-comment = "Build dep: pylibmc → moto → mcp-server-qdrant"
+comment = "Build-time only (not runtime): pylibmc → moto → mcp-server-qdrant"
 
 [memcached]
-comment = "Build dep: python-memcached → moto → mcp-server-qdrant"
+comment = "Build-time only (not runtime): python-memcached → moto → mcp-server-qdrant"
 
 [snappy]
 comment = "npm snappy CVEs, not C++ snappy"
@@ -136,7 +136,7 @@ cve = ["CVE-2023-28115", "CVE-2023-41330"]
 comment = "Neovim scripting engine, only runs own configs"
 
 [thrift]
-comment = "Build dep: arrow-cpp → pyarrow → mcp-server-qdrant"
+comment = "Build-time only (not runtime): arrow-cpp → pyarrow → mcp-server-qdrant"
 
 [shellcheck]
 comment = "VS Code extension CVE, not CLI tool"
@@ -150,7 +150,8 @@ cve = ["CVE-2021-28794"]
 comment = "Build dep for typescript-language-server"
 
 [giflib]
-comment = "Build dep: fontforge/libwebp/libjxl image processing"
+comment = "Runtime dep: pillow → mcp-server-qdrant; CVE-2024-45993 is DoS via crafted GIF (low risk)"
+cve = ["CVE-2024-45993"]
 
 [libsndfile]
 comment = "Build dep: libjack2/ffmpeg (Tidal audio stack)"
@@ -159,7 +160,7 @@ comment = "Build dep: libjack2/ffmpeg (Tidal audio stack)"
 comment = "Build dep: dejavu-fonts → fontconfig (system fonts)"
 
 [jbig2dec]
-comment = "Build dep: mupdf → pikepdf → mcp-server-qdrant"
+comment = "Build-time only (not runtime): mupdf → pikepdf → mcp-server-qdrant"
 
 [openexr]
 comment = "Build dep: libjxl image processing"
