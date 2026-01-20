@@ -15,8 +15,8 @@
   git = {
     name = "Dmytro Onypko";
     email = "vaporif@proton.me";
-    # GPG signing key (leave empty to disable signing)
-    signingKey = "AE206889199EC9E9";
+    # SSH signing key from Secretive (leave empty to disable signing)
+    signingKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBP7sf4L6CNhRgdRKmXH2H7xxWTEWMTCS/oOkOwZIIIrpoVeXj01gVp6G4Al0+MdekYO9QbVGX4WMX8+hMpUXs/M= github@secretive.MacBook-Pro.local";
   };
 
   # Cachix binary cache (optional, remove if not using)

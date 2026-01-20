@@ -87,11 +87,17 @@ in {
       homebrewPath
       "$HOME/.cargo/bin"
     ];
-    sessionVariables = {
-      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/key.txt";
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
+    sessionVariables =
+      {
+        SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/key.txt";
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+      }
+      // (
+        if userConfig.sshAgent == "secretive"
+        then {SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";}
+        else {}
+      );
   };
 
   programs = {
@@ -168,10 +174,11 @@ in {
         };
       };
       signing = {
-        key = userConfig.git.signingKey;
+        key = "${homeDir}/.ssh/signing_key.pub";
         signByDefault = userConfig.git.signingKey != "";
-        format = "openpgp";
+        format = "ssh";
       };
+      settings.gpg.ssh.allowedSignersFile = "${homeDir}/.ssh/allowed_signers";
       maintenance.enable = true;
     };
 
@@ -249,6 +256,11 @@ in {
       ".claude/CLAUDE.md".source = ../config/claude/CLAUDE.md;
       ".claude/settings.json".source = ../config/claude/settings.json;
       ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
+
+      # SSH signing key (public key from Secretive)
+      ".ssh/signing_key.pub".text = userConfig.git.signingKey + "\n";
+      # SSH allowed signers for git signature verification
+      ".ssh/allowed_signers".text = "${userConfig.git.email} ${userConfig.git.signingKey}\n";
     }
     // {
       ${
