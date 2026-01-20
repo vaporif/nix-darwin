@@ -6,8 +6,13 @@
 set -e
 shopt -s inherit_errexit
 
-# Ensure Nix paths are available (for gpg, curl, etc.)
+# Ensure Nix paths are available
 export PATH="/etc/profiles/per-user/${USER}/bin:/run/current-system/sw/bin:${PATH}"
+
+# GPG wrapper - runs from nixpkgs stable without permanent install
+gpg() {
+    nix shell nixpkgs/nixos-25.05#gnupg -c gpg "$@"
+}
 
 # Configuration
 CODEBERG_API="https://codeberg.org/api/v1"
@@ -93,9 +98,8 @@ install_librewolf() {
     # Import LibreWolf GPG key if not already present
     if ! gpg --list-keys "${LIBREWOLF_GPG_KEY}" &>/dev/null; then
         echo "Importing LibreWolf GPG key..."
-        local gpg_key
-        gpg_key=$(curl -sL "${GPG_KEY_URL}")
-        echo "${gpg_key}" | gpg --import
+        curl -sL "${GPG_KEY_URL}" -o "${TEMP_DIR}/librewolf-key.gpg"
+        gpg --import "${TEMP_DIR}/librewolf-key.gpg"
     fi
 
     # Verify GPG signature
