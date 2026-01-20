@@ -14,7 +14,7 @@
 
     dust
     dua
-    sd
+    gnused
     jaq
     stylua
     selene

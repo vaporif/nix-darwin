@@ -141,11 +141,11 @@ comment = "Parallel computing library, build-time"
 [thrift]
 comment = "Serialization library, not exposed"
 
-[sd]
-comment = "CLI tool, local use only"
-
 [shellcheck]
-comment = "Linter tool, local use only"
+comment = "CVE-2021-28794 is for VS Code extension, not CLI tool"
+
+[yarn]
+comment = "Build dependency for typescript-language-server, not runtime"
 
 [jbig2dec]
 comment = "Image decoder, limited exposure"
