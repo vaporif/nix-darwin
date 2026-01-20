@@ -34,6 +34,10 @@
         package = pkgs.nerd-fonts.hack;
         name = "Hack Nerd Font";
       };
+      emoji = {
+        package = pkgs.emptyDirectory;
+        name = "";
+      };
       sizes = {
         applications = 12;
         desktop = 10;
