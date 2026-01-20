@@ -20,6 +20,7 @@
 ## After Completing Code
 - When a feature or code implementation is complete, run `/cleanup`
 - Present suggested improvements and let the user decide what to apply
+- Update Serena memory if the feature changed codebase structure or key implementation details
 
 ## Git Commits
 - Prefer short, concise commit messages (one line when possible)
