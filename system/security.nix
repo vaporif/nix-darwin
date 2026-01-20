@@ -10,6 +10,7 @@
       keyFile = "${homeDir}/.config/sops/age/key.txt";
       sshKeyPaths = [];
     };
+    gnupg.sshKeyPaths = [];
     secrets =
       lib.genAttrs
       ["openrouter-key" "tavily-key" "youtube-key" "deepl-key"]
