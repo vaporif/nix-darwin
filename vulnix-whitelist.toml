@@ -133,7 +133,7 @@ comment = "Test dependency via mcp-server-qdrant → fastmcp → moto chain, not
 comment = "Compression library CVEs - npm snappy, not C++ snappy"
 
 [lua]
-comment = "Embedded scripting, limited attack surface"
+comment = "Neovim scripting engine, only runs own configs"
 
 [openmp]
 comment = "Parallel computing library, build-time"
