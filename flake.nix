@@ -101,9 +101,16 @@
   in {
     formatter.${system} = pkgs.alejandra;
 
-    checks.${system}.formatting = pkgs.runCommand "check-formatting" {} ''
-      ${pkgs.alejandra}/bin/alejandra -c ${./.} && touch $out
-    '';
+    checks.${system} =
+      {
+        formatting = pkgs.runCommand "check-formatting" {} ''
+          ${pkgs.alejandra}/bin/alejandra -c ${./.} && touch $out
+        '';
+      }
+      // pkgs.unclog.passthru.tests
+      // pkgs.nomicfoundation_solidity_language_server.passthru.tests
+      // pkgs.claude_formatter.passthru.tests
+      // pkgs.tidal_script.passthru.tests;
 
     darwinConfigurations.${userConfig.hostname} = nix-darwin.lib.darwinSystem {
       inherit system;
