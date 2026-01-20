@@ -85,10 +85,12 @@ flake.nix                    # Entry point, inputs, specialArgs
 │   ├── theme.nix            # Stylix theme (Everforest Light)
 │   ├── security.nix         # SOPS, firewall, TouchID
 │   └── homebrew.nix         # Homebrew casks
-└── home/
-    ├── default.nix          # Home-manager config, Claude plugins
-    ├── shell.nix            # Zsh, aliases, prompt, shell tools
-    └── packages.nix         # User packages
+├── home/
+│   ├── default.nix          # Home-manager config, Claude plugins
+│   ├── shell.nix            # Zsh, aliases, prompt, shell tools
+│   └── packages.nix         # User packages
+├── overlays/                # Custom package overlays
+└── pkgs/                    # Custom package definitions
 ```
 
 ### Config Files (dotfiles)

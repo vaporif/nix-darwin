@@ -137,6 +137,8 @@ flake.nix                    # Entry point, inputs
 │   ├── default.nix          # Home-manager config
 │   ├── shell.nix            # Zsh, aliases, prompt
 │   └── packages.nix         # User packages
+├── overlays/                # Custom package overlays
+├── pkgs/                    # Custom package definitions
 ├── config/                  # Dotfiles (nvim, wezterm, etc.)
 ├── secrets/
 │   ├── secrets.yaml         # Encrypted secrets (not in git)
