@@ -7,7 +7,7 @@ set -e
 shopt -s inherit_errexit
 
 # Ensure Nix paths are available (for gpg, curl, etc.)
-export PATH="/etc/profiles/per-user/vaporif/bin:/run/current-system/sw/bin:${PATH}"
+export PATH="/etc/profiles/per-user/${USER}/bin:/run/current-system/sw/bin:${PATH}"
 
 # Configuration
 CODEBERG_API="https://codeberg.org/api/v1"

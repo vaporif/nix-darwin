@@ -8,6 +8,7 @@
   mcpServersConfig,
   claude-code-plugins,
   nix-devshells,
+  userConfig,
   ...
 }: let
   claudePluginsBase = ".claude/plugins/marketplaces";
@@ -128,8 +129,8 @@ in {
       ignores = [".serena" ".claude" "CLAUDE.md"];
       settings = {
         user = {
-          name = "Dmytro Onypko";
-          email = "vaporif@proton.me";
+          name = userConfig.git.name;
+          email = userConfig.git.email;
         };
         aliases = {
           co = "checkout";
@@ -161,8 +162,8 @@ in {
         delta.line-numbers = true;
       };
       signing = {
-        key = "AE206889199EC9E9";
-        signByDefault = true;
+        key = userConfig.git.signingKey;
+        signByDefault = userConfig.git.signingKey != "";
         format = "openpgp";
       };
       maintenance.enable = true;

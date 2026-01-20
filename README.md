@@ -1,75 +1,74 @@
 # Nix-darwin + home-manager
-This is my personal configuration for [nix-darwin](https://github.com/nix-darwin/nix-darwin) with dotfiles and tools.
 
-# setup
+Personal macOS configuration using [nix-darwin](https://github.com/nix-darwin/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager).
 
-1. Clone this repo
-2. Install [homebrew](https://brew.sh/)
-4. Install [nix](https://determinate.systems/nix-installer/)
-5. Install [nix-darwin](https://github.com/nix-darwin/nix-darwin)
+## Forking This Config
 
-Run the initial setup which will build all the derivations which may take a while.
+### Prerequisites
 
-6. Override /etc/nix-darwin dir with this repo
+1. Install [Homebrew](https://brew.sh/)
+2. Install [Nix](https://determinate.systems/nix-installer/)
+3. Install [nix-darwin](https://github.com/nix-darwin/nix-darwin)
 
-Update your machine name in `flake.nix`
+### Quick Setup
 
-```flake.nix
-darwinConfigurations."MacBook-Pro"
-```
-
-Update username & home path in `flake.nix`
-```flake.nix
-users.users.vaporif = {
-  name = "vaporif";
-  home = "/Users/vaporif";
-};
-```
-
-Inside `home.nix`
-```home.nix
-  home = {
-        homeDirectory = "/Users/vaporif";
-      username = "vaporif";
-
-```
-7. Apply config
 ```shell
-sudo darwin-rebuild switch
-```
+# Clone your fork
+git clone https://github.com/YOUR-USERNAME/nix-darwin.git /etc/nix-darwin
+cd /etc/nix-darwin
 
-8. Allow direnv .envrc for default devshell
-```shell
+# Run setup script (configures user.nix, generates age key, etc.)
+./scripts/setup.sh
+
+# Create and encrypt your secrets
+sops secrets/secrets.yaml
+
+# Apply configuration
+sudo darwin-rebuild switch --flake .#YOUR-HOSTNAME
+
+# Allow direnv for default devshell
 direnv allow ~
 ```
 
-## Working with SOPS Secrets
+### Manual Setup
 
-Secrets are encrypted using [SOPS](https://github.com/getsops/sops) with age encryption.
+If you prefer manual configuration:
 
-### Initial Setup
+1. **Edit `user.nix`** with your values:
+   - `username` - your macOS username
+   - `hostname` - your machine name (System Settings → Sharing → Local hostname)
+   - `system` - `"aarch64-darwin"` (Apple Silicon) or `"x86_64-darwin"` (Intel)
+   - `git.name` / `git.email` - your git identity
+   - `git.signingKey` - your GPG key ID (or empty to disable signing)
+   - `cachix` - your Cachix cache (or empty strings to disable)
 
-1. Generate an age key (if you don't have one):
+2. **Generate age key** for secrets:
    ```shell
    mkdir -p ~/.config/sops/age
    age-keygen -o ~/.config/sops/age/key.txt
    ```
 
-2. Add your public key to `.sops.yaml`:
-   ```yaml
-   keys:
-     - &user age1...your-public-key...
-   creation_rules:
-     - path_regex: secrets/.*\.yaml$
-       key_groups:
-         - age:
-             - *user
+3. **Update `.sops.yaml`** with your public key
+
+4. **Create secrets** from template:
+   ```shell
+   cp secrets/secrets.yaml.template secrets/secrets.yaml
+   sops -e -i secrets/secrets.yaml
    ```
 
-3. Re-encrypt existing secrets with your key (if inheriting this config):
+5. **Update justfile and CI** with your hostname:
    ```shell
-   sops updatekeys secrets/secrets.yaml
+   sed -i '' 's/MacBook-Pro/YOUR-HOSTNAME/g' justfile .github/workflows/check.yml
    ```
+
+6. **Apply**:
+   ```shell
+   sudo darwin-rebuild switch --flake .#YOUR-HOSTNAME
+   ```
+
+## Working with SOPS Secrets
+
+Secrets are encrypted using [SOPS](https://github.com/getsops/sops) with age encryption.
 
 ### Editing Secrets
 
@@ -77,35 +76,27 @@ Secrets are encrypted using [SOPS](https://github.com/getsops/sops) with age enc
 sops secrets/secrets.yaml
 ```
 
-This opens your `$EDITOR` with the decrypted file. Changes are re-encrypted on save.
-
-### Referencing Secrets in Configuration
-
-In your nix files, reference secrets via:
-```nix
-config.sops.secrets.<secret-name>.path
-```
-
-Example from `shell.nix`:
-```nix
-export TAVILY_API_KEY="$(cat /run/secrets/tavily-key)"
-```
+Opens your `$EDITOR` with decrypted content. Changes are re-encrypted on save.
 
 ### Adding New Secrets
 
 1. Edit `secrets/secrets.yaml` and add your secret
-2. Define it in your nix config (e.g., `system.nix`):
+2. Define in nix (e.g., `system/security.nix`):
    ```nix
    sops.secrets.my-new-secret = { };
    ```
-3. Reference via `/run/secrets/my-new-secret`
+3. Access at runtime: `/run/secrets/my-new-secret`
 
 ## Development
 
 Run `just` to see available commands:
-- `just check` - run all linting checks
-- `just fmt` - format all files
-- `just cache` - build and push to Cachix
+
+| Command | Description |
+|---------|-------------|
+| `just check` | Run all linting checks |
+| `just fmt` | Format all files |
+| `just cache` | Build and push to Cachix |
+| `just setup-hooks` | Enable git hooks |
 
 ### Git Hooks
 
@@ -122,12 +113,35 @@ git push --no-verify
 
 ### Cachix
 
-Binary cache for faster builds. Setup:
+Binary cache for faster builds:
 ```shell
 cachix authtoken <your-token>
+just cache
 ```
 
-Then `just cache` builds and pushes to the cache.
+## Structure
+
+```
+user.nix                     # User-specific config (edit this when forking)
+flake.nix                    # Entry point, inputs
+├── mcp.nix                  # MCP server configuration
+├── system/
+│   ├── default.nix          # System defaults, skhd
+│   ├── theme.nix            # Stylix theme
+│   ├── security.nix         # SOPS, firewall, TouchID
+│   └── homebrew.nix         # Homebrew casks
+├── home/
+│   ├── default.nix          # Home-manager config
+│   ├── shell.nix            # Zsh, aliases, prompt
+│   └── packages.nix         # User packages
+├── config/                  # Dotfiles (nvim, wezterm, etc.)
+├── secrets/
+│   ├── secrets.yaml         # Encrypted secrets (not in git)
+│   └── secrets.yaml.template
+└── scripts/
+    ├── setup.sh             # Bootstrap script for forks
+    └── install-librewolf.sh
+```
 
 ## Learning
 

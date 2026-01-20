@@ -55,8 +55,10 @@
     nix-devshells,
     ...
   }: let
-    system = "aarch64-darwin";
-    user = "vaporif";
+    # Import user configuration
+    userConfig = import ./user.nix;
+    system = userConfig.system;
+    user = userConfig.username;
     pkgs = nixpkgs.legacyPackages.${system};
     homeDir =
       if pkgs.stdenv.isDarwin
@@ -97,9 +99,9 @@
       ${pkgs.alejandra}/bin/alejandra -c ${./.} && touch $out
     '';
 
-    darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${userConfig.hostname} = nix-darwin.lib.darwinSystem {
       inherit system;
-      specialArgs = {inherit user homeDir mcpServersConfig;};
+      specialArgs = {inherit user homeDir mcpServersConfig userConfig;};
       modules = [
         {
           nixpkgs.config.allowUnfreePredicate = pkg:
@@ -121,7 +123,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells;
+              inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells userConfig;
               inherit fzf-git-sh-package yamb-yazi vim-tidal claude-code-plugins;
               inherit mcp-nixos-package;
             };

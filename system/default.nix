@@ -2,6 +2,7 @@
   pkgs,
   user,
   mcpServersConfig,
+  userConfig,
   ...
 }: {
   imports = [
@@ -23,16 +24,26 @@
     auto-optimise-store = true;
     max-jobs = "auto";
     cores = 0; # use all cores
-    substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-      "https://vaporif.cachix.org"
-    ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "vaporif.cachix.org-1:y/fKd8ILM10UJCdXFFYn/n8+AqXnRLzwHjX+BikcUf8="
-    ];
+    substituters =
+      [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+      ]
+      ++ (
+        if userConfig.cachix.name != ""
+        then ["https://${userConfig.cachix.name}.cachix.org"]
+        else []
+      );
+    trusted-public-keys =
+      [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ]
+      ++ (
+        if userConfig.cachix.publicKey != ""
+        then [userConfig.cachix.publicKey]
+        else []
+      );
   };
 
   system.configurationRevision = null;
@@ -114,5 +125,5 @@
     cp ${mcpServersConfig} "${claudeCodeConfigDir}/managed-mcp.json"
   '';
 
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.hostPlatform = userConfig.system;
 }
