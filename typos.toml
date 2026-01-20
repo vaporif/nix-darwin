@@ -4,6 +4,7 @@ extend-exclude = ["*.lock", "lazy-lock.json", "secrets/*"]
 [default.extend-words]
 # Allow these "typos" (technical terms, usernames, etc.)
 hl = "hl"
+Hashi = "Hashi"
 # Nix terminology
 substituters = "substituters"
 # Plugin names
