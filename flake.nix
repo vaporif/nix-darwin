@@ -82,7 +82,7 @@
     ];
 
     # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
-    serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (old: {
+    serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (_: {
       version = "0.1.4-unstable-2025-12-28";
       src = pkgs.fetchFromGitHub {
         owner = "vaporif";

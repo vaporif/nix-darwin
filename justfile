@@ -19,6 +19,7 @@ lint-nix:
     nix flake check
     alejandra --check .
     statix check
+    deadnix --fail
 
 # Format nix files
 fmt-nix:

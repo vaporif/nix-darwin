@@ -43,6 +43,9 @@ jobs:
       - name: Lint nix (statix)
         run: nix run nixpkgs#statix -- check
 
+      - name: Dead code (deadnix)
+        run: nix run nixpkgs#deadnix -- --fail .
+
       - name: Build nix
         run: nix build .#darwinConfigurations."MacBook-Pro".system
 

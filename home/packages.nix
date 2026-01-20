@@ -7,6 +7,7 @@
     nixd
     alejandra
     statix
+    deadnix
     nix-tree
     nix-diff
     nix-search

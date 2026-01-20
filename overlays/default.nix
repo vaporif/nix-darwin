@@ -1,17 +1,17 @@
-{vim-tidal}: final: prev: let
+{vim-tidal}: final: _: let
   mkTest = name: cmd:
     final.runCommand "${name}-test" {} ''
       ${cmd}
       touch $out
     '';
 in {
-  unclog = (final.callPackage ../pkgs/unclog.nix {}).overrideAttrs (old: {
+  unclog = (final.callPackage ../pkgs/unclog.nix {}).overrideAttrs (_: {
     passthru.tests.unclog = mkTest "unclog" ''
       ${final.unclog}/bin/unclog --help > /dev/null
     '';
   });
 
-  nomicfoundation_solidity_language_server = (final.callPackage ../pkgs/nomicfoundation-solidity-language-server.nix {}).overrideAttrs (old: {
+  nomicfoundation_solidity_language_server = (final.callPackage ../pkgs/nomicfoundation-solidity-language-server.nix {}).overrideAttrs (_: {
     passthru.tests.solidity-lsp = mkTest "solidity-lsp" ''
       test -x ${final.nomicfoundation_solidity_language_server}/bin/nomicfoundation-solidity-language-server
     '';
@@ -28,7 +28,7 @@ in {
         *.rs)  rustfmt "$file_path" 2>/dev/null || true ;;
         *.lua) stylua "$file_path" 2>/dev/null || true ;;
       esac
-    '').overrideAttrs (old: {
+    '').overrideAttrs (_: {
       passthru.tests.claude-formatter = mkTest "claude-formatter" ''
         echo '{}' | ${final.claude_formatter}/bin/claude-formatter
       '';
@@ -44,7 +44,7 @@ in {
         cp $src $out/bin/tidal
         chmod +x $out/bin/tidal
       '';
-    }).overrideAttrs (old: {
+    }).overrideAttrs (_: {
       passthru.tests.tidal = mkTest "tidal" ''
         test -x ${final.tidal_script}/bin/tidal
       '';
