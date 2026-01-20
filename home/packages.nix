@@ -60,7 +60,6 @@
     ouch
     hyperfine
     pango
-    gnupg
 
     python312
     nodejs_22
