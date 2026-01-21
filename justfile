@@ -72,6 +72,10 @@ fmt: fmt-lua fmt-nix fmt-toml
 switch:
     sudo darwin-rebuild switch
 
+# Update neovim plugins
+lazy-update:
+    nvim --headless "+Lazy! update" +qa
+
 # Set up git hooks
 setup-hooks:
     git config core.hooksPath .githooks
