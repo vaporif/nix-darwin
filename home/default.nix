@@ -119,6 +119,7 @@ in {
       enable = true;
       settings = {
         gui.nerdFontsVersion = "3";
+        git.pull.mode = "ff-only";
         git.pagers = [
           {
             applyToPager = "diff";
