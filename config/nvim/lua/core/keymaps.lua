@@ -1,14 +1,3 @@
--- Outline
-vim.keymap.set('n', '<leader>co', '<cmd>Outline<CR>', { desc = '[o]utline' })
-
--- Snacks (git)
-vim.keymap.set('n', '<leader>g', function()
-  require('snacks').lazygit()
-end, { desc = 'Lazy[g]it' })
-vim.keymap.set('n', '<leader>l', function()
-  require('snacks').lazygit.log()
-end, { desc = 'git [l]ogs' })
-
 -- Diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev diagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
@@ -46,37 +35,6 @@ vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
 
 vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
 vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
-
--- Find & replace
-vim.keymap.set({ 'n', 'v' }, '<leader>qg', function()
-  local grug = require 'grug-far'
-  local ext = vim.bo.buftype == '' and vim.fn.expand '%:e'
-  grug.open {
-    transient = true,
-    prefills = {
-      filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
-    },
-  }
-end, { desc = '[g]lobal' })
-
-vim.keymap.set({ 'n', 'v' }, '<leader>qw', function()
-  local grug = require 'grug-far'
-  local is_visual = vim.fn.mode():match '[vV]'
-
-  if is_visual then
-    -- Use visual selection
-    grug.with_visual_selection()
-  else
-    -- Use whole buffer
-    local buf_name = vim.api.nvim_buf_get_name(0)
-    grug.open {
-      transient = true,
-      prefills = {
-        paths = buf_name ~= '' and buf_name or nil,
-      },
-    }
-  end
-end, { desc = '[w]ithin buffer/selection' })
 
 -- subversive
 vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)')

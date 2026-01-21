@@ -1,12 +1,9 @@
 return {
   'xiyaowong/nvim-cursorword',
   event = 'VeryLazy',
-  enabled = true,
   config = function()
-    vim.cmd [[
-    		hi default CursorWord cterm=underline gui=underline
-    		let g:cursorword_disable_filetypes = []
-    		let g:cursorword_min_width = 3
-    		]]
+    vim.api.nvim_set_hl(0, 'CursorWord', { underline = true, default = true })
+    vim.g.cursorword_disable_filetypes = {}
+    vim.g.cursorword_min_width = 3
   end,
 }
