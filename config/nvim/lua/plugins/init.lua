@@ -1,6 +1,14 @@
 return {
   { 'tpope/vim-sleuth' },
-  { 'svermeulen/vim-subversive' },
+  {
+    'svermeulen/vim-subversive',
+    keys = {
+      { 's', '<Plug>(SubversiveSubstitute)', desc = 'Substitute' },
+      { 'ss', '<Plug>(SubversiveSubstituteLine)', desc = 'Substitute line' },
+      { 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', desc = 'Substitute to EOL' },
+      { 's', '<Plug>(SubversiveSubstitute)', mode = 'x', desc = 'Substitute' },
+    },
+  },
   { 'powerman/vim-plugin-AnsiEsc' },
   { 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' } },
   {
@@ -10,6 +18,14 @@ return {
   },
   {
     'gbprod/yanky.nvim',
+    keys = {
+      { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put after' },
+      { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put before' },
+      { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' }, desc = 'GPut after' },
+      { 'gP', '<Plug>(YankyGPutBefore)', mode = { 'n', 'x' }, desc = 'GPut before' },
+      { '<c-p>', '<Plug>(YankyPreviousEntry)', desc = 'Yanky previous' },
+      { '<c-n>', '<Plug>(YankyNextEntry)', desc = 'Yanky next' },
+    },
     opts = {
       preserve_cursor_position = {
         enabled = true,
