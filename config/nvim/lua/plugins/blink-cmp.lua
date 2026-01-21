@@ -1,6 +1,5 @@
 return {
   'saghen/blink.cmp',
-  enabled = true,
   version = '1.*',
   opts = function(_, opts)
     opts.sources = vim.tbl_deep_extend('force', opts.sources or {}, {
@@ -8,7 +7,6 @@ return {
       providers = {
         lsp = {
           name = 'lsp',
-          enabled = true,
           module = 'blink.cmp.sources.lsp',
           fallbacks = { 'buffer' },
           score_offset = 90, -- the higher the number, the higher the priority
@@ -30,7 +28,6 @@ return {
         },
         buffer = {
           name = 'Buffer',
-          enabled = true,
           max_items = 3,
           module = 'blink.cmp.sources.buffer',
           min_keyword_length = 2,
@@ -38,7 +35,6 @@ return {
         },
         snippets = {
           name = 'snippets',
-          enabled = true,
           max_items = 10,
           min_keyword_length = 2,
           module = 'blink.cmp.sources.snippets',

@@ -2,7 +2,7 @@ return {
   { 'tpope/vim-sleuth' },
   { 'svermeulen/vim-subversive' },
   { 'powerman/vim-plugin-AnsiEsc' },
-  { 'sindrets/diffview.nvim' },
+  { 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' } },
   {
     'chrisgrieser/nvim-early-retirement',
     config = true,
@@ -54,6 +54,7 @@ return {
   require 'plugins.grug-far',
   {
     'tidalcycles/vim-tidal',
+    ft = 'tidal',
     config = function()
       vim.g.tidal_target = 'terminal'
       vim.g.tidal_ghci = 'ghci'
