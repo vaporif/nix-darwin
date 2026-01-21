@@ -27,20 +27,6 @@ vim.keymap.set('n', '<S-h>', '<cmd>bprevious<CR>', { desc = 'Prev buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
--- yanky
-vim.keymap.set({ 'n', 'x' }, 'p', '<Plug>(YankyPutAfter)')
-vim.keymap.set({ 'n', 'x' }, 'P', '<Plug>(YankyPutBefore)')
-vim.keymap.set({ 'n', 'x' }, 'gp', '<Plug>(YankyGPutAfter)')
-vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
-
-vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
-vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
-
--- subversive
-vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)')
-vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
-vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
-vim.keymap.set('x', 's', '<Plug>(SubversiveSubstitute)')
 vim.keymap.set('i', 'ii', '<Esc>')
 
 -- Unbind hjk since I use extend layer & colemak (l is used by Flash)
