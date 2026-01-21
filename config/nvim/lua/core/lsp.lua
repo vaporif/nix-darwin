@@ -1,11 +1,3 @@
-if vim.g.have_nerd_font then
-  local signs = { Error = '', Warn = '', Hint = '', Info = '' }
-  for type, icon in pairs(signs) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-end
-
 vim.diagnostic.config {
   virtual_text = {
     prefix = '●',
@@ -14,6 +6,14 @@ vim.diagnostic.config {
   float = {
     source = true,
   },
+  signs = vim.g.have_nerd_font and {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.HINT] = '',
+      [vim.diagnostic.severity.INFO] = '',
+    },
+  } or true,
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
