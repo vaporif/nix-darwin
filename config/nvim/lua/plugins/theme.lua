@@ -1,6 +1,53 @@
 -- Everforest Theme with Light Mode
 -- colors are changed to natural looking ones
 -- should be way easier on eyes
+
+-- Color palette for maintainability
+local c = {
+  -- Primary accent colors
+  terracotta = '#7a4f3a',
+  dusty_purple = '#9b7d8a',
+  muted_coral = '#c85552',
+  honey = '#c9a05a',
+  sage = '#708c7e',
+  storm_blue = '#6b8b8f',
+  olive = '#89a05d',
+  clay_red = '#b85450',
+  warm_orange = '#c08563',
+
+  -- Syntax colors
+  deep_forest = '#4d5b56',
+  blue_stone = '#3b5b5f',
+  sage_green = '#3a5b4d',
+  earth_brown = '#907760',
+  warm_amber = '#a8814f',
+  stone_grey = '#7d8d85',
+  river_stone = '#859289',
+
+  -- Rust-specific
+  rust_keyword = '#8b5a3c',
+  rust_conditional = '#9d6b47',
+  rust_modifier = '#b87333',
+  rust_wood = '#8b7355',
+  rust_storage = '#a67c52',
+  rust_import = '#a17c59',
+  rust_method = '#7a8a7f',
+  rust_type = '#4a6b5d',
+  rust_function = '#4b6b6f',
+
+  -- Background colors
+  bg_main = '#e8dcc6',
+  bg_cursor = '#faf3e8',
+  bg_yank = '#e8e2cf',
+  bg_dim = '#f8f1de',
+  bg_selection = '#d5c9b8',
+
+  -- UI colors
+  dark_grey = '#5c6a72',
+  light_pebble = '#9da9a0',
+  pale_stone = '#b5c1b8',
+}
+
 return {
   'neanias/everforest-nvim',
   lazy = false,
@@ -8,162 +55,155 @@ return {
   config = function()
     local everforest = require 'everforest'
     vim.opt.background = 'light'
-    local function apply_theme()
-      everforest.setup {
-        background = 'soft',
-        transparent_background_level = 0,
-        italics = false,
-        disable_italic_comments = false,
-        sign_column_background = 'none',
-        ui_contrast = 'low',
-        dim_inactive_windows = false,
-        diagnostic_virtual_text = 'grey',
-        diagnostic_text_highlight = false,
-        diagnostic_line_highlight = false,
-        spell_foreground = false,
-        show_eob = false,
-        float_style = 'bright',
-        inlay_hints_background = 'none',
 
-        on_highlights = function(hl, _palette)
-          hl['@keyword'] = { fg = '#7a4f3a', bg = 'NONE' } -- Warm terracotta
-          hl['@function.builtin'] = { fg = '#7a6d5b', bg = 'NONE' }
-          hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#846347', bg = 'NONE' }
-          hl['@operator'] = { fg = '#5a4746', bg = 'NONE' }
-          hl['@punctuation.special'] = { fg = '#7a6756', bg = 'NONE' } -- For :: -> =>
-          hl.CursorLine = { bg = '#faf3e8' }
+    everforest.setup {
+      background = 'soft',
+      transparent_background_level = 0,
+      italics = false,
+      disable_italic_comments = false,
+      sign_column_background = 'none',
+      ui_contrast = 'low',
+      dim_inactive_windows = false,
+      diagnostic_virtual_text = 'grey',
+      diagnostic_text_highlight = false,
+      diagnostic_line_highlight = false,
+      spell_foreground = false,
+      show_eob = false,
+      float_style = 'bright',
+      inlay_hints_background = 'none',
 
-          hl['@macro'] = { fg = '#9b7d8a', bg = 'NONE' } -- Muted mauve
-          -- Softer, natural error colors
-          hl.DiagnosticError = { fg = '#c85552', bg = 'NONE' } -- Muted coral
-          hl['Purple'] = { fg = '#8b6d7a' } -- Dusty purple
-          hl['PurpleItalic'] = { fg = '#9b7d8a', italic = false }
-          hl['Red'] = { fg = '#a84440' } -- Muted coral
-          hl['Orange'] = { fg = '#c2591e', bg = 'NONE' }
-          hl['DiagnosticUnderlineError'] = { undercurl = true, sp = '#c85552' }
-          hl.ErrorFloat = { fg = '#9d6b47', bg = 'NONE' }
-          hl.YankHighlight = { bg = '#e8e2cf' }
-          -- Additional natural highlights for better readability
-          hl['@type'] = { fg = '#3a5b4d', bg = 'NONE' } -- Sage green
-          hl['@function'] = { fg = '#3b5b5f', bg = 'NONE' } -- Blue-grey stone
-          hl['@string'] = { fg = '#5a6a4e', bg = 'NONE' }
-          hl['@variable'] = { fg = '#4d5b56', bg = 'NONE' } -- Deep forest
-          hl['@variable.builtin'] = { fg = '#8a8275', bg = 'NONE' }
-          hl['@constant'] = { fg = '#907760', bg = 'NONE' } -- Earth brown
-          hl['@number'] = { fg = '#a8814f', bg = 'NONE' } -- Warm amber
-          hl['@boolean'] = { fg = '#907760', bg = 'NONE' } -- Warmer tan
-          hl['@parameter'] = { fg = '#7a5a4a' }
+      on_highlights = function(hl, _palette)
+        -- General syntax
+        hl['@keyword'] = { fg = c.terracotta, bg = 'NONE' }
+        hl['@function.builtin'] = { fg = '#7a6d5b', bg = 'NONE' }
+        hl['@operator'] = { fg = '#5a4746', bg = 'NONE' }
+        hl['@punctuation.special'] = { fg = '#7a6756', bg = 'NONE' }
+        hl['@macro'] = { fg = c.dusty_purple, bg = 'NONE' }
+        hl['@type'] = { fg = c.sage_green, bg = 'NONE' }
+        hl['@function'] = { fg = c.blue_stone, bg = 'NONE' }
+        hl['@string'] = { fg = '#5a6a4e', bg = 'NONE' }
+        hl['@variable'] = { fg = c.deep_forest, bg = 'NONE' }
+        hl['@variable.builtin'] = { fg = '#8a8275', bg = 'NONE' }
+        hl['@constant'] = { fg = c.earth_brown, bg = 'NONE' }
+        hl['@number'] = { fg = c.warm_amber, bg = 'NONE' }
+        hl['@boolean'] = { fg = c.earth_brown, bg = 'NONE' }
+        hl['@parameter'] = { fg = '#7a5a4a' }
 
-          -- UI elements with natural colors
-          hl['@punctuation'] = { fg = '#7d8d85', bg = 'NONE' } -- Stone grey
-          hl['@punctuation.bracket'] = { fg = '#7d8d85', bg = 'NONE' }
-          hl['@punctuation.delimiter'] = { fg = '#8d9d8d', bg = 'NONE' }
+        -- Punctuation
+        hl['@punctuation'] = { fg = c.stone_grey, bg = 'NONE' }
+        hl['@punctuation.bracket'] = { fg = c.stone_grey, bg = 'NONE' }
+        hl['@punctuation.delimiter'] = { fg = '#8d9d8d', bg = 'NONE' }
 
-          -- Rust-specific
-          hl['@type.rust'] = { fg = '#4a6b5d', bg = 'NONE' } -- Sage green
-          hl['@function.rust'] = { fg = '#4b6b6f', bg = 'NONE' }
-          hl['@number.float'] = { fg = '#b8a0a8', bg = 'NONE' }
-          hl['@attribute.rust'] = { fg = '#9b7d8a', bg = 'NONE' }
-          hl['@operator.rust'] = { fg = '#8a7766', bg = 'NONE' }
-          hl['@lsp.type.method.rust'] = { fg = '#7a8a7f', bg = 'NONE' }
-          hl['@keyword.modifier.rust'] = { fg = '#b87333', bg = 'NONE' }
-          hl['@keyword.function.rust'] = { fg = '#8b7355', bg = 'NONE' } -- Natural wood
-          hl['@constant.builtin.rust'] = { fg = '#a08770', bg = 'NONE' }
-          hl['@number.float.rust'] = { fg = '#9a8f85', bg = 'NONE' }
-          hl['@lsp.mod.constant.rust'] = { fg = '#a67c52', bg = 'NONE' }
-          hl['@keyword.storage.rust'] = { fg = '#a67c52', bg = 'NONE' }
-          hl['@keyword.import.rust'] = { fg = '#a17c59', bg = 'NONE' } -- Sandy brown
-          hl['@label.rust'] = { fg = '#9b7d8a', bg = 'NONE' }
-          hl['@keyword.rust'] = { fg = '#8b5a3c', bg = 'NONE' } -- Sandy brown
-          hl['@keyword.conditional.rust'] = { fg = '#9d6b47', bg = 'NONE' } -- Warm terracotta
-          hl['@method.call.rust'] = { fg = '#7a8a7f', bg = 'NONE' } -- stone blue
-          hl['@function.method.call.rust'] = { fg = '#8b7d6b', bg = 'NONE' }
-          hl.GitSignsAdd = { fg = '#89a05d', bg = 'NONE' } -- Olive green
-          hl.GitSignsChange = { fg = '#c9a05a', bg = 'NONE' } -- Honey yellow
-          hl.GitSignsDelete = { fg = '#b85450', bg = 'NONE' } -- Clay red
+        -- UI elements
+        hl.CursorLine = { bg = c.bg_cursor }
+        hl.YankHighlight = { bg = c.bg_yank }
+        hl['Purple'] = { fg = '#8b6d7a' }
+        hl['PurpleItalic'] = { fg = c.dusty_purple, italic = false }
+        hl['Red'] = { fg = '#a84440' }
+        hl['Orange'] = { fg = '#c2591e', bg = 'NONE' }
+        hl.ErrorFloat = { fg = c.rust_conditional, bg = 'NONE' }
 
-          -- Warnings and hints
-          hl.DiagnosticWarn = { fg = '#c9a05a', bg = 'NONE' } -- Muted gold
-          hl.DiagnosticHint = { fg = '#6b8b8f', bg = 'NONE' } -- Blue-grey
-          hl.DiagnosticInfo = { fg = '#708c7e', bg = 'NONE' } -- Sage
+        -- Diagnostics
+        hl.DiagnosticError = { fg = c.muted_coral, bg = 'NONE' }
+        hl.DiagnosticWarn = { fg = c.honey, bg = 'NONE' }
+        hl.DiagnosticHint = { fg = c.storm_blue, bg = 'NONE' }
+        hl.DiagnosticInfo = { fg = c.sage, bg = 'NONE' }
+        hl['DiagnosticUnderlineError'] = { undercurl = true, sp = c.muted_coral }
 
-          -- Todo comments highlighting (folke/todo-comments.nvim)
-          -- The plugin creates these highlight groups dynamically
-          hl['@text.todo'] = { fg = '#708c7e', bold = true }
-          hl['@text.note'] = { fg = '#6b8b8f', bold = true }
-          hl['@text.warning'] = { fg = '#c9a05a', bold = true }
-          hl['@text.danger'] = { fg = '#c85552', bold = true }
-          hl['@text.todo.unchecked'] = { fg = '#708c7e', bold = true }
-          hl['@text.todo.checked'] = { fg = '#89a05d', bold = true }
+        -- Git signs
+        hl.GitSignsAdd = { fg = c.olive, bg = 'NONE' }
+        hl.GitSignsChange = { fg = c.honey, bg = 'NONE' }
+        hl.GitSignsDelete = { fg = c.clay_red, bg = 'NONE' }
 
-          -- Default todo-comments highlight groups
-          hl.TodoBgTODO = { bg = '#708c7e', fg = '#f8f1de', bold = true }
-          hl.TodoFgTODO = { fg = '#708c7e', bold = true }
-          hl.TodoSignTODO = { fg = '#708c7e', bold = true }
+        -- Rust-specific
+        hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#846347', bg = 'NONE' }
+        hl['@type.rust'] = { fg = c.rust_type, bg = 'NONE' }
+        hl['@function.rust'] = { fg = c.rust_function, bg = 'NONE' }
+        hl['@number.float'] = { fg = '#b8a0a8', bg = 'NONE' }
+        hl['@attribute.rust'] = { fg = c.dusty_purple, bg = 'NONE' }
+        hl['@operator.rust'] = { fg = '#8a7766', bg = 'NONE' }
+        hl['@lsp.type.method.rust'] = { fg = c.rust_method, bg = 'NONE' }
+        hl['@keyword.modifier.rust'] = { fg = c.rust_modifier, bg = 'NONE' }
+        hl['@keyword.function.rust'] = { fg = c.rust_wood, bg = 'NONE' }
+        hl['@constant.builtin.rust'] = { fg = '#a08770', bg = 'NONE' }
+        hl['@number.float.rust'] = { fg = '#9a8f85', bg = 'NONE' }
+        hl['@lsp.mod.constant.rust'] = { fg = c.rust_storage, bg = 'NONE' }
+        hl['@keyword.storage.rust'] = { fg = c.rust_storage, bg = 'NONE' }
+        hl['@keyword.import.rust'] = { fg = c.rust_import, bg = 'NONE' }
+        hl['@label.rust'] = { fg = c.dusty_purple, bg = 'NONE' }
+        hl['@keyword.rust'] = { fg = c.rust_keyword, bg = 'NONE' }
+        hl['@keyword.conditional.rust'] = { fg = c.rust_conditional, bg = 'NONE' }
+        hl['@method.call.rust'] = { fg = c.rust_method, bg = 'NONE' }
+        hl['@function.method.call.rust'] = { fg = '#8b7d6b', bg = 'NONE' }
 
-          hl.TodoBgFIX = { bg = '#c85552', fg = '#f8f1de', bold = true }
-          hl.TodoFgFIX = { fg = '#c85552', bold = true }
-          hl.TodoSignFIX = { fg = '#c85552', bold = true }
+        -- Todo comments (folke/todo-comments.nvim)
+        hl['@text.todo'] = { fg = c.sage, bold = true }
+        hl['@text.note'] = { fg = c.storm_blue, bold = true }
+        hl['@text.warning'] = { fg = c.honey, bold = true }
+        hl['@text.danger'] = { fg = c.muted_coral, bold = true }
+        hl['@text.todo.unchecked'] = { fg = c.sage, bold = true }
+        hl['@text.todo.checked'] = { fg = c.olive, bold = true }
 
-          hl.TodoBgHACK = { bg = '#c9a05a', fg = '#f8f1de', bold = true }
-          hl.TodoFgHACK = { fg = '#c9a05a', bold = true }
-          hl.TodoSignHACK = { fg = '#c9a05a', bold = true }
+        hl.TodoBgTODO = { bg = c.sage, fg = c.bg_dim, bold = true }
+        hl.TodoFgTODO = { fg = c.sage, bold = true }
+        hl.TodoSignTODO = { fg = c.sage, bold = true }
 
-          hl.TodoBgWARN = { bg = '#c9a05a', fg = '#f8f1de', bold = true }
-          hl.TodoFgWARN = { fg = '#c9a05a', bold = true }
-          hl.TodoSignWARN = { fg = '#c9a05a', bold = true }
+        hl.TodoBgFIX = { bg = c.muted_coral, fg = c.bg_dim, bold = true }
+        hl.TodoFgFIX = { fg = c.muted_coral, bold = true }
+        hl.TodoSignFIX = { fg = c.muted_coral, bold = true }
 
-          hl.TodoBgPERF = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
-          hl.TodoFgPERF = { fg = '#9b7d8a', bold = true }
-          hl.TodoSignPERF = { fg = '#9b7d8a', bold = true }
+        hl.TodoBgHACK = { bg = c.honey, fg = c.bg_dim, bold = true }
+        hl.TodoFgHACK = { fg = c.honey, bold = true }
+        hl.TodoSignHACK = { fg = c.honey, bold = true }
 
-          hl.TodoBgNOTE = { bg = '#6b8b8f', fg = '#f8f1de', bold = true }
-          hl.TodoFgNOTE = { fg = '#6b8b8f', bold = true }
-          hl.TodoSignNOTE = { fg = '#6b8b8f', bold = true }
+        hl.TodoBgWARN = { bg = c.honey, fg = c.bg_dim, bold = true }
+        hl.TodoFgWARN = { fg = c.honey, bold = true }
+        hl.TodoSignWARN = { fg = c.honey, bold = true }
 
-          hl.TodoBgTEST = { bg = '#9b7d8a', fg = '#f8f1de', bold = true }
-          hl.TodoFgTEST = { fg = '#9b7d8a', bold = true }
-          hl.TodoSignTEST = { fg = '#9b7d8a', bold = true }
+        hl.TodoBgPERF = { bg = c.dusty_purple, fg = c.bg_dim, bold = true }
+        hl.TodoFgPERF = { fg = c.dusty_purple, bold = true }
+        hl.TodoSignPERF = { fg = c.dusty_purple, bold = true }
 
-          -- Blink-pairs custom highlight groups
-          hl.BlinkPairsWarm1 = { fg = '#c08563' } -- base09: warm orange
-          hl.BlinkPairsWarm2 = { fg = '#859289' } -- base0F: neutral brown
-        end,
+        hl.TodoBgNOTE = { bg = c.storm_blue, fg = c.bg_dim, bold = true }
+        hl.TodoFgNOTE = { fg = c.storm_blue, bold = true }
+        hl.TodoSignNOTE = { fg = c.storm_blue, bold = true }
 
-        colours_override = function(palette)
-          palette.red = '#b85450' -- clay red
-          palette.orange = '#c08563' -- Soft clay orange
-          palette.yellow = '#c9a05a' -- Warm honey/wheat
-          palette.green = '#89a05d' -- Olive leaf green
-          palette.aqua = '#6b9b91' -- Sea glass teal
-          palette.blue = '#6b8b8f' -- Storm cloud blue
-          palette.purple = '#9b7d8a' -- Dusty lavender
+        hl.TodoBgTEST = { bg = c.dusty_purple, fg = c.bg_dim, bold = true }
+        hl.TodoFgTEST = { fg = c.dusty_purple, bold = true }
+        hl.TodoSignTEST = { fg = c.dusty_purple, bold = true }
 
-          -- Background colors - very soft and natural
-          palette.bg0 = '#e8dcc6' -- Main background color
-          palette.bg_visual = '#d5c9b8' -- Slightly warmer selection
-          palette.bg_red = '#fce8e8' -- Very light coral
-          palette.bg_green = '#f0f4e6' -- Very light sage
-          palette.bg_blue = '#e8f0f3' -- Very light sky
-          palette.bg_yellow = '#faf3e0' -- Very light cream
-          palette.bg_dim = '#f8f1de' -- For dimmed/inactive windows
+        -- Blink-pairs
+        hl.BlinkPairsWarm1 = { fg = c.warm_orange }
+        hl.BlinkPairsWarm2 = { fg = c.river_stone }
+      end,
 
-          -- Greys - like natural stone colors
-          palette.grey0 = '#859289' -- River stone
-          palette.grey1 = '#9da9a0' -- Light pebble
-          palette.grey2 = '#b5c1b8' -- Pale stone
+      colours_override = function(palette)
+        palette.red = c.clay_red
+        palette.orange = c.warm_orange
+        palette.yellow = c.honey
+        palette.green = c.olive
+        palette.aqua = '#6b9b91'
+        palette.blue = c.storm_blue
+        palette.purple = c.dusty_purple
 
-          -- Additional colors
-          palette.statusline1 = '#5c6a72' -- Dark grey
-          palette.statusline2 = '#708c7e' -- Darker sage
-          palette.statusline3 = '#7a8478' -- Even darker
-        end,
-      }
+        palette.bg0 = c.bg_main
+        palette.bg_visual = c.bg_selection
+        palette.bg_red = '#fce8e8'
+        palette.bg_green = '#f0f4e6'
+        palette.bg_blue = '#e8f0f3'
+        palette.bg_yellow = '#faf3e0'
+        palette.bg_dim = c.bg_dim
 
-      everforest.load()
-    end
+        palette.grey0 = c.river_stone
+        palette.grey1 = c.light_pebble
+        palette.grey2 = c.pale_stone
 
-    -- Apply theme on startup
-    apply_theme()
+        palette.statusline1 = c.dark_grey
+        palette.statusline2 = c.sage
+        palette.statusline3 = '#7a8478'
+      end,
+    }
+
+    everforest.load()
   end,
 }
