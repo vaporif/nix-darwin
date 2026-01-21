@@ -6,18 +6,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Trim whitespaces
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { '*' },
-  callback = function()
-    if vim.bo.modifiable and vim.bo.buftype == '' then
-      local save_cursor = vim.fn.getpos '.'
-      vim.cmd [[%s/\s\+$//e]]
-      vim.fn.setpos('.', save_cursor)
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   callback = function()
     local lines = vim.fn.line '$'

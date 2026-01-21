@@ -10,6 +10,57 @@ return {
     'llllvvuu/neotest-foundry',
   },
   cmd = 'Neotest',
+  keys = {
+    {
+      '<leader>tt',
+      function()
+        require('neotest').run.run()
+      end,
+      desc = 'run [t]est',
+    },
+    {
+      '<leader>tf',
+      function()
+        require('neotest').run.run(vim.fn.expand '%')
+      end,
+      desc = 'run [f]ile',
+    },
+    {
+      '<leader>to',
+      function()
+        require('neotest').summary.toggle()
+      end,
+      desc = '[o]verview',
+    },
+    {
+      '<leader>tp',
+      function()
+        require('neotest').output_panel.toggle()
+      end,
+      desc = 'output [p]anel',
+    },
+    {
+      '<leader>tr',
+      function()
+        require('neotest').run.run_last()
+      end,
+      desc = '[r]e-run last',
+    },
+    {
+      '<leader>tx',
+      function()
+        require('neotest').run.stop()
+      end,
+      desc = 'e[x]it',
+    },
+    {
+      '<leader>td',
+      function()
+        require('neotest').run.run { strategy = 'dap' }
+      end,
+      desc = '[d]ebug test',
+    },
+  },
   config = function()
     require('neotest').setup {
       adapters = {
