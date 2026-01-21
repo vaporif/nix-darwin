@@ -1,54 +1,3 @@
--- Debug (dap)
-vim.keymap.set('n', '<leader>dc', function()
-  require('dap').continue()
-end, { desc = 'start/[c]ontinue' })
-vim.keymap.set('n', '<leader>di', function()
-  require('dap').step_into()
-end, { desc = 'step [i]nto' })
-vim.keymap.set('n', '<leader>dr', function()
-  require('dap').step_over()
-end, { desc = 'step ove[r]' })
-vim.keymap.set('n', '<leader>do', function()
-  require('dap').step_out()
-end, { desc = 'step [o]ut' })
-vim.keymap.set('n', '<leader>db', function()
-  require('dap').toggle_breakpoint()
-end, { desc = '[b]reakpoint' })
-vim.keymap.set('n', '<leader>du', function()
-  require('dapui').toggle()
-end, { desc = 'toggle [u]i' })
-
--- Flash (motion)
-vim.keymap.set({ 'n', 'x', 'o' }, 'l', function()
-  require('flash').jump()
-end, { desc = 'Flash' })
-vim.keymap.set({ 'n', 'x', 'o' }, 'S', function()
-  require('flash').treesitter()
-end, { desc = 'Flash Treesitter' })
-vim.keymap.set('o', 'r', function()
-  require('flash').remote()
-end, { desc = 'Remote Flash' })
-vim.keymap.set({ 'o', 'x' }, 'R', function()
-  require('flash').treesitter_search()
-end, { desc = 'Treesitter Search' })
-vim.keymap.set('c', '<c-s>', function()
-  require('flash').toggle()
-end, { desc = 'Toggle Flash Search' })
-
--- Harpoon
-vim.keymap.set('n', '<leader>a', function()
-  require('harpoon'):list():add()
-end, { desc = 'harpoon [a]dd' })
-vim.keymap.set('n', '<leader>p', function()
-  local harpoon = require 'harpoon'
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end, { desc = 'har[p]oon' })
-for i = 0, 9 do
-  vim.keymap.set('n', '<leader>' .. i, function()
-    require('harpoon'):list():select(i)
-  end, { desc = 'which_key_ignore' })
-end
-
 -- Outline
 vim.keymap.set('n', '<leader>co', '<cmd>Outline<CR>', { desc = '[o]utline' })
 
@@ -59,21 +8,6 @@ end, { desc = 'Lazy[g]it' })
 vim.keymap.set('n', '<leader>l', function()
   require('snacks').lazygit.log()
 end, { desc = 'git [l]ogs' })
-
--- Trouble
-vim.keymap.set('n', '<leader>bt', '<cmd>Trouble todo toggle<cr>', { desc = '[t]odo' })
-vim.keymap.set('n', '<leader>bd', '<cmd>Trouble diagnostics toggle<cr>', { desc = '[d]iagnostics' })
-vim.keymap.set('n', '<leader>bb', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', { desc = '[b]uffer' })
-vim.keymap.set('n', '<leader>bs', '<cmd>Trouble symbols toggle focus=false<cr>', { desc = '[s]ymbols' })
-vim.keymap.set('n', '<leader>bl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', { desc = '[L]SP Definitions / references / ...' })
-vim.keymap.set('n', '<leader>bo', '<cmd>Trouble loclist toggle<cr>', { desc = 'l[o]ocation' })
-vim.keymap.set('n', '<leader>bq', '<cmd>Trouble qflist toggle<cr>', { desc = '[q]uickfix' })
-vim.keymap.set('n', ']x', function()
-  require('trouble').next { skip_groups = true, jump = true }
-end, { desc = 'Next trouble item' })
-vim.keymap.set('n', '[x', function()
-  require('trouble').prev { skip_groups = true, jump = true }
-end, { desc = 'Previous trouble item' })
 
 -- Diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Prev diagnostic' })
