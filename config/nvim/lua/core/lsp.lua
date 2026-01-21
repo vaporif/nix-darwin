@@ -78,7 +78,7 @@ vim.lsp.config.nixd = {
 
 vim.lsp.enable 'nixd'
 
-vim.lsp.config.basepyright = {
+vim.lsp.config.basedpyright = {
   settings = {
     pyright = {
       -- disable import sorting and use Ruff for this
