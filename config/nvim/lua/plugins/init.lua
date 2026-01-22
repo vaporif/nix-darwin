@@ -1,4 +1,5 @@
 return {
+  { 'neovim/nvim-lspconfig', event = 'BufReadPre' },
   { 'tpope/vim-sleuth', event = 'BufReadPre' },
   {
     'svermeulen/vim-subversive',
