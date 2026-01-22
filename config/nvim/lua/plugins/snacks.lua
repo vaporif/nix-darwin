@@ -20,7 +20,7 @@ return {
     {
       '"',
       function()
-        Snacks.picker.registers()
+        require('snacks').picker.registers()
       end,
       mode = { 'n', 'v' },
       desc = 'Registers',
