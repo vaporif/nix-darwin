@@ -32,6 +32,8 @@ vim.keymap.set('i', 'ii', '<Esc>')
 -- Unbind hj since I use extend layer & colemak (l is used by Flash, k is used by Flash Treesitter)
 vim.keymap.set({ 'n', 'v', 'o' }, 'h', '<Nop>')
 vim.keymap.set({ 'n', 'v', 'o' }, 'j', '<Nop>')
+vim.keymap.set({ 'n', 'v', 'o' }, 'k', '<Nop>')
+vim.keymap.set({ 'n', 'v', 'o' }, 'l', '<Nop>')
 
 -- ; -> :
 vim.keymap.set({ 'n', 'v', 'x' }, ';', ':')
