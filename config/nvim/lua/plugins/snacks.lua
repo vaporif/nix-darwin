@@ -18,12 +18,8 @@ return {
       desc = 'git [l]ogs',
     },
   },
-  ---@type snacks.Config
   opts = {
     image = { enabled = false },
     input = {},
-    picker = {
-      ui_select = true,
-    },
   },
 }

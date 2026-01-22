@@ -44,9 +44,8 @@ return {
   -- Code features
   require 'plugins.blink-cmp',
   require 'plugins.neotest',
-  require 'plugins.rustacean',
+  require 'plugins.rust',
   require 'plugins.go-nvim',
-  require 'plugins.crates',
   require 'plugins.conform',
   require 'plugins.blink-pairs',
   require 'plugins.nvim-ufo',
