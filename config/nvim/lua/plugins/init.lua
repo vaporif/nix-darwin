@@ -53,7 +53,6 @@ return {
   require 'plugins.treesitter',
   require 'plugins.dap',
   require 'plugins.trouble',
-  require 'plugins.cursorword',
   require 'plugins.markdown',
   require 'plugins.grug-far',
   {
