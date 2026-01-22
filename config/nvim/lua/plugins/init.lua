@@ -40,7 +40,6 @@ return {
   require 'plugins.flash',
   require 'plugins.which-key',
   require 'plugins.fzf',
-  require 'plugins.dashboard',
   require 'plugins.lualine',
   require 'plugins.mini',
   require 'plugins.neo-tree',
@@ -94,7 +93,7 @@ return {
     ---@type AutoSession.Config
     opts = {
       suppressed_dirs = { '~/', '~/Repos', '~/Downloads', '/' },
-      -- log_level = 'debug',
+      no_restore_cmds = { 'Neotree float reveal' },
     },
   },
 }
