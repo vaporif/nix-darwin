@@ -30,11 +30,6 @@ return {
       preserve_cursor_position = {},
     },
   },
-  {
-    'gennaro-tedesco/nvim-peekup',
-    keys = { { '""', desc = 'Peek registers' } },
-  },
-
   -- UI and navigation
   require 'plugins.gitsigns',
   require 'plugins.flash',
