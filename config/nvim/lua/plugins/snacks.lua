@@ -17,14 +17,6 @@ return {
       end,
       desc = 'git [l]ogs',
     },
-    {
-      '"',
-      function()
-        require('snacks').picker.registers()
-      end,
-      mode = { 'n', 'v' },
-      desc = 'Registers',
-    },
   },
   ---@type snacks.Config
   opts = {
