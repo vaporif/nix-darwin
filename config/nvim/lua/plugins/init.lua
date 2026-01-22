@@ -1,5 +1,5 @@
 return {
-  { 'tpope/vim-sleuth' },
+  { 'tpope/vim-sleuth', event = 'BufReadPre' },
   {
     'svermeulen/vim-subversive',
     keys = {
@@ -9,7 +9,7 @@ return {
       { 's', '<Plug>(SubversiveSubstitute)', mode = 'x', desc = 'Substitute' },
     },
   },
-  { 'powerman/vim-plugin-AnsiEsc' },
+  { 'powerman/vim-plugin-AnsiEsc', cmd = 'AnsiEsc' },
   { 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' } },
   {
     'chrisgrieser/nvim-early-retirement',
@@ -27,9 +27,7 @@ return {
       { '<c-n>', '<Plug>(YankyNextEntry)', desc = 'Yanky next' },
     },
     opts = {
-      preserve_cursor_position = {
-        enabled = true,
-      },
+      preserve_cursor_position = {},
     },
   },
   {

@@ -11,7 +11,7 @@ return {
       desc = 'Flash',
     },
     {
-      'S',
+      'k',
       function()
         require('flash').treesitter()
       end,

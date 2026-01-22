@@ -29,10 +29,9 @@ vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 vim.keymap.set('i', 'ii', '<Esc>')
 
--- Unbind hjk since I use extend layer & colemak (l is used by Flash)
+-- Unbind hj since I use extend layer & colemak (l is used by Flash, k is used by Flash Treesitter)
 vim.keymap.set({ 'n', 'v', 'o' }, 'h', '<Nop>')
 vim.keymap.set({ 'n', 'v', 'o' }, 'j', '<Nop>')
-vim.keymap.set({ 'n', 'v', 'o' }, 'k', '<Nop>')
 
 -- ; -> :
 vim.keymap.set({ 'n', 'v', 'x' }, ';', ':')
