@@ -37,6 +37,7 @@ _: {
       "proton-drive"
       "protonvpn"
       "gimp"
+      "syncthing"
       # "rectangle"
     ];
   };
