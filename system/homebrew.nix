@@ -23,6 +23,7 @@ _: {
       "wezterm@nightly"
       "karabiner-elements"
       "tor-browser"
+      "mpv"
       "vlc"
       "orbstack"
       "qbittorrent"
