@@ -10,7 +10,20 @@ return {
       { 's', '<Plug>(SubversiveSubstitute)', mode = 'x', desc = 'Substitute' },
     },
   },
-  { 'powerman/vim-plugin-AnsiEsc', cmd = 'AnsiEsc' },
+  {
+    'm00qek/baleia.nvim',
+    version = '*',
+    keys = {
+      { '<leader>cA', desc = '[A]nsi colorize' },
+    },
+    config = function()
+      local baleia = require('baleia').setup {}
+      vim.api.nvim_create_user_command('BaleiaColorize', function()
+        baleia.once(vim.api.nvim_get_current_buf())
+      end, {})
+      vim.keymap.set('n', '<leader>cA', '<cmd>BaleiaColorize<cr>', { desc = '[A]nsi colorize' })
+    end,
+  },
   { 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' } },
   {
     'chrisgrieser/nvim-early-retirement',

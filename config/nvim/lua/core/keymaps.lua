@@ -14,7 +14,6 @@ end, { desc = 'Next error' })
 
 -- Code (generic)
 vim.keymap.set('n', '<leader>cd', '<cmd>DiffviewOpen<CR>', { desc = '[d]iff tool' })
-vim.keymap.set('n', '<leader>cA', '<cmd>AnsiEsc<CR>', { desc = '[A]nsi escape' })
 
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
