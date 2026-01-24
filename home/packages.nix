@@ -59,7 +59,6 @@
     pango
 
     python312
-    nodejs_22
     bun
     uv
     ruff
