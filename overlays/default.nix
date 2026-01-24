@@ -50,6 +50,19 @@ in {
       '';
     });
 
+  # Skip rocksdict tests (crash on macOS after nixpkgs update)
+  pythonPackagesExtensions =
+    prev.pythonPackagesExtensions
+    ++ [
+      (python-final: python-prev: {
+        rocksdict = python-prev.rocksdict.overrideAttrs (_: {
+          doCheck = false;
+          doInstallCheck = false;
+          pytestCheckPhase = "";
+        });
+      })
+    ];
+
   # Disable ffmpeg due to CVEs (video previews disabled in yazi.toml anyway)
   yazi = prev.yazi.override {
     optionalDeps = with final; [

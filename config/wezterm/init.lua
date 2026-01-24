@@ -201,7 +201,7 @@ local config = {
   launch_menu = {
     {
       label = 'Repos',
-      cwd = '/Users/vaporif/Repos',
+      cwd = wezterm.home_dir .. '/Repos',
     },
     {
       label = 'Nix Config',
@@ -209,7 +209,7 @@ local config = {
     },
     {
       label = 'Home',
-      cwd = '/Users/vaporif',
+      cwd = wezterm.home_dir,
     },
   },
 }
