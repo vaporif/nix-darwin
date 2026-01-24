@@ -1,8 +1,7 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    -- NOTE: While i can remove mason and point to debugserver path but
-    -- it's not better in any way and less maintainable
+    -- Mason adds indirection but handles debugserver path portably
     { 'mason-org/mason.nvim', config = true },
     'jay-babu/mason-nvim-dap.nvim',
 
