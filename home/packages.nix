@@ -65,6 +65,9 @@
 
     claude-code
     mcp-nixos-package
+    cachix
+    deadnix
+    statix
     qdrant
     qdrant-web-ui
 
