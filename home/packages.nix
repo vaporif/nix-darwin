@@ -34,8 +34,6 @@
     mprocs
     presenterm
     tokei
-    httpie
-    tectonic
     just
     k9s
     btop
@@ -56,7 +54,6 @@
     difftastic
     ouch
     hyperfine
-    pango
 
     python312
     bun

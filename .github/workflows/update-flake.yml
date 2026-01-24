@@ -16,5 +16,5 @@ jobs:
 
       - uses: DeterminateSystems/update-flake-lock@v28
         with:
-          pr-title: "flake.lock: weekly update"
+          pr-title: "flake.lock: daily update"
           pr-labels: dependencies
