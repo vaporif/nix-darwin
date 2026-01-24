@@ -37,7 +37,6 @@
     presenterm
     tokei
     just
-    k9s
     lazydocker
     btop
     procs
