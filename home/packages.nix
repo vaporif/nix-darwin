@@ -11,6 +11,8 @@
     nix-tree
     nix-diff
     nix-search
+    nix-output-monitor
+    nvd
 
     dust
     dua
@@ -36,6 +38,7 @@
     tokei
     just
     k9s
+    lazydocker
     btop
     procs
     sops

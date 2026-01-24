@@ -22,7 +22,7 @@ _: {
       "wezterm@nightly"
       "karabiner-elements"
       "tor-browser"
-      "mpv"
+      "stolendata-mpv"
       "orbstack"
       "qbittorrent"
       "secretive"

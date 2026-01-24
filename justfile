@@ -68,9 +68,11 @@ check-pinned:
 # Format all
 fmt: fmt-lua fmt-nix fmt-toml
 
-# Apply configuration
+# Apply configuration with pretty output
 switch:
-    sudo darwin-rebuild switch
+    nom build .#darwinConfigurations.$(nix eval --raw -f user.nix hostname).system && \
+    nvd diff /run/current-system ./result && \
+    sudo ./result/activate
 
 # Update neovim plugins
 lazy-update:
