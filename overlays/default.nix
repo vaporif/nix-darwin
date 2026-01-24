@@ -54,7 +54,7 @@ in {
   pythonPackagesExtensions =
     prev.pythonPackagesExtensions
     ++ [
-      (python-final: python-prev: {
+      (_: python-prev: {
         rocksdict = python-prev.rocksdict.overrideAttrs (_: {
           doCheck = false;
           doInstallCheck = false;
