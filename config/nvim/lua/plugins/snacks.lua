@@ -22,5 +22,8 @@ return {
     bigfile = { enabled = true },
     image = { enabled = false },
     input = {},
+    picker = {
+      ui_select = true, -- use snacks for vim.ui.select
+    },
   },
 }
