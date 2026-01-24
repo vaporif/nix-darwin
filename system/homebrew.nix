@@ -10,7 +10,6 @@ _: {
     taps = [
       "homebrew/bundle"
       "homebrew/services"
-      "oven-sh/bun"
     ];
 
     casks = [
@@ -37,7 +36,7 @@ _: {
       "proton-drive"
       "protonvpn"
       "gimp"
-      "syncthing"
+      "syncthing-app"
       # "rectangle"
     ];
   };

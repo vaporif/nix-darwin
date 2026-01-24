@@ -19,7 +19,7 @@ in {
 
   claude_formatter =
     (final.writeShellScriptBin "claude-formatter" ''
-      file_path=$(${final.jaq}/bin/jaq -r '.tool_input.file_path // empty')
+      file_path=$(${final.jq}/bin/jq -r '.tool_input.file_path // empty')
       [ -z "$file_path" ] || [ ! -f "$file_path" ] && exit 0
 
       case "$file_path" in

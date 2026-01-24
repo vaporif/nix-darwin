@@ -15,7 +15,6 @@
     dust
     dua
     gnused
-    jaq
     stylua
     selene
     typos
