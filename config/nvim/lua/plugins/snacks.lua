@@ -19,6 +19,7 @@ return {
     },
   },
   opts = {
+    bigfile = { enabled = true },
     image = { enabled = false },
     input = {},
   },
