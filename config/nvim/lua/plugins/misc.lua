@@ -70,7 +70,6 @@ return {
   },
   {
     'm00qek/baleia.nvim',
-    version = '*',
     keys = {
       { '<leader>cA', desc = '[A]nsi colorize' },
     },
