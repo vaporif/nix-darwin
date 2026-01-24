@@ -14,7 +14,6 @@
     nix-output-monitor
     nvd
 
-    dust
     dua
     gnused
     stylua
@@ -30,10 +29,8 @@
     cargo-info
     rusty-man
 
-    wiki-tui
     yt-dlp
 
-    mprocs
     presenterm
     tokei
     just
