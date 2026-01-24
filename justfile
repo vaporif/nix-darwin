@@ -28,9 +28,9 @@ lint-nix:
 fmt-nix:
     alejandra .
 
-# Validate JSON configs (use jq or jaq)
+# Validate JSON configs
 lint-json:
-    @which jaq >/dev/null 2>&1 && jaq empty config/karabiner/karabiner.json || jq empty config/karabiner/karabiner.json
+    jq empty config/karabiner/karabiner.json
 
 # Lint TOML files
 lint-toml:
