@@ -44,30 +44,6 @@ return {
       preserve_cursor_position = {},
     },
   },
-  -- UI and navigation
-  require 'plugins.gitsigns',
-  require 'plugins.flash',
-  require 'plugins.which-key',
-  require 'plugins.fzf',
-  require 'plugins.lualine',
-  require 'plugins.mini',
-  require 'plugins.neo-tree',
-  require 'plugins.marksnvim',
-  require 'plugins.harpoon',
-
-  -- Code features
-  require 'plugins.blink-cmp',
-  require 'plugins.neotest',
-  require 'plugins.rust',
-  require 'plugins.go-nvim',
-  require 'plugins.conform',
-  require 'plugins.blink-pairs',
-  require 'plugins.nvim-ufo',
-  require 'plugins.treesitter',
-  require 'plugins.dap',
-  require 'plugins.trouble',
-  require 'plugins.markdown',
-  require 'plugins.grug-far',
   {
     'tidalcycles/vim-tidal',
     ft = 'tidal',
@@ -78,16 +54,6 @@ return {
       vim.g.tidal_sc_enable = false
     end,
   },
-
-  require 'plugins.lazydev',
-
-  -- Misc
-  require 'plugins.noice',
-  require 'plugins.snacks',
-  require 'plugins.theme',
-  require 'plugins.todo',
-
-  require 'plugins.outline',
   {
     'rmagatti/auto-session',
     lazy = false,
