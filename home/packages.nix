@@ -58,16 +58,8 @@
     ouch
     hyperfine
 
-    python312
-    bun
-    uv
-    ruff
-
     claude-code
     mcp-nixos-package
-    cachix
-    deadnix
-    statix
     qdrant
     qdrant-web-ui
 

@@ -1,4 +1,8 @@
-{fzf-git-sh-package, ...}: {
+{
+  pkgs,
+  fzf-git-sh-package,
+  ...
+}: {
   programs = {
     ripgrep.enable = true;
     fd.enable = true;
@@ -144,7 +148,7 @@
         cat = "bat";
         e = "nvim";
         x = "exit";
-        mcp-scan = "uvx mcp-scan@latest";
+        mcp-scan = "${pkgs.uv}/bin/uv tool run mcp-scan@latest";
         # Project templates
         init-solana = "nix flake init -t github:vaporif/nix-devshells#solana";
         init-rust = "nix flake init -t github:vaporif/nix-devshells#rust";
