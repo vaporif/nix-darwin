@@ -58,7 +58,7 @@ return {
     require('mason').setup()
     local dap = require 'dap'
     local dapui = require 'dapui'
-
+    dap.defaults.fallback.terminal_win_cmd = 'enew'
     require('mason-nvim-dap').setup {
       -- Installation is done via nix
       automatic_installation = false,

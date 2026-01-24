@@ -59,7 +59,31 @@ return {
   { 'chrisgrieser/nvim-early-retirement', event = 'VeryLazy', config = true },
   { 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' } },
 
-  { 'mrcjkb/rustaceanvim', version = '^7', lazy = false },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^7',
+    lazy = false,
+    init = function()
+      local codelldb_path = vim.fn.exepath 'codelldb'
+      vim.g.rustaceanvim = {
+        dap = {
+          -- Use executable adapter instead of server to avoid codelldb bugs
+          adapter = {
+            type = 'executable',
+            command = codelldb_path,
+            name = 'lldb',
+          },
+          configuration = {
+            type = 'lldb',
+            name = 'Rust debug client',
+            request = 'launch',
+            stopOnEntry = false,
+            terminal = 'console',
+          },
+        },
+      }
+    end,
+  },
   { 'saecki/crates.nvim', event = 'BufRead Cargo.toml', opts = {} },
   {
     'folke/lazydev.nvim',
