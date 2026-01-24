@@ -4,8 +4,6 @@ return {
 
   dependencies = 'saghen/blink.download',
 
-  --- @module 'blink.pairs'
-  --- @type blink.pairs.Config
   opts = {
     mappings = {
       enabled = true,
