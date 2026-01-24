@@ -315,11 +315,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1769221904,
-        "narHash": "sha256-8hgAQGDprmDLPauzJUTnyhFi+LQyuvlz7waFZbV++YI=",
+        "lastModified": 1769223856,
+        "narHash": "sha256-NoZcsyKhs+bRLz4rUjO/JaJxFkkBxoenDYU/CGWn0aI=",
         "owner": "vaporif",
         "repo": "nix-devshells",
-        "rev": "9204c3eb40b5d80479056392c4e7d1722d85c3e5",
+        "rev": "9ca6bf8dfba61a464952cf7610b770189bab5d96",
         "type": "github"
       },
       "original": {
