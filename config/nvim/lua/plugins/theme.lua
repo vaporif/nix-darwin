@@ -7,12 +7,12 @@ local c = {
   -- Primary accent colors
   terracotta = '#7a4f3a',
   dusty_purple = '#9b7d8a',
-  muted_coral = '#c85552',
+  coral = '#c85552',
   honey = '#c9a05a',
   sage = '#708c7e',
   storm_blue = '#6b8b8f',
   olive = '#89a05d',
-  clay_red = '#b85450',
+  brick = '#b85450',
   warm_orange = '#c08563',
 
   -- Syntax colors
@@ -105,16 +105,16 @@ return {
         hl.ErrorFloat = { fg = c.rust_conditional, bg = 'NONE' }
 
         -- Diagnostics
-        hl.DiagnosticError = { fg = c.muted_coral, bg = 'NONE' }
+        hl.DiagnosticError = { fg = c.coral, bg = 'NONE' }
         hl.DiagnosticWarn = { fg = c.honey, bg = 'NONE' }
         hl.DiagnosticHint = { fg = c.storm_blue, bg = 'NONE' }
         hl.DiagnosticInfo = { fg = c.sage, bg = 'NONE' }
-        hl['DiagnosticUnderlineError'] = { undercurl = true, sp = c.muted_coral }
+        hl['DiagnosticUnderlineError'] = { undercurl = true, sp = c.coral }
 
         -- Git signs
         hl.GitSignsAdd = { fg = c.olive, bg = 'NONE' }
         hl.GitSignsChange = { fg = c.honey, bg = 'NONE' }
-        hl.GitSignsDelete = { fg = c.clay_red, bg = 'NONE' }
+        hl.GitSignsDelete = { fg = c.brick, bg = 'NONE' }
 
         -- Rust-specific
         hl['@lsp.typemod.keyword.controlFlow.rust'] = { fg = '#846347', bg = 'NONE' }
@@ -141,7 +141,7 @@ return {
         hl['@text.todo'] = { fg = c.sage, bold = true }
         hl['@text.note'] = { fg = c.storm_blue, bold = true }
         hl['@text.warning'] = { fg = c.honey, bold = true }
-        hl['@text.danger'] = { fg = c.muted_coral, bold = true }
+        hl['@text.danger'] = { fg = c.coral, bold = true }
         hl['@text.todo.unchecked'] = { fg = c.sage, bold = true }
         hl['@text.todo.checked'] = { fg = c.olive, bold = true }
 
@@ -149,9 +149,9 @@ return {
         hl.TodoFgTODO = { fg = c.sage, bold = true }
         hl.TodoSignTODO = { fg = c.sage, bold = true }
 
-        hl.TodoBgFIX = { bg = c.muted_coral, fg = c.bg_dim, bold = true }
-        hl.TodoFgFIX = { fg = c.muted_coral, bold = true }
-        hl.TodoSignFIX = { fg = c.muted_coral, bold = true }
+        hl.TodoBgFIX = { bg = c.coral, fg = c.bg_dim, bold = true }
+        hl.TodoFgFIX = { fg = c.coral, bold = true }
+        hl.TodoSignFIX = { fg = c.coral, bold = true }
 
         hl.TodoBgHACK = { bg = c.honey, fg = c.bg_dim, bold = true }
         hl.TodoFgHACK = { fg = c.honey, bold = true }
@@ -179,7 +179,7 @@ return {
       end,
 
       colours_override = function(palette)
-        palette.red = c.clay_red
+        palette.red = c.brick
         palette.orange = c.warm_orange
         palette.yellow = c.honey
         palette.green = c.olive
