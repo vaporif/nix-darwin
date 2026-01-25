@@ -152,6 +152,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>ca', vim.lsp.buf.code_action, '[a]ction')
     map('<leader>cR', '<cmd>LspRestart<CR>', '[R]estart LSP')
 
+    vim.keymap.set('n', '<leader>ci', function()
+      vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' }, diagnostics = {} }, apply = true }
+    end, { buffer = 0, desc = 'organize [i]mports' })
+
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
     --    See `:help CursorHold` for information about when this is executed
