@@ -5,6 +5,8 @@ vim.keymap.set('n', '<leader>cx', '<cmd>RustLsp explainError<Cr>', { buffer = 0,
 vim.keymap.set('n', '<leader>ca', '<cmd>RustLsp codeAction<Cr>', { buffer = 0, desc = '[a]ction' })
 vim.keymap.set('n', '<leader>cD', '<cmd>RustLsp renderDiagnostic<Cr>', { buffer = 0, desc = '[D]iagnostic' })
 vim.keymap.set('n', '<leader>cR', '<cmd>RustAnalyzer restart<Cr>', { buffer = 0, desc = '[R]estart LSP' })
+vim.keymap.set('n', '<leader>cm', '<cmd>RustLsp parentModule<Cr>', { buffer = 0, desc = 'parent [m]odule' })
+vim.keymap.set('n', '<leader>cs', '<cmd>RustLsp openDocs<Cr>', { buffer = 0, desc = 'doc[s].rs' })
 
 vim.keymap.set('n', '<leader>dd', '<cmd>RustLsp debuggables<Cr>', { buffer = 0, desc = '[d]ebug' })
 vim.keymap.set('n', '<leader>dr', '<cmd>RustLsp runnables<Cr>', { buffer = 0, desc = '[r]unnables' })
