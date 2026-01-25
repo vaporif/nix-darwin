@@ -93,11 +93,9 @@ in {
         EDITOR = "nvim";
         VISUAL = "nvim";
       }
-      // (
-        if userConfig.sshAgent == "secretive"
-        then {SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";}
-        else {}
-      );
+      // lib.optionalAttrs (userConfig.sshAgent == "secretive") {
+        SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+      };
   };
 
   programs = {
@@ -206,11 +204,9 @@ in {
         {
           StrictHostKeyChecking = "accept-new";
         }
-        // (
-          if userConfig.sshAgent == "secretive"
-          then {IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";}
-          else {}
-        );
+        // lib.optionalAttrs (userConfig.sshAgent == "secretive") {
+          IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+        };
       matchBlocks."*" = {
         addKeysToAgent = "yes";
         serverAliveInterval = 60;
