@@ -1,6 +1,6 @@
 return {
   { 'neovim/nvim-lspconfig', event = 'BufReadPre' },
-  { 'tpope/vim-sleuth', event = 'BufReadPre' },
+  { 'NMAC427/guess-indent.nvim', event = 'BufReadPre', opts = {} },
   {
     'rmagatti/auto-session',
     lazy = false,
@@ -34,6 +34,7 @@ return {
 
   {
     'gbprod/yanky.nvim',
+    event = 'VeryLazy',
     keys = {
       { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put after' },
       { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put before' },
@@ -43,7 +44,7 @@ return {
       { '<c-n>', '<Plug>(YankyNextEntry)', desc = 'Yanky next' },
     },
     opts = {
-      preserve_cursor_position = {},
+      preserve_cursor_position = { enabled = true },
     },
   },
   {

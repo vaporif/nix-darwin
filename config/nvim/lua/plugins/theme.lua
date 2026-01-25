@@ -96,7 +96,8 @@ return {
 
         -- UI elements
         hl.CursorLine = { bg = c.bg_cursor }
-        hl.YankHighlight = { bg = c.bg_yank }
+        hl.YankyPut = { bg = c.terracotta, fg = c.bg_dim }
+        hl.YankyYanked = { bg = c.terracotta, fg = c.bg_dim }
         hl['Purple'] = { fg = '#8b6d7a' }
         hl['PurpleItalic'] = { fg = c.dusty_purple, italic = false }
         hl['Red'] = { fg = '#a84440' }
