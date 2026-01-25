@@ -47,12 +47,43 @@ return {
     },
   },
   {
-    'svermeulen/vim-subversive',
+    'gbprod/substitute.nvim',
     keys = {
-      { 's', '<Plug>(SubversiveSubstitute)', desc = 'Substitute' },
-      { 'ss', '<Plug>(SubversiveSubstituteLine)', desc = 'Substitute line' },
-      { 'S', '<Plug>(SubversiveSubstituteToEndOfLine)', desc = 'Substitute to EOL' },
-      { 's', '<Plug>(SubversiveSubstitute)', mode = 'x', desc = 'Substitute' },
+      {
+        's',
+        function()
+          require('substitute').operator()
+        end,
+        desc = 'Substitute',
+      },
+      {
+        'ss',
+        function()
+          require('substitute').line()
+        end,
+        desc = 'Substitute line',
+      },
+      {
+        'S',
+        function()
+          require('substitute').eol()
+        end,
+        desc = 'Substitute to EOL',
+      },
+      {
+        's',
+        function()
+          require('substitute').visual()
+        end,
+        mode = 'x',
+        desc = 'Substitute',
+      },
+    },
+    opts = {
+      on_substitute = function(event)
+        require('yanky.integration').substitute()(event)
+      end,
+      highlight_substituted_text = { enabled = true, timer = 300 },
     },
   },
 
