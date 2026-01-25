@@ -25,7 +25,8 @@ return {
     { '<leader>fg', '<cmd>FzfLua live_grep<cr>', desc = '[g]rep' },
     { '<leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = '[d]ocument diagnostics' },
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[r]esume' },
-    { '"', '<cmd>FzfLua registers<cr>', mode = { 'n', 'v' }, desc = 'Registers' },
+    -- TODO: resolve conflict
+    -- { '"', '<cmd>FzfLua registers<cr>', mode = { 'n', 'v' }, desc = 'Registers' },
     { "'", '<cmd>FzfLua marks<cr>', mode = { 'n', 'v' }, desc = 'Marks' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
     { '<leader>fc', '<cmd>FzfLua git_bcommits<cr>', desc = 'buffer [c]ommits' },
