@@ -10,7 +10,7 @@ return {
   opts = {
     window = {
       mappings = {
-        ['t'] = function()
+        ['h'] = function()
           vim.cmd 'Neotree float git_status'
         end,
         ['f'] = function()
