@@ -10,8 +10,9 @@ shopt -s inherit_errexit
 export PATH="/etc/profiles/per-user/${USER}/bin:/run/current-system/sw/bin:${PATH}"
 
 # GPG wrapper - runs from nixpkgs stable without permanent install
+# --no-write-lock-file avoids lock issues during system activation
 gpg() {
-    nix shell nixpkgs/nixos-25.05#gnupg -c gpg "$@"
+    nix shell nixpkgs/nixos-25.05#gnupg --no-write-lock-file -c gpg --batch --no-tty "$@"
 }
 
 # Configuration
@@ -96,14 +97,17 @@ install_librewolf() {
     curl -L -o "${TEMP_DIR}/librewolf.dmg.sig" "${SIG_URL}"
 
     # Import LibreWolf GPG key if not already present
+    echo "Checking for GPG key ..."
     local key_exists=0
     # shellcheck disable=SC2310 # intentionally capturing exit code
     gpg --list-keys "${LIBREWOLF_GPG_KEY}" &>/dev/null || key_exists=$?
     if [[ ${key_exists} -ne 0 ]]; then
         echo "Importing LibreWolf GPG key..."
         curl -sL "${GPG_KEY_URL}" -o "${TEMP_DIR}/librewolf-key.gpg"
+        echo "Running GPG import..."
         gpg --import "${TEMP_DIR}/librewolf-key.gpg"
     fi
+    echo "GPG key ready."
 
     # Verify GPG signature
     echo "Verifying GPG signature..."
