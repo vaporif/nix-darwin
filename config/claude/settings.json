@@ -266,11 +266,6 @@
         "matcher": "Edit|Write",
         "hooks": [{"type": "command", "command": "claude-formatter"}]
       }
-    ],
-    "Stop": [
-      {
-        "hooks": [{"type": "prompt", "prompt": "Before ending, run /remember to save a session summary to Qdrant."}]
-      }
     ]
   }
 }

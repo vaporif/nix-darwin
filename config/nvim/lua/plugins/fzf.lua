@@ -31,7 +31,6 @@ return {
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[b]uffers' },
     { '<leader>fc', '<cmd>FzfLua git_bcommits<cr>', desc = 'buffer [c]ommits' },
     { '<leader>fm', '<cmd>Noice fzf<cr>', desc = '[m]essages' },
-    { '<leader>d', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'workspace [d]iagnostics' },
     {
       '<leader>.',
       function()
