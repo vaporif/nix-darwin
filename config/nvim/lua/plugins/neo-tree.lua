@@ -8,19 +8,6 @@ return {
   },
   cmd = 'Neotree',
   opts = {
-    window = {
-      mappings = {
-        ['h'] = function()
-          vim.cmd 'Neotree float git_status'
-        end,
-        ['f'] = function()
-          vim.cmd 'Neotree float filesystem'
-        end,
-        ['b'] = function()
-          vim.cmd 'Neotree float buffers'
-        end,
-      },
-    },
     filesystem = {
       filtered_items = {
         visible = true,
@@ -38,6 +25,15 @@ return {
         border = 'none',
         mappings = {
           ['e'] = 'none',
+          ['h'] = function()
+            vim.cmd 'Neotree float git_status'
+          end,
+          ['f'] = function()
+            vim.cmd 'Neotree float filesystem'
+          end,
+          ['b'] = function()
+            vim.cmd 'Neotree float buffers'
+          end,
         },
       },
     },

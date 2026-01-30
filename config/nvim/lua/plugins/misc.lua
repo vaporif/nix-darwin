@@ -6,7 +6,6 @@ return {
     lazy = false,
     opts = {
       suppressed_dirs = { '~/', '~/Repos', '~/Downloads', '/' },
-      no_restore_cmds = { 'Neotree float reveal' },
     },
   },
 
