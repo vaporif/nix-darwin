@@ -1,6 +1,25 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
+local function toggle_split(split_dir, size, focus_dir, hide_dir)
+  return wezterm.action_callback(function(window, pane)
+    local panes = window:active_tab():panes_with_info()
+    if #panes == 1 then
+      pane:split { direction = split_dir, size = size }
+    elseif #panes == 2 then
+      for _, p in ipairs(panes) do
+        if p.is_zoomed then
+          window:perform_action(act.TogglePaneZoomState, pane)
+          window:perform_action(act.ActivatePaneDirection(focus_dir), pane)
+          return
+        end
+      end
+      window:perform_action(act.ActivatePaneDirection(hide_dir), pane)
+      window:perform_action(act.TogglePaneZoomState, pane)
+    end
+  end)
+end
+
 -- Event handlers (side effects, not config values)
 local mux = wezterm.mux
 wezterm.on('gui-startup', function(cmd)
@@ -115,66 +134,8 @@ local config = {
     -- Copy/Paste
     { key = 'y', mods = 'CMD', action = act.CopyTo 'Clipboard' },
     { key = 'p', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
-    {
-      key = 't',
-      mods = 'CTRL',
-      action = wezterm.action_callback(function(window, pane)
-        local tab = window:active_tab()
-        local panes = tab:panes_with_info()
-
-        if #panes == 1 then
-          -- Create bottom pane
-          pane:split {
-            direction = 'Bottom',
-            size = 0.7,
-          }
-        elseif #panes == 2 then
-          -- Check if we're zoomed
-          for _, p in ipairs(panes) do
-            if p.is_zoomed then
-              -- Unzoom to show the terminal
-              window:perform_action(act.TogglePaneZoomState, pane)
-              -- Switch to the bottom pane
-              window:perform_action(act.ActivatePaneDirection 'Down', pane)
-              return
-            end
-          end
-          -- Not zoomed - hide the terminal by zooming the main pane
-          window:perform_action(act.ActivatePaneDirection 'Up', pane)
-          window:perform_action(act.TogglePaneZoomState, pane)
-        end
-      end),
-    },
-    {
-      key = '/',
-      mods = 'CTRL',
-      action = wezterm.action_callback(function(window, pane)
-        local tab = window:active_tab()
-        local panes = tab:panes_with_info()
-
-        if #panes == 1 then
-          -- Create right pane
-          pane:split {
-            direction = 'Right',
-            size = 0.5,
-          }
-        elseif #panes == 2 then
-          -- Check if we're zoomed
-          for _, p in ipairs(panes) do
-            if p.is_zoomed then
-              -- Unzoom to show the split
-              window:perform_action(act.TogglePaneZoomState, pane)
-              -- Switch to the right pane
-              window:perform_action(act.ActivatePaneDirection 'Right', pane)
-              return
-            end
-          end
-          -- Not zoomed - hide the split by zooming the main pane
-          window:perform_action(act.ActivatePaneDirection 'Left', pane)
-          window:perform_action(act.TogglePaneZoomState, pane)
-        end
-      end),
-    },
+    { key = 't', mods = 'CTRL', action = toggle_split('Bottom', 0.7, 'Down', 'Up') },
+    { key = '/', mods = 'CTRL', action = toggle_split('Right', 0.5, 'Right', 'Left') },
   },
 
   -- Key tables for resize and move modes
