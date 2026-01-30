@@ -145,6 +145,36 @@ local config = {
         end
       end),
     },
+    {
+      key = '/',
+      mods = 'CTRL',
+      action = wezterm.action_callback(function(window, pane)
+        local tab = window:active_tab()
+        local panes = tab:panes_with_info()
+
+        if #panes == 1 then
+          -- Create right pane
+          pane:split {
+            direction = 'Right',
+            size = 0.5,
+          }
+        elseif #panes == 2 then
+          -- Check if we're zoomed
+          for _, p in ipairs(panes) do
+            if p.is_zoomed then
+              -- Unzoom to show the split
+              window:perform_action(act.TogglePaneZoomState, pane)
+              -- Switch to the right pane
+              window:perform_action(act.ActivatePaneDirection 'Right', pane)
+              return
+            end
+          end
+          -- Not zoomed - hide the split by zooming the main pane
+          window:perform_action(act.ActivatePaneDirection 'Left', pane)
+          window:perform_action(act.TogglePaneZoomState, pane)
+        end
+      end),
+    },
   },
 
   -- Key tables for resize and move modes
