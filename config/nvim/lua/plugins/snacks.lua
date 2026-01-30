@@ -22,6 +22,7 @@ return {
     bigfile = { enabled = true },
     image = { enabled = false },
     input = {},
+    notifier = { enabled = true },
     picker = {
       ui_select = true, -- use snacks for vim.ui.select
     },
