@@ -60,13 +60,23 @@ return {
   },
 
   {
-    'tidalcycles/vim-tidal',
+    'vaporif/vim-tidal-lua',
     ft = 'tidal',
-    config = function()
-      vim.g.tidal_target = 'terminal'
-      vim.g.tidal_ghci = 'ghci'
-      vim.g.tidal_boot = vim.fn.expand '~/.config/tidal/Tidal.ghci'
-      vim.g.tidal_sc_enable = false
-    end,
+    opts = {
+      ghci = 'ghci',
+      boot = vim.fn.expand '~/.config/tidal/Tidal.ghci',
+      sc_enable = false,
+    },
   },
+  -- {
+  --   'tidalcycles/vim-tidal',
+  --   ft = 'tidal',
+  --   op
+  --   config = function()
+  --     vim.g.tidal_target = 'terminal'
+  --     vim.g.tidal_ghci = 'ghci'
+  --     vim.g.tidal_boot = vim.fn.expand '~/.config/tidal/Tidal.ghci'
+  --     vim.g.tidal_sc_enable = false
+  --   end,
+  -- },
 }
