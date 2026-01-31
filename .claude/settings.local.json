@@ -73,7 +73,8 @@
       "Bash(just lint-shell:*)",
       "Bash(just lint-toml:*)",
       "Bash(just check-vulns:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(STARSHIP_LOG=trace starship prompt:*)"
     ],
     "deny": [],
     "ask": []

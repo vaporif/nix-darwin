@@ -8,7 +8,30 @@ return {
   },
   cmd = 'Neotree',
   opts = {
+    default_component_configs = {
+      file_operations = {
+        timeout = 0, -- disable timeout for long operations
+      },
+    },
     filesystem = {
+      commands = {
+        -- Override delete to use trash
+        delete = function(state)
+          local inputs = require 'neo-tree.ui.inputs'
+          local path = state.tree:get_node().path
+          local msg = 'Are you sure you want to delete ' .. path .. '?'
+          inputs.confirm(msg, function(confirmed)
+            if confirmed then
+              vim.fn.jobstart({ 'rm', '-rf', path }, {
+                detach = true,
+                on_exit = function()
+                  require('neo-tree.sources.manager').refresh 'filesystem'
+                end,
+              })
+            end
+          end)
+        end,
+      },
       filtered_items = {
         visible = true,
       },
