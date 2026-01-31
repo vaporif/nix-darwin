@@ -59,6 +59,7 @@ return {
     { 'gd', '<cmd>FzfLua lsp_definitions<cr>', desc = 'goto [d]efinition' },
     { 'gR', '<cmd>FzfLua lsp_references<cr>', desc = 'goto [R]eferences (fzf-lua)' },
     { 'gI', '<cmd>FzfLua lsp_implementations<cr>', desc = 'goto [I]mplementation' },
+    { '<leader>ft', '<cmd>FzfLua git worktrees<cr>', desc = 'work[t]rees' },
     { '<leader>fi', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'type def[i]nition' },
     { '<leader>fs', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'document [s]ymbols' },
     { '<leader>fw', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', desc = '[w]orkspace symbols' },
