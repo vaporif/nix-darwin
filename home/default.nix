@@ -142,15 +142,16 @@ in {
         user = {
           inherit (userConfig.git) name email;
         };
-        aliases = {
+        core = {
+          editor = "nvim";
+          pager = "delta";
+        };
+        alias = {
           co = "checkout";
           cob = "checkout -b";
           discard = "reset HEAD --hard";
           fp = "fetch --all --prune";
-        };
-        core = {
-          editor = "nvim";
-          pager = "delta";
+          bclone = "!git-bare-clone";
         };
         pull.ff = "only";
         push.autoSetupRemote = true;

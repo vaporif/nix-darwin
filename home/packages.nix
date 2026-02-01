@@ -63,5 +63,7 @@
     unclog
     nomicfoundation_solidity_language_server
     claude_formatter
+
+    (writeShellScriptBin "git-bare-clone" (builtins.readFile ../scripts/git-bare-clone.sh))
   ];
 }
