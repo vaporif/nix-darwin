@@ -13,9 +13,14 @@ run = "cd /etc/nix-darwin/"
 desc = "Go to nix-darwin"
 
 [[mgr.prepend_keymap]]
+on = ["b", "l"]
+run = "cd ~/Repos/logos"
+desc = "Go to logos"
+
+[[mgr.prepend_keymap]]
 on = ["b", "e"]
-run = "cd ~/Repos/solidity-ibc-eureka.git"
-desc = "Go to solidity-ibc-eureka"
+run = "cd ~/Repos/solana-ibc"
+desc = "Go to solana-ibc"
 
 [[mgr.prepend_keymap]]
 on = ["u", "a"]
