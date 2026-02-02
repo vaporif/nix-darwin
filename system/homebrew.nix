@@ -31,7 +31,6 @@ _: {
       "keycastr"
       "zoom"
       "monitorcontrol"
-      "proton-mail"
       "proton-drive"
       "protonvpn"
       "gimp"
