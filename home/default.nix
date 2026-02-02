@@ -255,6 +255,7 @@ in {
 
       ".claude/CLAUDE.md".source = ../config/claude/CLAUDE.md;
       ".claude/settings.json".source = ../config/claude/settings.json;
+      ".claude/hooks/check-bash-command.sh".source = ../config/claude/hooks/check-bash-command.sh;
       ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
 
       # SSH signing key (public key from Secretive)
