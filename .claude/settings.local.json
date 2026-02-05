@@ -74,7 +74,9 @@
       "Bash(just lint-toml:*)",
       "Bash(just check-vulns:*)",
       "Bash(git checkout:*)",
-      "Bash(STARSHIP_LOG=trace starship prompt:*)"
+      "Bash(STARSHIP_LOG=trace starship prompt:*)",
+      "Bash(/private/etc/nix-darwin/config/claude/hooks/auto-recall.sh)",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []

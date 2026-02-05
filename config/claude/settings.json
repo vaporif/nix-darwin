@@ -289,6 +289,12 @@
     ]
   },
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [{"type": "command", "command": "~/.claude/hooks/auto-recall.sh"}]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
