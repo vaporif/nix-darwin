@@ -31,7 +31,7 @@
 
   # Timezone (used by system and MCP time server)
   # Run `sudo systemsetup -listtimezones` for valid values
-  timezone = "Europe/Lisbon";
+  timezone = "Asia/Tokyo";
 
   # SSH agent: "secretive" for Secretive.app, or "" for default ssh-agent
   sshAgent = "secretive";
