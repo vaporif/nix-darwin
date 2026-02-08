@@ -63,6 +63,11 @@ in {
       })
     ];
 
+  # Skip curl-impersonate check (AppleIDN not compiled on macOS 15)
+  curl-impersonate = prev.curl-impersonate.overrideAttrs (_: {
+    doCheck = false;
+  });
+
   # Disable ffmpeg due to CVEs (video previews disabled in yazi.toml anyway)
   yazi = prev.yazi.override {
     optionalDeps = with final; [
