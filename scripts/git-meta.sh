@@ -43,7 +43,7 @@ get_files() {
 }
 
 sync_entry() {
-  local src_base="$1" dst_base="$2" entry="$3"
+  local src_base="$1" dst_base="$2" entry="${3%/}"
   local src="${src_base}/${entry}" dst="${dst_base}/${entry}"
 
   if [[ ! -e "${src}" ]]; then
@@ -68,7 +68,7 @@ sync_entry() {
 }
 
 diff_entry() {
-  local src_base="$1" dst_base="$2" entry="$3"
+  local src_base="$1" dst_base="$2" entry="${3%/}"
   local src="${src_base}/${entry}" dst="${dst_base}/${entry}"
 
   if [[ ! -e "${src}" && ! -e "${dst}" ]]; then
