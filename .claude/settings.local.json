@@ -77,7 +77,9 @@
       "Bash(STARSHIP_LOG=trace starship prompt:*)",
       "Bash(/private/etc/nix-darwin/config/claude/hooks/auto-recall.sh)",
       "Bash(echo:*)",
-      "Bash(docker ps:*)"
+      "Bash(docker ps:*)",
+      "Bash(QDRANT_URL=\"http://localhost:6333\" COLLECTION_NAME=\"claude-memory\" /nix/store/8irfhc9a48vc08pgg2mf4rcky3akysri-mcp-server-qdrant-0.8.1/bin/mcp-server-qdrant:*)",
+      "Bash(/bin/ls:*)"
     ],
     "deny": [],
     "ask": []

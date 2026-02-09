@@ -51,6 +51,7 @@
       env = {
         QDRANT_URL = "http://localhost:6333";
         COLLECTION_NAME = "claude-memory";
+        FASTEMBED_CACHE_PATH = "${homeDir}/.cache/fastembed";
       };
     };
   };
