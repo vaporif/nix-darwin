@@ -74,10 +74,24 @@ flake.nix (Entry point)
 |------|---------|
 | `secrets.yaml` | SOPS-encrypted secrets (API keys, tokens) |
 
-### Other Directories
-| Directory | Purpose |
-|-----------|---------|
-| `scripts/` | Custom shell scripts (LibreWolf installer) |
+### `scripts/` - Custom Shell Scripts
+| File | Purpose |
+|---------|---------|
+| `git-bare-clone.sh` | Bare clone with main worktree (installed as `git bclone`) |
+| `git-meta.sh` | Worktree config sync via `.meta/` directory (installed as `git meta`) |
+| `install-librewolf.sh` | LibreWolf auto-updater |
+| `check-flake-age.sh` | Policy check for flake input freshness |
+| `setup.sh` | Initial setup script |
+
+### `config/claude-commands/` - Claude Code Custom Commands
+| File | Purpose |
+|---------|---------|
+| `cleanup.md` | Code review and cleanup of branch changes |
+| `commit.md` | Generate commit message from staged changes |
+| `docs.md` | Update all documentation after code changes |
+| `pr.md` | Generate PR title and description |
+| `recall.md` | Search Qdrant memory |
+| `remember.md` | Store context in Qdrant |
 
 ### Special Files
 | File | Purpose |

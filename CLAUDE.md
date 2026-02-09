@@ -14,6 +14,7 @@ nix flake update              # Update all flake inputs
 sops secrets/secrets.yaml     # Edit encrypted secrets
 just check                    # Run all linting checks
 just fmt                      # Format all files
+git meta <push|pull|diff|init>  # Sync .meta/ configs with worktrees
 ```
 
 ## Linting & Formatting
@@ -91,6 +92,9 @@ flake.nix                    # Entry point, inputs, specialArgs
 │   ├── default.nix          # Home-manager config, Claude plugins
 │   ├── shell.nix            # Zsh, aliases, prompt, shell tools
 │   └── packages.nix         # User packages
+├── scripts/
+│   ├── git-bare-clone.sh    # Bare clone with main worktree
+│   └── git-meta.sh          # Worktree config sync (.meta/)
 ├── overlays/                # Custom package overlays
 └── pkgs/                    # Custom package definitions
 ```
@@ -141,6 +145,28 @@ Nix-managed plugins from `github:anthropics/claude-code`:
 - **feature-dev** - Feature development workflow
 - **ralph-wiggum** - Iterative development loops
 - **code-review** - PR code review
+
+### Custom Commands
+
+Defined in `config/claude-commands/`, wired via `home/default.nix`:
+- `/cleanup` - Code review and cleanup of branch changes
+- `/commit` - Generate commit message from staged changes
+- `/docs` - Update all documentation (CLAUDE.md, Serena, auto memory, Qdrant)
+- `/pr` - Generate PR title and description
+- `/recall` - Search Qdrant memory
+- `/remember` - Store context in Qdrant
+
+## Git Worktree Tools
+
+Custom git subcommands installed via `writeShellScriptBin` in `home/packages.nix`:
+
+- **`git bclone <url>`** - Bare clone with main worktree (`scripts/git-bare-clone.sh`)
+- **`git meta <cmd>`** - Sync non-tracked config files between `.meta/` and worktrees (`scripts/git-meta.sh`)
+  - `pull` - `.meta/` → worktree (like `git pull`: bring configs to you)
+  - `push` - worktree → `.meta/` (like `git push`: send configs to central store)
+  - `diff` - show differences between `.meta/` and worktree
+  - `init` - create `.meta/` and populate from current worktree
+  - File list from `.meta/.files` manifest, defaults: `.envrc`, `.serena/`, `.claude/`, `CLAUDE.md`
 
 ## Security & Policy Enforcement
 
