@@ -49,6 +49,7 @@
     tdf
 
     wget
+    rsync
     delta
     difftastic
     ouch
@@ -65,5 +66,6 @@
     claude_formatter
 
     (writeShellScriptBin "git-bare-clone" (builtins.readFile ../scripts/git-bare-clone.sh))
+    (writeShellScriptBin "git-meta" (builtins.readFile ../scripts/git-meta.sh))
   ];
 }
