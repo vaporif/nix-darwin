@@ -33,6 +33,13 @@ assert_worktree() {
   [[ "${git_dir}" != "${common_dir}" ]] || die "not in a worktree (run from inside a worktree)"
 }
 
+require_meta() {
+  assert_worktree
+  META_DIR=$(get_meta_dir)
+  WT_ROOT=$(get_worktree_root)
+  [[ -d "${META_DIR}" ]] || die ".meta/ not found at ${META_DIR} (run 'git meta init' first)"
+}
+
 get_files() {
   local meta_dir="$1"
   if [[ -f "${meta_dir}/.files" ]]; then
@@ -40,6 +47,16 @@ get_files() {
   else
     printf '%s\n' "${DEFAULTS[@]}"
   fi
+}
+
+for_each_file() {
+  local callback="$1"
+  local files
+  files=$(get_files "${META_DIR}")
+  while IFS= read -r entry; do
+    [[ -n "${entry}" ]] || continue
+    "${callback}" "${entry}"
+  done <<< "${files}"
 }
 
 sync_entry() {
@@ -68,101 +85,80 @@ sync_entry() {
 }
 
 diff_entry() {
-  local src_base="$1" dst_base="$2" entry="${3%/}"
-  local src="${src_base}/${entry}" dst="${dst_base}/${entry}"
+  local entry="${1%/}"
+  local src="${META_DIR}/${entry}" dst="${WT_ROOT}/${entry}"
 
   if [[ ! -e "${src}" && ! -e "${dst}" ]]; then
     return
   fi
   if [[ ! -e "${src}" ]]; then
-    echo "only in $(basename "${dst_base}"): ${entry}"
+    echo "only in worktree: ${entry}"
     return
   fi
   if [[ ! -e "${dst}" ]]; then
-    echo "only in $(basename "${src_base}"): ${entry}"
+    echo "only in .meta: ${entry}"
     return
   fi
 
   if [[ -d "${src}" ]]; then
     diff -rq --exclude='cache' --exclude='.bak' "${src}" "${dst}" 2>/dev/null || true
   else
-    diff -u "${src}" "${dst}" 2>/dev/null || true
+    diff -u --label ".meta/${entry}" --label "worktree/${entry}" "${src}" "${dst}" 2>/dev/null || true
   fi
 }
 
-cmd_push() {
-  assert_worktree
-  local meta_dir wt_root
-  meta_dir=$(get_meta_dir)
-  wt_root=$(get_worktree_root)
-  [[ -d "${meta_dir}" ]] || die ".meta/ not found at ${meta_dir} (run 'git meta init' first)"
+do_push() {
+  local entry="$1"
+  echo "push: ${entry}"
+  sync_entry "${WT_ROOT}" "${META_DIR}" "${entry}"
+}
 
-  local files
-  files=$(get_files "${meta_dir}")
-  while IFS= read -r entry; do
-    [[ -n "${entry}" ]] || continue
-    echo "push: ${entry}"
-    sync_entry "${wt_root}" "${meta_dir}" "${entry}"
-  done <<< "${files}"
+do_pull() {
+  local entry="$1"
+  echo "pull: ${entry}"
+  sync_entry "${META_DIR}" "${WT_ROOT}" "${entry}"
+}
+
+cmd_push() {
+  require_meta
+  for_each_file do_push
 }
 
 cmd_pull() {
-  assert_worktree
-  local meta_dir wt_root
-  meta_dir=$(get_meta_dir)
-  wt_root=$(get_worktree_root)
-  [[ -d "${meta_dir}" ]] || die ".meta/ not found at ${meta_dir} (run 'git meta init' first)"
-
-  local files
-  files=$(get_files "${meta_dir}")
-  while IFS= read -r entry; do
-    [[ -n "${entry}" ]] || continue
-    echo "pull: ${entry}"
-    sync_entry "${meta_dir}" "${wt_root}" "${entry}"
-  done <<< "${files}"
+  require_meta
+  for_each_file do_pull
 }
 
 cmd_diff() {
-  assert_worktree
-  local meta_dir wt_root
-  meta_dir=$(get_meta_dir)
-  wt_root=$(get_worktree_root)
-  [[ -d "${meta_dir}" ]] || die ".meta/ not found at ${meta_dir} (run 'git meta init' first)"
-
-  local files
-  files=$(get_files "${meta_dir}")
-  while IFS= read -r entry; do
-    [[ -n "${entry}" ]] || continue
-    diff_entry "${meta_dir}" "${wt_root}" "${entry}"
-  done <<< "${files}"
+  require_meta
+  for_each_file diff_entry
 }
 
 cmd_init() {
   assert_worktree
-  local meta_dir wt_root
-  meta_dir=$(get_meta_dir)
-  wt_root=$(get_worktree_root)
+  META_DIR=$(get_meta_dir)
+  WT_ROOT=$(get_worktree_root)
 
-  if [[ -d "${meta_dir}" ]]; then
-    warn ".meta/ already exists at ${meta_dir}"
-  else
-    mkdir -p "${meta_dir}"
-    echo "created ${meta_dir}"
+  if [[ -d "${META_DIR}" ]]; then
+    die ".meta/ already exists at ${META_DIR} (use push/pull to sync)"
   fi
 
-  if [[ ! -f "${meta_dir}/.files" ]]; then
-    printf '# files to sync between .meta/ and worktrees\n' > "${meta_dir}/.files"
-    printf '%s\n' "${DEFAULTS[@]}" >> "${meta_dir}/.files"
-    echo "created ${meta_dir}/.files"
+  mkdir -p "${META_DIR}"
+  echo "created ${META_DIR}"
+
+  if [[ ! -f "${META_DIR}/.files" ]]; then
+    printf '# files to sync between .meta/ and worktrees\n' > "${META_DIR}/.files"
+    printf '%s\n' "${DEFAULTS[@]}" >> "${META_DIR}/.files"
+    echo "created ${META_DIR}/.files"
   fi
 
   local files
-  files=$(get_files "${meta_dir}")
+  files=$(get_files "${META_DIR}")
   while IFS= read -r entry; do
     [[ -n "${entry}" ]] || continue
-    if [[ -e "${wt_root}/${entry}" ]]; then
+    if [[ -e "${WT_ROOT}/${entry}" ]]; then
       echo "init: ${entry}"
-      sync_entry "${wt_root}" "${meta_dir}" "${entry}"
+      sync_entry "${WT_ROOT}" "${META_DIR}" "${entry}"
     fi
   done <<< "${files}"
 }

@@ -137,7 +137,7 @@ in {
 
     git = {
       enable = true;
-      ignores = [".serena" ".claude" "CLAUDE.md"];
+      ignores = [".serena" ".claude" "CLAUDE.md" ".serena.bak" ".claude.bak"];
       settings = {
         user = {
           inherit (userConfig.git) name email;
