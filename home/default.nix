@@ -252,6 +252,7 @@ in {
       ".claude/commands/cleanup.md".source = ../config/claude-commands/cleanup.md;
       ".claude/commands/commit.md".source = ../config/claude-commands/commit.md;
       ".claude/commands/pr.md".source = ../config/claude-commands/pr.md;
+      ".claude/commands/docs.md".source = ../config/claude-commands/docs.md;
 
       ".claude/CLAUDE.md".source = ../config/claude/CLAUDE.md;
       ".claude/settings.json".source = ../config/claude/settings.json;
