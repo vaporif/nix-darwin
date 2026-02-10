@@ -84,7 +84,27 @@ comment = "Build-time Python packaging"
 
 [go]
 comment = "ecies/go library false positive; bootstrap CVEs are build-time only"
-cve = ["CVE-2023-49292", "CVE-2025-61729", "CVE-2025-61727", "CVE-2025-0913"]
+cve = [
+  "CVE-2023-49292",
+  "CVE-2025-0913",
+  "CVE-2025-4674",
+  "CVE-2025-47906",
+  "CVE-2025-47907",
+  "CVE-2025-47912",
+  "CVE-2025-58185",
+  "CVE-2025-58187",
+  "CVE-2025-58188",
+  "CVE-2025-58189",
+  "CVE-2025-61723",
+  "CVE-2025-61724",
+  "CVE-2025-61726",
+  "CVE-2025-61727",
+  "CVE-2025-61728",
+  "CVE-2025-61729",
+  "CVE-2025-61730",
+  "CVE-2025-61731",
+  "CVE-2025-68119",
+]
 
 [ninja]
 comment = "Build system, build-time"
@@ -167,3 +187,18 @@ comment = "Build dep: libjxl image processing"
 
 [openmp]
 comment = "Build dep: fftw → audio processing (Tidal)"
+
+[ada]
+comment = "URL parser library, transitive dep"
+
+[c-ares]
+comment = "DNS resolver library, transitive dep"
+
+[libtasn1]
+comment = "ASN.1 library, transitive dep"
+
+[openssl]
+comment = "System OpenSSL from nixpkgs, awaiting upstream fix"
+
+[pnpm]
+comment = "Node package manager, build-time dep"
