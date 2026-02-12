@@ -70,9 +70,17 @@ fmt: fmt-lua fmt-nix fmt-toml
 
 # Apply configuration with pretty output
 switch:
-    nom build .#darwinConfigurations.$(nix eval --raw -f user.nix hostname).system && \
-    nvd diff /run/current-system ./result && \
-    sudo ./result/activate
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ "$(uname)" == "Darwin" ]]; then
+        nom build ".#darwinConfigurations.$(nix eval --raw -f user.nix hostname).system"
+        nvd diff /run/current-system ./result
+        sudo ./result/activate
+    else
+        nom build ".#homeConfigurations.$(whoami)@$(nix eval --raw -f user.nix hostname).activationPackage"
+        nvd diff ~/.local/state/nix/profiles/home-manager ./result
+        ./result/activate
+    fi
 
 # Update neovim plugins
 lazy-update:
@@ -85,7 +93,12 @@ setup-hooks:
 # Build and push to cachix
 cache:
     #!/usr/bin/env bash
+    set -euo pipefail
     hostname=$(nix eval --raw -f user.nix hostname)
     cachix_name=$(nix eval --raw -f user.nix cachix.name)
-    nix build ".#darwinConfigurations.${hostname}.system"
+    if [[ "$(uname)" == "Darwin" ]]; then
+        nix build ".#darwinConfigurations.${hostname}.system"
+    else
+        nix build ".#homeConfigurations.$(whoami)@${hostname}.activationPackage"
+    fi
     [[ -n "$cachix_name" ]] && cachix push "$cachix_name" ./result

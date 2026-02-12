@@ -1,0 +1,43 @@
+# macOS-specific home-manager config
+{
+  lib,
+  pkgs,
+  homeDir,
+  userConfig,
+  ...
+}: let
+  homebrewPath =
+    if pkgs.stdenv.hostPlatform.isAarch64
+    then "/opt/homebrew/bin"
+    else "/usr/local/bin";
+in {
+  home.sessionPath = [homebrewPath];
+
+  home.sessionVariables = lib.optionalAttrs (userConfig.sshAgent == "secretive") {
+    SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+  };
+
+  programs.ssh.extraOptionOverrides = lib.optionalAttrs (userConfig.sshAgent == "secretive") {
+    IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+  };
+
+  xdg.configFile = {
+    "karabiner/karabiner.json".source = ../../config/karabiner/karabiner.json;
+  };
+
+  launchd.agents.qdrant = {
+    enable = true;
+    config = {
+      Label = "org.qdrant.server";
+      ProgramArguments = [
+        "${pkgs.qdrant}/bin/qdrant"
+        "--config-path"
+        "${homeDir}/.qdrant/config.yaml"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "${homeDir}/.qdrant/qdrant.log";
+      StandardErrorPath = "${homeDir}/.qdrant/qdrant.err";
+    };
+  };
+}

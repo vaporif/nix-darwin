@@ -55,25 +55,37 @@
     nix-devshells,
     ...
   }: let
-    # Import user configuration
-    userConfig = import ./user.nix;
-    inherit (userConfig) system user;
+    # Host configurations
+    hosts = {
+      macbook = import ./hosts/macbook.nix;
+      ubuntu-desktop = import ./hosts/ubuntu-desktop.nix;
+    };
 
     # Apply custom overlays
     localPackages = import ./overlays {inherit vim-tidal;};
-    pkgs = import nixpkgs {
-      inherit system;
-      overlays = [localPackages];
-    };
-    homeDir =
+
+    # Helper: create pkgs for a given system
+    mkPkgs = system:
+      import nixpkgs {
+        inherit system;
+        overlays = [localPackages];
+      };
+
+    # Helper: derive homeDir from system and user
+    mkHomeDir = pkgs: user:
       if pkgs.stdenv.isDarwin
       then "/Users/${user}"
       else "/home/${user}";
 
+    # Darwin-specific values (kept at top level for backward compat with checks/formatter)
+    darwinConfig = hosts.macbook;
+    pkgs = mkPkgs darwinConfig.system;
+    inherit (darwinConfig) user system;
+    homeDir = mkHomeDir pkgs user;
+
     mcp-nixos-package = mcp-nixos.packages.${system}.default;
     fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
 
-    # Shared LSP packages used by both neovim and serena
     sharedLspPackages = with pkgs; [
       lua-language-server
       typescript-language-server
@@ -93,7 +105,8 @@
     });
 
     mcpConfig = import ./mcp.nix {
-      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages userConfig;
+      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages;
+      userConfig = darwinConfig;
     };
 
     mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
@@ -111,9 +124,12 @@
       // pkgs.claude_formatter.passthru.tests
       // pkgs.tidal_script.passthru.tests;
 
-    darwinConfigurations.${userConfig.hostname} = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${darwinConfig.hostname} = nix-darwin.lib.darwinSystem {
       inherit system;
-      specialArgs = {inherit user homeDir mcpServersConfig userConfig;};
+      specialArgs = {
+        inherit user homeDir mcpServersConfig;
+        userConfig = darwinConfig;
+      };
       modules = [
         {
           nixpkgs.overlays = [localPackages];
@@ -125,7 +141,7 @@
         }
         stylix.darwinModules.stylix
         sops-nix.darwinModules.sops
-        ./system
+        ./system/darwin
         home-manager.darwinModules.home-manager
         {
           users.users.${user} = {
@@ -136,15 +152,80 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells userConfig;
+              inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells;
               inherit fzf-git-sh-package yamb-yazi claude-code-plugins;
               inherit mcp-nixos-package;
+              userConfig = darwinConfig;
             };
-            users.${user} = import ./home;
+            users.${user} = {
+              imports = [
+                ./home/common
+                ./home/darwin
+              ];
+            };
             backupFileExtension = "backup";
           };
         }
       ];
     };
+
+    homeConfigurations."${hosts.ubuntu-desktop.user}@${hosts.ubuntu-desktop.hostname}" = let
+      linuxConfig = hosts.ubuntu-desktop;
+      linuxPkgs = mkPkgs linuxConfig.system;
+      linuxHomeDir = mkHomeDir linuxPkgs linuxConfig.user;
+      linuxMcpNixos = mcp-nixos.packages.${linuxConfig.system}.default;
+      linuxSerena = mcp-servers-nix.packages.${linuxConfig.system}.serena.overrideAttrs (_: {
+        version = "0.1.4-unstable-2025-12-28";
+        src = linuxPkgs.fetchFromGitHub {
+          owner = "vaporif";
+          repo = "serena";
+          rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
+          hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
+        };
+      });
+      linuxSharedLsp = with linuxPkgs; [
+        lua-language-server
+        typescript-language-server
+        basedpyright
+        nixd
+      ];
+      linuxMcpConfig = import ./mcp.nix {
+        pkgs = linuxPkgs;
+        homeDir = linuxHomeDir;
+        serenaPatched = linuxSerena;
+        inherit mcp-servers-nix;
+        mcp-nixos-package = linuxMcpNixos;
+        sharedLspPackages = linuxSharedLsp;
+        userConfig = linuxConfig;
+      };
+      linuxMcpServersConfig = mcp-servers-nix.lib.mkConfig linuxPkgs linuxMcpConfig;
+    in
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = linuxPkgs;
+        extraSpecialArgs = {
+          inherit (linuxConfig) user;
+          homeDir = linuxHomeDir;
+          sharedLspPackages = linuxSharedLsp;
+          mcpServersConfig = linuxMcpServersConfig;
+          inherit nix-devshells yamb-yazi claude-code-plugins;
+          fzf-git-sh-package = linuxPkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
+          mcp-nixos-package = linuxMcpNixos;
+          userConfig = linuxConfig;
+        };
+        modules = [
+          {
+            nixpkgs.overlays = [localPackages];
+            nixpkgs.config.allowUnfreePredicate = pkg:
+              builtins.elem (nixpkgs.lib.getName pkg) [
+                "spacetimedb"
+                "claude-code"
+              ];
+          }
+          stylix.homeManagerModules.stylix
+          ./modules/theme.nix
+          ./home/common
+          ./home/linux
+        ];
+      };
   };
 }

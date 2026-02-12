@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   config,
   user,
@@ -62,11 +61,6 @@
       lastUpdated = "2025-01-01T00:00:00.000Z";
     };
   };
-  # Homebrew path differs by architecture
-  homebrewPath =
-    if pkgs.stdenv.hostPlatform.isAarch64
-    then "/opt/homebrew/bin"
-    else "/usr/local/bin";
 in {
   imports = [
     ./packages.nix
@@ -85,18 +79,13 @@ in {
     username = user;
     stateVersion = "24.05";
     sessionPath = [
-      homebrewPath
       "$HOME/.cargo/bin"
     ];
-    sessionVariables =
-      {
-        SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/key.txt";
-        EDITOR = "nvim";
-        VISUAL = "nvim";
-      }
-      // lib.optionalAttrs (userConfig.sshAgent == "secretive") {
-        SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-      };
+    sessionVariables = {
+      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/key.txt";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
 
   programs = {
@@ -132,7 +121,7 @@ in {
     wezterm = {
       enable = true;
       enableZshIntegration = true;
-      extraConfig = builtins.readFile ../config/wezterm/init.lua;
+      extraConfig = builtins.readFile ../../config/wezterm/init.lua;
     };
 
     git = {
@@ -202,13 +191,9 @@ in {
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      extraOptionOverrides =
-        {
-          StrictHostKeyChecking = "accept-new";
-        }
-        // lib.optionalAttrs (userConfig.sshAgent == "secretive") {
-          IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-        };
+      extraOptionOverrides = {
+        StrictHostKeyChecking = "accept-new";
+      };
       matchBlocks."*" = {
         addKeysToAgent = "yes";
         serverAliveInterval = 60;
@@ -236,7 +221,7 @@ in {
       # Stable symlink to Neovim runtime for .luarc.json
       ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
       ".librewolf/librewolf.overrides.cfg" = {
-        source = ../config/librewolf/librewolf.overrides.cfg;
+        source = ../../config/librewolf/librewolf.overrides.cfg;
       };
       "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
 
@@ -247,17 +232,17 @@ in {
       "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
 
       # Claude Code custom commands
-      ".claude/commands/remember.md".source = ../config/claude-commands/remember.md;
-      ".claude/commands/recall.md".source = ../config/claude-commands/recall.md;
-      ".claude/commands/cleanup.md".source = ../config/claude-commands/cleanup.md;
-      ".claude/commands/commit.md".source = ../config/claude-commands/commit.md;
-      ".claude/commands/pr.md".source = ../config/claude-commands/pr.md;
-      ".claude/commands/docs.md".source = ../config/claude-commands/docs.md;
+      ".claude/commands/remember.md".source = ../../config/claude-commands/remember.md;
+      ".claude/commands/recall.md".source = ../../config/claude-commands/recall.md;
+      ".claude/commands/cleanup.md".source = ../../config/claude-commands/cleanup.md;
+      ".claude/commands/commit.md".source = ../../config/claude-commands/commit.md;
+      ".claude/commands/pr.md".source = ../../config/claude-commands/pr.md;
+      ".claude/commands/docs.md".source = ../../config/claude-commands/docs.md;
 
-      ".claude/CLAUDE.md".source = ../config/claude/CLAUDE.md;
-      ".claude/settings.json".source = ../config/claude/settings.json;
-      ".claude/hooks/check-bash-command.sh".source = ../config/claude/hooks/check-bash-command.sh;
-      ".claude/hooks/auto-recall.sh".source = ../config/claude/hooks/auto-recall.sh;
+      ".claude/CLAUDE.md".source = ../../config/claude/CLAUDE.md;
+      ".claude/settings.json".source = ../../config/claude/settings.json;
+      ".claude/hooks/check-bash-command.sh".source = ../../config/claude/hooks/check-bash-command.sh;
+      ".claude/hooks/auto-recall.sh".source = ../../config/claude/hooks/auto-recall.sh;
       ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
 
       # SSH signing key (public key from Secretive)
@@ -275,41 +260,15 @@ in {
     };
 
   xdg.configFile = {
-    "nvim".source = ../config/nvim;
-    "karabiner/karabiner.json".source = ../config/karabiner/karabiner.json;
-    "yazi/yazi.toml".source = ../config/yazi/yazi.toml;
-    "yazi/init.lua".source = ../config/yazi/init.lua;
-    "yazi/keymap.toml".source = ../config/yazi/keymap.toml;
+    "nvim".source = ../../config/nvim;
+    "yazi/yazi.toml".source = ../../config/yazi/yazi.toml;
+    "yazi/init.lua".source = ../../config/yazi/init.lua;
+    "yazi/keymap.toml".source = ../../config/yazi/keymap.toml;
     "yazi/plugins/yamb.yazi" = {
       source = yamb-yazi;
       recursive = true;
     };
-    "tidal/Tidal.ghci".source = ../config/tidal/Tidal.ghci;
-    "procs/config.toml".source = ../config/procs/config.toml;
+    "tidal/Tidal.ghci".source = ../../config/tidal/Tidal.ghci;
+    "procs/config.toml".source = ../../config/procs/config.toml;
   };
-
-  launchd.agents.qdrant = {
-    enable = true;
-    config = {
-      Label = "org.qdrant.server";
-      ProgramArguments = [
-        "${pkgs.qdrant}/bin/qdrant"
-        "--config-path"
-        "${homeDir}/.qdrant/config.yaml"
-      ];
-      RunAtLoad = true;
-      KeepAlive = true;
-      StandardOutPath = "${homeDir}/.qdrant/qdrant.log";
-      StandardErrorPath = "${homeDir}/.qdrant/qdrant.err";
-    };
-  };
-
-  # launchd.agents.rectangle = {
-  #   enable = true;
-  #   config = {
-  #     Label = "com.knollsoft.Rectangle";
-  #     ProgramArguments = ["/usr/bin/open" "-a" "Rectangle"];
-  #     RunAtLoad = true;
-  #   };
-  # };
 }

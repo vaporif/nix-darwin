@@ -5,7 +5,7 @@
   ...
 }: {
   sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFile = ../../secrets/secrets.yaml;
     age = {
       keyFile = "${homeDir}/.config/sops/age/key.txt";
       sshKeyPaths = [];

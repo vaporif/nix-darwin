@@ -44,7 +44,7 @@
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
-      stdlib = builtins.readFile ../config/direnvrc;
+      stdlib = builtins.readFile ../../config/direnvrc;
       config.global.hide_env_diff = true;
     };
 
