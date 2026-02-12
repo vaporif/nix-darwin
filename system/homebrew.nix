@@ -35,6 +35,7 @@ _: {
       "protonvpn"
       "gimp"
       "syncthing-app"
+      "utm"
       # "rectangle"
     ];
   };
