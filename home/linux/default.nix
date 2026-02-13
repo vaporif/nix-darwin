@@ -5,8 +5,7 @@
   ...
 }: {
   stylix.targets = {
-    gnome.enable = false;
-    gtk.enable = false;
+    gtk.enable = true;
     kde.enable = false;
   };
   systemd.user.services.qdrant = {
