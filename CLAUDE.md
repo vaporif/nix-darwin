@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-Nix-darwin + Home Manager configuration for macOS. Manages system and user configurations declaratively using Nix.
+Cross-platform Nix configuration for macOS (nix-darwin) and Linux (Home Manager standalone). Manages system and user configurations declaratively using Nix.
+
+**Hosts:**
+- `macbook` — macOS (aarch64-darwin), uses `darwinConfigurations` with nix-darwin + Home Manager
+- `ubuntu-desktop` — Linux (aarch64-linux), uses `homeConfigurations` with Home Manager standalone
 
 ## Essential Commands
 
@@ -61,7 +65,7 @@ Binary cache at https://vaporif.cachix.org for faster builds:
 - `ls` - eza (with hidden files)
 - `cat` - bat (syntax highlighting)
 
-## Application Shortcuts (skhd)
+## Application Shortcuts (skhd — macOS only)
 
 Uses `hyper` key (caps lock via Karabiner):
 
@@ -81,17 +85,22 @@ Uses `hyper` key (caps lock via Karabiner):
 ## Architecture
 
 ```
-flake.nix                    # Entry point, inputs, specialArgs
-├── mcp.nix                  # MCP server configuration
+flake.nix                    # Entry point, inputs, outputs for both platforms
+├── hosts/
+│   ├── common.nix           # Shared user config (name, git, cachix, timezone)
+│   ├── macbook.nix          # macOS host overrides
+│   └── ubuntu-desktop.nix   # Linux host overrides
+├── modules/
+│   ├── nix.nix              # Shared Nix settings
+│   └── theme.nix            # Shared Stylix theme (Linux standalone)
+├── mcp.nix                  # MCP server configuration (shared)
 ├── system/
-│   ├── default.nix          # Nix settings, system defaults, skhd
-│   ├── theme.nix            # Stylix theme (Everforest Light)
-│   ├── security.nix         # SOPS, firewall, TouchID
-│   └── homebrew.nix         # Homebrew casks
+│   └── darwin/
+│       └── default.nix      # macOS-only: nix-darwin system config, skhd, SOPS, firewall
 ├── home/
-│   ├── default.nix          # Home-manager config, Claude plugins
-│   ├── shell.nix            # Zsh, aliases, prompt, shell tools
-│   └── packages.nix         # User packages
+│   ├── common/              # Shared home-manager config (shell, packages, editor, etc.)
+│   ├── darwin/              # macOS-specific home config
+│   └── linux/               # Linux-specific home config (nixGL, systemd services)
 ├── scripts/
 │   ├── git-bare-clone.sh    # Bare clone with main worktree
 │   └── git-meta.sh          # Worktree config sync (.meta/)
@@ -102,21 +111,22 @@ flake.nix                    # Entry point, inputs, specialArgs
 ### Config Files (dotfiles)
 
 Application configs live in `/config/` and are symlinked via `xdg.configFile`:
-- `nvim/` - Neovim (Lua)
+- `nvim/` - Neovim (Lua, cross-platform lockfile path)
 - `wezterm/` - Terminal (Lua)
 - `yazi/` - File manager
-- `karabiner/` - Keyboard remapping
+- `karabiner/` - Keyboard remapping (macOS only)
 
 ## User-Specific Values
 
-Update `user.nix` when forking:
-- `user` - macOS username
+Host configs in `hosts/`. Common values in `hosts/common.nix`, per-host overrides in `hosts/<name>.nix`:
+- `user` - username
 - `hostname` - machine name
-- `system` - architecture
+- `system` - architecture (`aarch64-darwin` or `aarch64-linux`)
+- `configPath` - path to this repo on the host
 - `git.*` - git identity and signing key
 - `cachix.*` - binary cache config
 - `timezone` - system timezone
-- `sshAgent` - SSH agent type
+- `sshAgent` - SSH agent type (empty on Linux)
 
 ## MCP Servers
 
@@ -186,9 +196,11 @@ Custom git subcommands installed via `writeShellScriptBin` in `home/packages.nix
 ## Key Implementation Details
 
 - **Unfree packages**: Allowlisted in flake.nix (`spacetimedb`, `claude-code`)
-- **LibreWolf**: Auto-updated via `scripts/install-librewolf.sh` on activation
+- **LibreWolf**: Auto-updated via `scripts/install-librewolf.sh` on macOS; nixGL-wrapped on Linux
+- **nixGL**: GPU apps on Linux (wezterm, librewolf) are wrapped with `config.lib.nixGL.wrap` (mesa driver)
+- **Qdrant**: Runs as a systemd user service on Linux (`home/linux/default.nix`)
 - **External devshell**: Rust tools via `~/.envrc` (run `direnv allow ~` after setup)
-- **Theme**: Stylix manages colors/fonts across all apps
+- **Theme**: Stylix manages colors/fonts across all apps; Linux uses `modules/theme.nix` as standalone module
 
 ## Common Tasks
 
