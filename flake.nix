@@ -38,6 +38,10 @@
       flake = false;
     };
     nix-devshells.url = "github:vaporif/nix-devshells";
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -53,6 +57,7 @@
     stylix,
     claude-code-plugins,
     nix-devshells,
+    nixgl,
     ...
   }: let
     # Host configurations
@@ -207,7 +212,7 @@
           homeDir = linuxHomeDir;
           sharedLspPackages = linuxSharedLsp;
           mcpServersConfig = linuxMcpServersConfig;
-          inherit nix-devshells yamb-yazi claude-code-plugins;
+          inherit nix-devshells yamb-yazi claude-code-plugins nixgl;
           fzf-git-sh-package = linuxPkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
           mcp-nixos-package = linuxMcpNixos;
           userConfig = linuxConfig;

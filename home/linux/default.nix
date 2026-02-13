@@ -1,9 +1,14 @@
 # Linux-specific home-manager config
 {
+  config,
   pkgs,
   homeDir,
+  nixgl,
   ...
 }: {
+  nixGL.packages = nixgl.packages;
+  nixGL.defaultWrapper = "mesa";
+
   stylix.targets = {
     gtk.enable = true;
     kde.enable = false;
@@ -24,8 +29,10 @@
     };
   };
 
-  home.packages = with pkgs; [
-    librewolf
+  programs.wezterm.package = config.lib.nixGL.wrap pkgs.wezterm;
+
+  home.packages = [
+    (config.lib.nixGL.wrap pkgs.librewolf)
   ];
 
   # TODO: app shortcuts (equivalent of skhd on macOS)
