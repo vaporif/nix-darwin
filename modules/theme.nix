@@ -35,7 +35,7 @@
         name = "Hack Nerd Font";
       };
       emoji = {
-        package = pkgs.emptyDirectory;
+        package = pkgs.emptyDirectory // {meta.mainProgram = "empty-file";};
         name = "";
       };
       sizes = {
