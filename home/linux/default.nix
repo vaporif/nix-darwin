@@ -23,4 +23,26 @@
   home.packages = with pkgs; [
     librewolf
   ];
+
+  # TODO: app shortcuts (equivalent of skhd on macOS)
+  # swhkd is not in nixpkgs yet; using GNOME dconf keybindings instead
+  # Customize bindings when machine is set up
+  dconf.settings = {
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+      ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Terminal";
+      command = "wezterm";
+      binding = "<Super>t";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "Browser";
+      command = "librewolf";
+      binding = "<Super>r";
+    };
+  };
 }
