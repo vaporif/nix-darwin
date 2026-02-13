@@ -28,7 +28,7 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 local config = {
-  front_end = wezterm.target_triple:find 'linux' and 'OpenGL' or 'WebGpu',
+  front_end = wezterm.target_triple:find 'linux' and 'Software' or 'WebGpu',
   max_fps = 120,
   animation_fps = 120,
 
