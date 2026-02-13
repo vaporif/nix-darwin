@@ -4,6 +4,8 @@
   homeDir,
   ...
 }: {
+  stylix.targets.gnome.enable = false;
+  stylix.targets.gtk.enable = false;
   systemd.user.services.qdrant = {
     Unit = {
       Description = "Qdrant vector database";
