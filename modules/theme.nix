@@ -1,6 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   stylix = {
     enable = true;
+    targets.gnome.enable = false;
+    targets.gtk.enable = false;
     base16Scheme = {
       scheme = "Everforest Light Custom";
       author = "Based on Sainnhe Park";
