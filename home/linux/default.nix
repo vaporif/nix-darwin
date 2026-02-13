@@ -6,8 +6,8 @@
   nixgl,
   ...
 }: {
-  nixGL.packages = nixgl.packages;
-  nixGL.defaultWrapper = "mesa";
+  targets.genericLinux.nixGL.packages = nixgl.packages;
+  targets.genericLinux.nixGL.defaultWrapper = "mesa";
 
   stylix.targets = {
     gtk.enable = true;
