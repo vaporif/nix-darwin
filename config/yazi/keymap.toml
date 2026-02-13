@@ -9,8 +9,8 @@ desc = "Go to Repos"
 
 [[mgr.prepend_keymap]]
 on = ["b", "m"]
-run = "cd /etc/nix-darwin/"
-desc = "Go to nix-darwin"
+run = "cd /etc/nix-darwin"
+desc = "Go to nix"
 
 [[mgr.prepend_keymap]]
 on = ["b", "l"]
