@@ -221,7 +221,7 @@
                 "claude-code"
               ];
           }
-          stylix.homeManagerModules.stylix
+          stylix.homeModules.stylix
           ./modules/theme.nix
           ./home/common
           ./home/linux
