@@ -201,7 +201,7 @@ in {
       };
       matchBlocks."utm-ubuntu" = {
         hostname = "192.168.65.7";
-        user = userConfig.user;
+        inherit (userConfig) user;
         forwardAgent = true;
       };
     };
