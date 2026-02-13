@@ -4,9 +4,11 @@
   homeDir,
   ...
 }: {
-  stylix.targets.gnome.enable = false;
-  stylix.targets.gtk.enable = false;
-  stylix.targets.kde.enable = false;
+  stylix.targets = {
+    gnome.enable = false;
+    gtk.enable = false;
+    kde.enable = false;
+  };
   systemd.user.services.qdrant = {
     Unit = {
       Description = "Qdrant vector database";
