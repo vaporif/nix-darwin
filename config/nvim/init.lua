@@ -28,5 +28,5 @@ require('lazy').setup({ import = 'plugins' }, {
       lazy = '💤 ',
     },
   },
-  lockfile = '/private/etc/nix-darwin/config/nvim/lazy-lock.json',
+  lockfile = (vim.fn.has 'macunix' == 1 and '/private/etc/nix-darwin' or vim.env.HOME .. '/.config/nix') .. '/config/nvim/lazy-lock.json',
 })
