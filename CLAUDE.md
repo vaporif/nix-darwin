@@ -205,8 +205,9 @@ Custom git subcommands installed via `writeShellScriptBin` in `home/packages.nix
 ## Common Tasks
 
 ### Adding a Package
-1. Edit `home/packages.nix` (user) or `system/default.nix` (system)
-2. Run `sudo darwin-rebuild switch`
+1. Edit `home/common/` for shared packages, `home/darwin/` or `home/linux/` for platform-specific, or `system/darwin/` for macOS system packages
+2. Linux GPU apps must be wrapped with `config.lib.nixGL.wrap`
+3. Run `just switch`
 
 ### Adding/Updating Secrets
 1. Edit: `sops secrets/secrets.yaml`
@@ -219,5 +220,5 @@ Custom git subcommands installed via `writeShellScriptBin` in `home/packages.nix
 3. Apply and restart Claude app
 
 ### Modifying Shell Aliases
-1. Edit `home/shell.nix` → `shellAliases` section
-2. Apply with `sudo darwin-rebuild switch`
+1. Edit shell config in `home/common/` → `shellAliases` section
+2. Apply with `just switch`

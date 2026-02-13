@@ -1,14 +1,16 @@
 # Nix-darwin + home-manager
 
-Personal macOS configuration using [nix-darwin](https://github.com/nix-darwin/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager).
+Cross-platform personal configuration using [nix-darwin](https://github.com/nix-darwin/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager).
+
+- **macOS** — nix-darwin system config + Home Manager
+- **Linux** — Home Manager standalone (with [nixGL](https://github.com/nix-community/nixGL) for GPU apps)
 
 ## Forking This Config
 
 ### Prerequisites
 
-1. Install [Homebrew](https://brew.sh/)
-2. Install [Nix](https://determinate.systems/nix-installer/)
-3. Install [nix-darwin](https://github.com/nix-darwin/nix-darwin)
+1. Install [Nix](https://determinate.systems/nix-installer/)
+2. **macOS only**: Install [Homebrew](https://brew.sh/) and [nix-darwin](https://github.com/nix-darwin/nix-darwin)
 
 ### Quick Setup
 
@@ -17,14 +19,17 @@ Personal macOS configuration using [nix-darwin](https://github.com/nix-darwin/ni
 git clone https://github.com/YOUR-USERNAME/nix-darwin.git /etc/nix-darwin
 cd /etc/nix-darwin
 
-# Run setup script (configures user.nix, generates age key, etc.)
+# Run setup script (configures host files, generates age key, etc.)
 ./scripts/setup.sh
 
 # Create and encrypt your secrets
 sops secrets/secrets.yaml
 
 # Apply configuration
+# macOS:
 sudo darwin-rebuild switch --flake .#YOUR-HOSTNAME
+# Linux:
+home-manager switch --flake .#YOUR-USER@YOUR-HOSTNAME
 
 # Allow direnv for default devshell
 direnv allow ~
@@ -34,16 +39,13 @@ direnv allow ~
 
 If you prefer manual configuration:
 
-1. **Edit `user.nix`** with your values:
-   - `user` - your macOS username
-   - `hostname` - your machine name (System Settings → Sharing → Local hostname)
-   - `system` - `"aarch64-darwin"` (Apple Silicon) or `"x86_64-darwin"` (Intel)
-   - `git.name` / `git.email` - your git identity
-   - `git.signingKey` - SSH public key from Secretive for commit signing (or empty to disable)
-   - `cachix` - your Cachix cache (or empty strings to disable)
-   - `configPath` - path to this repo (e.g., `/etc/nix-darwin`)
-   - `timezone` - your timezone (run `sudo systemsetup -listtimezones`)
-   - `sshAgent` - `"secretive"` for Secretive.app or `""` for default (required for git signing)
+1. **Edit host config** in `hosts/`:
+   - Copy an existing host file (e.g., `hosts/macbook.nix`) and override:
+   - `hostname` - your machine name
+   - `system` - `"aarch64-darwin"`, `"x86_64-darwin"`, `"aarch64-linux"`, or `"x86_64-linux"`
+   - `configPath` - path to this repo
+   - `sshAgent` - `"secretive"` for macOS Secretive.app, `""` otherwise
+   - Edit `hosts/common.nix` for shared values (`user`, `git.*`, `cachix.*`, `timezone`)
 
 2. **Generate age key** for secrets:
    ```shell
@@ -133,26 +135,31 @@ just cache
 ## Structure
 
 ```
-user.nix                     # User-specific config (edit this when forking)
-flake.nix                    # Entry point, inputs
-├── mcp.nix                  # MCP server configuration
+flake.nix                    # Entry point, inputs, outputs for both platforms
+├── hosts/
+│   ├── common.nix           # Shared user config (name, git, cachix, timezone)
+│   ├── macbook.nix          # macOS host overrides
+│   └── ubuntu-desktop.nix   # Linux host overrides
+├── modules/
+│   ├── nix.nix              # Shared Nix settings
+│   └── theme.nix            # Shared Stylix theme (Linux standalone)
+├── mcp.nix                  # MCP server configuration (shared)
 ├── system/
-│   ├── default.nix          # System defaults, skhd
-│   ├── theme.nix            # Stylix theme
-│   ├── security.nix         # SOPS, firewall, TouchID
-│   └── homebrew.nix         # Homebrew casks
+│   └── darwin/              # macOS-only: nix-darwin system config, skhd, SOPS, firewall
 ├── home/
-│   ├── default.nix          # Home-manager config
-│   ├── shell.nix            # Zsh, aliases, prompt
-│   └── packages.nix         # User packages
+│   ├── common/              # Shared home-manager config (shell, packages, editor, etc.)
+│   ├── darwin/              # macOS-specific home config
+│   └── linux/               # Linux-specific home config (nixGL, systemd services)
 ├── overlays/                # Custom package overlays
 ├── pkgs/                    # Custom package definitions
-├── config/                  # Dotfiles (nvim, wezterm, etc.)
+├── config/                  # Dotfiles (nvim, wezterm, yazi, karabiner, etc.)
 ├── secrets/
 │   ├── secrets.yaml         # Encrypted secrets (not in git)
 │   └── secrets.yaml.template
 └── scripts/
     ├── setup.sh             # Bootstrap script for forks
+    ├── git-bare-clone.sh    # Bare clone with main worktree
+    ├── git-meta.sh          # Worktree config sync (.meta/)
     ├── install-librewolf.sh
     └── check-flake-age.sh   # Flake input freshness check
 vulnix-whitelist.toml        # CVE whitelist for vulnix
