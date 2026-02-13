@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   stylix = {
     enable = true;
     targets.gnome.enable = false;
