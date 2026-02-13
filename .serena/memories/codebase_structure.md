@@ -2,18 +2,22 @@
 
 ## Configuration Flow
 ```
-user.nix (User-specific config - edit when forking)
-flake.nix (Entry point)
+flake.nix (Entry point, outputs for both platforms)
+    ├── hosts/
+    │       ├── common.nix (Shared: user, git, cachix, timezone)
+    │       ├── macbook.nix (macOS host overrides)
+    │       └── ubuntu-desktop.nix (Linux host overrides)
+    ├── modules/
+    │       ├── nix.nix (Shared Nix settings)
+    │       └── theme.nix (Shared Stylix theme, Linux standalone)
     ├── overlays/ (Custom package overlays)
     ├── pkgs/ (Custom package definitions)
-    ├── system/ (System-level Darwin settings)
-    │       ├── default.nix (nix config, system defaults, skhd)
-    │       ├── theme.nix (Stylix theme)
-    │       ├── security.nix (SOPS, firewall, TouchID)
-    │       └── homebrew.nix (Homebrew casks)
-    └── home/default.nix (User-level home-manager config)
-            ├── home/packages.nix (User packages)
-            └── home/shell.nix (Shell configuration)
+    ├── system/
+    │       └── darwin/ (macOS-only: nix-darwin system config, skhd, SOPS, firewall)
+    └── home/
+            ├── common/ (Shared home-manager: shell, packages, editor, etc.)
+            ├── darwin/ (macOS-specific home config)
+            └── linux/ (Linux-specific: nixGL wrapping, systemd services)
 ```
 
 ## Directory Structure
@@ -21,8 +25,7 @@ flake.nix (Entry point)
 ### Root Level
 | File/Dir | Purpose |
 |----------|---------|
-| `user.nix` | User-specific config (user, hostname, git, timezone) |
-| `flake.nix` | Main entry point, defines inputs and outputs |
+| `flake.nix` | Main entry point, defines inputs and outputs for both platforms |
 | `flake.lock` | Locked versions of all flake inputs |
 | `justfile` | Task runner for linting/formatting/update commands |
 | `typos.toml` | Typos checker configuration |
@@ -34,20 +37,30 @@ flake.nix (Entry point)
 |------|---------|
 | `default.nix` | Overlay with custom packages (unclog, solidity-lsp, claude_formatter, tidal_script) |
 
-### `system/` - Darwin System Configuration
+### `hosts/` - Host Configurations
 | File | Purpose |
 |------|---------|
-| `default.nix` | Nix settings, system defaults, skhd shortcuts |
-| `theme.nix` | Stylix theme (Everforest Light) |
-| `security.nix` | SOPS secrets, firewall, TouchID |
-| `homebrew.nix` | Homebrew casks and taps |
+| `common.nix` | Shared user config (name, git, cachix, timezone) |
+| `macbook.nix` | macOS host overrides (hostname, system, configPath, sshAgent) |
+| `ubuntu-desktop.nix` | Linux host overrides |
+
+### `modules/` - Shared Modules
+| File | Purpose |
+|------|---------|
+| `nix.nix` | Shared Nix settings |
+| `theme.nix` | Shared Stylix theme (used standalone on Linux) |
+
+### `system/darwin/` - macOS System Configuration
+| File | Purpose |
+|------|---------|
+| `default.nix` | Nix settings, system defaults, skhd shortcuts, SOPS, firewall, TouchID, Homebrew |
 
 ### `home/` - Home Manager Configuration
-| File | Purpose |
+| Dir | Purpose |
 |------|---------|
-| `default.nix` | Main home config, imports modules, defines programs |
-| `packages.nix` | User-installed packages and custom derivations |
-| `shell.nix` | Zsh config, aliases, shell tools (fzf, starship, etc.) |
+| `common/` | Shared config (shell, packages, editor, programs) |
+| `darwin/` | macOS-specific home config |
+| `linux/` | Linux-specific: nixGL wrapping, systemd services (Qdrant) |
 
 ### `config/` - Application Configurations (Dotfiles)
 | Path | Purpose |
