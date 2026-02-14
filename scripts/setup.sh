@@ -50,27 +50,16 @@ read -rp "SSH agent (secretive/default) [default]: " INPUT_SSH
 SSH_AGENT="${INPUT_SSH:-}"
 
 echo ""
-echo -e "${YELLOW}Updating user.nix...${NC}"
+echo -e "${YELLOW}Updating hosts/common.nix and hosts/macbook.nix...${NC}"
 
 # Get current directory for configPath
 CONFIG_PATH=$(pwd)
 
-# Update user.nix
-cat > user.nix << EOF
-# User-specific configuration
-# Fork this repo and update these values for your setup
+# Update hosts/common.nix
+cat > hosts/common.nix << EOF
 {
-  # Your macOS user account name
   user = "${USERNAME}";
 
-  # Your machine's hostname (System Settings → General → Sharing → Local hostname)
-  hostname = "${HOSTNAME}";
-
-  # System architecture
-  # Options: "aarch64-darwin" (Apple Silicon) or "x86_64-darwin" (Intel)
-  system = "${NIX_SYSTEM}";
-
-  # Git configuration
   git = {
     name = "${GIT_NAME}";
     email = "${GIT_EMAIL}";
@@ -85,18 +74,25 @@ cat > user.nix << EOF
     publicKey = "";
   };
 
-  # Path to this config repo (for MCP filesystem access)
-  configPath = "${CONFIG_PATH}";
-
-  # Timezone for MCP time server
   timezone = "${TIMEZONE}";
-
-  # SSH agent: "secretive" for Secretive.app, or "" for default ssh-agent
-  sshAgent = "${SSH_AGENT}";
 }
 EOF
 
-echo -e "${GREEN}user.nix updated${NC}"
+# Update hosts/macbook.nix
+cat > hosts/macbook.nix << EOF
+let
+  common = import ./common.nix;
+in
+  common
+  // {
+    hostname = "${HOSTNAME}";
+    system = "${NIX_SYSTEM}";
+    configPath = "${CONFIG_PATH}";
+    sshAgent = "${SSH_AGENT}";
+  }
+EOF
+
+echo -e "${GREEN}hosts/common.nix and hosts/macbook.nix updated${NC}"
 
 # Setup age key for SOPS
 AGE_KEY_DIR="${HOME}/.config/sops/age"
@@ -170,10 +166,10 @@ echo ""
 echo -e "${GREEN}=== Setup Complete ===${NC}"
 echo ""
 echo "Next steps:"
-echo "  1. Review user.nix and make any additional changes"
+echo "  1. Review hosts/common.nix and hosts/macbook.nix for any additional changes"
 echo "  2. Create and encrypt secrets: sops secrets/secrets.yaml"
-echo "  3. Run: sudo darwin-rebuild switch --flake .#${HOSTNAME}"
+echo "  3. Run: just switch"
 echo ""
 echo "Optional:"
 echo "  - Set up Cachix: https://app.cachix.org"
-echo "  - Set up SSH signing key in user.nix (uses Secretive)"
+echo "  - Set up SSH signing key in hosts/common.nix (uses Secretive)"

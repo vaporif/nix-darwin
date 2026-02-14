@@ -3,6 +3,7 @@
   lib,
   pkgs,
   homeDir,
+  mcpServersConfig,
   userConfig,
   ...
 }: let
@@ -11,10 +12,12 @@
     then "/opt/homebrew/bin"
     else "/usr/local/bin";
 in {
-  home.sessionPath = [homebrewPath];
-
-  home.sessionVariables = lib.optionalAttrs (userConfig.sshAgent == "secretive") {
-    SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+  home = {
+    sessionPath = [homebrewPath];
+    sessionVariables = lib.optionalAttrs (userConfig.sshAgent == "secretive") {
+      SSH_AUTH_SOCK = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+    };
+    file."Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
   };
 
   programs.ssh.extraOptionOverrides = lib.optionalAttrs (userConfig.sshAgent == "secretive") {

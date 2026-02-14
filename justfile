@@ -73,11 +73,13 @@ switch:
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ "$(uname)" == "Darwin" ]]; then
-        nom build ".#darwinConfigurations.$(nix eval --raw -f user.nix hostname).system"
+        hostname=$(nix eval --raw -f hosts/macbook.nix hostname)
+        nom build ".#darwinConfigurations.${hostname}.system"
         nvd diff /run/current-system ./result
         sudo ./result/activate
     else
-        nom build ".#homeConfigurations.$(whoami)@$(nix eval --raw -f user.nix hostname).activationPackage"
+        hostname=$(nix eval --raw -f hosts/ubuntu-desktop.nix hostname)
+        nom build ".#homeConfigurations.$(whoami)@${hostname}.activationPackage"
         nvd diff ~/.local/state/nix/profiles/home-manager ./result
         ./result/activate
     fi
@@ -94,8 +96,13 @@ setup-hooks:
 cache:
     #!/usr/bin/env bash
     set -euo pipefail
-    hostname=$(nix eval --raw -f user.nix hostname)
-    cachix_name=$(nix eval --raw -f user.nix cachix.name)
+    if [[ "$(uname)" == "Darwin" ]]; then
+        host_file=hosts/macbook.nix
+    else
+        host_file=hosts/ubuntu-desktop.nix
+    fi
+    hostname=$(nix eval --raw -f "$host_file" hostname)
+    cachix_name=$(nix eval --raw -f "$host_file" cachix.name)
     if [[ "$(uname)" == "Darwin" ]]; then
         nix build ".#darwinConfigurations.${hostname}.system"
     else

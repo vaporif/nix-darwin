@@ -3,6 +3,7 @@
   config,
   pkgs,
   homeDir,
+  mcpServersConfig,
   nixgl,
   ...
 }: {
@@ -28,6 +29,8 @@
       WantedBy = ["default.target"];
     };
   };
+
+  home.file.".config/Claude/claude_desktop_config.json".source = mcpServersConfig;
 
   programs.wezterm.package = config.lib.nixGL.wrap pkgs.wezterm;
 

@@ -60,109 +60,123 @@
     nixgl,
     ...
   }: let
-    # Host configurations
     hosts = {
       macbook = import ./hosts/macbook.nix;
       ubuntu-desktop = import ./hosts/ubuntu-desktop.nix;
     };
 
-    # Apply custom overlays
+    supportedSystems = ["aarch64-darwin" "aarch64-linux"];
+
     localPackages = import ./overlays {inherit vim-tidal;};
 
-    # Helper: create pkgs for a given system
     mkPkgs = system:
       import nixpkgs {
         inherit system;
         overlays = [localPackages];
       };
 
-    # Helper: derive homeDir from system and user
     mkHomeDir = pkgs: user:
       if pkgs.stdenv.isDarwin
       then "/Users/${user}"
       else "/home/${user}";
 
-    # Darwin-specific values (kept at top level for backward compat with checks/formatter)
-    darwinConfig = hosts.macbook;
-    pkgs = mkPkgs darwinConfig.system;
-    inherit (darwinConfig) user system;
-    homeDir = mkHomeDir pkgs user;
-
-    mcp-nixos-package = mcp-nixos.packages.${system}.default;
-    fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
-
-    sharedLspPackages = with pkgs; [
-      lua-language-server
-      typescript-language-server
-      basedpyright
-      nixd
-    ];
-
     # TODO: revert once nix rs is fixed https://github.com/oraios/serena/issues/800
-    serenaPatched = mcp-servers-nix.packages.${system}.serena.overrideAttrs (_: {
-      version = "0.1.4-unstable-2025-12-28";
-      src = pkgs.fetchFromGitHub {
-        owner = "vaporif";
-        repo = "serena";
-        rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
-        hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
-      };
-    });
-
-    mcpConfig = import ./mcp.nix {
-      inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages;
-      userConfig = darwinConfig;
+    serenaSrc = {
+      owner = "vaporif";
+      repo = "serena";
+      rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
+      hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
     };
 
-    mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
-  in {
-    formatter.${system} = pkgs.alejandra;
+    allowUnfreePredicate = pkg:
+      builtins.elem (nixpkgs.lib.getName pkg) [
+        "spacetimedb"
+        "claude-code"
+      ];
 
-    checks.${system} =
+    # Build all derived values for a host
+    mkHostContext = hostConfig:
+      assert builtins.isString hostConfig.user;
+      assert builtins.isString hostConfig.hostname;
+      assert builtins.elem hostConfig.system ["aarch64-darwin" "aarch64-linux"];
+      assert builtins.isString hostConfig.configPath; let
+        pkgs = mkPkgs hostConfig.system;
+        homeDir = mkHomeDir pkgs hostConfig.user;
+        sharedLspPackages = with pkgs; [
+          lua-language-server
+          typescript-language-server
+          basedpyright
+          nixd
+        ];
+        serenaPatched = mcp-servers-nix.packages.${hostConfig.system}.serena.overrideAttrs (_: {
+          version = "0.1.4-unstable-2025-12-28";
+          src = pkgs.fetchFromGitHub serenaSrc;
+        });
+        fzf-git-sh-package = pkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
+        mcp-nixos-package = mcp-nixos.packages.${hostConfig.system}.default;
+        mcpConfig = import ./mcp.nix {
+          inherit pkgs homeDir serenaPatched mcp-servers-nix mcp-nixos-package sharedLspPackages;
+          userConfig = hostConfig;
+        };
+        mcpServersConfig = mcp-servers-nix.lib.mkConfig pkgs mcpConfig;
+      in {
+        inherit pkgs homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
+      };
+
+    darwinCtx = mkHostContext hosts.macbook;
+    linuxCtx = mkHostContext hosts.ubuntu-desktop;
+  in {
+    formatter = nixpkgs.lib.genAttrs supportedSystems (
+      system:
+        (mkPkgs system).alejandra
+    );
+
+    checks = nixpkgs.lib.genAttrs supportedSystems (system: let
+      chkPkgs = mkPkgs system;
+    in
       {
-        formatting = pkgs.runCommand "check-formatting" {} ''
-          ${pkgs.alejandra}/bin/alejandra -c ${./.} && touch $out
+        formatting = chkPkgs.runCommand "check-formatting" {} ''
+          ${chkPkgs.alejandra}/bin/alejandra -c ${./.} && touch $out
         '';
       }
-      // pkgs.unclog.passthru.tests
-      // pkgs.nomicfoundation_solidity_language_server.passthru.tests
-      // pkgs.claude_formatter.passthru.tests
-      // pkgs.tidal_script.passthru.tests;
+      // nixpkgs.lib.optionalAttrs chkPkgs.stdenv.isDarwin (
+        chkPkgs.unclog.passthru.tests
+        // chkPkgs.nomicfoundation_solidity_language_server.passthru.tests
+        // chkPkgs.claude_formatter.passthru.tests
+        // chkPkgs.tidal_script.passthru.tests
+      ));
 
-    darwinConfigurations.${darwinConfig.hostname} = nix-darwin.lib.darwinSystem {
-      inherit system;
+    darwinConfigurations.${hosts.macbook.hostname} = nix-darwin.lib.darwinSystem {
+      inherit (hosts.macbook) system;
       specialArgs = {
-        inherit user homeDir mcpServersConfig;
-        userConfig = darwinConfig;
+        inherit (hosts.macbook) user;
+        inherit (darwinCtx) homeDir mcpServersConfig;
+        userConfig = hosts.macbook;
       };
       modules = [
         {
           nixpkgs.overlays = [localPackages];
-          nixpkgs.config.allowUnfreePredicate = pkg:
-            builtins.elem (nixpkgs.lib.getName pkg) [
-              "spacetimedb"
-              "claude-code"
-            ];
+          nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
         }
         stylix.darwinModules.stylix
         sops-nix.darwinModules.sops
         ./system/darwin
         home-manager.darwinModules.home-manager
         {
-          users.users.${user} = {
-            name = user;
-            home = homeDir;
+          users.users.${hosts.macbook.user} = {
+            name = hosts.macbook.user;
+            home = darwinCtx.homeDir;
           };
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit user homeDir sharedLspPackages mcpServersConfig nix-devshells;
-              inherit fzf-git-sh-package yamb-yazi claude-code-plugins;
-              inherit mcp-nixos-package;
-              userConfig = darwinConfig;
+              inherit (hosts.macbook) user;
+              inherit (darwinCtx) homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
+              inherit yamb-yazi claude-code-plugins nix-devshells;
+              userConfig = hosts.macbook;
             };
-            users.${user} = {
+            users.${hosts.macbook.user} = {
               imports = [
                 ./home/common
                 ./home/darwin
@@ -174,63 +188,24 @@
       ];
     };
 
-    homeConfigurations."${hosts.ubuntu-desktop.user}@${hosts.ubuntu-desktop.hostname}" = let
-      linuxConfig = hosts.ubuntu-desktop;
-      linuxPkgs = mkPkgs linuxConfig.system;
-      linuxHomeDir = mkHomeDir linuxPkgs linuxConfig.user;
-      linuxMcpNixos = mcp-nixos.packages.${linuxConfig.system}.default;
-      linuxSerena = mcp-servers-nix.packages.${linuxConfig.system}.serena.overrideAttrs (_: {
-        version = "0.1.4-unstable-2025-12-28";
-        src = linuxPkgs.fetchFromGitHub {
-          owner = "vaporif";
-          repo = "serena";
-          rev = "0f65275856f14fbf4827e3327ee8f132ea58b156";
-          hash = "sha256-fhlrO1mJYdevYVrJ02t5v3I2fiuclJRQSRinufwka+w=";
-        };
-      });
-      linuxSharedLsp = with linuxPkgs; [
-        lua-language-server
-        typescript-language-server
-        basedpyright
-        nixd
+    homeConfigurations."${hosts.ubuntu-desktop.user}@${hosts.ubuntu-desktop.hostname}" = home-manager.lib.homeManagerConfiguration {
+      inherit (linuxCtx) pkgs;
+      extraSpecialArgs = {
+        inherit (hosts.ubuntu-desktop) user;
+        inherit (linuxCtx) homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
+        inherit yamb-yazi claude-code-plugins nixgl nix-devshells;
+        userConfig = hosts.ubuntu-desktop;
+      };
+      modules = [
+        {
+          nixpkgs.overlays = [localPackages];
+          nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
+        }
+        stylix.homeModules.stylix
+        ./modules/theme.nix
+        ./home/common
+        ./home/linux
       ];
-      linuxMcpConfig = import ./mcp.nix {
-        pkgs = linuxPkgs;
-        homeDir = linuxHomeDir;
-        serenaPatched = linuxSerena;
-        inherit mcp-servers-nix;
-        mcp-nixos-package = linuxMcpNixos;
-        sharedLspPackages = linuxSharedLsp;
-        userConfig = linuxConfig;
-      };
-      linuxMcpServersConfig = mcp-servers-nix.lib.mkConfig linuxPkgs linuxMcpConfig;
-    in
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = linuxPkgs;
-        extraSpecialArgs = {
-          inherit (linuxConfig) user;
-          homeDir = linuxHomeDir;
-          sharedLspPackages = linuxSharedLsp;
-          mcpServersConfig = linuxMcpServersConfig;
-          inherit nix-devshells yamb-yazi claude-code-plugins nixgl;
-          fzf-git-sh-package = linuxPkgs.writeShellScriptBin "fzf-git.sh" (builtins.readFile fzf-git-sh);
-          mcp-nixos-package = linuxMcpNixos;
-          userConfig = linuxConfig;
-        };
-        modules = [
-          {
-            nixpkgs.overlays = [localPackages];
-            nixpkgs.config.allowUnfreePredicate = pkg:
-              builtins.elem (nixpkgs.lib.getName pkg) [
-                "spacetimedb"
-                "claude-code"
-              ];
-          }
-          stylix.homeModules.stylix
-          ./modules/theme.nix
-          ./home/common
-          ./home/linux
-        ];
-      };
+    };
   };
 }

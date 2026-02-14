@@ -8,8 +8,10 @@ This document describes what's implemented in this nix-darwin configuration and 
 
 ### Module Hierarchy
 ```
-user.nix (user-specific config: user, hostname, git, timezone, ssh-agent)
-flake.nix (entry point)
+hosts/common.nix (shared user config: user, git, cachix, timezone)
+hosts/macbook.nix (macOS host: hostname, system, configPath, sshAgent)
+hosts/ubuntu-desktop.nix (Linux host: hostname, system, configPath, sshAgent)
+flake.nix (entry point, mkHostContext builds per-host derived values)
 ├── Inputs: nixpkgs, nix-darwin, home-manager, sops-nix, stylix, mcp-servers-nix
 ├── Overlays: localPackages (custom packages), allowUnfreePredicate
 │

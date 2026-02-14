@@ -208,62 +208,53 @@ in {
     };
   };
 
-  home.file =
-    {
-      ".envrc".text = ''
-        use flake github:vaporif/nix-devshells/${nix-devshells.rev}
-      '';
-      # Qdrant config - localhost only
-      ".qdrant/config.yaml".text = ''
-        service:
-          host: 127.0.0.1
-          http_port: 6333
-          grpc_port: 6334
-        storage:
-          storage_path: ${homeDir}/.qdrant/storage
-          snapshots_path: ${homeDir}/.qdrant/snapshots
-        telemetry_disabled: true
-      '';
-      # Stable symlink to Neovim runtime for .luarc.json
-      ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
-      ".librewolf/librewolf.overrides.cfg" = {
-        source = ../../config/librewolf/librewolf.overrides.cfg;
-      };
-      "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
-
-      # Claude Code plugins - create a local marketplace structure
-      "${nixPluginsPath}/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
-      "${nixPluginsPath}/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
-      "${nixPluginsPath}/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
-      "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
-
-      # Claude Code custom commands
-      ".claude/commands/remember.md".source = ../../config/claude-commands/remember.md;
-      ".claude/commands/recall.md".source = ../../config/claude-commands/recall.md;
-      ".claude/commands/cleanup.md".source = ../../config/claude-commands/cleanup.md;
-      ".claude/commands/commit.md".source = ../../config/claude-commands/commit.md;
-      ".claude/commands/pr.md".source = ../../config/claude-commands/pr.md;
-      ".claude/commands/docs.md".source = ../../config/claude-commands/docs.md;
-
-      ".claude/CLAUDE.md".source = ../../config/claude/CLAUDE.md;
-      ".claude/settings.json".source = ../../config/claude/settings.json;
-      ".claude/hooks/check-bash-command.sh".source = ../../config/claude/hooks/check-bash-command.sh;
-      ".claude/hooks/auto-recall.sh".source = ../../config/claude/hooks/auto-recall.sh;
-      ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
-
-      # SSH signing key (public key from Secretive)
-      ".ssh/signing_key.pub".text = userConfig.git.signingKey + "\n";
-      # SSH allowed signers for git signature verification
-      ".ssh/allowed_signers".text = "${userConfig.git.email} ${userConfig.git.signingKey}\n";
-    }
-    // {
-      ${
-        if pkgs.stdenv.isDarwin
-        then "Library/Application Support/Claude/claude_desktop_config.json"
-        else ".config/Claude/claude_desktop_config.json"
-      }.source =
-        mcpServersConfig;
+  home.file = {
+    ".envrc".text = ''
+      use flake github:vaporif/nix-devshells/${nix-devshells.rev}
+    '';
+    # Qdrant config - localhost only
+    ".qdrant/config.yaml".text = ''
+      service:
+        host: 127.0.0.1
+        http_port: 6333
+        grpc_port: 6334
+      storage:
+        storage_path: ${homeDir}/.qdrant/storage
+        snapshots_path: ${homeDir}/.qdrant/snapshots
+      telemetry_disabled: true
+    '';
+    # Stable symlink to Neovim runtime for .luarc.json
+    ".local/share/nvim-runtime".source = "${pkgs.neovim-unwrapped}/share/nvim/runtime";
+    ".librewolf/librewolf.overrides.cfg" = {
+      source = ../../config/librewolf/librewolf.overrides.cfg;
     };
+    "${config.xdg.configHome}/mcphub/servers.json".source = mcpServersConfig;
+
+    # Claude Code plugins - create a local marketplace structure
+    "${nixPluginsPath}/.claude-plugin/marketplace.json".text = nixPluginsMarketplace;
+    "${nixPluginsPath}/feature-dev".source = "${claude-code-plugins}/plugins/feature-dev";
+    "${nixPluginsPath}/ralph-wiggum".source = "${claude-code-plugins}/plugins/ralph-wiggum";
+    "${nixPluginsPath}/code-review".source = "${claude-code-plugins}/plugins/code-review";
+
+    # Claude Code custom commands
+    ".claude/commands/remember.md".source = ../../config/claude-commands/remember.md;
+    ".claude/commands/recall.md".source = ../../config/claude-commands/recall.md;
+    ".claude/commands/cleanup.md".source = ../../config/claude-commands/cleanup.md;
+    ".claude/commands/commit.md".source = ../../config/claude-commands/commit.md;
+    ".claude/commands/pr.md".source = ../../config/claude-commands/pr.md;
+    ".claude/commands/docs.md".source = ../../config/claude-commands/docs.md;
+
+    ".claude/CLAUDE.md".source = ../../config/claude/CLAUDE.md;
+    ".claude/settings.json".source = ../../config/claude/settings.json;
+    ".claude/hooks/check-bash-command.sh".source = ../../config/claude/hooks/check-bash-command.sh;
+    ".claude/hooks/auto-recall.sh".source = ../../config/claude/hooks/auto-recall.sh;
+    ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
+
+    # SSH signing key (public key from Secretive)
+    ".ssh/signing_key.pub".text = userConfig.git.signingKey + "\n";
+    # SSH allowed signers for git signature verification
+    ".ssh/allowed_signers".text = "${userConfig.git.email} ${userConfig.git.signingKey}\n";
+  };
 
   xdg.configFile = {
     # recursive = true so we can inject nix-paths.lua alongside the symlinked config files
