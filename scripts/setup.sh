@@ -11,11 +11,35 @@ NC='\033[0m' # No Color
 echo -e "${GREEN}=== Nix Configuration Setup ===${NC}"
 echo ""
 
+# Must be run from repo root
+if [[ ! -f "flake.nix" ]]; then
+    echo -e "${RED}Error: Must be run from the repository root (flake.nix not found).${NC}"
+    exit 1
+fi
+
 # Check if nix is installed
 if ! command -v nix &> /dev/null; then
     echo -e "${RED}Error: Nix is not installed.${NC}"
     echo "Install with: curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install"
     exit 1
+fi
+
+# Check if age-keygen is available (needed for SOPS key generation)
+if ! command -v age-keygen &> /dev/null; then
+    echo -e "${RED}Error: age-keygen is not installed (needed for secrets encryption).${NC}"
+    echo "Install with: nix profile install nixpkgs#age"
+    exit 1
+fi
+
+# Warn if already configured
+if [[ -f "hosts/common.nix" ]] && grep -q "signingKey" hosts/common.nix; then
+    echo -e "${YELLOW}Warning: hosts/common.nix already contains configuration.${NC}"
+    read -rp "Overwrite existing config? [y/N]: " CONFIRM
+    if [[ "${CONFIRM}" != "y" && "${CONFIRM}" != "Y" ]]; then
+        echo "Aborted."
+        exit 0
+    fi
+    echo ""
 fi
 
 # Detect platform
@@ -84,6 +108,14 @@ CONFIG_PATH=$(pwd)
 
 # Update hosts/common.nix
 cat > hosts/common.nix << EOF
+# Shared config inherited by all hosts.
+# Per-host files (macbook.nix, ubuntu-desktop.nix) import this and add:
+#   hostname  (string)  - machine name, used as flake output key
+#   system    (string)  - "aarch64-darwin" | "aarch64-linux" | "x86_64-darwin" | "x86_64-linux"
+#   configPath (string) - absolute path to this repo on the host
+#   sshAgent  (string)  - "secretive" for macOS Secretive.app, "" otherwise
+# Optional per-host fields:
+#   utmHostIp (string)  - IP of UTM VM for SSH config (macOS only)
 {
   user = "${USERNAME}";
 
@@ -184,7 +216,7 @@ fi
 echo ""
 echo -e "${YELLOW}Updating hostname references...${NC}"
 if [[ "${OS}" == "Darwin" ]]; then
-    sed -i '' "s/MacBook-Pro/${HOSTNAME}/g" .github/workflows/check.yml 2>/dev/null || true
+    sed -i "s/MacBook-Pro/${HOSTNAME}/g" .github/workflows/check.yml 2>/dev/null || true
 else
     sed -i "s/vaporif-bubuntu/${HOSTNAME}/g" .github/workflows/check.yml 2>/dev/null || true
 fi
