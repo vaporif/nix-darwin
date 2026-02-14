@@ -130,6 +130,203 @@ cachix authtoken <your-token>
 just cache
 ```
 
+## Shell Aliases
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `a` | `claude` | Claude Code CLI |
+| `ap` | `claude --print` | Claude Code print mode |
+| `ai` | `claude --dangerously-skip-permissions` | Claude Code autonomous |
+| `ar` | `claude --resume` | Claude Code resume session |
+| `e` | `nvim` | Neovim |
+| `g` | `lazygit` | Git TUI |
+| `t` | `yy` | Yazi file manager |
+| `ls` | `eza -a` | Modern ls with hidden files |
+| `cat` | `bat` | Cat with syntax highlighting |
+| `x` | `exit` | Exit shell |
+| `mcp-scan` | `uv tool run mcp-scan@latest` | MCP server scanner |
+| `init-solana` | `nix flake init -t ...#solana` | Solana project template |
+| `init-rust` | `nix flake init -t ...#rust` | Rust project template |
+
+## Keybindings
+
+### Application Shortcuts (skhd — macOS)
+
+All use `hyper` key (Caps Lock remapped via Karabiner-Elements):
+
+| Key | App | Key | App |
+|-----|-----|-----|-----|
+| `hyper + r` | Librewolf | `hyper + w` | WhatsApp |
+| `hyper + t` | WezTerm | `hyper + m` | Ableton Live |
+| `hyper + c` | Claude | `hyper + l` | Signal |
+| `hyper + s` | Slack | `hyper + p` | Spotify |
+| `hyper + b` | Brave | | |
+| `hyper + d` | Discord | | |
+
+### Karabiner-Elements
+
+- **Caps Lock** — hold for extend layer, tap for hyper key combos
+- **Extend layer** — `Caps + i/k/j/l` for arrow keys (Up/Down/Left/Right)
+- **Right Option** — Escape
+
+### WezTerm (Leader: `Ctrl+b`)
+
+| Key | Action | Key | Action |
+|-----|--------|-----|--------|
+| `Leader + v` | Split vertical | `Leader + h` | Split horizontal |
+| `Leader + x` | Close pane | `Leader + f` | Fullscreen pane |
+| `Leader + n/i/u/e` | Navigate L/R/U/D | `Leader + Tab` | Cycle panes |
+| `Leader + r` | Resize mode | `Leader + m` | Move tab mode |
+| `Leader + o` | Launcher | `Leader + z` | Workspace switcher |
+| `Leader + ,` | Rename tab | `Leader + /` | Search |
+| `Leader + c` | Copy/scroll mode | | |
+| `Ctrl + t` | Toggle bottom split | `Ctrl + /` | Toggle right split |
+
+### Neovim (Leader: `Space`)
+
+**Navigation:**
+
+| Key | Action | Key | Action |
+|-----|--------|-----|--------|
+| `<leader>ff` | Find files | `<leader>fg` | Live grep |
+| `<leader>fb` | Buffers | `<leader>fh` | Help tags |
+| `<leader>fk` | Keymaps | `<leader>fd` | Diagnostics |
+| `<leader>fs` | Document symbols | `<leader>fw` | Workspace symbols |
+| `<leader>fr` | Resume search | `<leader>fn` | Neovim config files |
+| `<leader>ft` | Git worktrees | `<leader>.` | Buffer fuzzy search |
+| `gd` | Goto definition | `gR` | Goto references |
+| `gI` | Goto implementation | `'` | Marks |
+| `<S-h>` / `<S-l>` | Prev/next buffer | `<leader>e` | Toggle file tree |
+| `<leader>a` | Harpoon add | `<leader>p` | Harpoon menu |
+| `<leader>1-9` | Jump to harpoon file | | |
+
+**Editing & Code:**
+
+| Key | Action | Key | Action |
+|-----|--------|-----|--------|
+| `<leader>w` | Write file | `<leader>/` | Toggle comment |
+| `<leader>qg` | Global search/replace | `<leader>qw` | Buffer search/replace |
+| `<leader>sv` | Split vertical | `<leader>sh` | Split horizontal |
+| `<leader>bl` | LSP definitions/refs | `<leader>cd` | Diff tool |
+| `[d` / `]d` | Prev/next diagnostic | `[e` / `]e` | Prev/next error |
+| `ii` | Escape (insert mode) | `;` | Command mode |
+
+**Git (hunks):**
+
+| Key | Action | Key | Action |
+|-----|--------|-----|--------|
+| `]g` / `[g` | Next/prev hunk | `<leader>hp` | Preview hunk |
+| `<leader>hs` | Stage hunk | `<leader>hr` | Reset hunk |
+| `<leader>hS` | Stage buffer | `<leader>hR` | Reset buffer |
+| `<leader>hb` | Blame line | `<leader>hd` | Diff vs index |
+| `<leader>hh` | File history | `<leader>hB` | Toggle blame |
+
+### Yazi
+
+| Key | Action | Key | Action |
+|-----|--------|-----|--------|
+| `br` | Go to ~/Repos | `bm` | Go to nix config |
+| `ua` | Add bookmark | `ug` | Jump bookmark |
+| `ud` | Delete bookmark | `ur` | Rename bookmark |
+| `Enter` | Open in nvim | | |
+
+## Programs & Packages
+
+### CLI Tools (shared)
+
+| Category | Packages |
+|----------|----------|
+| **Shell** | zsh, starship, atuin, fzf, zoxide, carapace, direnv |
+| **Files** | eza, bat, fd, ripgrep, yazi, ouch, dua |
+| **Git** | lazygit, gh (+ gh-dash), delta, difftastic |
+| **Dev** | just, tokei, hyperfine, btop, procs, lazydocker, tmux |
+| **Nix** | alejandra, statix, deadnix, nix-tree, nix-diff, nix-search, nvd, nix-output-monitor, cachix |
+| **Linting** | stylua, selene, typos, taplo, shellcheck, actionlint, vulnix |
+| **Rust** | bacon, cargo-info, rusty-man |
+| **AI** | claude-code, qdrant, qdrant-web-ui |
+| **Secrets** | sops, age (macOS system) |
+| **Other** | yt-dlp, presenterm, tdf, wget, rsync |
+
+### macOS Homebrew Casks
+
+Brave, Claude, Discord, Element, GIMP, Karabiner-Elements, KeyCastr, MonitorControl,
+mpv, OrbStack, Proton Drive, ProtonVPN, qBittorrent, Secretive, Signal, SuperCollider,
+Syncthing, Tor Browser, UTM, WezTerm (nightly), Zoom,
+BlackHole (2ch + 16ch), Cardinal
+
+### Linux-Specific
+
+LibreWolf and WezTerm (both nixGL-wrapped for GPU support)
+
+### Neovim Plugins
+
+| Category | Plugins |
+|----------|---------|
+| **Completion** | blink.cmp, blink.pairs |
+| **LSP** | nvim-lspconfig, mason.nvim, lazydev.nvim |
+| **Treesitter** | nvim-treesitter |
+| **Formatting** | conform.nvim |
+| **Navigation** | fzf-lua, flash.nvim, harpoon, neo-tree |
+| **Git** | gitsigns.nvim, diffview.nvim |
+| **Editing** | yanky.nvim, substitute.nvim, grug-far.nvim, mini.nvim, marks.nvim |
+| **UI** | everforest (theme), lualine, which-key, alpha-nvim, noice.nvim, snacks.nvim |
+| **Diagnostics** | trouble.nvim, todo-comments.nvim, outline.nvim |
+| **Testing** | neotest (golang, python, vitest, foundry) |
+| **Debug** | nvim-dap, nvim-dap-ui, nvim-dap-go |
+| **Languages** | go.nvim, rustaceanvim, crates.nvim, vim-tidal-lua |
+| **Utilities** | auto-session, guess-indent, early-retirement, render-markdown, nvim-ufo |
+
+### Git Custom Commands
+
+| Command | Description |
+|---------|-------------|
+| `git bclone <url>` | Bare clone with main worktree |
+| `git meta push` | Sync worktree configs to `.meta/` |
+| `git meta pull` | Sync `.meta/` configs to worktree |
+| `git meta diff` | Show config differences |
+| `git meta init` | Initialize `.meta/` from current worktree |
+
+### Git Aliases
+
+| Alias | Command | gh Alias | Command |
+|-------|---------|----------|---------|
+| `co` | `checkout` | `co` | `pr checkout` |
+| `cob` | `checkout -b` | `pv` | `pr view --web` |
+| `discard` | `reset HEAD --hard` | `pl` | `pr list` |
+| `fp` | `fetch --all --prune` | `ps` | `pr status` |
+| `bclone` | `!git-bare-clone` | `pm` | `pr merge` |
+| | | `d` | `dash` |
+
+### MCP Servers
+
+| Server | Description |
+|--------|-------------|
+| **serena** | Semantic code editing (nixd, lua-ls, rust-analyzer, gopls) |
+| **filesystem** | File access (Documents, config, cargo, go, nix store) |
+| **git** | Git operations |
+| **github** | GitHub API (uses `gh auth token`) |
+| **context7** | Library documentation lookup |
+| **memory** | Knowledge graph storage |
+| **qdrant** | Vector DB for Claude memory |
+| **nixos** | NixOS/nix-darwin option search |
+| **tavily** | Web search |
+| **deepl** | Translation |
+| **sequential-thinking** | Reasoning chains |
+| **time** | Time/timezone utilities |
+
+### Claude Code Commands
+
+| Command | Description |
+|---------|-------------|
+| `/cleanup` | Code review and cleanup of branch changes |
+| `/commit` | Generate commit message from staged changes |
+| `/docs` | Update all documentation |
+| `/pr` | Generate PR title and description |
+| `/recall` | Search Qdrant memory |
+| `/remember` | Store context in Qdrant |
+
+**Plugins:** feature-dev, ralph-wiggum, code-review
+
 ## Structure
 
 ```
