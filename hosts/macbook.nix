@@ -5,6 +5,6 @@ in
   // {
     hostname = "MacBook-Pro";
     system = "aarch64-darwin";
-    configPath = "/private/etc/nix-darwin";
+    configPath = "/Users/vaporif/.config/nix-darwin";
     sshAgent = "secretive";
   }

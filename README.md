@@ -16,8 +16,8 @@ Cross-platform personal configuration using [nix-darwin](https://github.com/nix-
 
 ```shell
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/nix-darwin.git /etc/nix-darwin
-cd /etc/nix-darwin
+git clone https://github.com/YOUR-USERNAME/nix.git ~/.config/nix-darwin
+cd ~/.config/nix-darwin
 
 # Run setup script (configures host files, generates age key, etc.)
 ./scripts/setup.sh

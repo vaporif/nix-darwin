@@ -252,7 +252,7 @@ cat = "bat";
 |-----|--------|
 | `<Enter>` | Open in nvim |
 | `br` | Go to ~/Repos |
-| `bm` | Go to /etc/nix-darwin |
+| `bm` | Go to ~/.config/nix-darwin |
 | `ua` | Add bookmark |
 | `ug` | Jump by key |
 | `uG` | Jump by fzf |
