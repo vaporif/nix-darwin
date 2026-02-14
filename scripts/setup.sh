@@ -54,6 +54,13 @@ echo ""
 read -rp "Username [${CURRENT_USER}]: " INPUT_USER
 USERNAME="${INPUT_USER:-${CURRENT_USER}}"
 
+# Validate username (used as YAML anchor in .sops.yaml and Nix identifier)
+if [[ ! "${USERNAME}" =~ ^[a-zA-Z_][a-zA-Z0-9_-]*$ ]]; then
+    echo -e "${RED}Error: Username '${USERNAME}' contains invalid characters.${NC}"
+    echo "Only letters, digits, underscores, and hyphens are allowed (must start with letter or underscore)."
+    exit 1
+fi
+
 read -rp "Hostname [${CURRENT_HOSTNAME}]: " INPUT_HOST
 HOSTNAME="${INPUT_HOST:-${CURRENT_HOSTNAME}}"
 

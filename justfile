@@ -97,15 +97,12 @@ cache:
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ "$(uname)" == "Darwin" ]]; then
-        host_file=hosts/macbook.nix
-    else
-        host_file=hosts/ubuntu-desktop.nix
-    fi
-    hostname=$(nix eval --raw -f "$host_file" hostname)
-    cachix_name=$(nix eval --raw -f "$host_file" cachix.name)
-    if [[ "$(uname)" == "Darwin" ]]; then
+        hostname=$(nix eval --raw -f hosts/macbook.nix hostname)
+        cachix_name=$(nix eval --raw -f hosts/macbook.nix cachix.name)
         nix build ".#darwinConfigurations.${hostname}.system"
     else
+        hostname=$(nix eval --raw -f hosts/ubuntu-desktop.nix hostname)
+        cachix_name=$(nix eval --raw -f hosts/ubuntu-desktop.nix cachix.name)
         nix build ".#homeConfigurations.$(whoami)@${hostname}.activationPackage"
     fi
     [[ -n "$cachix_name" ]] && cachix push "$cachix_name" ./result

@@ -19,13 +19,24 @@ concurrency:
   cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/main' }}
 
 jobs:
-  nix:
-    runs-on: macos-latest
+  build:
+    strategy:
+      matrix:
+        include:
+          - runner: macos-latest
+            build-cmd: nix build .#darwinConfigurations."MacBook-Pro".system
+            lint: true
+          - runner: ubuntu-24.04-arm
+            build-cmd: nix build '.#homeConfigurations."vaporif@vaporif-bubuntu".activationPackage'
+            lint: false
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: DeterminateSystems/magic-nix-cache-action@v9
 
       - uses: cachix/cachix-action@v16
         with:
@@ -33,35 +44,23 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: Check nix flake
+        if: matrix.lint
         run: nix flake check
 
       - name: Check nix formatting
+        if: matrix.lint
         run: nix run nixpkgs#alejandra -- --check .
 
       - name: Lint nix (statix)
+        if: matrix.lint
         run: nix run nixpkgs#statix -- check
 
       - name: Dead code (deadnix)
+        if: matrix.lint
         run: nix run nixpkgs#deadnix -- --fail .
 
-      - name: Build nix
-        run: nix build .#darwinConfigurations."MacBook-Pro".system
-
-  nix-linux:
-    runs-on: ubuntu-24.04-arm
-    steps:
-      - uses: actions/checkout@v6
-      - uses: cachix/install-nix-action@v31
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: cachix/cachix-action@v16
-        with:
-          name: vaporif
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-
-      - name: Build home-manager config
-        run: nix build '.#homeConfigurations."vaporif@vaporif-bubuntu".activationPackage'
+      - name: Build
+        run: ${{ matrix.build-cmd }}
 
   lint:
     runs-on: ubuntu-latest

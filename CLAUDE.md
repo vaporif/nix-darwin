@@ -27,7 +27,7 @@ Run `just` to see all available commands. Key ones:
 
 | Command | Description |
 |---------|-------------|
-| `just switch` | Apply configuration (darwin-rebuild switch) |
+| `just switch` | Apply configuration (auto-detects platform) |
 | `just check` | Run all checks (lint + policy) |
 | `just check-policy` | Policy checks (freshness, pinning) |
 | `just lint-lua` | Selene + stylua for Lua files |
@@ -85,11 +85,11 @@ Uses `hyper` key (caps lock via Karabiner):
 ## Architecture
 
 ```
-flake.nix                    # Entry point, inputs, outputs for both platforms
+flake.nix                    # Entry point; mkHostContext deduplicates per-host setup
 ├── hosts/
 │   ├── common.nix           # Shared user config (name, git, cachix, timezone)
-│   ├── macbook.nix          # macOS host overrides
-│   └── ubuntu-desktop.nix   # Linux host overrides
+│   ├── macbook.nix          # macOS host overrides (hostname, system, configPath, sshAgent, utmHostIp)
+│   └── ubuntu-desktop.nix   # Linux host overrides (hostname, system, configPath, sshAgent)
 ├── modules/
 │   ├── nix.nix              # Shared Nix settings
 │   └── theme.nix            # Shared Stylix theme (Linux standalone)
@@ -99,9 +99,10 @@ flake.nix                    # Entry point, inputs, outputs for both platforms
 │       └── default.nix      # macOS-only: nix-darwin system config, skhd, SOPS, firewall
 ├── home/
 │   ├── common/              # Shared home-manager config (shell, packages, editor, etc.)
-│   ├── darwin/              # macOS-specific home config
-│   └── linux/               # Linux-specific home config (nixGL, systemd services)
+│   ├── darwin/              # macOS-specific home config (Secretive, Claude desktop, UTM SSH)
+│   └── linux/               # Linux-specific home config (nixGL, systemd services, genericLinux)
 ├── scripts/
+│   ├── setup.sh             # Cross-platform bootstrap script for forks
 │   ├── git-bare-clone.sh    # Bare clone with main worktree
 │   └── git-meta.sh          # Worktree config sync (.meta/)
 ├── overlays/                # Custom package overlays
@@ -125,7 +126,9 @@ Config files that reference the repo path use `userConfig.configPath` (from `hos
 
 ## User-Specific Values
 
-Host configs in `hosts/`. Common values in `hosts/common.nix`, per-host overrides in `hosts/<name>.nix`:
+Host configs in `hosts/`. Common values in `hosts/common.nix`, per-host overrides in `hosts/<name>.nix`. The `mkHostContext` helper in `flake.nix` builds all derived values (pkgs, LSP packages, serena, MCP config) from a host config, with assertions for required fields.
+
+**Required fields** (in `common.nix` or host override):
 - `user` - username
 - `hostname` - machine name
 - `system` - architecture (`aarch64-darwin` or `aarch64-linux`)
@@ -133,7 +136,10 @@ Host configs in `hosts/`. Common values in `hosts/common.nix`, per-host override
 - `git.*` - git identity and signing key
 - `cachix.*` - binary cache config
 - `timezone` - system timezone
-- `sshAgent` - SSH agent type (empty on Linux)
+- `sshAgent` - SSH agent type (`"secretive"` on macOS, `""` on Linux)
+
+**Optional fields** (per-host):
+- `utmHostIp` - IP address of UTM VM for SSH config (macOS only)
 
 ## MCP Servers
 
@@ -165,7 +171,7 @@ Nix-managed plugins from `github:anthropics/claude-code`:
 
 ### Custom Commands
 
-Defined in `config/claude-commands/`, wired via `home/default.nix`:
+Defined in `config/claude-commands/`, wired via `home/common/default.nix`:
 - `/cleanup` - Code review and cleanup of branch changes
 - `/commit` - Generate commit message from staged changes
 - `/docs` - Update all documentation (CLAUDE.md, Serena, auto memory, Qdrant)
@@ -202,10 +208,13 @@ Custom git subcommands installed via `writeShellScriptBin` in `home/packages.nix
 
 ## Key Implementation Details
 
-- **Unfree packages**: Allowlisted in flake.nix (`spacetimedb`, `claude-code`)
+- **`mkHostContext`**: Helper in `flake.nix` that builds all per-host derived values (pkgs, LSP packages, serena patch, MCP config) from a host config attrset, eliminating duplication between darwin and linux outputs
+- **`serenaSrc`**: Shared patched serena source, extracted to avoid duplication
+- **`allowUnfreePredicate`**: Shared unfree allowlist (`spacetimedb`, `claude-code`), applied to both platforms
+- **Host assertions**: `mkHostContext` validates required fields (`user`, `hostname`, `system`, `configPath`) at eval time
 - **LibreWolf**: Auto-updated via `scripts/install-librewolf.sh` on macOS; nixGL-wrapped on Linux
 - **nixGL**: GPU apps on Linux (wezterm, librewolf) are wrapped with `config.lib.nixGL.wrap` (mesa driver)
-- **Qdrant**: Runs as a systemd user service on Linux (`home/linux/default.nix`)
+- **Qdrant**: Runs as launchd agent on macOS (`home/darwin/`), systemd user service on Linux (`home/linux/`)
 - **External devshell**: Rust tools via `~/.envrc` (run `direnv allow ~` after setup)
 - **Theme**: Stylix manages colors/fonts across all apps; Linux uses `modules/theme.nix` as standalone module
 
