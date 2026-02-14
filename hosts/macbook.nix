@@ -7,4 +7,5 @@ in
     system = "aarch64-darwin";
     configPath = "/Users/vaporif/.config/nix-darwin";
     sshAgent = "secretive";
+    utmHostIp = "192.168.65.7";
   }

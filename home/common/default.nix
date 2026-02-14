@@ -200,11 +200,6 @@ in {
         serverAliveInterval = 60;
         serverAliveCountMax = 3;
       };
-      matchBlocks."utm-ubuntu" = {
-        hostname = "192.168.65.7";
-        inherit (userConfig) user;
-        forwardAgent = true;
-      };
     };
   };
 

@@ -20,8 +20,17 @@ in {
     file."Library/Application Support/Claude/claude_desktop_config.json".source = mcpServersConfig;
   };
 
-  programs.ssh.extraOptionOverrides = lib.optionalAttrs (userConfig.sshAgent == "secretive") {
-    IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+  programs.ssh = {
+    extraOptionOverrides = lib.optionalAttrs (userConfig.sshAgent == "secretive") {
+      IdentityAgent = "${homeDir}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+    };
+    matchBlocks = lib.optionalAttrs ((userConfig.utmHostIp or "") != "") {
+      "utm-ubuntu" = {
+        hostname = userConfig.utmHostIp;
+        inherit (userConfig) user;
+        forwardAgent = true;
+      };
+    };
   };
 
   xdg.configFile = {

@@ -8,7 +8,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}=== Nix-Darwin Setup ===${NC}"
+echo -e "${GREEN}=== Nix Configuration Setup ===${NC}"
 echo ""
 
 # Check if nix is installed
@@ -18,18 +18,33 @@ if ! command -v nix &> /dev/null; then
     exit 1
 fi
 
-# Get user info
+# Detect platform
+OS=$(uname -s)
+ARCH=$(uname -m)
 CURRENT_USER="${USER}"
-CURRENT_HOSTNAME=$(scutil --get LocalHostName 2>/dev/null || hostname -s)
-CURRENT_SYSTEM=$(uname -m)
 
-if [[ "${CURRENT_SYSTEM}" == "arm64" ]]; then
-    NIX_SYSTEM="aarch64-darwin"
+if [[ "${OS}" == "Darwin" ]]; then
+    CURRENT_HOSTNAME=$(scutil --get LocalHostName 2>/dev/null || hostname -s)
+    if [[ "${ARCH}" == "arm64" ]]; then
+        NIX_SYSTEM="aarch64-darwin"
+    else
+        NIX_SYSTEM="x86_64-darwin"
+    fi
+    HOST_FILE="hosts/macbook.nix"
+    PLATFORM="macOS"
 else
-    NIX_SYSTEM="x86_64-darwin"
+    CURRENT_HOSTNAME=$(hostname -s)
+    if [[ "${ARCH}" == "aarch64" ]]; then
+        NIX_SYSTEM="aarch64-linux"
+    else
+        NIX_SYSTEM="x86_64-linux"
+    fi
+    HOST_FILE="hosts/ubuntu-desktop.nix"
+    PLATFORM="Linux"
 fi
 
 echo "Detected configuration:"
+echo "  Platform: ${PLATFORM}"
 echo "  Username: ${CURRENT_USER}"
 echo "  Hostname: ${CURRENT_HOSTNAME}"
 echo "  System:   ${NIX_SYSTEM}"
@@ -46,11 +61,16 @@ read -rp "Git name: " GIT_NAME
 read -rp "Git email: " GIT_EMAIL
 read -rp "Timezone [UTC]: " INPUT_TZ
 TIMEZONE="${INPUT_TZ:-UTC}"
-read -rp "SSH agent (secretive/default) [default]: " INPUT_SSH
-SSH_AGENT="${INPUT_SSH:-}"
+
+if [[ "${OS}" == "Darwin" ]]; then
+    read -rp "SSH agent (secretive/default) [default]: " INPUT_SSH
+    SSH_AGENT="${INPUT_SSH:-}"
+else
+    SSH_AGENT=""
+fi
 
 echo ""
-echo -e "${YELLOW}Updating hosts/common.nix and hosts/macbook.nix...${NC}"
+echo -e "${YELLOW}Updating hosts/common.nix and ${HOST_FILE}...${NC}"
 
 # Get current directory for configPath
 CONFIG_PATH=$(pwd)
@@ -63,7 +83,6 @@ cat > hosts/common.nix << EOF
   git = {
     name = "${GIT_NAME}";
     email = "${GIT_EMAIL}";
-    # SSH signing key (used with Secretive)
     signingKey = "";
   };
 
@@ -78,8 +97,8 @@ cat > hosts/common.nix << EOF
 }
 EOF
 
-# Update hosts/macbook.nix
-cat > hosts/macbook.nix << EOF
+# Update host-specific file
+cat > "${HOST_FILE}" << EOF
 let
   common = import ./common.nix;
 in
@@ -92,7 +111,7 @@ in
   }
 EOF
 
-echo -e "${GREEN}hosts/common.nix and hosts/macbook.nix updated${NC}"
+echo -e "${GREEN}hosts/common.nix and ${HOST_FILE} updated${NC}"
 
 # Setup age key for SOPS
 AGE_KEY_DIR="${HOME}/.config/sops/age"
@@ -154,22 +173,25 @@ EOF
     echo "Edit and encrypt with: sops secrets/secrets.yaml"
 fi
 
-# Update justfile and CI for new hostname
+# Update hostname references in CI/build files
 echo ""
-echo -e "${YELLOW}Updating justfile...${NC}"
-sed -i '' "s/MacBook-Pro/${HOSTNAME}/g" justfile 2>/dev/null || true
-
-echo -e "${YELLOW}Updating CI workflow...${NC}"
-sed -i '' "s/MacBook-Pro/${HOSTNAME}/g" .github/workflows/check.yml 2>/dev/null || true
+echo -e "${YELLOW}Updating hostname references...${NC}"
+if [[ "${OS}" == "Darwin" ]]; then
+    sed -i '' "s/MacBook-Pro/${HOSTNAME}/g" .github/workflows/check.yml 2>/dev/null || true
+else
+    sed -i "s/vaporif-bubuntu/${HOSTNAME}/g" .github/workflows/check.yml 2>/dev/null || true
+fi
 
 echo ""
 echo -e "${GREEN}=== Setup Complete ===${NC}"
 echo ""
 echo "Next steps:"
-echo "  1. Review hosts/common.nix and hosts/macbook.nix for any additional changes"
+echo "  1. Review hosts/common.nix and ${HOST_FILE} for any additional changes"
 echo "  2. Create and encrypt secrets: sops secrets/secrets.yaml"
 echo "  3. Run: just switch"
 echo ""
 echo "Optional:"
 echo "  - Set up Cachix: https://app.cachix.org"
-echo "  - Set up SSH signing key in hosts/common.nix (uses Secretive)"
+if [[ "${OS}" == "Darwin" ]]; then
+    echo "  - Set up SSH signing key in hosts/common.nix (uses Secretive)"
+fi
