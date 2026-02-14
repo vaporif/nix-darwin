@@ -19,17 +19,15 @@ Cross-platform personal configuration using [nix-darwin](https://github.com/nix-
 git clone https://github.com/YOUR-USERNAME/nix.git ~/.config/nix-darwin
 cd ~/.config/nix-darwin
 
-# Run setup script (configures host files, generates age key, etc.)
+# Run setup script (works on macOS and Linux)
+# Detects platform, configures host files, generates age key
 ./scripts/setup.sh
 
 # Create and encrypt your secrets
 sops secrets/secrets.yaml
 
-# Apply configuration
-# macOS:
-sudo darwin-rebuild switch --flake .#YOUR-HOSTNAME
-# Linux:
-home-manager switch --flake .#YOUR-USER@YOUR-HOSTNAME
+# Apply configuration (auto-detects platform)
+just switch
 
 # Allow direnv for default devshell
 direnv allow ~
@@ -93,7 +91,7 @@ Run `just` to see available commands:
 
 | Command | Description |
 |---------|-------------|
-| `just switch` | Apply configuration (darwin-rebuild switch) |
+| `just switch` | Apply configuration (auto-detects platform) |
 | `just check` | Run all checks (lint + policy) |
 | `just check-policy` | Run policy checks (freshness, pinning) |
 | `just fmt` | Format all files |
@@ -157,7 +155,7 @@ flake.nix                    # Entry point, inputs, outputs for both platforms
 │   ├── secrets.yaml         # Encrypted secrets (not in git)
 │   └── secrets.yaml.template
 └── scripts/
-    ├── setup.sh             # Bootstrap script for forks
+    ├── setup.sh             # Cross-platform bootstrap script for forks
     ├── git-bare-clone.sh    # Bare clone with main worktree
     ├── git-meta.sh          # Worktree config sync (.meta/)
     ├── install-librewolf.sh
