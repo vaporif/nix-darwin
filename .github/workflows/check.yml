@@ -48,7 +48,7 @@ jobs:
         run: nix build .#darwinConfigurations."MacBook-Pro".system
 
   nix-linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
@@ -67,6 +67,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Install tools via cargo-binstall
         uses: cargo-bins/cargo-binstall@main
