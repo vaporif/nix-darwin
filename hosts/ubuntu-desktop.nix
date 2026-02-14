@@ -5,6 +5,6 @@ in
   // {
     hostname = "vaporif-bubuntu";
     system = "aarch64-linux";
-    configPath = "/etc/nix-darwin";
+    configPath = "/home/vaporif/.config/nix";
     sshAgent = "";
   }
