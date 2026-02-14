@@ -333,11 +333,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1770974763,
-        "narHash": "sha256-AKtkKofyuuuPfVOKBvNSON8sSMJzs2VAi4zoFinTBvE=",
+        "lastModified": 1771036872,
+        "narHash": "sha256-VXAAFquExD9L+drZ8rtNZacnrIbxpB1Uht3yUXJ1YAA=",
         "owner": "vaporif",
         "repo": "nix-devshells",
-        "rev": "1802d1e85172b7938f0cba5da20f61bf36c6bab3",
+        "rev": "969fabc73d0b7f238f4db98d6f02beac85d99c93",
         "type": "github"
       },
       "original": {
