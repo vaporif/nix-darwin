@@ -121,7 +121,8 @@ in {
     wezterm = {
       enable = true;
       enableZshIntegration = true;
-      extraConfig = builtins.readFile ../../config/wezterm/init.lua;
+      # @configPath@ placeholder in init.lua is replaced with userConfig.configPath at build time
+      extraConfig = builtins.replaceStrings ["@configPath@"] [userConfig.configPath] (builtins.readFile ../../config/wezterm/init.lua);
     };
 
     git = {
@@ -265,10 +266,17 @@ in {
     };
 
   xdg.configFile = {
-    "nvim".source = ../../config/nvim;
+    # recursive = true so we can inject nix-paths.lua alongside the symlinked config files
+    "nvim" = {
+      source = ../../config/nvim;
+      recursive = true;
+    };
+    # Generated Lua module returning configPath; required by init.lua for the lazy.nvim lockfile path
+    "nvim/nix-paths.lua".text = ''return "${userConfig.configPath}"'';
     "yazi/yazi.toml".source = ../../config/yazi/yazi.toml;
     "yazi/init.lua".source = ../../config/yazi/init.lua;
-    "yazi/keymap.toml".source = ../../config/yazi/keymap.toml;
+    # @configPath@ placeholder in keymap.toml is replaced with userConfig.configPath at build time
+    "yazi/keymap.toml".text = builtins.replaceStrings ["@configPath@"] [userConfig.configPath] (builtins.readFile ../../config/yazi/keymap.toml);
     "yazi/plugins/yamb.yazi" = {
       source = yamb-yazi;
       recursive = true;

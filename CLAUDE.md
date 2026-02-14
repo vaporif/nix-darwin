@@ -111,10 +111,17 @@ flake.nix                    # Entry point, inputs, outputs for both platforms
 ### Config Files (dotfiles)
 
 Application configs live in `/config/` and are symlinked via `xdg.configFile`:
-- `nvim/` - Neovim (Lua, cross-platform lockfile path)
+- `nvim/` - Neovim (Lua, `recursive = true` so HM can inject `nix-paths.lua` alongside)
 - `wezterm/` - Terminal (Lua)
 - `yazi/` - File manager
 - `karabiner/` - Keyboard remapping (macOS only)
+
+### Path Templating (`configPath`)
+
+Config files that reference the repo path use `userConfig.configPath` (from `hosts/<name>.nix`) instead of hardcoded paths. Two mechanisms:
+
+- **`@configPath@` placeholder** (wezterm, yazi): The config file contains a literal `@configPath@` string. In `home/common/default.nix`, `builtins.replaceStrings` substitutes it with `userConfig.configPath` at build time. Used when the file is loaded via `.text` or `extraConfig` (not `.source`).
+- **`nix-paths.lua` module** (nvim): Since `config/nvim/` is symlinked as a recursive directory, individual files can't be templated. Instead, HM generates `nvim/nix-paths.lua` containing `return "<configPath>"`, and `init.lua` does `require("nix-paths")` to get the path at runtime.
 
 ## User-Specific Values
 

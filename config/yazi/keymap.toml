@@ -9,7 +9,7 @@ desc = "Go to Repos"
 
 [[mgr.prepend_keymap]]
 on = ["b", "m"]
-run = "cd /etc/nix-darwin"
+run = "cd @configPath@" # substituted at build time by builtins.replaceStrings
 desc = "Go to nix"
 
 [[mgr.prepend_keymap]]

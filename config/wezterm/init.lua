@@ -196,7 +196,7 @@ local config = {
     },
     {
       label = 'Nix Config',
-      cwd = '/etc/nix-darwin',
+      cwd = '@configPath@', -- substituted at build time by builtins.replaceStrings
     },
     {
       label = 'Home',
