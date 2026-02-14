@@ -272,7 +272,7 @@ in {
       recursive = true;
     };
     # Generated Lua module returning configPath; required by init.lua for the lazy.nvim lockfile path
-    "nvim/nix-paths.lua".text = ''return "${userConfig.configPath}"'';
+    "nvim/lua/nix-paths.lua".text = ''return "${userConfig.configPath}"'';
     "yazi/yazi.toml".source = ../../config/yazi/yazi.toml;
     "yazi/init.lua".source = ../../config/yazi/init.lua;
     # @configPath@ placeholder in keymap.toml is replaced with userConfig.configPath at build time
