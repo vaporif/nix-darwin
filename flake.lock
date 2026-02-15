@@ -85,6 +85,22 @@
         "type": "github"
       }
     },
+    "earthtone-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771128021,
+        "narHash": "sha256-L2ykszePkKD34NDADFVay2x2te1L+7Ya8EK9S938uAA=",
+        "owner": "vaporif",
+        "repo": "earthtone.nvim",
+        "rev": "bb5f0b20461940c352134c8f8fd9a60165ae5e76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vaporif",
+        "repo": "earthtone.nvim",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -489,6 +505,7 @@
     "root": {
       "inputs": {
         "claude-code-plugins": "claude-code-plugins",
+        "earthtone-nvim": "earthtone-nvim",
         "fzf-git-sh": "fzf-git-sh",
         "home-manager": "home-manager",
         "mcp-nixos": "mcp-nixos",
