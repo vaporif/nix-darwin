@@ -26,9 +26,9 @@ in {
         name = "";
       };
       sizes = {
-        applications = 12;
-        desktop = 10;
-        popups = 10;
+        applications = 13;
+        desktop = 12;
+        popups = 12;
         terminal = 16;
       };
     };
