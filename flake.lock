@@ -88,11 +88,11 @@
     "earthtone-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1771144128,
-        "narHash": "sha256-5HtLMHLi30B7AGeHUvk+xJwdsRYwjkEHJSiLKguxt78=",
+        "lastModified": 1771149344,
+        "narHash": "sha256-UHTclkdlLQKSjLpoYg7boFq76/7PMNyIGhLWSb9lhrI=",
         "owner": "vaporif",
         "repo": "earthtone.nvim",
-        "rev": "1c9fdef97fb3d63c46140a51863def66a0fb4301",
+        "rev": "8b20d7b14579f1cd1979bfbfc3e9fc7271fba57c",
         "type": "github"
       },
       "original": {
