@@ -23,6 +23,7 @@
     yazi = {
       enable = true;
       enableZshIntegration = true;
+      shellWrapperName = "y";
     };
 
     eza = {
@@ -138,7 +139,7 @@
         expireDuplicatesFirst = true;
       };
       shellAliases = {
-        t = "yy";
+        t = "y";
         g = "lazygit";
         a = "claude";
         ap = "claude --print";
