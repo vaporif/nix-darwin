@@ -269,7 +269,7 @@ LibreWolf and WezTerm (both nixGL-wrapped for GPU support)
 | **Navigation** | fzf-lua, flash.nvim, harpoon, neo-tree |
 | **Git** | gitsigns.nvim, diffview.nvim |
 | **Editing** | yanky.nvim, substitute.nvim, grug-far.nvim, mini.nvim, marks.nvim |
-| **UI** | everforest (theme), lualine, which-key, alpha-nvim, noice.nvim, snacks.nvim |
+| **UI** | earthtone (theme), lualine, which-key, alpha-nvim, noice.nvim, snacks.nvim |
 | **Diagnostics** | trouble.nvim, todo-comments.nvim, outline.nvim |
 | **Testing** | neotest (golang, python, vitest, foundry) |
 | **Debug** | nvim-dap, nvim-dap-ui, nvim-dap-go |

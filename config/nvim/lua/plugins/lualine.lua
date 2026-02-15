@@ -3,7 +3,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons', 'folke/trouble.nvim' },
   opts = function()
     local base_opts = {
-      options = { theme = 'everforest' },
+      options = { theme = 'earthtone' },
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
