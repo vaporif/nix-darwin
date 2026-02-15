@@ -156,6 +156,7 @@
       specialArgs = {
         inherit (hosts.macbook) user;
         inherit (darwinCtx) homeDir mcpServersConfig;
+        inherit earthtone-nvim;
         userConfig = hosts.macbook;
       };
       modules = [

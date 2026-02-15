@@ -28,7 +28,7 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 local config = {
-  color_scheme = 'earthtone',
+  color_scheme = 'earthtone_light',
   line_height = 1.1,
   front_end = wezterm.target_triple:find 'linux' and 'OpenGL' or 'WebGpu',
   max_fps = 120,

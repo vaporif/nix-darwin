@@ -270,6 +270,7 @@ in {
     };
     "tidal/Tidal.ghci".source = ../../config/tidal/Tidal.ghci;
     "procs/config.toml".source = ../../config/procs/config.toml;
-    "wezterm/colors/earthtone.toml".source = "${earthtone-nvim}/extras/wezterm.toml";
+    "wezterm/colors/earthtone-light.toml".source = "${earthtone-nvim}/extras/wezterm_light.toml";
+    "wezterm/colors/earthtone-dark.toml".source = "${earthtone-nvim}/extras/wezterm_dark.toml";
   };
 }
