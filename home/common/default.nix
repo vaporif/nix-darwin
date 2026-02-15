@@ -8,6 +8,7 @@
   mcpServersConfig,
   claude-code-plugins,
   nix-devshells,
+  earthtone-nvim,
   userConfig,
   ...
 }: let
@@ -269,5 +270,6 @@ in {
     };
     "tidal/Tidal.ghci".source = ../../config/tidal/Tidal.ghci;
     "procs/config.toml".source = ../../config/procs/config.toml;
+    "wezterm/colors/earthtone.toml".source = "${earthtone-nvim}/extras/wezterm.toml";
   };
 }

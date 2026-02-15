@@ -37,6 +37,10 @@
       url = "github:anthropics/claude-code/d213a74fc8e3b6efded52729196e0c2d4c3abb3e";
       flake = false;
     };
+    earthtone-nvim = {
+      url = "github:vaporif/earthtone.nvim";
+      flake = false;
+    };
     nix-devshells.url = "github:vaporif/nix-devshells";
     nixgl = {
       url = "github:nix-community/nixGL";
@@ -56,6 +60,7 @@
     mcp-servers-nix,
     stylix,
     claude-code-plugins,
+    earthtone-nvim,
     nix-devshells,
     nixgl,
     ...
@@ -173,7 +178,7 @@
             extraSpecialArgs = {
               inherit (hosts.macbook) user;
               inherit (darwinCtx) homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
-              inherit yamb-yazi claude-code-plugins nix-devshells;
+              inherit yamb-yazi claude-code-plugins nix-devshells earthtone-nvim;
               userConfig = hosts.macbook;
             };
             users.${hosts.macbook.user} = {
@@ -193,7 +198,7 @@
       extraSpecialArgs = {
         inherit (hosts.ubuntu-desktop) user;
         inherit (linuxCtx) homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
-        inherit yamb-yazi claude-code-plugins nixgl nix-devshells;
+        inherit yamb-yazi claude-code-plugins nixgl nix-devshells earthtone-nvim;
         userConfig = hosts.ubuntu-desktop;
       };
       modules = [
