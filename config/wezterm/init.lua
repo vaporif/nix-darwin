@@ -29,7 +29,7 @@ end)
 
 local config = {
   color_scheme = 'earthtone-light',
-  line_height = 1.1,
+  line_height = 1.0,
   front_end = wezterm.target_triple:find 'linux' and 'OpenGL' or 'WebGpu',
   max_fps = 120,
   animation_fps = 120,

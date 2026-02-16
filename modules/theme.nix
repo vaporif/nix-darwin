@@ -10,16 +10,16 @@ in {
     base16Scheme = schemeToml.palette // {inherit (schemeToml.scheme) name author;};
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font Mono";
+        package = pkgs.nerd-fonts.intone-mono;
+        name = "IntoneMono Nerd Font Mono";
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font";
+        package = pkgs.inter;
+        name = "Inter";
       };
       serif = {
-        package = pkgs.nerd-fonts.hack;
-        name = "Hack Nerd Font";
+        package = pkgs.inter;
+        name = "Inter";
       };
       emoji = {
         package = pkgs.emptyDirectory // {meta.mainProgram = "empty-file";};
