@@ -10,8 +10,8 @@ in {
     base16Scheme = schemeToml.palette // {inherit (schemeToml.scheme) name author;};
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.intone-mono;
-        name = "IntoneMono Nerd Font Mono";
+        package = pkgs.nerd-fonts.monaspace;
+        name = "MonaspiceAr Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.inter;
