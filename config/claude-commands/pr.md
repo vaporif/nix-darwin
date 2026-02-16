@@ -13,7 +13,10 @@ Generate a pull request title and description.
 
 **Generate PR content:**
 
-**Title:** concise summary of the change (imperative mood)
+**Title:** Use conventional commit format: `<type>(<scope>): <description>`
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`
+- Scope is optional but recommended (e.g., `feat(auth): add login flow`)
+- Description should be concise, lowercase, imperative mood, no period
 
 **Description:**
 ```
@@ -23,9 +26,6 @@ Brief explanation of what this PR does and why.
 ## Changes
 - Bullet points of key changes
 - Group related changes together
-
-## Testing
-How this was tested or how to test it.
 
 ## Notes
 Any additional context, breaking changes, or follow-up tasks.
