@@ -251,6 +251,7 @@ in {
     };
     ".claude/hooks/check-bash-command.sh".source = ../../config/claude/hooks/check-bash-command.sh;
     ".claude/hooks/auto-recall.sh".source = ../../config/claude/hooks/auto-recall.sh;
+    ".claude/hooks/scan-project.sh".source = ../../config/claude/hooks/scan-project.sh;
     ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
 
     # SSH signing key (public key from Secretive)

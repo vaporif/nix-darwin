@@ -60,6 +60,10 @@
       {
         "hooks": [
           {
+            "command": "~/.claude/hooks/scan-project.sh",
+            "type": "command"
+          },
+          {
             "command": "~/.claude/hooks/auto-recall.sh",
             "type": "command"
           }

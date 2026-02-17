@@ -3,14 +3,13 @@
 
 Reads text from stdin, classifies it using ProtectAI's DeBERTa model,
 and exits with code 1 if injection detected, 0 if clean.
-
-Uses ONNX runtime instead of PyTorch for fast cold start (~2-3s).
 """
 
 import sys
 
-from optimum.onnxruntime import ORTModelForSequenceClassification
-from transformers import AutoTokenizer, pipeline
+import numpy as np
+import onnxruntime as ort
+from transformers import AutoTokenizer
 
 MODEL_NAME = "ProtectAI/deberta-v3-small-prompt-injection-v2"
 THRESHOLD = 0.5
@@ -19,23 +18,35 @@ text = sys.stdin.read().strip()
 if not text:
     sys.exit(0)
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, subfolder="onnx")
-tokenizer.model_input_names = ["input_ids", "attention_mask"]
-model = ORTModelForSequenceClassification.from_pretrained(
-    MODEL_NAME, export=False, subfolder="onnx"
-)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+inputs = tokenizer(text, truncation=True, max_length=512, return_tensors="np")
 
-classifier = pipeline(
-    "text-classification",
-    model=model,
-    tokenizer=tokenizer,
-    truncation=True,
-    max_length=512,
-)
+model_dir = tokenizer.name_or_path
+try:
+    from huggingface_hub import hf_hub_download
 
-result = classifier(text)[0]
+    model_path = hf_hub_download(MODEL_NAME, "onnx/model.onnx")
+except Exception:
+    sys.exit(0)
 
-if result["label"] == "INJECTION" and result["score"] >= THRESHOLD:
+session = ort.InferenceSession(model_path)
+
+feeds = {
+    "input_ids": inputs["input_ids"].astype(np.int64),
+    "attention_mask": inputs["attention_mask"].astype(np.int64),
+}
+
+outputs = session.run(None, feeds)
+logits = outputs[0][0]
+
+# softmax
+exp = np.exp(logits - np.max(logits))
+probs = exp / exp.sum()
+
+# label 1 = INJECTION
+injection_score = float(probs[1])
+
+if injection_score >= THRESHOLD:
     sys.exit(1)
 
 sys.exit(0)

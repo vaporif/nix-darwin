@@ -40,7 +40,8 @@ in
         with ps; [
           onnxruntime
           transformers
-          optimum
+          numpy
+          huggingface-hub
         ]);
     in
       final.writeShellScriptBin "scan-injection" ''
