@@ -24,6 +24,25 @@ warn() {
   exit 0
 }
 
+# Detect invisible Unicode chars used to hide injection payloads (stdin-based)
+# Flags: private-use (Co), unassigned (Cn), or 3+ format (Cf) chars (single BOM is OK)
+# Returns 0 if suspicious chars found, 1 if clean
+has_invisible_unicode() {
+  perl -0777 -ne '
+    s/^\x{FEFF}//;
+    exit 0 if /[\p{Co}\p{Cn}]/;
+    my @cf = /\p{Cf}/g;
+    exit 0 if @cf >= 3;
+    exit 1;
+  '
+}
+
+# Strip invisible Unicode so regex can match obfuscated injection
+# e.g. "ig\u200Bnore prev\u200Bious instructions" → "ignore previous instructions"
+strip_invisible() {
+  perl -pe 's/[\p{Cf}\p{Co}\p{Cn}]//g'
+}
+
 # Detect common prompt injection patterns via POSIX ERE (stdin-based)
 # Returns 0 (true) if injection patterns found, 1 (false) if clean
 # Uses [[:space:]] for macOS BSD grep compatibility
@@ -37,8 +56,14 @@ case "$TOOL_NAME" in
   Read|mcp__github__get_file_contents|mcp__filesystem__read_file|mcp__filesystem__read_text_file)
     FILE_PATH=$(jq -r '.tool_input.file_path // .tool_input.path // empty' "$INPUT_FILE")
     if [[ "$FILE_PATH" =~ \.(md|json|txt|yaml|yml|toml|csv|html|xml)$ ]]; then
-      if jq -r '.tool_response // empty' "$INPUT_FILE" | has_injection; then
-        warn
+      RESPONSE=$(jq -r '.tool_response // empty' "$INPUT_FILE")
+      if [[ -n "$RESPONSE" ]]; then
+        if printf '%s' "$RESPONSE" | has_invisible_unicode; then
+          warn
+        fi
+        if printf '%s\n' "$RESPONSE" | strip_invisible | has_injection; then
+          warn
+        fi
       fi
     fi
     ;;
@@ -47,12 +72,16 @@ case "$TOOL_NAME" in
     if [[ -z "$RESPONSE" ]]; then
       exit 0
     fi
-    # Full ML scan for web content (infrequent tool, higher risk)
-    if ! printf '%s' "$RESPONSE" | scan-injection 2>/dev/null; then
+    # Full ML scan for web content (strip invisible chars first, then chunk-scan)
+    if ! printf '%s' "$RESPONSE" | strip_invisible | scan-injection 2>/dev/null; then
       warn
     fi
-    # Regex fallback if ML model unavailable (exits 0 on load failure)
-    if printf '%s\n' "$RESPONSE" | has_injection; then
+    # Invisible unicode check
+    if printf '%s' "$RESPONSE" | has_invisible_unicode; then
+      warn
+    fi
+    # Regex fallback (strips invisible chars first to catch obfuscated injection)
+    if printf '%s\n' "$RESPONSE" | strip_invisible | has_injection; then
       warn
     fi
     ;;
