@@ -31,7 +31,7 @@
       {
         "hooks": [
           {
-            "command": "echo '{\"decision\": \"block\", \"reason\": \"This will delete a file. Confirm this is intended before proceeding.\"}'",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"permissionDecision\": \"ask\", \"permissionDecisionReason\": \"This will delete a file. Confirm this is intended before proceeding.\"}}'",
             "type": "command"
           }
         ],
@@ -40,7 +40,7 @@
       {
         "hooks": [
           {
-            "command": "echo '{\"decision\": \"block\", \"reason\": \"Storing to Qdrant memory. This persists across sessions and auto-injects into future prompts. Confirm with user.\"}'",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"permissionDecision\": \"ask\", \"permissionDecisionReason\": \"Storing to Qdrant memory. This persists across sessions and auto-injects into future prompts.\"}}'",
             "type": "command"
           }
         ],
@@ -49,7 +49,7 @@
       {
         "hooks": [
           {
-            "command": "echo '{\"decision\": \"block\", \"reason\": \"Writing to persistent Serena memory. Confirm with user.\"}'",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"permissionDecision\": \"ask\", \"permissionDecisionReason\": \"Writing to persistent Serena memory.\"}}'",
             "type": "command"
           }
         ],

@@ -13,7 +13,7 @@ if [[ -z "$COMMAND" ]]; then
 fi
 
 block() {
-  jq -n --arg reason "$1" '{ decision: "block", reason: $reason }'
+  jq -n --arg reason "$1" '{ hookSpecificOutput: { hookEventName: "PreToolUse", permissionDecision: "ask", permissionDecisionReason: $reason } }'
   exit 0
 }
 
