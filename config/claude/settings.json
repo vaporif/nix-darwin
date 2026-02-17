@@ -24,7 +24,7 @@
             "type": "command"
           }
         ],
-        "matcher": "Read|WebFetch|mcp__github__get_file_contents|mcp__filesystem__read_file"
+        "matcher": "Read|WebFetch|mcp__github__get_file_contents|mcp__filesystem__read_file|mcp__filesystem__read_text_file"
       }
     ],
     "PreToolUse": [
