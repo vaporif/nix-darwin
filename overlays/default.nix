@@ -35,6 +35,18 @@ in
         '';
       });
 
+    scan-injection = let
+      pythonWithDeps = final.python312.withPackages (ps:
+        with ps; [
+          onnxruntime
+          transformers
+          optimum
+        ]);
+    in
+      final.writeShellScriptBin "scan-injection" ''
+        exec ${pythonWithDeps}/bin/python ${../config/claude/scan-injection.py} "$@"
+      '';
+
     tidal_script =
       (final.stdenv.mkDerivation {
         name = "tidal";

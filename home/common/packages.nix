@@ -56,6 +56,9 @@
       ouch
       hyperfine
 
+      shfmt
+
+      scan-injection
       claude-code
       mcp-nixos-package
       qdrant

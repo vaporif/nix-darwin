@@ -242,6 +242,13 @@ in {
 
     ".claude/CLAUDE.md".source = ../../config/claude/CLAUDE.md;
     ".claude/settings.json".text = builtins.replaceStrings ["@homeDir@"] [homeDir] (builtins.readFile ../../config/claude/settings.json);
+    # Nix-managed empty local settings to prevent manual permission escalation
+    ".claude/settings.local.json".text = builtins.toJSON {
+      permissions = {
+        allow = [];
+        deny = [];
+      };
+    };
     ".claude/hooks/check-bash-command.sh".source = ../../config/claude/hooks/check-bash-command.sh;
     ".claude/hooks/auto-recall.sh".source = ../../config/claude/hooks/auto-recall.sh;
     ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;

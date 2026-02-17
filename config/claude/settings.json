@@ -36,6 +36,24 @@
           }
         ],
         "matcher": "mcp__filesystem__delete_file"
+      },
+      {
+        "hooks": [
+          {
+            "command": "echo '{\"decision\": \"block\", \"reason\": \"Storing to Qdrant memory. This persists across sessions and auto-injects into future prompts. Confirm with user.\"}'",
+            "type": "command"
+          }
+        ],
+        "matcher": "mcp__qdrant__qdrant-store"
+      },
+      {
+        "hooks": [
+          {
+            "command": "echo '{\"decision\": \"block\", \"reason\": \"Writing to persistent Serena memory. Confirm with user.\"}'",
+            "type": "command"
+          }
+        ],
+        "matcher": "mcp__serena__write_memory"
       }
     ],
     "UserPromptSubmit": [
