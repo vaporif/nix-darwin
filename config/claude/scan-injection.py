@@ -18,14 +18,21 @@ text = sys.stdin.read().strip()
 if not text:
     sys.exit(0)
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+# Read HF token from SOPS secret (never in env vars)
+token = None
+try:
+    with open("/run/secrets/hf-token-scan-injection") as f:
+        token = f.read().strip()
+except FileNotFoundError:
+    pass
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, token=token)
 inputs = tokenizer(text, truncation=True, max_length=512, return_tensors="np")
 
-model_dir = tokenizer.name_or_path
 try:
     from huggingface_hub import hf_hub_download
 
-    model_path = hf_hub_download(MODEL_NAME, "onnx/model.onnx")
+    model_path = hf_hub_download(MODEL_NAME, "onnx/model.onnx", token=token)
 except Exception:
     sys.exit(0)
 
