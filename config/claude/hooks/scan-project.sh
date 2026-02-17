@@ -30,7 +30,7 @@ for f in \
   "${CWD}/.claude/CLAUDE.md" \
   "${CWD}/.claude/commands/"*.md; do
   if [[ -f "$f" ]]; then
-    if ! echo "$(cat "$f")" | scan-injection 2>/dev/null; then
+    if ! scan-injection < "$f" 2>/dev/null; then
       warn "INJECTION" "${f#"${CWD}/"} may contain prompt injection"
     fi
   fi
@@ -73,7 +73,7 @@ fi
 
 # --- Check for .serena project configs that could override behavior ---
 if [[ -f "${CWD}/.serena/config.json" ]]; then
-  if ! echo "$(cat "${CWD}/.serena/config.json")" | scan-injection 2>/dev/null; then
+  if ! scan-injection < "${CWD}/.serena/config.json" 2>/dev/null; then
     warn "INJECTION" ".serena/config.json may contain prompt injection"
   fi
 fi

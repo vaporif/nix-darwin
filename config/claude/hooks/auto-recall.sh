@@ -43,7 +43,7 @@ NL=$'\n'
 # Returns 0 if clean, 1 if injection detected, 0 if scanner unavailable (fail open)
 check_injection() {
   local text="$1"
-  echo "$text" | scan-injection 2>/dev/null
+  scan-injection <<< "$text" 2>/dev/null
   return $?
 }
 
