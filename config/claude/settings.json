@@ -16,6 +16,15 @@
           }
         ],
         "matcher": "Edit|Write"
+      },
+      {
+        "hooks": [
+          {
+            "command": "~/.claude/hooks/scan-output.sh",
+            "type": "command"
+          }
+        ],
+        "matcher": "Read|WebFetch|mcp__github__get_file_contents|mcp__filesystem__read_file"
       }
     ],
     "PreToolUse": [

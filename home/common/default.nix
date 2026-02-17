@@ -261,6 +261,10 @@ in {
       source = ../../config/claude/hooks/scan-project.sh;
       executable = true;
     };
+    ".claude/hooks/scan-output.sh" = {
+      source = ../../config/claude/hooks/scan-output.sh;
+      executable = true;
+    };
     ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;
 
     # SSH signing key (public key from Secretive)
