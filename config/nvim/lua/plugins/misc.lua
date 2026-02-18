@@ -34,7 +34,6 @@ return {
   { 'chrisgrieser/nvim-early-retirement', event = 'VeryLazy', config = true },
   { 'sindrets/diffview.nvim', cmd = { 'DiffviewOpen', 'DiffviewFileHistory', 'DiffviewClose' } },
 
-  { 'mrcjkb/rustaceanvim', version = '^7', lazy = false },
   { 'saecki/crates.nvim', event = 'BufRead Cargo.toml', opts = {} },
   {
     'folke/lazydev.nvim',
