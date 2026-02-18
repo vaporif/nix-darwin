@@ -206,7 +206,7 @@ in {
 
   home.file = {
     ".envrc".text = ''
-      use flake github:vaporif/nix-devshells/${nix-devshells.rev}
+      use flake "github:vaporif/nix-devshells/${nix-devshells.rev}" --impure
     '';
     # Qdrant config - localhost only
     ".qdrant/config.yaml".text = ''
