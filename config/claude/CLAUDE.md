@@ -12,6 +12,7 @@
 - Keep functions focused and reasonably sized
 - Comment only when the "why" isn't obvious from the code itself
 - Test edge cases and error paths, not just happy paths
+- Rust: use modern module syntax (`foo.rs` + `foo/bar.rs`) instead of `foo/mod.rs`
 
 ## Before Writing Code
 - Look for project-specific docs (CLAUDE.md, README, docs/) before starting
