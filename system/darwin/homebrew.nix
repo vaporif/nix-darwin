@@ -14,6 +14,7 @@ _: {
 
     casks = [
       "supercollider"
+      "spotify"
       "blackhole-2ch"
       "blackhole-16ch"
       "element"
