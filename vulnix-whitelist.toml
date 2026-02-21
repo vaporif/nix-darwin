@@ -67,7 +67,13 @@ comment = "Haskell yaml library"
 
 [zlib]
 comment = "Haskell zlib bindings (name collision); C zlib-1.3.1 is patched; CVE-2026-22184 only affects untgz demo"
-cve = ["CVE-2026-22184", "CVE-2023-6992", "CVE-2022-37434", "CVE-2023-45853"]
+cve = [
+  "CVE-2026-22184",
+  "CVE-2026-27171",
+  "CVE-2023-6992",
+  "CVE-2022-37434",
+  "CVE-2023-45853",
+]
 
 # Build-time dependencies
 [python]
@@ -205,3 +211,10 @@ comment = "System OpenSSL from nixpkgs, awaiting upstream fix"
 
 [pnpm]
 comment = "Node package manager, build-time dep"
+
+[vim]
+comment = "Build-time only: vim-gen-doc-hook generates :helptags for neovim plugins"
+
+[harfbuzz]
+comment = "CVE-2026-22693: NULL deref on OOM (DoS), fixed in 12.3.0; awaiting upstream nixpkgs bump"
+cve = ["CVE-2026-22693"]
