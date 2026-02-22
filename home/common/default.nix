@@ -9,6 +9,7 @@
   claude-code-plugins,
   nix-devshells,
   earthtone-nvim,
+  parry,
   userConfig,
   ...
 }: let
@@ -190,6 +191,12 @@ in {
         ]);
     };
 
+    parry = {
+      enable = true;
+      package = parry.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      hfTokenFile = "/run/secrets/hf-token-scan-injection";
+    };
+
     ssh = {
       enable = true;
       enableDefaultConfig = false;
@@ -255,14 +262,6 @@ in {
     };
     ".claude/hooks/auto-recall.sh" = {
       source = ../../config/claude/hooks/auto-recall.sh;
-      executable = true;
-    };
-    ".claude/hooks/scan-project.sh" = {
-      source = ../../config/claude/hooks/scan-project.sh;
-      executable = true;
-    };
-    ".claude/hooks/scan-output.sh" = {
-      source = ../../config/claude/hooks/scan-output.sh;
       executable = true;
     };
     ".claude/plugins/known_marketplaces.json".text = knownMarketplaces;

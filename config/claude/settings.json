@@ -20,14 +20,23 @@
       {
         "hooks": [
           {
-            "command": "~/.claude/hooks/scan-output.sh",
+            "command": "parry hook",
             "type": "command"
           }
         ],
-        "matcher": "Read|WebFetch|mcp__github__get_file_contents|mcp__filesystem__read_file|mcp__filesystem__read_text_file"
+        "matcher": "Read|WebFetch|Bash|mcp__github__get_file_contents|mcp__filesystem__read_file|mcp__filesystem__read_text_file"
       }
     ],
     "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "parry hook",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash|Read|Write|Edit|Glob|Grep|WebFetch|WebSearch|NotebookEdit|Task|mcp__.*"
+      },
       {
         "hooks": [
           {
@@ -69,7 +78,7 @@
       {
         "hooks": [
           {
-            "command": "~/.claude/hooks/scan-project.sh",
+            "command": "parry hook",
             "type": "command"
           },
           {

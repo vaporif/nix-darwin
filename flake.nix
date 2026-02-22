@@ -42,6 +42,10 @@
       flake = false;
     };
     nix-devshells.url = "github:vaporif/nix-devshells";
+    parry = {
+      url = "github:vaporif/parry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +66,7 @@
     claude-code-plugins,
     earthtone-nvim,
     nix-devshells,
+    parry,
     nixgl,
     ...
   }: let
@@ -179,13 +184,14 @@
             extraSpecialArgs = {
               inherit (hosts.macbook) user;
               inherit (darwinCtx) homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
-              inherit yamb-yazi claude-code-plugins nix-devshells earthtone-nvim;
+              inherit yamb-yazi claude-code-plugins nix-devshells earthtone-nvim parry;
               userConfig = hosts.macbook;
             };
             users.${hosts.macbook.user} = {
               imports = [
                 ./home/common
                 ./home/darwin
+                parry.homeManagerModules.default
               ];
             };
             backupFileExtension = "backup";
@@ -199,7 +205,7 @@
       extraSpecialArgs = {
         inherit (hosts.ubuntu-desktop) user;
         inherit (linuxCtx) homeDir sharedLspPackages mcpServersConfig fzf-git-sh-package mcp-nixos-package;
-        inherit yamb-yazi claude-code-plugins nixgl nix-devshells earthtone-nvim;
+        inherit yamb-yazi claude-code-plugins nixgl nix-devshells earthtone-nvim parry;
         userConfig = hosts.ubuntu-desktop;
       };
       modules = [
@@ -208,6 +214,7 @@
           nixpkgs.config.allowUnfreePredicate = allowUnfreePredicate;
         }
         stylix.homeModules.stylix
+        parry.homeManagerModules.default
         ./modules/theme.nix
         ./home/common
         ./home/linux
