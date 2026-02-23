@@ -40,15 +40,6 @@
       {
         "hooks": [
           {
-            "command": "~/.claude/hooks/check-bash-command.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
-      {
-        "hooks": [
-          {
             "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"permissionDecision\": \"ask\", \"permissionDecisionReason\": \"This will delete a file. Confirm this is intended before proceeding.\"}}'",
             "type": "command"
           }
