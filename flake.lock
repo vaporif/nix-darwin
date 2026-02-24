@@ -103,11 +103,11 @@
     "earthtone-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1771675621,
-        "narHash": "sha256-rCJ41ctAfJEd8NyVN51KZ5ciX1eq7p7C+H25RFPIKA4=",
+        "lastModified": 1771908485,
+        "narHash": "sha256-k54XVYM7pWnCkXE+KIBMcj6EC21C1LR9Em9m8jwdMS4=",
         "owner": "vaporif",
         "repo": "earthtone.nvim",
-        "rev": "9640c6c9a0fb1181ed70a34d92340c02e95ca26e",
+        "rev": "f833e4c0ce00aa0c11b4d1c49181f9d8b0e57319",
         "type": "github"
       },
       "original": {
@@ -484,11 +484,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1771423170,
-        "narHash": "sha256-K7Dg9TQ0mOcAtWTO/FX/FaprtWQ8BmEXTpLIaNRhEwU=",
+        "lastModified": 1771482645,
+        "narHash": "sha256-MpAKyXfJRDTgRU33Hja+G+3h9ywLAJJNRq4Pjbb4dQs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bcc4a9d9533c033d806a46b37dc444f9b0da49dd",
+        "rev": "724cf38d99ba81fbb4a347081db93e2e3a9bc2ae",
         "type": "github"
       },
       "original": {
@@ -548,11 +548,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771905656,
-        "narHash": "sha256-R2NaVBVrhpwt0KWxlcXkF+Vb3+CCQD6MNcKYx91VgaU=",
+        "lastModified": 1771917311,
+        "narHash": "sha256-wAT3VzhTtytevTp8E/YhWCGsbXaIC1sn1iMovVG0n0U=",
         "owner": "vaporif",
         "repo": "parry",
-        "rev": "52311296914f0231851d46a65568a9fc409a9b87",
+        "rev": "2a9375bce1561c346b35d0cf4b8f61a442564bcf",
         "type": "github"
       },
       "original": {
