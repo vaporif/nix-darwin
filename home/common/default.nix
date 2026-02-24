@@ -195,7 +195,7 @@ in {
       enable = true;
       package = parry.packages.${pkgs.stdenv.hostPlatform.system}.default;
       hfTokenFile = "/run/secrets/hf-token-scan-injection";
-      ignorePaths = ["/Users/vaporif/Repos/parry"];
+      ignorePaths = ["${homeDir}/Repos/parry" userConfig.configPath];
     };
 
     ssh = {

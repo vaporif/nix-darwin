@@ -84,4 +84,9 @@ in
     curl-impersonate = prev.curl-impersonate.overrideAttrs (_: {
       doCheck = false;
     });
+
+    # Skip deno check (test target typo: integration_tests vs integration_test)
+    deno = prev.deno.overrideAttrs (_: {
+      doCheck = false;
+    });
   }
