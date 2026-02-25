@@ -61,6 +61,11 @@ in
             doInstallCheck = false;
             pytestCheckPhase = "";
           });
+          # Skip jeepney checks (dbus + trio/outcome unavailable on macOS)
+          jeepney = python-prev.jeepney.overrideAttrs (_: {
+            doInstallCheck = false;
+            pythonImportsCheck = [];
+          });
         })
       ];
 
