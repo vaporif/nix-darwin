@@ -215,6 +215,13 @@ comment = "Node package manager, build-time dep"
 [vim]
 comment = "Build-time only: vim-gen-doc-hook generates :helptags for neovim plugins"
 
+[cryptography]
+comment = "CVE-2026-26007: SECT curve subgroup attack, fixed in 46.0.5; build-time only (pikepdf → mcp-server-qdrant); awaiting upstream nixpkgs bump"
+cve = ["CVE-2026-26007"]
+
+[mupdf]
+comment = "Build-time only (not runtime): mupdf → pikepdf → mcp-server-qdrant"
+
 [harfbuzz]
 comment = "CVE-2026-22693: NULL deref on OOM (DoS), fixed in 12.3.0; awaiting upstream nixpkgs bump"
 cve = ["CVE-2026-22693"]
