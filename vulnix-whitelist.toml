@@ -225,3 +225,7 @@ comment = "Build-time only (not runtime): mupdf → pikepdf → mcp-server-qdran
 [harfbuzz]
 comment = "CVE-2026-22693: NULL deref on OOM (DoS), fixed in 12.3.0; awaiting upstream nixpkgs bump"
 cve = ["CVE-2026-22693"]
+
+[valkey]
+comment = "CVE-2026-27623: DoS via assertion on empty request (7.5 CVSS), fixed in 9.0.3; local-only service, awaiting upstream nixpkgs bump"
+cve = ["CVE-2026-27623"]
