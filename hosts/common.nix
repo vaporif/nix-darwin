@@ -20,5 +20,5 @@
     publicKey = "vaporif.cachix.org-1:y/fKd8ILM10UJCdXFFYn/n8+AqXnRLzwHjX+BikcUf8=";
   };
 
-  timezone = "Asia/Tokyo";
+  timezone = "Europe/Lisbon";
 }
