@@ -194,6 +194,7 @@ in {
     parry = {
       enable = true;
       package = parry.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      scanMode = "full";
       hfTokenFile = "/run/secrets/hf-token-scan-injection";
       ignorePaths = ["${homeDir}/Repos/parry" userConfig.configPath];
     };
